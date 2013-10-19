@@ -16,63 +16,41 @@
   	<title><%= content_for?(:title) ? yield(:title) : "RubyGameDev.com - A hub for discussion around Ruby game development" %></title>
 
     <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
-  	<%= javascript_include_tag "vendor/custom.modernizr" %>
+  	<!-- <%= javascript_include_tag "vendor/custom.modernizr" %> -->
     <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
     <%= csrf_meta_tags %>
   </head>
 
   <body>
 
-  <!-- Header and Nav -->
-  <nav class="top-bar">
-    <ul class="title-area">
-      <!-- Title Area -->
-      <li class="name">
-        <h1>
-          <a href="/">
-            <%= image_tag 'rubygamedev_logo.png', width: 300, style: 'margin-top: -5px;' %>
-          </a>
-        </h1>
-      </li>
-      <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
-    </ul>
-
-    <section class="top-bar-section">
-      <!-- Left Nav Section -->
-      <ul class="left">
-        <li class="divider"></li>
-        <li><a href="/forum">Forum</a></li>
-        <li class="divider"></li>
-        <li><a href="/questions">Questions</a></li>
-        <li class="divider"></li>
-        <li><a href="/tutorials">Tutorials</a></li>
-        <li class="divider"></li>
-        <li><a href="/blog">Blog</a></li>
-        <li class="divider"></li>
-      </ul>
-
-      <!-- Right Nav Section -->
-      <ul class="right">
-        <li class="divider"></li>
-        <li><a href="#">Welcome Guest!</a></li>
-<!--         <li class="has-dropdown">
-          <a href="#">Welcome Guest!</a>
-          <ul class="dropdown">
-            <li><a href="#">Dropdown Option</a></li>
-            <li><a href="#">Dropdown Option</a></li>
-            <li><a href="#">Dropdown Option</a></li>
-            <li class="divider"></li>
-            <li><a href="#">See all &rarr;</a></li>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/"><%= image_tag 'rubygamedev_logo.png', alt: 'RubyGameDev.com', width: 300 %></a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="/forum">Forum</a></li>
+            <li><a href="/questions">Questions</a></li>
+            <li><a href="/tutorials">Tutorials</a></li>
+            <li><a href="/libraries">Libraries</a></li>
+            <li><a href="/blog">Blog</a></li>
           </ul>
-        </li> -->
-      </ul>
-    </section>
-  </nav>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="#">Welcome Guest!</a></li>
+          </ul>
+        </div><!--/.navbar-collapse -->
+      </div>
+    </div>
 
-  <!-- End Header and Nav -->
-
-    <%= yield %>
-
+    <div class="container">
+      <%= yield %>
+    </div>
     
   </body>
 </html>

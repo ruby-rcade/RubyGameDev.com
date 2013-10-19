@@ -63,7 +63,7 @@ $em-base: 16px !default;
 
 $default-float: left;
 
-// $body-bg: #fff;
+$body-bg: #eee;
 // $body-font-color: #222;
 // $body-font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
 // $body-font-weight: normal;
@@ -83,7 +83,7 @@ $bright-red: #E62911;
 $dark-red: darken($bright-red, 5%);
 
 // $primary-color: #2ba6cb;
-$primary-color: $bright-red;
+// $primary-color: $bright-red;
 // $secondary-color: #e9e9e9;
 // $alert-color: #c60f13;
 // $success-color: #5da423;
