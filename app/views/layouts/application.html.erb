@@ -23,6 +23,54 @@
 
   <body>
 
+  <!-- Header and Nav -->
+  <nav class="top-bar">
+    <ul class="title-area">
+      <!-- Title Area -->
+      <li class="name">
+        <h1>
+          <a href="/">
+            <%= image_tag 'rubygamedev_logo.png', width: 300, style: 'margin-top: -5px;' %>
+          </a>
+        </h1>
+      </li>
+      <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+    </ul>
+
+    <section class="top-bar-section">
+      <!-- Left Nav Section -->
+      <ul class="left">
+        <li class="divider"></li>
+        <li><a href="/forum">Forum</a></li>
+        <li class="divider"></li>
+        <li><a href="/questions">Questions</a></li>
+        <li class="divider"></li>
+        <li><a href="/tutorials">Tutorials</a></li>
+        <li class="divider"></li>
+        <li><a href="/blog">Blog</a></li>
+        <li class="divider"></li>
+      </ul>
+
+      <!-- Right Nav Section -->
+      <ul class="right">
+        <li class="divider"></li>
+        <li><a href="#">Welcome Guest!</a></li>
+<!--         <li class="has-dropdown">
+          <a href="#">Welcome Guest!</a>
+          <ul class="dropdown">
+            <li><a href="#">Dropdown Option</a></li>
+            <li><a href="#">Dropdown Option</a></li>
+            <li><a href="#">Dropdown Option</a></li>
+            <li class="divider"></li>
+            <li><a href="#">See all &rarr;</a></li>
+          </ul>
+        </li> -->
+      </ul>
+    </section>
+  </nav>
+
+  <!-- End Header and Nav -->
+
     <%= yield %>
 
     
