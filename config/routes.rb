@@ -1,5 +1,6 @@
 Rubygamedev::Application.routes.draw do
   
+  resources :users, only: [:index]
   root 'pages#home'
 
   # Example of regular route:
