@@ -4,6 +4,7 @@ class LibrariesController < ApplicationController
   # GET /libraries
   # GET /libraries.json
   def index
+    @library_categories = LibraryCategory.all
     @libraries = Library.all
   end
 

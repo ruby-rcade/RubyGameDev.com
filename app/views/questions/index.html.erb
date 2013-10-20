@@ -1,2 +1,28 @@
-<h1>Questions#index</h1>
-<p>Find me in app/views/questions/index.html.erb</p>
+<div class="row">
+
+  <div class="col-md-9">
+    <h1>Questions</h1>
+    <p>Questions from gamedev.stackexchange.com tagged ruby.</p>
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Answers</th>
+          <th>Question</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @questions.each do |question| %>
+          <tr>
+            <td class="text-center"><%= question['answer_count'] %></td>
+            <td>
+              <h4><%= link_to question['title'], question['link'] %></h4>
+              <p class="text-muted"><%= question['tags'].join(', ') %></p>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+
+</div>

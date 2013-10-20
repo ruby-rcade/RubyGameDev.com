@@ -1,10 +1,11 @@
 
-    <% @blog_posts.each do |blog_post| %>
-      <article>
-        <h2><%= link_to blog_post.title, blog_post %></h2>
-        <p>By <%= blog_post.user.username %> on <%= blog_post.published_on %></p>
-        <%= blog_post.body_html %>
-      </article>
-    <% end %>
+<%= link_to 'New Post', new_blog_post_path, class: 'pull-right btn btn-primary btn-lg' %>
+<h1>Blog</h1>
 
-<%= link_to 'New Post', new_blog_post_path %>
+<% @blog_posts.each do |blog_post| %>
+  <article>
+    <h2><%= link_to blog_post.title, blog_post %></h2>
+    <p>By <%= blog_post.user.username %> on <%= blog_post.published_on %></p>
+    <%= blog_post.body_html %>
+  </article>
+<% end %>

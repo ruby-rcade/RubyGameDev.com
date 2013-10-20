@@ -1,7 +1,7 @@
 <% unless @user.dismissed_welcome_message %>
   <div id="welcome_message" class="alert alert-success alert-dismissable">
     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-    Welcome! First time here? <%= link_to 'Read the blog post', '/blog/posts/1', class: 'alert-link' %> which explains what RubyGameDev.com is all about.
+    Welcome to RubyGameDev.com, the community-contributed, information hub which helps others to build games in Ruby! First time here? <%= link_to 'Read the blog post', '/blog/posts/1', class: 'alert-link' %> to learn more.
   </div>
   <%= form_for @user, remote: true do |f| %>
     <%= f.hidden_field :dismissed_welcome_message, value: 1 %>
@@ -23,20 +23,18 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td><a href="#">Game Programming Basics</a></td>
-              <td>5</td>
-            </tr>
-            <tr>
-              <td><a href="#">Specific Libraries</a></td>
-              <td>10</td>
-            </tr>
+            <% @forum_topics.each do |forum_topic| %>
+              <tr>
+                <td><%= link_to forum_topic.title, forum_topic_discussions_path(forum_topic) %></td>
+                <td><%= forum_topic.discussions.count %></td>
+              </tr>
+            <% end %>
           </tbody>
         </table>
       </div>
     </div>
     
-    <div class="panel panel-default">
+    <div class="tutorials panel panel-default">
       <div class="panel-body">
         <%= link_to 'See More', tutorials_path, class: 'btn btn-default pull-right' %>
         <h2>Tutorials</h2>
@@ -44,12 +42,15 @@
           <tbody>
             <% @tutorials.each do |tutorial| %>
               <tr>
-                <td><span class="glyphicon glyphicon-thumbs-up"></span>&nbsp;<%= tutorial.score %></td>
-                <% if tutorial.url.present? %>
-                  <td><%= link_to tutorial.title, tutorial.url, target: '_blank' %></td>
-                <% else %>
-                  <td><%= link_to tutorial.title, tutorial %></td>
-                <% end %>
+                <td class="score"><span class="up">&#x25B2;</span><br><%= tutorial.score %><br><span class="down">&#x25BC;</span></td>
+                <td>
+                  <% if tutorial.url.present? %>
+                    <%= link_to tutorial.title, tutorial.url, target: '_blank' %>
+                  <% else %>
+                    <%= link_to tutorial.title, tutorial %>
+                  <% end %>
+                  <br><span class="text-muted">Submitted by <%= tutorial.user.username %> on <%= tutorial.created_at.strftime("%m/%d/%Y") %></span>
+                </td>
               </tr>
             <% end %>
           </tbody>
@@ -64,12 +65,12 @@
         <h2>Libraries</h2>
         <table class="table">
           <tbody>
-            <tr>
-              <td><a href="#">Game Engines</a> (3)</td>
-            </tr>
-            <tr>
-              <td><a href="#">Physics Engines</a> (2)</td>
-            </tr>
+            <% @library_categories.each do |library_category| %>
+              <tr>
+                <td><%= link_to library_category.title, library_category %></td>
+                <td><%= library_category.libraries.count %></td>
+              </tr>
+            <% end %>
           </tbody>
         </table>
       </div>
@@ -112,13 +113,25 @@
       <div class="panel-body">
         <%= link_to 'See More', questions_path, class: 'btn btn-default pull-right' %>
         <h2>Questions</h2>
+        <p class="text-muted">Questions from GameDevSE tagged <strong>ruby</strong>.</p>
         <table class="table">
-          <tbody>
+          <thead>
             <tr>
-              <td><a href="#">Is ruby a suitable language for game development?</a></td>
+              <th>Answers</th>
+              <th>Question</th>
             </tr>
+          </thead>
+          <tbody>
+            <% @questions.each do |question| %>
+              <tr>
+                <td class="text-center"><%= question['answer_count'] %></td>
+                <td><%= link_to question['title'], question['link'] %></p>
+                </td>
+              </tr>
+            <% end %>
           </tbody>
         </table>
+
       </div>
     </div>
 

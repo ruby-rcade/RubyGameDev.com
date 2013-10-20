@@ -1,3 +1,7 @@
+<% if current_user == @blog_post.user %>
+  <%= link_to 'Edit', edit_blog_post_path(@blog_post), class: 'pull-right btn btn-primary btn-lg' %>
+<% end %>
+
 <h1>
   <% if @blog_post.draft %>
     <span><%= @blog_post.draft %></span>

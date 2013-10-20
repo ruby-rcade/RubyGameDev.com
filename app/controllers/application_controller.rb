@@ -14,6 +14,7 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  helper_method :current_user
   def current_user
     @user
   end
