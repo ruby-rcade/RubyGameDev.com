@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @blog_post.title %>
+</p>
+
+<p>
+  <strong>Body markdown:</strong>
+  <%= @blog_post.body_markdown %>
+</p>
+
+<p>
+  <strong>Body html:</strong>
+  <%= @blog_post.body_html %>
+</p>
+
+<p>
+  <strong>Draft:</strong>
+  <%= @blog_post.draft %>
+</p>
+
+<p>
+  <strong>Published on:</strong>
+  <%= @blog_post.published_on %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @blog_post.user %>
+</p>
+
+<%= link_to 'Edit', edit_blog_post_path(@blog_post) %> |
+<%= link_to 'Back', blog_posts_path %>

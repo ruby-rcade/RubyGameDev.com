@@ -1,7 +1,7 @@
 <% unless @user.dismissed_welcome_message %>
   <div id="welcome_message" class="alert alert-success alert-dismissable">
     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-    Welcome! <a href="#" class="alert-link">link to blog post</a>
+    Welcome! First time here? <%= link_to 'Read the blog post', '#', class: 'alert-link' %> which explains what RubyGameDev.com is all about.
   </div>
   <%= form_for @user, remote: true do |f| %>
     <%= f.hidden_field :dismissed_welcome_message, value: 1 %>
@@ -133,11 +133,14 @@
         <h2>Showcase</h2>
         <div class="media">
           <a class="pull-left" href="#">
-            <img class="media-object" src="http://placehold.it/150x150">
+            <%= image_tag 'joybox_asteroids_game.png', class: 'media-object', width: 150 %>
+            <!-- <img class="media-object" src="http://placehold.it/150x150"> -->
           </a>
           <div class="media-body">
-            <h4 class="media-heading">Media heading</h4>
-            Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+            <h4 class="media-heading">Joybox Asteroids</h4>
+            Joybox combines the most popular and widely used 2D game engine for iOS, Cocos2D, 
+            folds in the amazing Box2D physics engine, and then wraps them up into a clean Ruby API 
+            that will make game development faster and more enjoyable for both beginners and experts alike.
           </div>
         </div>
       </div>

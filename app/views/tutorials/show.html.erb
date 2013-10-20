@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Url:</strong>
+  <%= @tutorial.url %>
+</p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @tutorial.title %>
+</p>
+
+<p>
+  <strong>Body markdown:</strong>
+  <%= @tutorial.body_markdown %>
+</p>
+
+<p>
+  <strong>Body html:</strong>
+  <%= @tutorial.body_html %>
+</p>
+
+<p>
+  <strong>Draft:</strong>
+  <%= @tutorial.draft %>
+</p>
+
+<p>
+  <strong>Published on:</strong>
+  <%= @tutorial.published_on %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @tutorial.user %>
+</p>
+
+<%= link_to 'Edit', edit_tutorial_path(@tutorial) %> |
+<%= link_to 'Back', tutorials_path %>

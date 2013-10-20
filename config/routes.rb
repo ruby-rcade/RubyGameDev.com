@@ -1,14 +1,26 @@
 Rubygamedev::Application.routes.draw do
 
+  root 'pages#home'
+  resources :users, only: [:index, :edit, :update]
+
   namespace :forum do
     root 'topics#index'
     resources :topics
     resources :discussions
   end
 
-  resources :users, only: [:index, :edit, :update]
+  get 'questions' => 'questions#index'
 
-  root 'pages#home'
+  resources :tutorials
+
+  resources :libraries
+  resources :library_categories
+
+  namespace :blog do
+    root 'posts#index'
+    resources :posts
+  end
+
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

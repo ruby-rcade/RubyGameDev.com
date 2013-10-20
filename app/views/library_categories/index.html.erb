@@ -1,0 +1,27 @@
+<h1>Listing library_categories</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @library_categories.each do |library_category| %>
+      <tr>
+        <td><%= library_category.title %></td>
+        <td><%= link_to 'Show', library_category %></td>
+        <td><%= link_to 'Edit', edit_library_category_path(library_category) %></td>
+        <td><%= link_to 'Destroy', library_category, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Library category', new_library_category_path %>
