@@ -1,39 +1,18 @@
-<h1>Listing tutorials</h1>
+<h1>Tutorials</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Url</th>
-      <th>Title</th>
-      <th>Body markdown</th>
-      <th>Body html</th>
-      <th>Draft</th>
-      <th>Published on</th>
-      <th>User</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-
+<table class="table">
   <tbody>
     <% @tutorials.each do |tutorial| %>
       <tr>
-        <td><%= tutorial.url %></td>
-        <td><%= tutorial.title %></td>
-        <td><%= tutorial.body_markdown %></td>
-        <td><%= tutorial.body_html %></td>
-        <td><%= tutorial.draft %></td>
-        <td><%= tutorial.published_on %></td>
-        <td><%= tutorial.user %></td>
-        <td><%= link_to 'Show', tutorial %></td>
-        <td><%= link_to 'Edit', edit_tutorial_path(tutorial) %></td>
-        <td><%= link_to 'Destroy', tutorial, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><span class="glyphicon glyphicon-thumbs-up"></span>&nbsp;<%= tutorial.score %></td>
+        <% if tutorial.url.present? %>
+          <td><%= link_to tutorial.title, tutorial.url, target: '_blank' %></td>
+        <% else %>
+          <td><%= link_to tutorial.title, tutorial %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
 </table>
-
-<br>
 
 <%= link_to 'New Tutorial', new_tutorial_path %>

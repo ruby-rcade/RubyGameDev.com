@@ -13,6 +13,7 @@
 
     <div class="panel panel-default">
       <div class="panel-body">
+        <%= link_to 'See More', forum_root_path, class: 'btn btn-default pull-right' %>
         <h2>Discussion Forum</h2>
         <table class="table">
           <thead>
@@ -37,20 +38,29 @@
     
     <div class="panel panel-default">
       <div class="panel-body">
+        <%= link_to 'See More', tutorials_path, class: 'btn btn-default pull-right' %>
         <h2>Tutorials</h2>
         <table class="table">
           <tbody>
-            <tr>
-              <td><span class="glyphicon glyphicon-thumbs-up"></span>&nbsp;77</td>
-              <td><a href="#">How to submit a tutorial to RubyGameDev.com while keeping your sanity</a></td>
-            </tr>
+            <% @tutorials.each do |tutorial| %>
+              <tr>
+                <td><span class="glyphicon glyphicon-thumbs-up"></span>&nbsp;<%= tutorial.score %></td>
+                <% if tutorial.url.present? %>
+                  <td><%= link_to tutorial.title, tutorial.url, target: '_blank' %></td>
+                <% else %>
+                  <td><%= link_to tutorial.title, tutorial %></td>
+                <% end %>
+              </tr>
+            <% end %>
           </tbody>
         </table>
+
       </div>
     </div>
 
     <div class="panel panel-default">
       <div class="panel-body">
+        <%= link_to 'See More', libraries_path, class: 'btn btn-default pull-right' %>
         <h2>Libraries</h2>
         <table class="table">
           <tbody>
@@ -100,6 +110,7 @@
 
     <div class="panel panel-default">
       <div class="panel-body">
+        <%= link_to 'See More', questions_path, class: 'btn btn-default pull-right' %>
         <h2>Questions</h2>
         <table class="table">
           <tbody>

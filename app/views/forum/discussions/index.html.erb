@@ -3,32 +3,26 @@
   <li class="active"><%= @topic.title %></li>
 </ol>
 
-<h1><%= @topic.title %></h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Body</th>
-      <th>User</th>
-      <th>Topic</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @discussions.each do |discussion| %>
+<div class="col-md-9">
+  <h1><%= @topic.title %></h1>
+  <table class="table">
+    <thead>
       <tr>
-        <td><%= link_to discussion.title, discussion %></td>
-        <td><%= discussion.body %></td>
-        <td><%= discussion.user %></td>
+        <th>Discussion</th>
+        <th>Started By</th>
+        <th>Posts</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
+    </thead>
+    <tbody>
+      <% @discussions.each do |discussion| %>
+        <tr>
+          <td><%= link_to discussion.title, discussion %></td>
+          <td><%= discussion.user.username %></td>
+          <td>0</td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
 
 <%= link_to 'New Discussion', new_forum_topic_discussion_path(@topic) %>
