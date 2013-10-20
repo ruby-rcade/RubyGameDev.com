@@ -4,4 +4,8 @@ class User < ActiveRecord::Base
     return username unless username.blank?
     "Guest#{id}"
   end
+
+  def is_admin?
+    id == 1
+  end
 end

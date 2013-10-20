@@ -1,27 +1,34 @@
-<h1>Listing forum_topics</h1>
+<div class="row">
+  <div class="col-md-9">
+    <h1>Discussion Forum</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
+    
 
-  <tbody>
-    <% @forum_topics.each do |forum_topic| %>
-      <tr>
-        <td><%= forum_topic.title %></td>
-        <td><%= link_to 'Show', forum_topic %></td>
-        <td><%= link_to 'Edit', edit_forum_topic_path(forum_topic) %></td>
-        <td><%= link_to 'Destroy', forum_topic, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Topic</th>
+          <th>Posts</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @forum_topics.each do |forum_topic| %>
+          <tr>
+            <td><%= link_to forum_topic.title, forum_topic_discussions_path(forum_topic) %></td>
+            <td><%= forum_topic.discussions.count %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
 
-<br>
+  <div class="col-md-3">
 
-<%= link_to 'New Topic', new_forum_topic_path %>
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <%= link_to 'Suggest a New Topic', new_forum_topic_path %>
+      </div>
+    </div>
+  </div>
+
+</div>

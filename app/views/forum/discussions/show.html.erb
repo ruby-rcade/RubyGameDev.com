@@ -2,23 +2,17 @@
 
 <p>
   <strong>Title:</strong>
-  <%= @forum_discussion.title %>
+  <%= @discussion.title %>
 </p>
 
 <p>
   <strong>Body:</strong>
-  <%= @forum_discussion.body %>
+  <%= @discussion.body %>
 </p>
 
 <p>
   <strong>User:</strong>
-  <%= @forum_discussion.user %>
+  <%= @discussion.user.username %>
 </p>
 
-<p>
-  <strong>Topic:</strong>
-  <%= @forum_discussion.topic %>
-</p>
-
-<%= link_to 'Edit', edit_forum_discussion_path(@forum_discussion) %> |
-<%= link_to 'Back', forum_discussions_path %>
+<%= link_to 'Edit', edit_forum_discussion_path(@discussion) %>

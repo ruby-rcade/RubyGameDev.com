@@ -25,6 +25,7 @@ class Blog::PostsController < ApplicationController
   # POST /blog/posts.json
   def create
     @blog_post = Blog::Post.new(blog_post_params)
+    @blog_post.user = @user
 
     respond_to do |format|
       if @blog_post.save

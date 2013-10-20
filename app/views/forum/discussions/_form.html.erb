@@ -1,10 +1,10 @@
-<%= form_for(@forum_discussion) do |f| %>
-  <% if @forum_discussion.errors.any? %>
+<%= form_for @discussion, url: forum_topic_discussion_path(@topic, @discussion) do |f| %>
+  <% if @discussion.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@forum_discussion.errors.count, "error") %> prohibited this forum_discussion from being saved:</h2>
+      <h2><%= pluralize(@discussion.errors.count, "error") %> prohibited this forum_discussion from being saved:</h2>
 
       <ul>
-      <% @forum_discussion.errors.full_messages.each do |msg| %>
+      <% @discussion.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
       <% end %>
       </ul>
@@ -18,14 +18,6 @@
   <div class="field">
     <%= f.label :body %><br>
     <%= f.text_area :body %>
-  </div>
-  <div class="field">
-    <%= f.label :user %><br>
-    <%= f.text_field :user %>
-  </div>
-  <div class="field">
-    <%= f.label :topic %><br>
-    <%= f.text_field :topic %>
   </div>
   <div class="actions">
     <%= f.submit %>

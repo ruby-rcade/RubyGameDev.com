@@ -1,5 +1,6 @@
 class Forum::TopicsController < ApplicationController
   before_action :set_forum_topic, only: [:show, :edit, :update, :destroy]
+  before_action :check_if_user_is_allowed, only: [:edit, :update, :destroy]
 
   # GET /forum/topics
   # GET /forum/topics.json
@@ -65,6 +66,13 @@ class Forum::TopicsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_forum_topic
       @forum_topic = Forum::Topic.find(params[:id])
+    end
+
+    def check_if_user_is_allowed
+      return true if @user.is_admin?
+      if @forum_topic.user_id != @user.id
+        render text: "Sorry, you're not allowed to perform that action.", status: 401
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

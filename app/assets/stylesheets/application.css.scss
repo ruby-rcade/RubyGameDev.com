@@ -300,9 +300,9 @@ $navbar-inverse-search-border:              $navbar-inverse-bg !default;
 $navbar-inverse-search-placeholder-color:   #ccc !default;
 
 // Inverted navbar toggle
-$navbar-inverse-toggle-hover-bg:            #333 !default;
+$navbar-inverse-toggle-hover-bg:            $dark-red !default;
 $navbar-inverse-toggle-icon-bar-bg:         #fff !default;
-$navbar-inverse-toggle-border-color:        #333 !default;
+$navbar-inverse-toggle-border-color:        $dark-red !default;
 
 
 // Navs

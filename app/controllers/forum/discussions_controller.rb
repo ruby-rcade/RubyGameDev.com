@@ -1,10 +1,11 @@
 class Forum::DiscussionsController < ApplicationController
+  before_action :set_forum_topic, only: [:index, :new, :create]
   before_action :set_forum_discussion, only: [:show, :edit, :update, :destroy]
 
   # GET /forum/discussions
   # GET /forum/discussions.json
   def index
-    @forum_discussions = Forum::Discussion.all
+    @discussions = @topic.discussions.all
   end
 
   # GET /forum/discussions/1
@@ -14,7 +15,7 @@ class Forum::DiscussionsController < ApplicationController
 
   # GET /forum/discussions/new
   def new
-    @forum_discussion = Forum::Discussion.new
+    @discussion = @topic.discussions.new
   end
 
   # GET /forum/discussions/1/edit
@@ -24,15 +25,16 @@ class Forum::DiscussionsController < ApplicationController
   # POST /forum/discussions
   # POST /forum/discussions.json
   def create
-    @forum_discussion = Forum::Discussion.new(forum_discussion_params)
+    @discussion = @topic.discussions.new(forum_discussion_params)
+    @discussion.user = @user
 
     respond_to do |format|
-      if @forum_discussion.save
-        format.html { redirect_to @forum_discussion, notice: 'Discussion was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @forum_discussion }
+      if @discussion.save
+        format.html { redirect_to @discussion, notice: 'Discussion was successfully created.' }
+        format.json { render action: 'show', status: :created, location: @discussion }
       else
         format.html { render action: 'new' }
-        format.json { render json: @forum_discussion.errors, status: :unprocessable_entity }
+        format.json { render json: @discussion.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -41,12 +43,12 @@ class Forum::DiscussionsController < ApplicationController
   # PATCH/PUT /forum/discussions/1.json
   def update
     respond_to do |format|
-      if @forum_discussion.update(forum_discussion_params)
-        format.html { redirect_to @forum_discussion, notice: 'Discussion was successfully updated.' }
+      if @discussion.update(forum_discussion_params)
+        format.html { redirect_to @discussion, notice: 'Discussion was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
-        format.json { render json: @forum_discussion.errors, status: :unprocessable_entity }
+        format.json { render json: @discussion.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -54,7 +56,7 @@ class Forum::DiscussionsController < ApplicationController
   # DELETE /forum/discussions/1
   # DELETE /forum/discussions/1.json
   def destroy
-    @forum_discussion.destroy
+    @discussion.destroy
     respond_to do |format|
       format.html { redirect_to forum_discussions_url }
       format.json { head :no_content }
@@ -64,7 +66,11 @@ class Forum::DiscussionsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_forum_discussion
-      @forum_discussion = Forum::Discussion.find(params[:id])
+      @discussion = Forum::Discussion.find(params[:id])
+    end
+
+    def set_forum_topic
+      @topic = Forum::Topic.find(params[:topic_id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

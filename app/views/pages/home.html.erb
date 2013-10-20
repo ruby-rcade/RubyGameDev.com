@@ -1,7 +1,7 @@
 <% unless @user.dismissed_welcome_message %>
   <div id="welcome_message" class="alert alert-success alert-dismissable">
     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-    Welcome! First time here? <%= link_to 'Read the blog post', '#', class: 'alert-link' %> which explains what RubyGameDev.com is all about.
+    Welcome! First time here? <%= link_to 'Read the blog post', '/blog/posts/1', class: 'alert-link' %> which explains what RubyGameDev.com is all about.
   </div>
   <%= form_for @user, remote: true do |f| %>
     <%= f.hidden_field :dismissed_welcome_message, value: 1 %>
@@ -13,57 +13,58 @@
 
     <div class="panel panel-default">
       <div class="panel-body">
-    <h2>Discussion Forum</h2>
-    <table class="table">
-      <thead>
-        <tr>
-          <th>Topic</th>
-          <th>Posts</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><a href="#">Game Programming Basics</a></td>
-          <td>5</td>
-        </tr>
-        <tr>
-          <td><a href="#">Specific Libraries</a></td>
-          <td>10</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-  </div>
+        <h2>Discussion Forum</h2>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Topic</th>
+              <th>Posts</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><a href="#">Game Programming Basics</a></td>
+              <td>5</td>
+            </tr>
+            <tr>
+              <td><a href="#">Specific Libraries</a></td>
+              <td>10</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
     
-        <div class="panel panel-default">
+    <div class="panel panel-default">
       <div class="panel-body">
-    <h2>Tutorials</h2>
-    <table class="table">
-      <tbody>
-        <tr>
-          <td><span class="glyphicon glyphicon-thumbs-up"></span>&nbsp;77</td>
-          <td><a href="#">How to submit a tutorial to RubyGameDev.com while keeping your sanity</a></td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-  </div>
+        <h2>Tutorials</h2>
+        <table class="table">
+          <tbody>
+            <tr>
+              <td><span class="glyphicon glyphicon-thumbs-up"></span>&nbsp;77</td>
+              <td><a href="#">How to submit a tutorial to RubyGameDev.com while keeping your sanity</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
 
     <div class="panel panel-default">
       <div class="panel-body">
-    <h2>Libraries</h2>
-    <table class="table">
-      <tbody>
-        <tr>
-          <td><a href="#">Game Engines</a> (3)</td>
-        </tr>
-        <tr>
-          <td><a href="#">Physics Engines</a> (2)</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-  </div>
+        <h2>Libraries</h2>
+        <table class="table">
+          <tbody>
+            <tr>
+              <td><a href="#">Game Engines</a> (3)</td>
+            </tr>
+            <tr>
+              <td><a href="#">Physics Engines</a> (2)</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    
   </div>
 
   <div class="col-md-5">
@@ -94,24 +95,6 @@
             <%= f.submit 'Subscribe', class: 'btn btn-primary' %>
           <% end %>
         <% end %>
-
-<!--         <form class="form-inline" role="form">
-          <p>
-            <label class="radio-inline">
-              <input type="radio" name="frequency" value="daily" checked="checked"> Daily
-            </label>
-            <label class="radio-inline">
-              <input type="radio" name="frequency" value="weekly"> Weekly
-            </label>
-            <label class="radio-inline">
-              <input type="radio" name="frequency" value="monthly"> Monthly
-            </label>
-          </p>
-          <div class="form-group">
-            <input type="email" class="form-control" placeholder="email@example.com">
-          </div>
-          <button type="submit" class="btn btn-primary">Subscribe</button>
-        </form> -->
       </div>
     </div>
 

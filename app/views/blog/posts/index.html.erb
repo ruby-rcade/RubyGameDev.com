@@ -1,37 +1,10 @@
-<h1>Listing blog_posts</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Body markdown</th>
-      <th>Body html</th>
-      <th>Draft</th>
-      <th>Published on</th>
-      <th>User</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-
-  <tbody>
     <% @blog_posts.each do |blog_post| %>
-      <tr>
-        <td><%= blog_post.title %></td>
-        <td><%= blog_post.body_markdown %></td>
-        <td><%= blog_post.body_html %></td>
-        <td><%= blog_post.draft %></td>
-        <td><%= blog_post.published_on %></td>
-        <td><%= blog_post.user %></td>
-        <td><%= link_to 'Show', blog_post %></td>
-        <td><%= link_to 'Edit', edit_blog_post_path(blog_post) %></td>
-        <td><%= link_to 'Destroy', blog_post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+      <article>
+        <h2><%= link_to blog_post.title, blog_post %></h2>
+        <p>By <%= blog_post.user.username %> on <%= blog_post.published_on %></p>
+        <%= blog_post.body_html %>
+      </article>
     <% end %>
-  </tbody>
-</table>
-
-<br>
 
 <%= link_to 'New Post', new_blog_post_path %>

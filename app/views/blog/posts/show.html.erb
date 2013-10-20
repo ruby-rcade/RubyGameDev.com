@@ -1,34 +1,8 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Title:</strong>
+<h1>
+  <% if @blog_post.draft %>
+    <span><%= @blog_post.draft %></span>
+  <% end %>
   <%= @blog_post.title %>
-</p>
-
-<p>
-  <strong>Body markdown:</strong>
-  <%= @blog_post.body_markdown %>
-</p>
-
-<p>
-  <strong>Body html:</strong>
-  <%= @blog_post.body_html %>
-</p>
-
-<p>
-  <strong>Draft:</strong>
-  <%= @blog_post.draft %>
-</p>
-
-<p>
-  <strong>Published on:</strong>
-  <%= @blog_post.published_on %>
-</p>
-
-<p>
-  <strong>User:</strong>
-  <%= @blog_post.user %>
-</p>
-
-<%= link_to 'Edit', edit_blog_post_path(@blog_post) %> |
-<%= link_to 'Back', blog_posts_path %>
+</h1>
+<p>By <%= @blog_post.user.username %> on <%= @blog_post.published_on %></p>
+<%= @blog_post.body_html %>

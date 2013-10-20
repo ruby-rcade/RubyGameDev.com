@@ -5,8 +5,10 @@ Rubygamedev::Application.routes.draw do
 
   namespace :forum do
     root 'topics#index'
-    resources :topics
-    resources :discussions
+    resources :topics do
+      resources :discussions
+    end
+    resources :discussions, only: [:show, :edit, :update, :destroy]
   end
 
   get 'questions' => 'questions#index'
