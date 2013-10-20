@@ -15,3 +15,18 @@
 //= require turbolinks
 //= require bootstrap
 //= require_tree .
+
+$(function(){
+  $('#welcome_message').bind('closed.bs.alert', function() {
+    var form = $('#welcome_message').next('form');
+    $.post(form.attr('action'), form.serialize());
+  })
+
+  $('#digest_signup_form')
+    .bind("ajax:success", function(data, status, xhr) {
+        alert('Success.');
+    })
+    .bind("ajax:error", function(xhr, status, error) {
+        alert('Failed.');
+    });
+})

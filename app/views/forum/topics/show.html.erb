@@ -1,0 +1,9 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @forum_topic.title %>
+</p>
+
+<%= link_to 'Edit', edit_forum_topic_path(@forum_topic) %> |
+<%= link_to 'Back', forum_topics_path %>

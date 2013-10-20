@@ -1,3 +1,13 @@
+<% unless @user.dismissed_welcome_message %>
+  <div id="welcome_message" class="alert alert-success alert-dismissable">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+    Welcome! <a href="#" class="alert-link">link to blog post</a>
+  </div>
+  <%= form_for @user, remote: true do |f| %>
+    <%= f.hidden_field :dismissed_welcome_message, value: 1 %>
+  <% end %>
+<% end %>
+
 <div class="row">
   <div class="col-md-7">
 
@@ -31,8 +41,8 @@
     <table class="table">
       <tbody>
         <tr>
-          <td><span class="glyphicon glyphicon-thumbs-up"></span> 77</td>
-          <td><a href="#">How to submit a tutorial to RubyGamDev.com while keeping your sanity</a></td>
+          <td><span class="glyphicon glyphicon-thumbs-up"></span>&nbsp;77</td>
+          <td><a href="#">How to submit a tutorial to RubyGameDev.com while keeping your sanity</a></td>
         </tr>
       </tbody>
     </table>
@@ -61,8 +71,31 @@
     <div class="panel panel-default">
       <div class="panel-body">
         <h2>Digest Email</h2>
-        <p>Sign up for an email digest so you never miss a thing!</p>
-        <form class="form-inline" role="form">
+        <% if @user.digest_subscriber %>
+          <p>You are signed up to receive <strong><%= @user.digest_frequency %></strong> digest emails.</p>
+        <% else %>
+          <p>Sign up for an email digest so you never miss a thing!</p>
+          <%= form_for @user, remote: true, html: {id:'digest_signup_form', class: 'form-inline'} do |f| %>
+            <%= f.hidden_field :digest_subscriber, value: 1 %>
+            <p>
+              <label class="radio-inline">
+                <input type="radio" name="user[digest_frequency]" value="daily" checked> Daily
+              </label>
+              <label class="radio-inline">
+                <input type="radio" name="user[digest_frequency]" value="weekly"> Weekly
+              </label>
+              <label class="radio-inline">
+                <input type="radio" name="user[digest_frequency]" value="monthly"> Monthly
+              </label>
+            </p>
+            <div class="form-group">
+              <input type="email" name="user[email]" class="form-control" placeholder="email@example.com">
+            </div>
+            <%= f.submit 'Subscribe', class: 'btn btn-primary' %>
+          <% end %>
+        <% end %>
+
+<!--         <form class="form-inline" role="form">
           <p>
             <label class="radio-inline">
               <input type="radio" name="frequency" value="daily" checked="checked"> Daily
@@ -78,7 +111,7 @@
             <input type="email" class="form-control" placeholder="email@example.com">
           </div>
           <button type="submit" class="btn btn-primary">Subscribe</button>
-        </form>
+        </form> -->
       </div>
     </div>
 

@@ -1,6 +1,13 @@
 Rubygamedev::Application.routes.draw do
-  
-  resources :users, only: [:index]
+
+  namespace :forum do
+    root 'topics#index'
+    resources :topics
+    resources :discussions
+  end
+
+  resources :users, only: [:index, :edit, :update]
+
   root 'pages#home'
 
   # Example of regular route:

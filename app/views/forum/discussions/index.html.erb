@@ -1,0 +1,33 @@
+<h1>Listing forum_discussions</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Body</th>
+      <th>User</th>
+      <th>Topic</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @forum_discussions.each do |forum_discussion| %>
+      <tr>
+        <td><%= forum_discussion.title %></td>
+        <td><%= forum_discussion.body %></td>
+        <td><%= forum_discussion.user %></td>
+        <td><%= forum_discussion.topic %></td>
+        <td><%= link_to 'Show', forum_discussion %></td>
+        <td><%= link_to 'Edit', edit_forum_discussion_path(forum_discussion) %></td>
+        <td><%= link_to 'Destroy', forum_discussion, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Discussion', new_forum_discussion_path %>

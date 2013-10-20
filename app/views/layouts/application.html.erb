@@ -35,20 +35,26 @@
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li><a href="/forum">Forum</a></li>
+            <li><a href="/discussions">Forum</a></li>
             <li><a href="/questions">Questions</a></li>
             <li><a href="/tutorials">Tutorials</a></li>
             <li><a href="/libraries">Libraries</a></li>
             <li><a href="/blog">Blog</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="#">Welcome, <%= @user.username %>!</a></li>
+            <li><%= link_to "Welcome, #{@user.username}!", edit_user_path(@user) %></li>
           </ul>
         </div><!--/.navbar-collapse -->
       </div>
     </div>
 
     <div class="container">
+      <% flash.each do |name, msg| -%>
+        <div id="welcome_message" class="alert alert-info alert-dismissable">
+          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+          <%= msg %>
+        </div>
+      <% end -%>
       <%= yield %>
     </div>
 

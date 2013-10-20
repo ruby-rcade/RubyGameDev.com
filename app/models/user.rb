@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
   def username
-    if guest
-      "Guest#{id}"
-    end
+    username = read_attribute(:username)
+    return username unless username.blank?
+    "Guest#{id}"
   end
 end
