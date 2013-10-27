@@ -1,6 +1,10 @@
 Rubygamedev::Application.routes.draw do
 
+  get '/auth/:provider/callback', to: 'sessions#create'
+  get '/auth/sign_out', to: 'sessions#destroy'
+
   root 'pages#home'
+
   resources :users, only: [:index, :edit, :update]
 
   namespace :forum do

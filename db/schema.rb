@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131020074508) do
+ActiveRecord::Schema.define(version: 20131026070640) do
 
   create_table "blog_posts", force: true do |t|
     t.string   "title"
@@ -95,6 +95,7 @@ ActiveRecord::Schema.define(version: 20131020074508) do
     t.string   "digest_frequency"
     t.boolean  "dismissed_welcome_message"
     t.string   "email"
+    t.string   "github_id"
   end
 
 end

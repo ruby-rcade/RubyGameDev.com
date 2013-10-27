@@ -64,7 +64,7 @@ set :admin_runner,               "www-data"
 # SCM Options
 set :scm,        :git
 set :repository, "git@github.com:railsrumble/#{GITHUB_REPOSITORY_NAME}.git"
-set :branch,     "master"
+set :branch,     "rumble13"
 
 # Roles
 role :app, LINODE_SERVER_HOSTNAME

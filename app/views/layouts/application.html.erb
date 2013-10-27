@@ -6,17 +6,13 @@
 <!--[if (gt IE 9)|!(IE)]><!--> <html lang="en"> <!--<![endif]-->
   <head>
   	<meta charset="utf-8" />
-
-  	<!-- Uncomment to make IE8 render like IE7 -->
-  	<!-- <meta http-equiv="X-UA-Compatible" content="IE=7" /> -->
-
-  	<!-- Set the viewport width to device width for mobile -->
   	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <%= favicon_link_tag 'red-gamepad-icon.png', type: 'image/png' %>
+    <%= favicon_link_tag 'red-gamepad-icon.png', type: 'image/png', rel: 'apple-touch-icon' %>
 
   	<title><%= content_for?(:title) ? yield(:title) : "RubyGameDev.com - A hub for discussion around Ruby game development" %></title>
 
     <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
-  	<!-- <%= javascript_include_tag "vendor/custom.modernizr" %> -->
     <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
     <%= csrf_meta_tags %>
   </head>
@@ -42,7 +38,18 @@
             <li><a href="/blog">Blog</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
-            <li><%= link_to "Welcome, #{@user.username}!", edit_user_path(@user) %></li>
+            <% if signed_in? %>
+              <li></li>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= "Welcome, #{current_user.username}!" %> <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li><%= link_to "Edit Profile", edit_user_path(current_user) %></li>
+                  <li><%= link_to 'Sign Out', '/auth/sign_out' %></li>
+                </ul>
+              </li>
+            <% else %>
+              <li><%= link_to "Log In", '/auth/github' %></li>
+            <% end %>
           </ul>
         </div><!--/.navbar-collapse -->
       </div>
@@ -76,15 +83,6 @@
       ga('create', 'UA-44988922-1', 'rubygamedev.com');
       ga('send', 'pageview');
     </script>
-
-   <script type="text/javascript">
-     var rumbleBannerBackgroundColor, rumbleBannerTextColor, rumbleBannerLinkColor, rumbleBannerPlacement;
-     rumbleBannerBackgroundColor = "#161616";
-     rumbleBannerTextColor = "#b0b0b0";
-     rumbleBannerLinkColor = "#ffffff";
-     rumbleBannerPlacement = "bottom";
-   </script>
-    <script src="http://s0.railsrumble.com/banner.js" type="text/javascript"></script>
     
   </body>
 </html>

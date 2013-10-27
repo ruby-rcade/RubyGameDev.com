@@ -2,11 +2,11 @@
   <div class="col-lg-8">
     <h1>My Account</h1>
 
-    <%= form_for @user do |f| %>
+    <%= form_for current_user do |f| %>
 
       <div class="form-group">
         <%= f.label :username %>
-        <%= f.text_field :username, class: 'form-control input-lg', placeholder: (@user.username if @user.guest), style: 'max-width: 15em' %>
+        <%= f.text_field :username, class: 'form-control input-lg', style: 'max-width: 15em' %>
       </div>
 
       <div class="form-group">
@@ -15,12 +15,13 @@
       </div>
 
       <div class="form-group">
-        <%= f.label :digest_subscriber %>
-        <%= f.check_box :digest_subscriber %>
-      </div>
-      <div class="form-group">
         <%= f.label :dismissed_welcome_message %>
         <%= f.check_box :dismissed_welcome_message %>
+      </div>
+      
+      <div class="form-group">
+        <%= f.label :digest_subscriber %>
+        <%= f.check_box :digest_subscriber %>
       </div>
 
       <div class="form-group">

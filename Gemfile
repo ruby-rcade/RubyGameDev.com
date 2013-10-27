@@ -27,3 +27,7 @@ end
 group :development do
   gem 'pry'
 end
+
+gem 'omniauth'
+gem 'omniauth-github'
+gem 'dotenv-rails', :groups => [:development, :test]
