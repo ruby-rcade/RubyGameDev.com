@@ -1,3 +1,4 @@
+[![Stories in Ready](https://badge.waffle.io/ruby-rcade/RubyGameDev.com.png?label=ready)](https://waffle.io/ruby-rcade/RubyGameDev.com)  
 # RubyGameDev.com
 
 This repository contains the source code that runs RubyGameDev.com. 
