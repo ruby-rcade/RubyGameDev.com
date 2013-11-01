@@ -12,6 +12,7 @@
 
   	<title><%= content_for?(:title) ? yield(:title) : "RubyGameDev.com - A hub for discussion around Ruby game development" %></title>
 
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.1/css/font-awesome.css" rel="stylesheet">
     <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
     <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
     <%= csrf_meta_tags %>
@@ -48,7 +49,7 @@
                 </ul>
               </li>
             <% else %>
-              <li><%= link_to "Log In", '/auth/github' %></li>
+              <li><%= link_to 'Sign In with GitHub <i class="fa fa-lg fa-github"></i>'.html_safe, '/auth/github' %></li>
             <% end %>
           </ul>
         </div><!--/.navbar-collapse -->

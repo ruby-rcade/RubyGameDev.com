@@ -82,10 +82,10 @@
 
   <div class="col-md-5">
 
-    <div class="panel panel-default">
-      <div class="panel-body">
-        <h2>Digest Email</h2>
-        <% if signed_in? %>
+    <% if signed_in? %>
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <h2>Digest Email</h2>
           <% if current_user.digest_subscriber %>
             <p>You are signed up to receive <strong><%= current_user.digest_frequency %></strong> digest emails.</p>
           <% else %>
@@ -110,9 +110,9 @@
               <%= f.submit 'Subscribe', class: 'btn btn-primary' %>
             <% end %>
           <% end %>
-        <% end %>
+        </div>
       </div>
-    </div>
+    <% end %>
 
     <div class="panel panel-default">
       <div class="panel-body">

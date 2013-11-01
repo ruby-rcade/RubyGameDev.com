@@ -8,7 +8,6 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
 gem 'jquery-rails'
 gem 'turbolinks'
-# gem 'zurb-foundation'
 gem 'bootstrap-sass', github: 'thomas-mcdonald/bootstrap-sass'
 
 gem 'jbuilder', '~> 1.2'
@@ -30,4 +29,4 @@ end
 
 gem 'omniauth'
 gem 'omniauth-github'
-gem 'dotenv-rails', :groups => [:development, :test, :production]
+gem 'dotenv-rails' # for managing environment variables
