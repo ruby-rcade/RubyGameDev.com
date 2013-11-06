@@ -2,9 +2,9 @@ class DigestHistory < ActiveRecord::Base
 
   def self.create_new!
     history = new
-    history.last_discussion_id = Discussion.last.id
-    history.last_tutorial_id = Tutorial.last.id
-    history.last_library_id = Library.last.id
+    history.last_discussion_id = Discussion.last.id  rescue 0
+    history.last_tutorial_id = Tutorial.last.id  rescue 0
+    history.last_library_id = Library.last.id rescue 0
     history.users_count = User.count
     history.save!
   end
