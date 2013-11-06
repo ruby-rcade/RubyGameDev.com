@@ -1,3 +1,36 @@
-User Count: <%= User.count %>
-Forum Topics Count: <%= Forum::Topic.count %>
-Time now: <%= Time.now.to_s %>
+Hi <%= @user.username %>,
+
+Here's what you've missed on RubyGameDev.com:
+
+New Discussions:
+----------------
+<% if @digest.discussions.count -%>
+<% @digest.discussions.each do |discussion| -%>
+<%= discussion.title %>
+<% end -%>
+<% else -%>
+No new discussions.
+<% end -%>
+
+New Tutorials:
+----------------
+<% if @digest.tutorials.count -%>
+<% @digest.tutorials.each do |tutorial| -%>
+<%= tutorial.title %>
+<% end -%>
+<% else -%>
+No new tutorials.
+<% end -%>
+
+New Libraries:
+----------------
+<% if @digest.libraries.count -%>
+<% @digest.libraries.each do |library| -%>
+<%= library.name %>
+<% end -%>
+<% else -%>
+No new libraries.
+<% end -%>
+
+New Users: <%= @digest.users_count %>
+----------------

@@ -1,5 +1,8 @@
 Rubygamedev::Application.routes.draw do
 
+  resources :discussions
+
+  get '/auth/sign_in', to: 'sessions#new', as: :sign_in
   get '/auth/:provider/callback', to: 'sessions#create'
   get '/auth/sign_out', to: 'sessions#destroy'
 

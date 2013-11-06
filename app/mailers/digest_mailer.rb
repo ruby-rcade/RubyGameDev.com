@@ -6,7 +6,9 @@ class DigestMailer < ActionMailer::Base
   #
   #   en.digest_mailer.daily_digest.subject
   #
-  def daily_digest
-    mail to: "misbehavens@gmail.com", subject: 'RubyGameDev.com Daily Digest'
+  def daily_digest(digest, user)
+    @digest = digest
+    @user = user
+    mail to: user.email, subject: 'RubyGameDev.com Daily Digest'
   end
 end

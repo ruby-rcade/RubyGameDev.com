@@ -28,11 +28,14 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="/"><%= image_tag 'rubygamedev_logo.png', alt: 'RubyGameDev.com', width: 300 %></a>
+          <a class="navbar-brand" href="/">
+            <%= image_tag 'rubygamedev_logo.png', alt: 'RubyGameDev.com', width: 300, class: 'hidden-xs' %>
+            <%= image_tag 'rubygamedev_logo.png', alt: 'RubyGameDev.com', width: 250, class: 'visible-xs' %>
+          </a>
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li><a href="/forum">Forum</a></li>
+            <li><a href="/discussions">Discussions</a></li>
             <li><a href="/questions">Questions</a></li>
             <li><a href="/tutorials">Tutorials</a></li>
             <li><a href="/libraries">Libraries</a></li>
@@ -49,7 +52,7 @@
                 </ul>
               </li>
             <% else %>
-              <li><%= link_to 'Sign In with GitHub <i class="fa fa-lg fa-github"></i>'.html_safe, '/auth/github' %></li>
+              <li><%= link_to '<i class="fa fa-lg fa-github"></i> Sign in through GitHub'.html_safe, '/auth/github' %></li>
             <% end %>
           </ul>
         </div><!--/.navbar-collapse -->
@@ -73,6 +76,27 @@
           <li><%= link_to 'About', '/blog/posts/1' %></li>
           <li><%= link_to 'Contribute on GitHub', 'https://github.com/ruby-rcade/RubyGameDev.com' %></li>
         </ul>
+      </div>
+    </div>
+
+    <div class="modal fade" id="notImplementedModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title" id="myModalLabel">Not Yet Implemented</h4>
+          </div>
+          <div class="modal-body">
+            <p>Looks like you're trying to use a feature that's not quite implemented yet. Want to help us implement it?</p>
+            <p>
+              <%= link_to 'View Our GitHub Repo', 'https://github.com/ruby-rcade/RubyGameDev.com', class: 'btn btn-primary btn-large' %>
+            </p>
+          </div>
+<!--           <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+          </div> -->
+        </div>
       </div>
     </div>
 

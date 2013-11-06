@@ -11,16 +11,16 @@ class ApplicationController < ActionController::Base
   end
 
   def current_user
-    @current_user ||= User.find_by_id(session[:user_id])
-  end
-
-  def current_user=(user)
-    @current_user = user
-    session[:user_id] = user.id
+    @current_user ||= User.find(session[:user_id]) if session[:user_id]
   end
 
   def require_authentication
-    signed_in?
+    if signed_in?
+      true
+    else
+      redirect_to sign_in_path, notice: 'You must be signed in to perform that action.'
+      false
+    end
   end
 
 end

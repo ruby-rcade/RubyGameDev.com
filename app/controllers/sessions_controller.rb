@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
     unless user = User.find_by_github_id(auth['uid'])
       user = User.create_from_auth_hash(auth)
     end
-    self.current_user = user
+    session[:user_id] = user.id
     redirect_to root_path
   end
 
