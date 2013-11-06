@@ -4,8 +4,8 @@ Here's what you've missed on RubyGameDev.com:
 
 New Discussions:
 ----------------
-<% if @digest.discussions.count -%>
-<% @digest.discussions.each do |discussion| -%>
+<% if @discussions.count -%>
+<% @discussions.each do |discussion| -%>
 <%= discussion.title %>
 <% end -%>
 <% else -%>
@@ -14,8 +14,8 @@ No new discussions.
 
 New Tutorials:
 ----------------
-<% if @digest.tutorials.count -%>
-<% @digest.tutorials.each do |tutorial| -%>
+<% if @tutorials.count -%>
+<% @tutorials.each do |tutorial| -%>
 <%= tutorial.title %>
 <% end -%>
 <% else -%>
@@ -24,13 +24,13 @@ No new tutorials.
 
 New Libraries:
 ----------------
-<% if @digest.libraries.count -%>
-<% @digest.libraries.each do |library| -%>
+<% if @libraries.count -%>
+<% @libraries.each do |library| -%>
 <%= library.name %>
 <% end -%>
 <% else -%>
 No new libraries.
 <% end -%>
 
-New Users: <%= @digest.users_count %>
+New Users: <%= @new_users_count %>
 ----------------
