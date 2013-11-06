@@ -1,3 +1,8 @@
+<ul id="tabs" class="nav nav-tabs">
+  <li class="active"><a href="#link">Share a Link</a></li>
+  <li><a href="#tutorial">Write a tutorial</a></li>
+</ul>
+
 <%= form_for(@tutorial) do |f| %>
   <% if @tutorial.errors.any? %>
     <div id="error_explanation">
@@ -11,35 +16,52 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :url %><br>
-    <%= f.text_field :url %>
+  <div class="tab-content">
+
+    <div class="tab-pane active" id="link">
+      <div class="form-group">
+        <%= f.label :title %>
+        <%= f.text_field :title, class: 'form-control' %>
+      </div>
+      <div class="form-group">
+        <%= f.label :url %>
+        <%= f.text_field :url, class: 'form-control' %>
+      </div>
+    </div>
+
+    <div class="tab-pane" id="tutorial">
+      <div class="form-group">
+        <%= f.label :title %>
+        <%= f.text_field :title, class: 'form-control' %>
+      </div>
+<!--       <div class="form-group">
+        <%= f.label :body_markdown %><br>
+        <%= f.text_area :body_markdown %>
+      </div> -->
+      <div class="form-group">
+        <%= f.label :body_html, 'Body' %><br>
+        <%= f.text_area :body_html, class: 'form-control', rows: 10 %>
+      </div>
+      <div class="checkbox">
+        <label><%= f.check_box :draft %> Draft</label>
+      </div>
+      <div class="form-group">
+        <%= f.label :published_on %><br>
+        <%= f.date_select :published_on %>
+      </div>
+<!--       <div class="form-group">
+        <%= f.label :user %><br>
+        <%= f.text_field :user %>
+      </div> -->
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :title %><br>
-    <%= f.text_field :title %>
-  </div>
-  <div class="field">
-    <%= f.label :body_markdown %><br>
-    <%= f.text_area :body_markdown %>
-  </div>
-  <div class="field">
-    <%= f.label :body_html %><br>
-    <%= f.text_area :body_html %>
-  </div>
-  <div class="field">
-    <%= f.label :draft %><br>
-    <%= f.check_box :draft %>
-  </div>
-  <div class="field">
-    <%= f.label :published_on %><br>
-    <%= f.date_select :published_on %>
-  </div>
-  <div class="field">
-    <%= f.label :user %><br>
-    <%= f.text_field :user %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+
+  <%= f.submit nil, class: 'btn btn-default' %>
 <% end %>
+
+<script>
+$('#tabs a').click(function(e) {
+  e.preventDefault();
+  $(this).tab('show');
+})
+</script>
