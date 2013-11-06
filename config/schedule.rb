@@ -29,9 +29,9 @@ every 1.hour do
   runner 'DigestBuilder.send_daily_email'
 end
 
-every :minute do
+every 1.minute do
   command "whoami"
 end
-every :minute do
+every 1.minute do
   command "which ruby"
 end
