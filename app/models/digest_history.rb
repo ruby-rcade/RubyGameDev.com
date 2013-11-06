@@ -7,6 +7,7 @@ class DigestHistory < ActiveRecord::Base
     history.last_library_id = Library.last.id rescue 0
     history.users_count = User.count
     history.save!
+    history
   end
 
   def discussions
