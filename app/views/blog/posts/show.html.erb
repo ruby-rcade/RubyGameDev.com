@@ -9,4 +9,4 @@
   <%= @blog_post.title %>
 </h1>
 <p>By <%= @blog_post.user.username %> on <%= @blog_post.published_on %></p>
-<%= @blog_post.body_html %>
+<%= simple_format @blog_post.body_html %>
