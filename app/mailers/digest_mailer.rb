@@ -6,8 +6,11 @@ class DigestMailer < ActionMailer::Base
   #
   #   en.digest_mailer.daily_digest.subject
   #
-  def daily_digest(digest, user)
-    @digest = digest
+  def daily_digest(history, user)
+    @discussions = history.discussions
+    @tutorials = history.tutorials
+    @libraries = history.libraries
+    @new_users_count = User.count - history.users_count
     @user = user
     mail to: user.email, subject: 'RubyGameDev.com Daily Digest'
   end

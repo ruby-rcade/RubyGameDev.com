@@ -11,15 +11,15 @@ class DigestHistory < ActiveRecord::Base
   end
 
   def discussions
-    Discussion.where('id > ?', last_discussion_id)
+    Discussion.where('id > ?', last_discussion_id).all
   end
 
   def tutorials
-    Tutorial.where('id > ?', last_tutorial_id)
+    Tutorial.where('id > ?', last_tutorial_id).all
   end
 
   def libraries
-    Library.where('id > ?', last_library_id)
+    Library.where('id > ?', last_library_id).all
   end
 
 end

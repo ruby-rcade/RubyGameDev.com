@@ -3,9 +3,8 @@
 <p>Here's what you've missed on RubyGameDev.com:</p>
 
 <h2>New Discussions:</h2>
-<%= @digest.discussions.inspect %>
-<% if @digest.discussions.count -%>
-  <% @digest.discussions.each do |discussion| -%>
+<% if @discussions.count -%>
+  <% @discussions.each do |discussion| -%>
     <p><%= discussion.title %></p>
   <% end -%>
 <% else -%>
@@ -13,9 +12,9 @@
 <% end -%>
 
 <h2>New Tutorials:</h2>
-<%= @digest.tutorials.inspect %>
-<% if @digest.tutorials.count -%>
-  <% @digest.tutorials.each do |tutorial| -%>
+<%= @tutorials.inspect %>
+<% if @tutorials.count -%>
+  <% @tutorials.each do |tutorial| -%>
     <p><%= tutorial.title %></p>
   <% end -%>
 <% else -%>
@@ -23,13 +22,13 @@
 <% end -%>
 
 <h2>New Libraries:</h2>
-<%= @digest.libraries.inspect %>
-<% if @digest.libraries.count -%>
-  <% @digest.libraries.each do |library| -%>
+<%= @libraries.inspect %>
+<% if @libraries.count -%>
+  <% @libraries.each do |library| -%>
     <p><%= library.name %></p>
   <% end -%>
 <% else -%>
   <p>No new libraries.</p>
 <% end -%>
 
-<h2>New Users: <%= @digest.users_count %></h2>
+<h2>New Users: <%= @new_users_count %></h2>
