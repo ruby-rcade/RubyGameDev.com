@@ -3,6 +3,7 @@
 <p>Here's what you've missed on RubyGameDev.com:</p>
 
 <h2>New Discussions:</h2>
+<%= @digest.discussions.inspect %>
 <% if @digest.discussions.count -%>
   <% @digest.discussions.each do |discussion| -%>
     <p><%= discussion.title %></p>
@@ -12,6 +13,7 @@
 <% end -%>
 
 <h2>New Tutorials:</h2>
+<%= @digest.tutorials.inspect %>
 <% if @digest.tutorials.count -%>
   <% @digest.tutorials.each do |tutorial| -%>
     <p><%= tutorial.title %></p>
@@ -21,6 +23,7 @@
 <% end -%>
 
 <h2>New Libraries:</h2>
+<%= @digest.libraries.inspect %>
 <% if @digest.libraries.count -%>
   <% @digest.libraries.each do |library| -%>
     <p><%= library.name %></p>

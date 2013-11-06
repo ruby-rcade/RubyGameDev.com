@@ -1,7 +1,7 @@
 class DigestHistory < ActiveRecord::Base
 
-  def self.create_new!
-    history = new
+  def self.create_new!(frequency)
+    history = new(frequency: frequency)
     history.last_discussion_id = Discussion.last.id  rescue 0
     history.last_tutorial_id = Tutorial.last.id  rescue 0
     history.last_library_id = Library.last.id rescue 0
