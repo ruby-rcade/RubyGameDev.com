@@ -6,7 +6,13 @@
     <li class="active"><%= @discussion.title %></li>
   </ol>
     <h1><%= @discussion.title %></h1>
-    <p>Posted by: <%= @discussion.user.username %> | <%= link_to 'Edit', edit_discussion_path(@discussion) %></p>
+    <p>
+      Posted by: <%= @discussion.user.username %>
+      | <%= link_to 'Edit', edit_discussion_path(@discussion) %>
+      <% if current_user.is_admin? %>
+        | <%= link_to 'Destroy', @discussion, method: :delete, data: { confirm: 'Are you sure?' } %>
+      <% end %>
+    </p>
     <%= simple_format @discussion.body %>
 
     <h2>Comments</h2>

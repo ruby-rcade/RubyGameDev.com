@@ -1,6 +1,6 @@
 class DiscussionsController < ApplicationController
   before_action :set_discussion, only: [:show, :edit, :update, :destroy]
-  before_action :require_authentication, only: [:new, :edit, :create, :update, :destroy]
+  before_action :require_authentication, except: [:index, :show]
 
   # GET /discussions
   # GET /discussions.json
@@ -56,6 +56,7 @@ class DiscussionsController < ApplicationController
   # DELETE /discussions/1
   # DELETE /discussions/1.json
   def destroy
+    raise "Sorry, you can't do that" unless current_user.is_admin?
     @discussion.destroy
     respond_to do |format|
       format.html { redirect_to discussions_url }
