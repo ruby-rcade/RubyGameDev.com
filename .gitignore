@@ -20,3 +20,6 @@
 
 # Ignore development environment variables file
 .env
+
+# ignore local chef cookbooks
+/deploy/cookbooks
