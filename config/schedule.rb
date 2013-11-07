@@ -30,8 +30,8 @@ every 1.hour do
 end
 
 every 1.minute do
-  command "whoami"
+  command "which ruby"
 end
 every 1.minute do
-  command "which ruby"
+  command "ruby -v"
 end
