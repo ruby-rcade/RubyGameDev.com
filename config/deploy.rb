@@ -12,9 +12,9 @@ set :deploy_to,                  "/var/www/apps/railsrumble"
 set :normalize_asset_timestamps, false
 set :rails_env,                  "production"
 
-set :user,                       "root"
-set :runner,                     "www-data"
-set :admin_runner,               "www-data"
+set :user,         "root"
+set :runner,       "www-data"
+set :admin_runner, "www-data"
 
 # SCM Options
 set :scm,        :git

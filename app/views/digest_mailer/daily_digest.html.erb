@@ -3,7 +3,7 @@
 <p>Here's what you've missed on RubyGameDev.com:</p>
 
 <h2>New Discussions:</h2>
-<% if @discussions.count -%>
+<% if @discussions.count > 0 -%>
   <% @discussions.each do |discussion| -%>
     <p><%= discussion.title %></p>
   <% end -%>
@@ -13,7 +13,7 @@
 
 <h2>New Tutorials:</h2>
 <%= @tutorials.inspect %>
-<% if @tutorials.count -%>
+<% if @tutorials.count > 0 -%>
   <% @tutorials.each do |tutorial| -%>
     <p><%= tutorial.title %></p>
   <% end -%>
@@ -23,7 +23,7 @@
 
 <h2>New Libraries:</h2>
 <%= @libraries.inspect %>
-<% if @libraries.count -%>
+<% if @libraries.count > 0 -%>
   <% @libraries.each do |library| -%>
     <p><%= library.name %></p>
   <% end -%>

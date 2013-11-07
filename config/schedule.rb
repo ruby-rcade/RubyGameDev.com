@@ -21,10 +21,6 @@
 
 set :output, "/var/www/apps/railsrumble/shared/log/cron.log"
 
-# every 1.day, at: '12am' do
-#   runner 'DigestMailer.daily_digest.deliver'
-# end
-
-every 1.hour do
+every :day, at: '4am' do
   runner 'DigestBuilder.send_daily_email'
 end

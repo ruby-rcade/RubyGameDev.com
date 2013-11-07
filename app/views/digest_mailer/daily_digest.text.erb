@@ -4,7 +4,7 @@ Here's what you've missed on RubyGameDev.com:
 
 New Discussions:
 ----------------
-<% if @discussions.count -%>
+<% if @discussions.count > 0 -%>
 <% @discussions.each do |discussion| -%>
 <%= discussion.title %>
 <% end -%>
@@ -14,7 +14,7 @@ No new discussions.
 
 New Tutorials:
 ----------------
-<% if @tutorials.count -%>
+<% if @tutorials.count > 0 -%>
 <% @tutorials.each do |tutorial| -%>
 <%= tutorial.title %>
 <% end -%>
@@ -24,7 +24,7 @@ No new tutorials.
 
 New Libraries:
 ----------------
-<% if @libraries.count -%>
+<% if @libraries.count > 0 -%>
 <% @libraries.each do |library| -%>
 <%= library.name %>
 <% end -%>
