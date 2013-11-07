@@ -28,10 +28,3 @@ set :output, "/var/www/apps/railsrumble/shared/log/cron.log"
 every 1.hour do
   runner 'DigestBuilder.send_daily_email'
 end
-
-every 1.minute do
-  command "which ruby"
-end
-every 1.minute do
-  command "ruby -v"
-end
