@@ -42,6 +42,7 @@ class DiscussionsController < ApplicationController
   # PATCH/PUT /discussions/1
   # PATCH/PUT /discussions/1.json
   def update
+    authorize @discussion
     respond_to do |format|
       if @discussion.update(discussion_params)
         format.html { redirect_to @discussion, notice: 'Discussion was successfully updated.' }
@@ -56,7 +57,8 @@ class DiscussionsController < ApplicationController
   # DELETE /discussions/1
   # DELETE /discussions/1.json
   def destroy
-    raise "Sorry, you can't do that" unless current_user.is_admin?
+    # raise "Sorry, you can't do that" unless current_user.admin?
+    authorize @discussion
     @discussion.destroy
     respond_to do |format|
       format.html { redirect_to discussions_url }

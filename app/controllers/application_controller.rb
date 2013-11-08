@@ -3,6 +3,9 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
   
+  include Pundit # for authorization
+  # after_filter :verify_authorized, :except => :index # TODO: enable this once most areas have started using this
+  
   helper_method :current_user
   helper_method :signed_in?
 

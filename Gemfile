@@ -32,3 +32,6 @@ gem 'omniauth-github'
 gem 'dotenv-rails' # for managing environment variables
 
 gem 'whenever', :require => false
+
+# authorization
+gem "pundit"

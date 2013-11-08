@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
     create(github_id: auth_hash['uid'], username: auth_hash['info']['nickname'], email: auth_hash['info']['email'])
   end
 
-  def is_admin?
+  def admin?
     id == 1
   end
 

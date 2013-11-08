@@ -69,7 +69,7 @@ class Forum::TopicsController < ApplicationController
     end
 
     def check_if_user_is_allowed
-      return true if @user.is_admin?
+      return true if @user.admin?
       if @forum_topic.user_id != @user.id
         render text: "Sorry, you're not allowed to perform that action.", status: 401
       end
