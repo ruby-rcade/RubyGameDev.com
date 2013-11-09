@@ -35,3 +35,11 @@ gem 'whenever', :require => false
 
 # authorization
 gem "pundit"
+
+group :test do
+  # gem 'rspec-rails', "2.99.0.beta1" # upgrade path apps with existing specs
+  gem 'rspec-rails', "3.0.0.beta1"
+  gem 'guard'
+  gem 'guard-rspec'
+  gem 'shoulda'
+end
