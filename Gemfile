@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+ruby '2.0.0'
+
 gem 'rails', '4.0.0'
 gem 'sqlite3'
 
@@ -19,7 +21,8 @@ end
 
 gem 'capistrano', '~> 2.15'
 group :production do
-  gem 'mysql2' # If using mysql in development, this can be outside the production group.
+  # gem 'mysql2' # If using mysql in development, this can be outside the production group.
+  gem 'pg'
   gem 'therubyracer'
 end
 
