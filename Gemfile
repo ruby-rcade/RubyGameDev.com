@@ -23,6 +23,7 @@ gem 'capistrano', '~> 2.15'
 group :production do
   # gem 'mysql2' # If using mysql in development, this can be outside the production group.
   gem 'pg'
+  gem 'rails_12factor' # heroku
   gem 'therubyracer'
 end
 
