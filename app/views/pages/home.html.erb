@@ -16,23 +16,8 @@
     <div class="panel panel-default">
       <div class="panel-body">
         <%= link_to 'See More', discussions_path, class: 'btn btn-default pull-right' %>
-        <h2>Discussion Forum</h2>
-        <table class="table">
-          <thead>
-            <tr>
-              <th>Topic</th>
-              <th>Comments</th>
-            </tr>
-          </thead>
-          <tbody>
-            <% @discussions.each do |discussion| %>
-              <tr>
-                <td><%= link_to discussion.title, discussion %></td>
-                <td><%= discussion.comments.count %></td>
-              </tr>
-            <% end %>
-          </tbody>
-        </table>
+        <h2>Discussions</h2>
+        <%= render 'discussions/table' %>
       </div>
     </div>
     
