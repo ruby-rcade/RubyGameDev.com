@@ -2,7 +2,7 @@
   <% unless current_user.dismissed_welcome_message %>
     <div id="welcome_message" class="alert alert-success alert-dismissable">
       <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-      Welcome to RubyGameDev.com, the community-contributed, information hub which helps others to build games in Ruby! First time here? <%= link_to 'Read the blog post', '/blog/posts/1', class: 'alert-link' %> to learn more.
+      Welcome to RubyGameDev.com, the community-contributed, information hub which helps others to build games in Ruby! First time here? <%= link_to 'Learn More', about_page_path, class: 'alert-link' %>.
     </div>
     <%= form_for current_user, remote: true do |f| %>
       <%= f.hidden_field :dismissed_welcome_message, value: 1 %>
@@ -25,32 +25,7 @@
       <div class="panel-body">
         <%= link_to 'See More', tutorials_path, class: 'btn btn-default pull-right' %>
         <h2>Tutorials</h2>
-        <table class="table">
-          <tbody>
-            <% @tutorials.each do |tutorial| %>
-              <tr>
-                <td class="score">
-                  <%= link_to '#', data: {toggle: "modal", target: "#notImplementedModal"} do %>
-                    <span class="up">&#x25B2;</span><br>
-                  <% end %>
-                  <%= tutorial.score %><br>
-                  <%= link_to '#', data: {toggle: "modal", target: "#notImplementedModal"} do %>
-                    <span class="down">&#x25BC;</span>
-                  <% end %>
-                </td>
-                <td>
-                  <% if tutorial.url.present? %>
-                    <%= link_to tutorial.title, tutorial.url, target: '_blank' %>
-                  <% else %>
-                    <%= link_to tutorial.title, tutorial %>
-                  <% end %>
-                  <br><span class="text-muted">Submitted by <%= tutorial.user.username %> on <%= tutorial.created_at.strftime("%m/%d/%Y") %></span>
-                </td>
-              </tr>
-            <% end %>
-          </tbody>
-        </table>
-
+        <%= render 'tutorials/table' %>
       </div>
     </div>
 
@@ -58,16 +33,7 @@
       <div class="panel-body">
         <%= link_to 'See More', libraries_path, class: 'btn btn-default pull-right' %>
         <h2>Libraries</h2>
-        <table class="table">
-          <tbody>
-            <% @library_categories.each do |library_category| %>
-              <tr>
-                <td><%= link_to library_category.title, library_category %></td>
-                <td><%= library_category.libraries.count %></td>
-              </tr>
-            <% end %>
-          </tbody>
-        </table>
+        <%= render 'library_categories/table' %>
       </div>
     </div>
     
@@ -112,24 +78,7 @@
         <%= link_to 'See More', questions_path, class: 'btn btn-default pull-right' %>
         <h2>Questions</h2>
         <p class="text-muted">Questions from GameDevSE tagged <strong>ruby</strong>.</p>
-        <table class="table">
-          <thead>
-            <tr>
-              <th>Answers</th>
-              <th>Question</th>
-            </tr>
-          </thead>
-          <tbody>
-            <% @questions.each do |question| %>
-              <tr>
-                <td class="text-center"><%= question['answer_count'] %></td>
-                <td><%= link_to question['title'], question['link'] %></p>
-                </td>
-              </tr>
-            <% end %>
-          </tbody>
-        </table>
-
+        <%= render 'questions/table' %>
       </div>
     </div>
 
@@ -139,7 +88,6 @@
         <div class="media">
           <a class="pull-left" href="#">
             <%= image_tag 'joybox_asteroids_game.png', class: 'media-object', width: 150 %>
-            <!-- <img class="media-object" src="http://placehold.it/150x150"> -->
           </a>
           <div class="media-body">
             <h4 class="media-heading">Joybox Asteroids</h4>

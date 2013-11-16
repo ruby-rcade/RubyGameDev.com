@@ -1,0 +1,25 @@
+<table class="table">
+  <tbody>
+    <% @tutorials.each do |tutorial| %>
+      <tr>
+        <td class="score">
+          <%= link_to '#', data: {toggle: "modal", target: "#notImplementedModal"} do %>
+            <span class="up">&#x25B2;</span><br>
+          <% end %>
+          <%= tutorial.score %><br>
+          <%= link_to '#', data: {toggle: "modal", target: "#notImplementedModal"} do %>
+            <span class="down">&#x25BC;</span>
+          <% end %>
+        </td>
+        <td>
+          <% if tutorial.url.present? %>
+            <%= link_to tutorial.title, tutorial.url, target: '_blank' %>
+          <% else %>
+            <%= link_to tutorial.title, tutorial %>
+          <% end %>
+          <br><span class="text-muted">Submitted by <%= tutorial.user.username %> on <%= tutorial.created_at.strftime("%m/%d/%Y") %></span>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

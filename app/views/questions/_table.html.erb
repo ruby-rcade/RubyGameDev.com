@@ -1,0 +1,23 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th>Answers</th>
+      <th>Question</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @questions.each do |question| %>
+      <tr>
+        <td class="text-center"><%= question['answer_count'] %></td>
+        <td>
+          <% if params[:controller] == 'questions' %>
+            <h4><%= link_to question['title'], question['link'] %></h4>
+            <p class="text-muted"><%= question['tags'].join(', ') %></p>
+          <% else %>
+            <%= link_to question['title'], question['link'] %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

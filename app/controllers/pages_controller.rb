@@ -5,4 +5,8 @@ class PagesController < ApplicationController
     @questions = Question.all[0..4]
     @library_categories = LibraryCategory.all
   end
+
+  def about
+    
+  end
 end
