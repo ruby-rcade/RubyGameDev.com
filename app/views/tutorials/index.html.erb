@@ -2,25 +2,8 @@
 
   <div class="col-md-9">
     <h1>Tutorials</h1>
-    <table class="tutorials table">
-      <tbody>
-        <% @tutorials.each do |tutorial| %>
-          <tr>
-            <td class="score"><span class="up">&#x25B2;</span><br><%= tutorial.score %><br><span class="down">&#x25BC;</span></td>
-            <td>
-              <% if tutorial.url.present? %>
-                <%= link_to tutorial.title, tutorial.url, target: '_blank' %>
-              <% else %>
-                <%= link_to tutorial.title, tutorial %>
-              <% end %>
-              <br><span class="text-muted">Submitted by <%= tutorial.user.username %> on <%= tutorial.created_at.strftime("%m/%d/%Y") %></span>
-            </td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
+    <%= render 'table' %>
   </div>
-
 
   <div class="col-md-3">
     <div class="panel panel-default">

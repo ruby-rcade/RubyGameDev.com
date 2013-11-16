@@ -2,21 +2,12 @@
 
   <div class="col-md-9">
     <h1>Libraries</h1>
-    <table class="table">
-      <tbody>
-        <% @library_categories.each do |library_category| %>
-          <tr>
-            <td><%= link_to library_category.title, library_category %></td>
-            <td><%= library_category.libraries.count %></td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
+    <%= render 'library_categories/table' %>
   </div>
 
   <div class="col-md-3">
-        <%= link_to 'Suggest a New Category', new_library_category_path, class: 'btn btn-default btn-md' %>
-        <%= link_to 'New Library', new_library_path, class: 'btn btn-default btn-md' %>
+    <%= link_to 'Suggest a New Category', new_library_category_path, class: 'btn btn-default btn-md' %>
+    <%= link_to 'New Library', new_library_path, class: 'btn btn-default btn-md' %>
   </div>
 
 </div>
