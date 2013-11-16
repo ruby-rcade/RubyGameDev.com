@@ -1,0 +1,10 @@
+<table class="table">
+  <tbody>
+    <% @library_categories.each do |library_category| %>
+      <tr>
+        <td><%= link_to library_category.title, library_category %></td>
+        <td><%= library_category.libraries.count %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

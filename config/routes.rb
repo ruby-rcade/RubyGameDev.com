@@ -7,6 +7,7 @@ Rubygamedev::Application.routes.draw do
   get '/auth/sign_out', to: 'sessions#destroy'
 
   root 'pages#home'
+  get 'about' => 'pages#about', as: :about_page
 
   resources :users, only: [:index, :edit, :update]
 

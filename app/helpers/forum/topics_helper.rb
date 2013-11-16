@@ -1,2 +1,0 @@
-module Forum::TopicsHelper
-end

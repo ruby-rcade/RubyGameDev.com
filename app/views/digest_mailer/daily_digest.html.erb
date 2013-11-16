@@ -12,7 +12,6 @@
 <% end -%>
 
 <h2>New Tutorials:</h2>
-<%= @tutorials.inspect %>
 <% if @tutorials.count > 0 -%>
   <% @tutorials.each do |tutorial| -%>
     <p><%= tutorial.title %></p>
@@ -22,7 +21,6 @@
 <% end -%>
 
 <h2>New Libraries:</h2>
-<%= @libraries.inspect %>
 <% if @libraries.count > 0 -%>
   <% @libraries.each do |library| -%>
     <p><%= library.name %></p>
