@@ -11,6 +11,9 @@ class DiscussionsController < ApplicationController
   # GET /discussions/1
   # GET /discussions/1.json
   def show
+    # @comment = @discussion.comments.build
+    @comment = Comment.new
+    @comment.parent = @discussion
   end
 
   # GET /discussions/new

@@ -1,7 +1,5 @@
 Rubygamedev::Application.routes.draw do
 
-  resources :discussions
-
   get '/auth/sign_in', to: 'sessions#new', as: :sign_in
   get '/auth/:provider/callback', to: 'sessions#create'
   get '/auth/sign_out', to: 'sessions#destroy'
@@ -11,13 +9,16 @@ Rubygamedev::Application.routes.draw do
 
   resources :users, only: [:index, :edit, :update]
 
-  namespace :forum do
-    root 'topics#index'
-    resources :topics do
-      resources :discussions
-    end
-    resources :discussions, only: [:show, :edit, :update, :destroy]
-  end
+  resources :discussions
+  resources :comments
+
+  # namespace :forum do
+  #   root 'topics#index'
+  #   resources :topics do
+  #     resources :discussions
+  #   end
+  #   resources :discussions, only: [:show, :edit, :update, :destroy]
+  # end
 
   get 'questions' => 'questions#index'
 

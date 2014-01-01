@@ -21,5 +21,5 @@
 # Ignore development environment variables file
 .env
 
-# ignore local chef cookbooks
-/deploy/cookbooks
+# ignore private provisioning recipes (for now)
+/config/sunzi

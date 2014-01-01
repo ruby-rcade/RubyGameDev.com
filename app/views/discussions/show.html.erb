@@ -1,32 +1,32 @@
-<div class="row">
+<% content_for :sidebar do %>
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <%= link_to 'Start a New Discussion', new_discussion_path %>
+    </div>
+  </div>
+<% end %>
 
-  <div class="col-md-9">
+<% content_for :breadcrumbs do %>
   <ol class="breadcrumb">
     <li><%= link_to 'Discussions', discussions_path %></li>
     <li class="active"><%= @discussion.title %></li>
   </ol>
-    <h1><%= @discussion.title %></h1>
-    <p>
-      Posted by: <%= @discussion.user.username %>
-      <% if policy(@discussion).update? %>
-        | <%= link_to 'Edit', edit_discussion_path(@discussion) %>
-      <% end %>
-      <% if policy(@discussion).destroy? %>
-        | <%= link_to 'Destroy', @discussion, method: :delete, data: { confirm: 'Are you sure?' } %>
-      <% end %>
-    </p>
-    <%= simple_format @discussion.body %>
+<% end %>
 
-    <h2>Comments</h2>
-    <p>No comments yet. <%= link_to 'Participate in this discussion', '#', data: {toggle: "modal", target: "#notImplementedModal"} %></p>
-  </div>
+<h1><%= @discussion.title %></h1>
+<p>
+  Posted by: <%= @discussion.user.username %>
+  <% if policy(@discussion).update? %>
+    | <%= link_to 'Edit', edit_discussion_path(@discussion) %>
+  <% end %>
+  <% if policy(@discussion).destroy? %>
+    | <%= link_to 'Destroy', @discussion, method: :delete, data: { confirm: 'Are you sure?' } %>
+  <% end %>
+</p>
+<%= simple_format @discussion.body %>
 
-  <div class="col-md-3">
-    <div class="panel panel-default">
-      <div class="panel-body">
-        <%= link_to 'Start a New Discussion', new_discussion_path %>
-      </div>
-    </div>
-  </div>
-
-</div>
+<h2>Comments</h2>
+<%= render 'comments/form' %>
+<% @discussion.comments.each do |comment| %>
+  <%= render comment %>
+<% end %>

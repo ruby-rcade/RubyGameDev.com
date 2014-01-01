@@ -1,0 +1,4 @@
+<div class="comment">
+  <p><a href="#" class="author"><%= comment.user.username %></a> - <time><%= time_ago_in_words comment.created_at %> ago</time></p>
+  <%= simple_format comment.body %>
+</div>
