@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131116013552) do
+ActiveRecord::Schema.define(version: 20131122012320) do
 
   create_table "blog_posts", force: true do |t|
     t.string   "title"
@@ -25,6 +25,17 @@ ActiveRecord::Schema.define(version: 20131116013552) do
   end
 
   add_index "blog_posts", ["user_id"], name: "index_blog_posts_on_user_id"
+
+  create_table "comments", force: true do |t|
+    t.text     "body"
+    t.integer  "user_id"
+    t.integer  "parent_id"
+    t.string   "parent_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "comments", ["user_id"], name: "index_comments_on_user_id"
 
   create_table "digest_histories", force: true do |t|
     t.string   "frequency"

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]> <html class="ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]>    <html class="ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]>    <html class="ie8" lang="en"> <![endif]-->
+<!--[if IE 9 ]>    <html class="ie9" lang="en"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html lang="en"> <!--<![endif]-->
+  <head>
+  	<meta charset="utf-8" />
+  	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <%= favicon_link_tag 'red-gamepad-icon.png', type: 'image/png' %>
+    <%= favicon_link_tag 'red-gamepad-icon.png', type: 'image/png', rel: 'apple-touch-icon' %>
+
+  	<title><%= content_for?(:title) ? yield(:title) : "RubyGameDev.com - A hub for discussion around Ruby game development" %></title>
+
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.1/css/font-awesome.css" rel="stylesheet">
+    <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+    <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+    <%= csrf_meta_tags %>
+  </head>
+
+  <body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/">
+            <%= image_tag 'rubygamedev_logo.png', alt: 'RubyGameDev.com', width: 300, class: 'hidden-xs' %>
+            <%= image_tag 'rubygamedev_logo.png', alt: 'RubyGameDev.com', width: 225, class: 'visible-xs', style: 'margin-top: 8px;' %>
+          </a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="/discussions">Discussions</a></li>
+            <li><a href="/questions">Questions</a></li>
+            <li><a href="/tutorials">Tutorials</a></li>
+            <li><a href="/libraries">Libraries</a></li>
+            <!-- <li><a href="/blog">Blog</a></li> -->
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <% if signed_in? %>
+              <li></li>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= "Welcome, #{current_user.username}!" %> <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li><%= link_to "Edit Profile", edit_user_path(current_user) %></li>
+                  <li><%= link_to 'Sign Out', '/auth/sign_out' %></li>
+                </ul>
+              </li>
+            <% else %>
+              <li><%= link_to '<i class="fa fa-lg fa-github"></i> Sign in through GitHub'.html_safe, '/auth/github' %></li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <% flash.each do |name, msg| -%>
+        <div id="welcome_message" class="alert alert-info alert-dismissable">
+          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+          <%= msg %>
+        </div>
+      <% end -%>
+
+      <div class="row">
+        <%= content_for?(:content) ? yield(:content) : yield %>
+      </div>
+
+      <div class="row footer">
+        <div class="col-md-2">
+          <%= link_to (image_tag 'powered_by_rackspace.png', class: 'rackspace-logo'), 'http://www.rackspace.com/cloud', target: '_blank' %>
+        </div>
+        <ul class="nav nav-pills col-md-4 col-md-offset-3">
+          <li><%= link_to 'About', about_page_path %></li>
+          <li><%= link_to 'Contribute on GitHub', 'https://github.com/ruby-rcade/RubyGameDev.com' %></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="modal fade" id="notImplementedModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title" id="myModalLabel">Not Yet Implemented</h4>
+          </div>
+          <div class="modal-body">
+            <p>Looks like you're trying to use a feature that's not quite implemented yet. Want to help us implement it?</p>
+            <p>
+              <%= link_to 'View Our GitHub Repo', 'https://github.com/ruby-rcade/RubyGameDev.com', class: 'btn btn-primary btn-large' %>
+            </p>
+          </div>
+<!--           <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+          </div> -->
+        </div>
+      </div>
+    </div>
+
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      ga('create', 'UA-44988922-1', 'rubygamedev.com');
+      ga('send', 'pageview');
+    </script>
+    
+  </body>
+</html>

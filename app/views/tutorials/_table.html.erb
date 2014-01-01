@@ -12,11 +12,7 @@
           <% end %>
         </td>
         <td>
-          <% if tutorial.url.present? %>
-            <%= link_to tutorial.title, tutorial.url, target: '_blank' %>
-          <% else %>
-            <%= link_to tutorial.title, tutorial %>
-          <% end %>
+          <%= link_to tutorial.title, tutorial %>
           <br><span class="text-muted">Submitted by <%= tutorial.user.username %> on <%= tutorial.created_at.strftime("%m/%d/%Y") %></span>
         </td>
       </tr>

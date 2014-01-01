@@ -1,12 +1,10 @@
-<% if signed_in? %>
-  <% unless current_user.dismissed_welcome_message %>
-    <div id="welcome_message" class="alert alert-success alert-dismissable">
-      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-      Welcome to RubyGameDev.com, the community-contributed, information hub which helps others to build games in Ruby! First time here? <%= link_to 'Learn More', about_page_path, class: 'alert-link' %>.
-    </div>
-    <%= form_for current_user, remote: true do |f| %>
-      <%= f.hidden_field :dismissed_welcome_message, value: 1 %>
-    <% end %>
+<% unless signed_in? and current_user.dismissed_welcome_message %>
+  <div id="welcome_message" class="alert alert-success alert-dismissable">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+    Welcome to RubyGameDev.com, the community-driven, information hub which helps others to build games in Ruby! First time here? <%= link_to 'Learn More', about_page_path, class: 'alert-link' %>.
+  </div>
+  <%= form_for current_user, remote: true do |f| %>
+    <%= f.hidden_field :dismissed_welcome_message, value: 1 %>
   <% end %>
 <% end %>
 

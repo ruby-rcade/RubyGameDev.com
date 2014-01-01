@@ -1,8 +1,21 @@
+<% content_for :breadcrumbs do %>
+  <ol class="breadcrumb">
+    <li><%= link_to 'Tutorials', tutorials_path %></li>
+    <li class="active"><%= @tutorial.title %></li>
+  </ol>
+<% end %>
+
 <h1>
   <% if @tutorial.draft %>
-    <span><%= @tutorial.draft %></span>
+    <span>Draft - </span>
   <% end %>
-  <%= @tutorial.title %>
+  <% if @tutorial.url %>
+    <%= link_to @tutorial.title, @tutorial.url, target: '_blank' %>
+  <% else %>
+    <%= @tutorial.title %>
+  <% end %>
 </h1>
-<p>By <%= @tutorial.user.username %> on <%= @tutorial.published_on %></p>
+
+<p class="text-muted">Submitted by <%= @tutorial.user.username %> on <%= @tutorial.created_at.strftime("%m/%d/%Y") %></p>
+
 <%= @tutorial.body_html %>
