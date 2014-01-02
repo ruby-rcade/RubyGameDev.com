@@ -7,7 +7,8 @@ gem 'unicorn'
 
 # databases
 gem 'sqlite3', groups: [:development, :test]
-gem 'mysql2', group: :production
+# gem 'mysql2', group: :production
+gem 'pg', group: :production
 
 # assets
 gem 'sass-rails', '~> 4.0.0'
@@ -32,13 +33,13 @@ gem 'whenever', :require => false
 gem 'sunzi'
 gem 'capistrano', '~> 2.15'
 # gem 'capistrano', '~> 3.0.1'
-gem 'knife-solo'
-gem 'berkshelf'
+# gem 'knife-solo'
+# gem 'berkshelf'
 
 group :production do
   # gem 'mysql2' # If using mysql in development, this can be outside the production group.
   # gem 'pg'
-  gem 'rails_12factor' # heroku
+  # gem 'rails_12factor' # heroku
   gem 'therubyracer'
 end
 
