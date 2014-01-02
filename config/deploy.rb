@@ -38,6 +38,7 @@ role :db,  '23.253.67.14', primary: true # the host which runs migrations
 after 'deploy:setup' do
   # Create Database Configuration File
   run "mkdir -p #{shared_path}/config && touch #{shared_path}/config/database.yml"
+  run "mkdir -p #{shared_path}/sockets"
 end
 
 # Add Configuration Files & Compile Assets
@@ -46,7 +47,7 @@ after 'deploy:update_code' do
   run "cp #{shared_path}/config/database.yml #{release_path}/config/database.yml"
 
   # Compile Assets
-  # run "cd #{release_path}; RAILS_ENV=production bundle exec rake assets:precompile"
+  run "cd #{release_path}; RAILS_ENV=production bundle exec rake assets:precompile"
 end
 
 namespace :deploy do
