@@ -33,7 +33,8 @@ gem 'whenever', :require => false
 gem 'sunzi'
 gem 'capistrano', '~> 2.15'
 
-# error reporting
+# monitoring/reporting
+gem 'newrelic_rpm'
 gem 'bugsnag'
 
 group :production do
