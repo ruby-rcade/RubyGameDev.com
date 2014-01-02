@@ -27,13 +27,17 @@ set :scm,        :git
 set :repository, "git@github.com:ruby-rcade/RubyGameDev.com.git"
 set :branch,     "master"
 
+set :unicorn_config, "#{current_path}/config/unicorn.rb"
+set :unicorn_pid, "#{current_path}/tmp/pids/unicorn.pid"
+
 # Roles
 role :app, '23.253.67.14'
-role :db,  '23.253.67.14', primary: true # which host to run migrations on
+role :web, '23.253.67.14'
+role :db,  '23.253.67.14', primary: true # the host which runs migrations
 
 after 'deploy:setup' do
   # Create Database Configuration File
-  run "mkdir -p touch #{shared_path}/config && touch #{shared_path}/config/database.yml"
+  run "mkdir -p #{shared_path}/config && touch #{shared_path}/config/database.yml"
 end
 
 # Add Configuration Files & Compile Assets
@@ -42,7 +46,29 @@ after 'deploy:update_code' do
   run "cp #{shared_path}/config/database.yml #{release_path}/config/database.yml"
 
   # Compile Assets
-  run "cd #{release_path}; RAILS_ENV=production bundle exec rake assets:precompile"
+  # run "cd #{release_path}; RAILS_ENV=production bundle exec rake assets:precompile"
+end
+
+namespace :deploy do
+  task :start, :roles => :app, :except => { :no_release => true } do
+    run "cd #{current_path} && bundle exec unicorn -c #{unicorn_config} -E production -D"
+  end
+
+  task :stop, :roles => :app, :except => { :no_release => true } do 
+    # run "kill `cat #{unicorn_pid}`"
+    run "kill -s QUIT `cat #{unicorn_pid}`"
+  end
+  # task :graceful_stop, :roles => :app, :except => { :no_release => true } do
+  #   run "#{try_sudo} kill -s QUIT `cat #{unicorn_pid}`"
+  # end
+  # task :reload, :roles => :app, :except => { :no_release => true } do
+  #   run "#{try_sudo} kill -s USR2 `cat #{unicorn_pid}`"
+  # end
+  task :restart, :roles => :app, :except => { :no_release => true } do
+    run "kill -s USR2 `cat #{unicorn_pid}`"
+    # stop
+    # start
+  end
 end
 
 # Restart Passenger
