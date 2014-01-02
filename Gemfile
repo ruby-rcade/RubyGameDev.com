@@ -35,7 +35,7 @@ gem 'capistrano', '~> 2.15'
 
 # monitoring/reporting
 gem 'newrelic_rpm'
-# gem 'bugsnag'
+gem 'bugsnag'
 
 group :production do
   # gem 'mysql2' # If using mysql in development, this can be outside the production group.
