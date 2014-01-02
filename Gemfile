@@ -32,9 +32,9 @@ gem 'whenever', :require => false
 # deployment and provisioning
 gem 'sunzi'
 gem 'capistrano', '~> 2.15'
-# gem 'capistrano', '~> 3.0.1'
-# gem 'knife-solo'
-# gem 'berkshelf'
+
+# error reporting
+gem 'bugsnag'
 
 group :production do
   # gem 'mysql2' # If using mysql in development, this can be outside the production group.
