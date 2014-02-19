@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 ruby '2.0.0'
-gem 'rails', '4.0.0'
+gem 'rails', '~> 4.0.0'
 
 # application server
 gem 'unicorn'
@@ -21,6 +21,9 @@ gem 'bootstrap-sass', github: 'thomas-mcdonald/bootstrap-sass'
 # authentication
 gem 'omniauth'
 gem 'omniauth-github'
+
+# social
+gem 'twitter' # used for posting updates
 
 # authorization
 gem "pundit"
@@ -47,9 +50,9 @@ end
 group :test do
   # gem 'rspec-rails', "2.99.0.beta1" # upgrade path for apps with existing specs (not us)
   gem 'rspec-rails', "3.0.0.beta1"
-  # gem 'guard'
-  # gem 'guard-rspec'
   gem 'shoulda'
+  gem 'factory_girl_rails', '~> 4.4.0'
+  gem 'webmock'
 end
 
 # api
@@ -60,6 +63,9 @@ gem 'jbuilder', '~> 1.2'
 #   gem 'sdoc', require: false
 # end
 
-group :development do
+group :development, :test do
   gem 'pry'
+  gem 'guard'
+  gem 'guard-rspec'
+  gem 'terminal-notifier-guard'
 end
