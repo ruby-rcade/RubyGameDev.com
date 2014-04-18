@@ -19,7 +19,7 @@
 
 # Learn more: http://github.com/javan/whenever
 
-set :output, "/var/www/apps/railsrumble/shared/log/cron.log"
+set :output, File.expand_path('../log/cron.log', __FILE__)
 
 every :day, at: '4am' do
   runner 'DigestBuilder.send_daily_email'
