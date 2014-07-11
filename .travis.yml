@@ -1,5 +1,9 @@
 language: ruby
 rvm:
-  - "2.1.2"
-# uncomment this line if your project needs to run something other than `rake`:
-# script: bundle exec rspec spec
+- 2.1.2
+deploy:
+  provider: ninefold
+  app_id: '8650'
+  auth_token:
+    secure: AR1iRoszLrZnrQd/h5zP1tAEmXtLt3KndZA4GoCc/I//k07MpUmcDkorgkE7QYE3o6F/1Rh2p3feCYr1S1D9cDMuG+DV9+Z+7Ga+URF49DVAe5R+dRlPS/+/6I4NX1QDe923OxkHhcuXrAv8pEE+RUwR9ZERrB6THH643zuFrtM=
+  on: master
