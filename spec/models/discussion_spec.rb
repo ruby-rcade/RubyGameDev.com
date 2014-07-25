@@ -6,43 +6,6 @@ describe Discussion do
   it { should validate_presence_of :body }
   it { should validate_presence_of :user }
 
-  # let(:user){ FactoryGirl.create(:user) }
-
-  # describe '#notify_twitter' do
-  #   subject do
-  #     user.discussions.new(title: 'This is a test discussion', body: 'Discussion body')
-  #   end
-
-  #   it 'posts to Twitter after create' do
-  #     # discussion = user.discussions.new(title: 'This is a test discussion')
-  #     # expect(discussion).to receive(:notify_twitter)
-  #     # discussion.save!
-  #     expect(subject).to receive(:notify_twitter)
-  #     subject.save!
-  #   end
-
-  #   it 'includes the title in the tweet' do
-  #     # subject.title = 'This is a test discussion'
-  #     # subject.user = user
-  #     expect($twitter_client).to receive(:update).with 'New Discussion: This is a test discussion http://rbga.me/d/1'
-  #     subject.save!
-  #   end
-
-  #   it 'uses the short domain for links' do
-  #     expect($twitter_client).to receive(:update).with %r{http://rbga.me/d/1}
-  #     subject.save!
-  #   end
-
-  #   it 'keeps the character limit to 140' do
-  #     subject.title = 'a' * 140
-  #     # subject.user = user
-  #     tweet = "New Discussion: #{'a'*140} http://rbga.me/t/1"
-  #     tweet.length.should == 140
-  #     expect($twitter_client).to receive(:update).with(tweet)
-  #     subject.save!
-  #   end
-  # end
-
   describe '#notify_twitter' do
     subject { FactoryGirl.build(:discussion) }
 
