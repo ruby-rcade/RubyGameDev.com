@@ -10,7 +10,14 @@ class Tutorial < ActiveRecord::Base
 
   # TODO: move this to background job
   def notify_twitter
-    url = Rails.application.routes.url_helpers.tutorial_url(self)
-    $twitter_client.update("New Tutorial: #{title} #{url}")
+    $twitter_client.update(tweet_content)
+  end
+
+  def tweet_content
+    intro = 'New Tutorial: '
+    url = Rails.application.routes.url_helpers.tutorial_short_link_url(self, host: 'rbga.me')
+    url = " #{url}"
+    max_title_length = 140 - intro.length - url.length
+    intro + title[0...max_title_length] + url
   end
 end

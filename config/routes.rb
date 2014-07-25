@@ -24,4 +24,7 @@ Rubygamedev::Application.routes.draw do
     resources :posts
   end
 
+  get 'd/:id' => 'short_links#discussion', as: :discussion_short_link
+  get 't/:id' => 'short_links#tutorial', as: :tutorial_short_link
+
 end
