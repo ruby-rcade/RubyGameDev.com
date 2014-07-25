@@ -5,24 +5,38 @@ describe Tutorial do
   it { should validate_presence_of :title }
   it { should validate_presence_of :user }
 
-  let(:user){ FactoryGirl.create(:user) }
-
   describe '#notify_twitter' do
+    subject { FactoryGirl.build(:tutorial) }
+
     it 'posts to Twitter after create' do
-      tutorial = user.tutorials.new(title: 'This is a test tutorial')
-      expect(tutorial).to receive(:notify_twitter)
-      tutorial.save!
+      expect(subject).to receive(:notify_twitter)
+      subject.save!
+    end
+  end
+
+  describe '#tweet_content' do
+    subject { FactoryGirl.build(:tutorial) }
+
+    it 'includes the title in the tweet' do
+      subject.id = '123'
+      subject.title = 'This is a test tutorial'
+      subject.tweet_content.should match /^New Tutorial: This is a test tutorial/
     end
 
-    it 'sends a Twitter update' do
-      subject.title = 'This is a test tutorial'
-      subject.user = user
-      expect($twitter_client).to receive(:update).with('New Tutorial: This is a test tutorial http://www.rubygamedev.com/tutorials/1')
-      subject.save!
+    it 'uses the short domain for links' do
+      subject.id = '123'
+      subject.tweet_content.should match %r{http://rbga.me/t/123$}
     end
 
     it 'keeps the character limit to 140' do
-      pending
+      subject.id = '123'
+      subject.title = 'a' * 140
+      subject.tweet_content.length.should == 140
+      subject.tweet_content.should == "New Tutorial: #{'a'*105} http://rbga.me/t/123"
+
+      subject.id = '1234567890'
+      subject.tweet_content.length.should == 140
+      subject.tweet_content.should == "New Tutorial: #{'a'*98} http://rbga.me/t/1234567890"
     end
   end
 end
