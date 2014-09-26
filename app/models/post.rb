@@ -4,4 +4,9 @@ class Post < ActiveRecord::Base
   has_many :comments, as: :parent
 
   validates_presence_of :user, :title
+
+  before_save do
+    parser = Redcarpet::Markdown.new(Redcarpet::Render::HTML, autolink: true)
+    self.body_html = parser.render(body_markdown)
+  end
 end

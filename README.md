@@ -33,10 +33,10 @@ $ bundle exec rake db:migrate
 Then you can start the Rails server and see it running in your browser:
 
 ```bash
-$ bundle exec rails server
+$ bundle exec rails server -p 7777
 ```
 
-Then open your browser to http://localhost:3000.
+Then open your browser to http://localhost:7777. Why port 7777? The GitHub OAuth callback is configured to be running on this port.
 
 ## Writing Tests
 
@@ -56,4 +56,4 @@ From your forked repository, create a separate branch. Then submit your pull req
 
 ## Getting Help
 
-If you ever need help, don't hesitate to ask. We don't have a mailing list, so feel free to submit a GitHub issue or join us in our Gitter chat room.
+If you ever need help, don't hesitate to ask. We don't have a mailing list, so feel free to submit a GitHub issue or join us in our [Gitter chat room](https://gitter.im/ruby-rcade/RubyGameDev.com?utm_source=badge&utm_medium=badge&utm_campaign=share-badge).
