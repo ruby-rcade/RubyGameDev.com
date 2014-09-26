@@ -1,13 +1,11 @@
 <% content_for :content do %>
-  <div class="row">
-    <div class="col-md-9">
-      <%= yield :breadcrumbs %>
-      <%= yield %>
-    </div>
-    
-    <div class="col-md-3">
-      <%= yield :sidebar %>
-    </div>
+  <div class="col-md-9">
+    <%= yield :breadcrumbs %>
+    <%= yield %>
+  </div>
+  
+  <div class="col-md-3">
+    <%= yield :sidebar %>
   </div>
 <% end %>
 <%= render template: "layouts/one_column" %>

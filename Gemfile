@@ -40,6 +40,9 @@ gem 'capistrano', '~> 2.15'
 gem 'newrelic_rpm'
 gem 'bugsnag'
 
+# markdown processing
+gem 'redcarpet'
+
 group :production do
   gem 'therubyracer' # for asset compilation
 end

@@ -1,0 +1,32 @@
+<% content_for :breadcrumbs do %>
+  <ol class="breadcrumb">
+    <li><%= link_to 'Posts', posts_path %></li>
+    <li class="active"><%= @post.title %></li>
+  </ol>
+<% end %>
+
+<div class="post">
+
+  <h1><%= @post.title %></h1>
+  <p>
+    Posted by: <%= @post.user.username %>
+    <% if policy(@post).update? %>
+      | <%= link_to 'Edit', edit_post_path(@post) %>
+    <% end %>
+    <% if policy(@post).destroy? %>
+      | <%= link_to 'Destroy', @post, method: :delete, data: { confirm: 'Are you sure?' } %>
+    <% end %>
+  </p>
+
+  <div class="body">
+    <%= raw @post.body_html %>
+  </div>
+
+  <h2>Comments</h2>
+  <%= render 'comments/form' %>
+
+  <% @post.comments.each do |comment| %>
+    <%= render comment %>
+  <% end %>
+
+</div>

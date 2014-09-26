@@ -1,7 +1,6 @@
 class PagesController < ApplicationController
   def home
-    @discussions = Discussion.all.limit(10)
-    @tutorials = Tutorial.all.limit(10)
+    @posts = Post.order('created_at desc')
     @questions = Question.all[0..4]
     @library_categories = LibraryCategory.all
     render layout: 'one_column'

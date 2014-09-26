@@ -13,27 +13,20 @@
 
     <div class="panel panel-default">
       <div class="panel-body">
-        <%= link_to 'See More', discussions_path, class: 'btn btn-default pull-right' %>
-        <h2>Discussions</h2>
-        <%= render 'discussions/table' %>
+        <%= link_to 'New Post', new_post_path, class: 'btn btn-primary pull-right' %>
+        <h2>Latest Posts</h2>
+        <%= render 'posts/list' %>
       </div>
     </div>
-    
-    <div class="tutorials panel panel-default">
-      <div class="panel-body">
-        <%= link_to 'See More', tutorials_path, class: 'btn btn-default pull-right' %>
-        <h2>Tutorials</h2>
-        <%= render 'tutorials/table' %>
-      </div>
-    </div>
-
+ 
+<!-- TODO: build out the libraries section
     <div class="panel panel-default">
       <div class="panel-body">
         <%= link_to 'See More', libraries_path, class: 'btn btn-default pull-right' %>
         <h2>Libraries</h2>
         <%= render 'library_categories/table' %>
       </div>
-    </div>
+    </div> -->
     
   </div>
 
@@ -72,14 +65,24 @@
     <% end %>
 
     <div class="panel panel-default">
+      <div class="panel-body text-center">
+        <%= link_to 'Help Out on GitHub', 'https://github.com/ruby-rcade/RubyGameDev.com', class: 'btn btn-sm btn-primary', style: 'vertical-align: top' %>
+        <a href="https://twitter.com/RubyGameDev" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @RubyGameDev</a>
+        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+      </div>
+    </div>
+
+<!-- TODO: build out the questions section
+    <div class="panel panel-default">
       <div class="panel-body">
         <%= link_to 'See More', questions_path, class: 'btn btn-default pull-right' %>
         <h2>Questions</h2>
         <p class="text-muted">Questions from GameDevSE tagged <strong>ruby</strong>.</p>
         <%= render 'questions/table' %>
       </div>
-    </div>
+    </div> -->
 
+<!-- TODO: build out the showcase section
     <div class="panel panel-default">
       <div class="panel-body">
         <h2>Showcase</h2>
@@ -95,7 +98,7 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
 
   </div>
 </div>
