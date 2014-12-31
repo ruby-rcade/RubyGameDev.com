@@ -17,15 +17,12 @@ Rubygamedev::Application.routes.draw do
   resources :libraries
   resources :library_categories
 
-  # namespace :blog do
-  #   root 'posts#index'
-  #   resources :posts
-  # end
-
-  get 'd/:id' => 'short_links#discussion', as: :discussion_short_link
-  get 't/:id' => 'short_links#tutorial', as: :tutorial_short_link
-  
   get 'about' => 'pages#about', as: :about_page
   root 'pages#home'
+
+  # Short Links
+  get 'd/:id' => 'short_links#post' # DEPRECATED
+  get 't/:id' => 'short_links#post' # DEPRECATED
+  get ':id' => 'short_links#post', as: :post_short_link, constraints: { id: /\d+/ }
 
 end
