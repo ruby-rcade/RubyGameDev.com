@@ -1,11 +1,6 @@
 class ShortLinksController < ApplicationController
-  def discussion
+  def post
     # TODO: add logging for analytics
-    redirect_to discussion_url(params[:id]), status: :moved_permanently
-  end
-
-  def tutorial
-    # TODO: add logging for analytics
-    redirect_to tutorial_url(params[:id]), status: :moved_permanently
+    redirect_to post_url(params[:id], host: 'rubygamedev.com'), status: :moved_permanently
   end
 end
