@@ -1,8 +1,10 @@
 class ApplicationController < ActionController::Base
-  include Clearance::Controller
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
+
+  include Clearance::Controller
+  alias_method :require_authentication, :authorize # to avoid conflict with Pundit's authorize method
 
   include Pundit # for authorization
 
