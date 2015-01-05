@@ -1,6 +1,7 @@
 language: ruby
 rvm:
 - 2.1.2
+sudo: false
 deploy:
   provider: ninefold
   app_id: '8650'
