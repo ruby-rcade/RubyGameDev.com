@@ -47,14 +47,16 @@
             <% if signed_in? %>
               <li></li>
               <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= "Welcome, #{current_user.username}!" %> <b class="caret"></b></a>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= current_user.email %> <b class="caret"></b></a>
                 <ul class="dropdown-menu">
-                  <li><%= link_to "Edit Profile", edit_user_path(current_user) %></li>
-                  <li><%= link_to 'Sign Out', '/auth/sign_out' %></li>
+                  <li><%= link_to "Edit Profile", account_path %></li>
+                  <li><%= link_to 'Sign Out', sign_out_path, method: :delete %></li>
                 </ul>
               </li>
             <% else %>
-              <li><%= link_to '<i class="fa fa-lg fa-github"></i> Sign in through GitHub'.html_safe, '/auth/github' %></li>
+              <li><%= link_to 'Create Account', sign_up_path %></li>
+              <li><%= link_to 'Sign in', sign_in_path %></li>
+              <!--<li><%= link_to '<i class="fa fa-lg fa-github"></i> Sign in through GitHub'.html_safe, '/auth/github' %></li>-->
             <% end %>
           </ul>
         </div>
@@ -63,7 +65,7 @@
 
     <div class="container">
       <% flash.each do |name, msg| -%>
-        <div id="welcome_message" class="alert alert-info alert-dismissable">
+        <div class="alert alert-info alert-dismissable">
           <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
           <%= msg %>
         </div>

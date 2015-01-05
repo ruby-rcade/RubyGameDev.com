@@ -17,10 +17,12 @@ gem 'jquery-rails'
 gem 'turbolinks'
 # TODO: upgrade to latest bootstrap
 gem 'bootstrap-sass', github: 'thomas-mcdonald/bootstrap-sass'
+gem 'quiet_assets', group: :development
 
 # authentication
 gem 'omniauth'
 gem 'omniauth-github'
+gem 'clearance'
 
 # social
 gem 'twitter' # used for posting updates
@@ -33,8 +35,8 @@ gem 'dotenv-rails' # for managing environment variables
 gem 'whenever', :require => false # for managing crontab
 
 # deployment and provisioning
-gem 'sunzi'
-gem 'capistrano', '~> 2.15'
+# gem 'sunzi'
+# gem 'capistrano', '~> 2.15'
 
 # monitoring/reporting
 gem 'newrelic_rpm'
@@ -58,7 +60,7 @@ end
 gem 'jbuilder', '~> 1.2'
 
 group :development, :test do
-  gem 'pry'
+  gem 'pry-remote'
   gem 'guard'
   gem 'guard-rspec'
   gem 'terminal-notifier-guard'

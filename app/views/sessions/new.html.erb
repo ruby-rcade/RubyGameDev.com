@@ -1,2 +1,15 @@
-<h1>Sign In</h1>
-<p><%= link_to '<i class="fa fa-lg fa-github"></i> Sign in through GitHub'.html_safe, '/auth/github' %></p>
+<header>
+  <h1><%= t '.title' %></h1>
+</header>
+
+<div class="row">
+  <div class="col-md-6 col-sm-8 col-xs-8">
+    <%= render :partial => '/sessions/form' %>
+  </div>
+
+  <div class="col-md-6 col-sm-6 col-xs-6">
+    <div class="no_account">
+      <p><%= link_to '<i class="fa fa-lg fa-github"></i> Sign in through GitHub'.html_safe, '/auth/github', class: 'btn btn-default btn-lg' %></p>
+    </div>
+  </div>
+</div>

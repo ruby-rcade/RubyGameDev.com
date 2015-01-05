@@ -1,10 +1,9 @@
 Rubygamedev::Application.routes.draw do
 
-  get '/auth/sign_in', to: 'sessions#new', as: :sign_in
-  get '/auth/:provider/callback', to: 'sessions#create'
-  get '/auth/sign_out', to: 'sessions#destroy'
+  get '/auth/:provider/callback', to: 'sessions#create_from_omniauth'
 
-  resources :users, only: [:index, :edit, :update] # REVIEW: can we remove index?
+  resources :users, only: [:create, :edit, :update]
+  get '/account' => 'users#edit_current_user', as: :account
 
   resources :posts
 

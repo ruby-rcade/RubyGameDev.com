@@ -5,7 +5,7 @@
     <%= form_for current_user do |f| %>
 
       <div class="form-group">
-        <%= f.label :username %>
+        <%= f.label :username, 'Display Name' %>
         <%= f.text_field :username, class: 'form-control input-lg', style: 'max-width: 15em' %>
       </div>
 
@@ -18,7 +18,7 @@
         <%= f.label :dismissed_welcome_message %>
         <%= f.check_box :dismissed_welcome_message %>
       </div>
-      
+
       <div class="form-group">
         <%= f.label :digest_subscriber %>
         <%= f.check_box :digest_subscriber %>
