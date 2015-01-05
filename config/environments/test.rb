@@ -30,9 +30,10 @@ Rubygamedev::Application.configure do
   # The :test delivery method accumulates sent emails in the
   # ActionMailer::Base.deliveries array.
   config.action_mailer.delivery_method = :test
+  config.action_mailer.default_url_options = { host: 'rubygamedev.dev' }
 
   # Print deprecation notices to the stderr.
   config.active_support.deprecation = :stderr
 
-  Rails.application.routes.default_url_options[:host] = 'www.rubygamedev.com'
+  Rails.application.routes.default_url_options[:host] = 'rubygamedev.dev'
 end

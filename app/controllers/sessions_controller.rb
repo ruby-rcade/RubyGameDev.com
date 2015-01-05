@@ -1,21 +1,20 @@
-class SessionsController < ApplicationController
-  
-  # sign in landing page
-  def new
-    redirect_to account_path if signed_in?
-  end
+class SessionsController < Clearance::SessionsController
 
-  def create
-    auth = request.env['omniauth.auth']
-    unless user = User.find_by_github_id(auth['uid'])
-      user = User.create_from_auth_hash(auth)
+  def create_from_omniauth
+    auth_hash = request.env['omniauth.auth']
+    authentication = Authentication.find_or_create_from_auth_hash(auth_hash)
+    if authentication.user
+      user = authentication.user
+      authentication.update_token(auth_hash)
+      @next = root_url
+      @notice = 'Signed in!'
+    else
+      user = User.create_with_auth_and_hash(authentication, auth_hash)
+      @next = account_path
+      @notice = 'Account created - confirm or edit details...'
     end
-    session[:user_id] = user.id
-    redirect_to root_path
+    sign_in(user)
+    redirect_to @next, notice: @notice
   end
 
-  def destroy
-    session.delete(:user_id)
-    redirect_to root_path
-  end
 end

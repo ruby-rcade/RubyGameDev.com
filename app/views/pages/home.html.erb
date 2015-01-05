@@ -1,4 +1,4 @@
-<% unless signed_in? and current_user.dismissed_welcome_message %>
+<% if signed_in? and !current_user.dismissed_welcome_message %>
   <div id="welcome_message" class="alert alert-success alert-dismissable">
     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
     Welcome to RubyGameDev.com, the community-driven, information hub which helps others to build games in Ruby! First time here? <%= link_to 'Learn More', about_page_path, class: 'alert-link' %>.
@@ -18,7 +18,7 @@
         <%= render 'posts/list' %>
       </div>
     </div>
- 
+
 <!-- TODO: build out the libraries section
     <div class="panel panel-default">
       <div class="panel-body">
@@ -27,7 +27,7 @@
         <%= render 'library_categories/table' %>
       </div>
     </div> -->
-    
+
   </div>
 
   <div class="col-md-5">

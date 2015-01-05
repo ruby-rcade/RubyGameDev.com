@@ -23,3 +23,6 @@
 
 # ignore private provisioning recipes (for now)
 /config/sunzi
+
+# ignore private SSL certificate info
+/ssl

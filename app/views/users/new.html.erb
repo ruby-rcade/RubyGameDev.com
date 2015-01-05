@@ -1,0 +1,48 @@
+<header>
+  <h1><%= t '.title' %></h1>
+</header>
+
+<div class="row">
+  <div class="col-md-6 col-sm-8 col-xs-8">
+    <% if @user.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@user.errors.count, "error") %> prohibited this account from being created:</h2>
+        <ul>
+        <% @user.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <%= form_for @user do |form| %>
+      <fieldset>
+        <div class="form-group">
+          <%= form.label :username, 'Full Name' %>
+          <%= form.text_field :username, class: 'form-control' %>
+        </div>
+
+        <div class="form-group">
+          <%= form.label :email %>
+          <%= form.email_field :email, class: 'form-control' %>
+        </div>
+
+        <div class="form-group">
+          <%= form.label :password %>
+          <%= form.password_field :password, class: 'form-control' %>
+        </div>
+      </fieldset>
+
+      <div class="form-actions">
+        <%= form.submit class: 'btn btn-primary' %>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="col-md-6 col-sm-6 col-xs-6">
+    <div style="text-align: center">
+      <h3>Or...</h3>
+      <p><%= link_to '<i class="fa fa-lg fa-github"></i> Sign up with your GitHub account'.html_safe, '/auth/github', class: 'btn btn-default btn-lg' %></p>
+    </div>
+  </div>
+</div>

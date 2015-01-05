@@ -11,7 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140926072951) do
+ActiveRecord::Schema.define(version: 20150104061204) do
+
+  create_table "authentications", force: true do |t|
+    t.integer  "user_id"
+    t.string   "provider"
+    t.string   "uid"
+    t.string   "token"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "authentications", ["user_id"], name: "index_authentications_on_user_id"
 
   create_table "blog_posts", force: true do |t|
     t.string   "title"
@@ -124,6 +135,12 @@ ActiveRecord::Schema.define(version: 20140926072951) do
     t.boolean  "dismissed_welcome_message"
     t.string   "email"
     t.string   "github_id"
+    t.string   "encrypted_password",        limit: 128
+    t.string   "confirmation_token",        limit: 128
+    t.string   "remember_token",            limit: 128
   end
+
+  add_index "users", ["email"], name: "index_users_on_email"
+  add_index "users", ["remember_token"], name: "index_users_on_remember_token"
 
 end
