@@ -1,21 +1,31 @@
-<%= form_for(@comment) do |f| %>
-  <% if @comment.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@comment.errors.count, "error") %> prohibited this comment from being saved:</h2>
-      <ul>
-      <% @comment.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
+<% if signed_in? %>
+
+  <%= form_for(@comment) do |f| %>
+    <% if @comment.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@comment.errors.count, "error") %> prohibited this comment from being saved:</h2>
+        <ul>
+        <% @comment.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <%= f.hidden_field :parent_id %>
+    <%= f.hidden_field :parent_type %>
+
+    <div class="form-group">
+      <%= f.text_area :body, class: 'form-control', rows: 5 %>
     </div>
+
+    <%= f.submit 'Add Comment', class: 'btn btn-default' %>
   <% end %>
 
-  <%= f.hidden_field :parent_id %>
-  <%= f.hidden_field :parent_type %>
+<% else %>
 
-  <div class="form-group">
-    <%= f.text_area :body, class: 'form-control', rows: 5 %>
+  <div class="alert alert-info" role="alert">
+    <%= link_to 'Create an Account', sign_up_path %> to participate in the discussion!
   </div>
 
-  <%= f.submit 'Add Comment', class: 'btn btn-default' %>
 <% end %>
