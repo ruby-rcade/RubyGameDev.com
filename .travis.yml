@@ -1,7 +1,10 @@
 language: ruby
 rvm:
-- 2.1.2
+  - 2.1.2
 sudo: false
+addons:
+  code_climate:
+    repo_token: 48aeb1397404fe6079c14bbca8911959d29b44065e305a70b1bc6604d3effe46
 deploy:
   provider: ninefold
   app_id: '8650'

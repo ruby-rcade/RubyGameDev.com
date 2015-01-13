@@ -54,6 +54,7 @@ group :test do
   gem 'shoulda'
   gem 'factory_girl_rails', '~> 4.4.0'
   gem 'webmock'
+  gem "codeclimate-test-reporter", require: false
 end
 
 # api
