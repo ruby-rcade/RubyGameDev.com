@@ -1,13 +1,18 @@
 source 'https://rubygems.org'
+ruby '2.2.0'
 
 gem 'rails', '~> 4.0.0'
 
 # application server
-gem 'unicorn'
+gem 'thin'
 
 # databases
 gem 'sqlite3', groups: [:development, :test]
-gem 'pg', group: :production
+
+group :production do
+  gem 'pg'
+  gem 'rails_12factor'
+end
 
 # assets
 gem 'sass-rails', '~> 4.0.0'
@@ -28,7 +33,7 @@ gem 'clearance'
 gem 'twitter' # used for posting updates
 
 # authorization
-gem "pundit"
+gem 'pundit'
 
 # configuration
 gem 'dotenv-rails' # for managing environment variables
