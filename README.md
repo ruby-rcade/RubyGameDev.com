@@ -11,7 +11,9 @@ RubyGameDev.com is a community-driven, information hub designed to help people b
 * Increase test coverage
 * Improve this documentation
 
-We also have a list of issues you can look at on our [Waffle Board: ![Stories in Ready](https://badge.waffle.io/ruby-rcade/RubyGameDev.com.png?label=ready)](https://waffle.io/ruby-rcade/RubyGameDev.com)
+| Test Suite | TODO List | Chat Room |
+|:----------:|:---------:|:---------:|
+| [![Build Status](https://travis-ci.org/ruby-rcade/RubyGameDev.com.svg?branch=master)](https://travis-ci.org/ruby-rcade/RubyGameDev.com) | [![Stories in Ready](https://badge.waffle.io/ruby-rcade/RubyGameDev.com.png?label=ready)](https://waffle.io/ruby-rcade/RubyGameDev.com) | [![Gitter Chat](http://img.shields.io/badge/chat-online-brightgreen.svg)](https://gitter.im/ruby-rcade/RubyGameDev.com?utm_source=badge&utm_medium=badge&utm_campaign=share-badge) |
 
 ## Table of Contents
 
