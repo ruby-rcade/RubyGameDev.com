@@ -14,15 +14,21 @@
 /db/*.sqlite3
 /db/*.sqlite3-journal
 
+# Ignore database backups
+*.dump
+*.sql
+
 # Ignore all logfiles and tempfiles.
 /log/*.log
 /tmp
 
-# Ignore development environment variables file
-.env
+# Ignore production environment variables file
+.env.production
 
-# ignore private provisioning recipes (for now)
+# Ignore private provisioning recipes (for now)
 /config/sunzi
 
-# ignore private SSL certificate info
+# Ignore private SSL certificate info
 /ssl
+
+rackspace_stack.yml

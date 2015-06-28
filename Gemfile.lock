@@ -305,3 +305,6 @@ DEPENDENCIES
   uglifier (>= 1.3.0)
   webmock
   whenever
+
+BUNDLED WITH
+   1.10.2
