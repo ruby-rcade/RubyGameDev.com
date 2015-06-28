@@ -1,6 +1,6 @@
 # RubyGameDev.com
 
-RubyGameDev.com is a community-driven, information hub designed to help people build games in Ruby. This repository contains the source code that runs RubyGameDev.com. Please consider helping out.
+RubyGameDev.com is a community-driven, information hub designed to help people build games in Ruby. This repository contains the source code that runs the RubyGameDev.com website. Please consider helping to improve our website.
 
 ## Ways that you can help:
 
@@ -13,11 +13,18 @@ RubyGameDev.com is a community-driven, information hub designed to help people b
 
 We also have a list of issues you can look at on our [Waffle Board: ![Stories in Ready](https://badge.waffle.io/ruby-rcade/RubyGameDev.com.png?label=ready)](https://waffle.io/ruby-rcade/RubyGameDev.com)
 
+## Table of Contents
+
+* [Getting Started](#getting-started)
+* [Writing Tests](#writing-tests)
+* [Submitting a Pull Request](#submitting-a-pull-request)
+* [Getting Help](#getting-help)
+
 ## Getting Started
 
 This application is a Rails 4 application. The Ruby version requirement is listed in the `.ruby-version` file.
 
-Begin by forking and cloning the repository to your local environment. Then install the dependencies:
+Begin by forking and cloning the repository to your local environment. Then install the gem dependencies:
 
 ```bash
 $ cd RubyGameDev.com
