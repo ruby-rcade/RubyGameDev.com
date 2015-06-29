@@ -5,9 +5,3 @@ sudo: false
 addons:
   code_climate:
     repo_token: 48aeb1397404fe6079c14bbca8911959d29b44065e305a70b1bc6604d3effe46
-deploy:
-  provider: ninefold
-  app_id: '8650'
-  auth_token:
-    secure: AR1iRoszLrZnrQd/h5zP1tAEmXtLt3KndZA4GoCc/I//k07MpUmcDkorgkE7QYE3o6F/1Rh2p3feCYr1S1D9cDMuG+DV9+Z+7Ga+URF49DVAe5R+dRlPS/+/6I4NX1QDe923OxkHhcuXrAv8pEE+RUwR9ZERrB6THH643zuFrtM=
-  on: master
