@@ -28,23 +28,23 @@ describe Post do
     it 'includes the title in the tweet' do
       subject.id = '123'
       subject.title = 'This is a test discussion'
-      subject.tweet_content.should match /^This is a test discussion/
+      expect(subject.tweet_content).to match /^This is a test discussion/
     end
 
     it 'uses the short domain for links' do
       subject.id = '123'
-      subject.tweet_content.should match %r{http://rbga.me/123$}
+      expect(subject.tweet_content).to match %r{http://rbga.me/123$}
     end
 
     it 'keeps the character limit to 140' do
       subject.id = '123'
       subject.title = 'a' * 140
-      subject.tweet_content.length.should == 140
-      subject.tweet_content.should == "#{'a'*121} http://rbga.me/123"
+      expect(subject.tweet_content.length).to eq 140
+      expect(subject.tweet_content).to eq "#{'a'*121} http://rbga.me/123"
 
       subject.id = '1234567890'
-      subject.tweet_content.length.should == 140
-      subject.tweet_content.should == "#{'a'*114} http://rbga.me/1234567890"
+      expect(subject.tweet_content.length).to eq 140
+      expect(subject.tweet_content).to eq "#{'a'*114} http://rbga.me/1234567890"
     end
   end
 end

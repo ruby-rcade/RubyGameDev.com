@@ -12,6 +12,7 @@ gem 'sqlite3', groups: [:development, :test]
 group :production do
   gem 'pg'
   gem 'rails_12factor'
+  gem 'therubyracer' # for asset compilation
 end
 
 # assets
@@ -50,16 +51,12 @@ gem 'bugsnag'
 # markdown processing
 gem 'redcarpet'
 
-group :production do
-  gem 'therubyracer' # for asset compilation
-end
-
 group :test do
-  gem 'rspec-rails', "3.0.0.beta1"
-  gem 'shoulda'
+  gem 'rspec-rails'
+  gem 'shoulda-matchers'
   gem 'factory_girl_rails', '~> 4.4.0'
   gem 'webmock'
-  gem "codeclimate-test-reporter", require: false
+  gem 'codeclimate-test-reporter', require: false
 end
 
 # api
