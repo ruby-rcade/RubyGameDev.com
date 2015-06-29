@@ -35,13 +35,7 @@
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-<!-- TODO: convert these links to filters
-            <li><a href="/discussions">Discussions</a></li>
-            <li><a href="/questions">Questions</a></li>
-            <li><a href="/tutorials">Tutorials</a></li>
-            <li><a href="/libraries">Libraries</a></li> -->
             <li><%= render 'layouts/language_dropdown' %></li>
-            <!-- <li><a href="/blog">Blog</a></li> -->
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <% if signed_in? %>
@@ -56,7 +50,6 @@
             <% else %>
               <li><%= link_to 'Create Account', sign_up_path %></li>
               <li><%= link_to 'Sign in', sign_in_path %></li>
-              <!--<li><%= link_to '<i class="fa fa-lg fa-github"></i> Sign in through GitHub'.html_safe, '/auth/github' %></li>-->
             <% end %>
           </ul>
         </div>
@@ -119,6 +112,6 @@
       ga('create', 'UA-44988922-1', 'rubygamedev.com');
       ga('send', 'pageview');
     </script>
-    
+
   </body>
 </html>
