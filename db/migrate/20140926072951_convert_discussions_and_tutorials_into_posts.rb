@@ -1,4 +1,10 @@
 class ConvertDiscussionsAndTutorialsIntoPosts < ActiveRecord::Migration
+  class Discussion < ActiveRecord::Base
+  end
+
+  class Tutorial < ActiveRecord::Base
+  end
+
   def change
     Discussion.all.each do |d|
       d_post = Post.create!(
