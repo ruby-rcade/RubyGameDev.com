@@ -7,6 +7,7 @@
         <%= form.email_field :email, class: 'form-control' %>
       </div>
     </div>
+    <br>
     <div class="form-group">
       <%= form.label :password, class: 'col-sm-3 control-label' %>
       <div class="col-sm-9">
@@ -14,7 +15,7 @@
       </div>
     </div>
   </fieldset>
-
+  <br>
   <div class="form-actions col-sm-offset-3 col-sm-9">
     <%= form.submit class: 'btn btn-primary' %>
     <%= link_to t('.forgot_password'), new_password_path %>
