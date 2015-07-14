@@ -13,7 +13,9 @@ class Post < ActiveRecord::Base
   after_create :notify_twitter
   # TODO: move this to background job
   def notify_twitter
-    $twitter_client.update(tweet_content)
+    if not Rails.env.development?
+      $twitter_client.update(tweet_content)
+    end
   end
 
   def tweet_content
