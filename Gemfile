@@ -55,6 +55,7 @@ group :test do
   gem 'rspec-rails'
   gem 'shoulda-matchers'
   gem 'factory_girl_rails', '~> 4.4.0'
+  gem 'capybara'
   # gem 'webmock'
   gem 'codeclimate-test-reporter', require: false
 end

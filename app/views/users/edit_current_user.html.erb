@@ -14,35 +14,7 @@
         <%= f.text_field :email, class: 'form-control input-md' %>
       </div>
 
-      <div class="form-group">
-        <%= f.label :dismissed_welcome_message %>
-        <%= f.check_box :dismissed_welcome_message %>
-      </div>
-
-      <div class="form-group">
-        <%= f.label :digest_subscriber %>
-        <%= f.check_box :digest_subscriber %>
-      </div>
-
-      <div class="form-group">
-        <%= f.label :digest_frequency %>
-        <div class="radio">
-          <label>
-            <%= f.radio_button :digest_frequency, 'daily' %> Daily
-          </label>
-        </div>
-        <div class="radio">
-          <label>
-            <%= f.radio_button :digest_frequency, 'weekly' %> Weekly
-          </label>
-        </div>
-        <div class="radio">
-          <label>
-            <%= f.radio_button :digest_frequency, 'monthly' %> Monthly
-          </label>
-        </div>
-      </div>
-
+   
       <div class="form-group">
         <%= f.submit 'Save', class: 'btn btn-primary btn-md' %>
       </div>
