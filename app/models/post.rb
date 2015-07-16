@@ -13,7 +13,7 @@ class Post < ActiveRecord::Base
   after_create :notify_twitter
   # TODO: move this to background job
   def notify_twitter
-    if not Rails.env.development?
+    if not Rails.env.development? and not Rails.env.test?
       $twitter_client.update(tweet_content)
     end
   end
