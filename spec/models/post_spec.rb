@@ -47,4 +47,25 @@ describe Post do
       expect(subject.tweet_content).to eq "#{'a'*114} http://rbga.me/1234567890"
     end
   end
+
+  describe "tags list" do
+    before do
+      @post = Post.new
+    end
+
+    it "splits the tags into a list of words" do
+      @post.tags_description = "ruby, rails, css"
+      expect(@post.tags_list).to eq ["ruby", "rails", "css"]
+    end
+
+    it "normalizes the tags' names" do
+      @post.tags_description = " Ruby,  rails,CSS  "
+      expect(@post.tags_list).to eq ["ruby", "rails", "css"]
+    end
+
+    it "generates a unique list of tags" do
+      @post.tags_description = "ruby, rails, ruby"
+      expect(@post.tags_list).to eq ["ruby", "rails"]
+    end
+  end
 end

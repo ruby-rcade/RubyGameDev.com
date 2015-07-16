@@ -24,4 +24,15 @@ class Post < ActiveRecord::Base
     max_title_length = 140 - url.length
     title[0...max_title_length] + url
   end
+
+  def tags_description=(value)
+    @tags_list = []
+    value.downcase.split(",").each do |tag|
+      @tags_list.push(tag.strip)
+    end
+  end
+
+  def tags_list
+    @tags_list.uniq
+  end
 end
