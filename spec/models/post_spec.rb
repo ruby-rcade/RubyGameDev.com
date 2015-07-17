@@ -68,4 +68,40 @@ describe Post do
       expect(@post.tags_list).to eq ["ruby", "rails"]
     end
   end
+
+  describe "creating tags" do
+    before do
+      @post = FactoryGirl.create :post
+    end
+
+    it "can create a given tag from a tag name" do
+      @post.create_tag("ruby")
+      @post.reload
+
+      expect(@post.tags.count).to eq 1
+      expect(@post.tags[0].title).to eq "ruby"
+    end
+
+    it "doesn't create a new tag if there's already a tag with this title" do
+      @post.tags << FactoryGirl.create(:tag, title: "rails")
+
+      expect(@post.tags.count).to eq 1
+
+      @post.create_tag("rails")
+      @post.reload
+
+      expect(@post.tags.count).to eq 1
+    end
+
+    it "can create all of the tags given from the tags_description accessor" do
+      @post.tags_description = "ruby, rails, css"
+      @post.create_tags_from_description
+      @post.reload
+
+      # get only titles from the database tags
+      post_tag_titles = @post.tags.map { |tag| tag.title }
+
+      expect(post_tag_titles).to match_array ["ruby", "rails", "css"]
+    end
+  end
 end

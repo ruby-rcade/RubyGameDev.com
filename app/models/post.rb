@@ -35,4 +35,11 @@ class Post < ActiveRecord::Base
   def tags_list
     @tags_list.uniq
   end
+
+  def create_tag(title)
+    tags.create!({title: title, user_id: self.user_id})
+  end
+
+  def create_tags_from_description
+  end
 end
