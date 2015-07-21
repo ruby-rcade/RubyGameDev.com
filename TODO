@@ -1,0 +1,4 @@
+0. Разгледайте промените и на двете места и преценете какви разлики има
+1. Упражнение за релации -> вместо "Comment.create", "post.comments.create" и т.н.
+2. spec/features/account_page_spec.rb -> един ред описание за всеки ред код
+3. нов тест -> spec/features/post_creation_spec.rb -> създава нов Post и проверява, че излиза правилния текст

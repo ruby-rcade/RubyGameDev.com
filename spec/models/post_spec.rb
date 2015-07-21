@@ -94,14 +94,17 @@ describe Post do
     end
 
     it "can create all of the tags given from the tags_description accessor" do
+      # create tags list using tags_description method
       @post.tags_description = "ruby, rails, css"
+      # 
       @post.create_tags_from_description
-      @post.reload
+      # reload the post
+      @post = Post.find(@post.id)
 
-      # get only titles from the database tags
+      # ????? get only titles from the database tags. Do we need to create method post_tags_titles
       post_tag_titles = @post.tags.map { |tag| tag.title }
-
-      expect(post_tag_titles).to match_array ["ruby", "rails", "css"]
+      #expect the result to be as this array
+      expect(post_tag_titles).to match_array ["css", "rails", "ruby"]
     end
   end
 end
