@@ -16,13 +16,13 @@ group :production do
 end
 
 # assets
-gem 'sass-rails', '~> 4.0.0'
+gem 'sass-rails', '~> 4.0.2'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
 gem 'jquery-rails'
 gem 'turbolinks'
 # TODO: upgrade to latest bootstrap
-gem 'bootstrap-sass', github: 'thomas-mcdonald/bootstrap-sass'
+gem 'bootstrap-sass'#, github: 'thomas-mcdonald/bootstrap-sass'
 gem 'quiet_assets', group: :development
 
 # authentication
@@ -50,6 +50,11 @@ gem 'bugsnag'
 
 # markdown processing
 gem 'redcarpet'
+
+# API stackoverflow
+gem 'ruby-stackoverflow', git: 'https://github.com/PowerCodeGirls/ruby-stackoverflow.git' 
+
+gem 'sidekiq'
 
 group :test do
   gem 'rspec-rails'
