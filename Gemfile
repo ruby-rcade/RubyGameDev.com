@@ -55,6 +55,7 @@ gem 'redcarpet'
 gem 'ruby-stackoverflow', git: 'https://github.com/PowerCodeGirls/ruby-stackoverflow.git' 
 
 gem 'sidekiq'
+gem 'pry-nav'
 
 group :test do
   gem 'rspec-rails'
