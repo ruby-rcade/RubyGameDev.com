@@ -35,8 +35,11 @@ class PostsController < ApplicationController
     @post = Post.new(post_params)
     @post.user = current_user
 
+
     respond_to do |format|
       if @post.save
+        @post.tags_description=(tag_params[:title])
+        @post.create_tags_from_description
         format.html { redirect_to @post, notice: 'Post was successfully created.' }
         format.json { render action: 'show', status: :created, location: @post }
       else
@@ -52,6 +55,8 @@ class PostsController < ApplicationController
     authorize @post
     respond_to do |format|
       if @post.update(post_params)
+        @post.tags_description=(tag_params[:title])
+        @post.create_tags_from_description
         format.html { redirect_to @post, notice: 'Post was successfully updated.' }
         format.json { head :no_content }
       else
