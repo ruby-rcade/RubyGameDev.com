@@ -47,4 +47,8 @@ class Post < ActiveRecord::Base
       create_tag(tag_title)
     end
   end
+
+  def list_tags_as_string
+    tags.map{ |tag| tag.title }.join(", ")
+  end
 end

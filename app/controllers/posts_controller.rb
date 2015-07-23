@@ -28,13 +28,8 @@ class PostsController < ApplicationController
   # POST /posts
   # POST /posts.json
   def create
-    p "PARAMS"
-    p params
-    p post_params
-    p tag_params[:title]
     @post = Post.new(post_params)
     @post.user = current_user
-
 
     respond_to do |format|
       if @post.save
@@ -90,6 +85,6 @@ class PostsController < ApplicationController
     end
 
     def tag_params
-      params.require(:pesho).permit(:title)
+      params.require(:tag_names).permit(:title)
     end
 end

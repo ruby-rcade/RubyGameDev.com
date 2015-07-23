@@ -21,14 +21,10 @@
     <%= f.text_area :body_markdown, class: 'form-control', rows: 5 %>
   </div>
 
-  <%= fields_for :pesho do |fields| %>
+  <%= fields_for :tag_names do |fields| %>
     <%= fields.label :tags %>
-    <%= fields.text_field :title, class: 'form-control input-lg' %>
+    <%= fields.text_field :title, class: 'form-control input-lg', value: @post.list_tags_as_string %>
   <% end %>
 
-<!--   <div class="form-group">
-    <%= f.label :tags %>
-    <%= f.text_field :title, class: 'form-control input-lg' %>
-  </div> -->
     <%= f.submit nil, class: 'btn btn-default' %>
 <% end %>
