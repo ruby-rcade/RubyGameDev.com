@@ -21,5 +21,14 @@
     <%= f.text_area :body_markdown, class: 'form-control', rows: 5 %>
   </div>
 
-  <%= f.submit nil, class: 'btn btn-default' %>
+  <%= fields_for :pesho do |fields| %>
+    <%= fields.label :tags %>
+    <%= fields.text_field :title, class: 'form-control input-lg' %>
+  <% end %>
+
+<!--   <div class="form-group">
+    <%= f.label :tags %>
+    <%= f.text_field :title, class: 'form-control input-lg' %>
+  </div> -->
+    <%= f.submit nil, class: 'btn btn-default' %>
 <% end %>

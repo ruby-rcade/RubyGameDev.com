@@ -28,6 +28,10 @@ class PostsController < ApplicationController
   # POST /posts
   # POST /posts.json
   def create
+    p "PARAMS"
+    p params
+    p post_params
+    p tag_params[:title]
     @post = Post.new(post_params)
     @post.user = current_user
 
@@ -77,6 +81,10 @@ class PostsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
-      params.require(:post).permit(:title, :body_markdown, :user_id)
+      params.require(:post).permit(:title, :body_markdown, :user_id, :tags_description)
+    end
+
+    def tag_params
+      params.require(:pesho).permit(:title)
     end
 end

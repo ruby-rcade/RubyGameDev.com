@@ -15,14 +15,19 @@ describe "Post creation" do
     # Fill in form and submit
     fill_in("Title", with: 'Some title')
     fill_in("Body markdown", with: 'Example body')
+    #fill_in 'Tags', with: 'Some tag title'
     click_button 'Create Post'
   end
 
   it "shows a success message" do
     expect(page).to have_content "Post was successfully created."
-  end 
+  end
 
   it "creates a new post" do
     expect(Post.exists?(title: 'Some title')).to be_truthy
-  end 
+  end
+
+  # it "creates a new tag" do
+  #   expect(Tags.exists?(title: 'Some tag title')).to be_truthy
+  # end
 end
