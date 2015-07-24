@@ -77,5 +77,18 @@ describe Post do
 
       expect(post_tag_titles).to match_array ["ruby", "rails"]
     end
+
+    it "completely replaces the list of tags upon update" do
+      @post.tags = [FactoryGirl.create(:tag, title: 'ruby')]
+      @post.save!
+      @post.reload
+
+      expect(post_tag_titles).to match_array ["ruby"]
+
+      @post.tags_description = "rails, css"
+      @post.create_tags_from_description
+
+      expect(post_tag_titles).to match_array ["rails", "css"]
+    end
   end
 end
