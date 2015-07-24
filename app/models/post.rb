@@ -38,6 +38,7 @@ class Post < ActiveRecord::Base
   end
 
   def create_tags_from_description
+    tags.clear
     @tags_list.each do |tag_title|
       if not tags.exists?({title: tag_title})
         tags.create!({title: tag_title, user_id: self.user_id})
