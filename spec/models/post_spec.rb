@@ -48,63 +48,34 @@ describe Post do
     end
   end
 
-  describe "tags list" do
-    before do
-      @post = Post.new
-    end
-
-    it "splits the tags into a list of words" do
-      @post.tags_description = "ruby, rails, css"
-      expect(@post.tags_list).to eq ["ruby", "rails", "css"]
-    end
-
-    it "normalizes the tags' names" do
-      @post.tags_description = " Ruby,  rails,CSS  "
-      expect(@post.tags_list).to eq ["ruby", "rails", "css"]
-    end
-
-    it "generates a unique list of tags" do
-      @post.tags_description = "ruby, rails, ruby"
-      expect(@post.tags_list).to eq ["ruby", "rails"]
-    end
-  end
-
   describe "creating tags" do
     before do
       @post = FactoryGirl.create :post
     end
 
-    it "can create a given tag from a tag name" do
-      @post.create_tag("ruby")
-      @post.reload
-
-      expect(@post.tags.count).to eq 1
-      expect(@post.tags[0].title).to eq "ruby"
-    end
-
-    it "doesn't create a new tag if there's already a tag with this title" do
-      @post.tags << FactoryGirl.create(:tag, title: "rails")
-
-      expect(@post.tags.count).to eq 1
-
-      @post.create_tag("rails")
-      @post.reload
-
-      expect(@post.tags.count).to eq 1
+    def post_tag_titles
+      @post.tags.map { |tag| tag.title }
     end
 
     it "can create all of the tags given from the tags_description accessor" do
-      # create tags list using tags_description method
       @post.tags_description = "ruby, rails, css"
-      # 
       @post.create_tags_from_description
-      # reload the post
-      @post = Post.find(@post.id)
 
-      # ????? get only titles from the database tags. Do we need to create method post_tags_titles
-      post_tag_titles = @post.tags.map { |tag| tag.title }
-      #expect the result to be as this array
       expect(post_tag_titles).to match_array ["css", "rails", "ruby"]
+    end
+
+    it "normalizes the tags' names" do
+      @post.tags_description = " Ruby,  rails,CSS  "
+      @post.create_tags_from_description
+
+      expect(post_tag_titles).to match_array ["ruby", "rails", "css"]
+    end
+
+    it "generates a unique list of tags" do
+      @post.tags_description = "ruby, rails, ruby"
+      @post.create_tags_from_description
+
+      expect(post_tag_titles).to match_array ["ruby", "rails"]
     end
   end
 end

@@ -33,7 +33,6 @@ class PostsController < ApplicationController
 
     respond_to do |format|
       if @post.save
-        @post.tags_description=(tag_params[:title])
         @post.create_tags_from_description
         format.html { redirect_to @post, notice: 'Post was successfully created.' }
         format.json { render action: 'show', status: :created, location: @post }
@@ -50,7 +49,6 @@ class PostsController < ApplicationController
     authorize @post
     respond_to do |format|
       if @post.update(post_params)
-        @post.tags_description=(tag_params[:title])
         @post.create_tags_from_description
         format.html { redirect_to @post, notice: 'Post was successfully updated.' }
         format.json { head :no_content }
@@ -82,9 +80,5 @@ class PostsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
       params.require(:post).permit(:title, :body_markdown, :user_id, :tags_description)
-    end
-
-    def tag_params
-      params.require(:tag_names).permit(:title)
     end
 end

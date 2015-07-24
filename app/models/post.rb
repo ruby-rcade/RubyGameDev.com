@@ -25,30 +25,23 @@ class Post < ActiveRecord::Base
     title[0...max_title_length] + url
   end
 
+  def tags_description
+    tags.map{ |tag| tag.title }.join(", ")
+  end
+
   def tags_description=(value)
     @tags_list = []
     value.downcase.split(",").each do |tag|
       @tags_list.push(tag.strip)
     end
-  end
-
-  def tags_list
-    @tags_list.uniq
-  end
-
-  def create_tag(title)
-    if not tags.exists?({title: title})
-      tags.create!({title: title, user_id: self.user_id})
-    end
+    @tags_list = @tags_list.uniq
   end
 
   def create_tags_from_description
-    tags_list.each do |tag_title|
-      create_tag(tag_title)
+    @tags_list.each do |tag_title|
+      if not tags.exists?({title: tag_title})
+        tags.create!({title: tag_title, user_id: self.user_id})
+      end
     end
-  end
-
-  def list_tags_as_string
-    tags.map{ |tag| tag.title }.join(", ")
   end
 end
