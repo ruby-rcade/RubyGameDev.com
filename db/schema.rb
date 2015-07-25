@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150722213517) do
+ActiveRecord::Schema.define(version: 20150724173856) do
 
   create_table "authentications", force: true do |t|
     t.integer  "user_id"
@@ -75,6 +75,7 @@ ActiveRecord::Schema.define(version: 20150722213517) do
     t.string   "source_url"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "external_id"
   end
 
   create_table "libraries", force: true do |t|
