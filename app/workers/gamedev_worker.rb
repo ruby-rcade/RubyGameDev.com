@@ -7,7 +7,8 @@ class GamedevWorker
 		  p =  ExternalPost.new(title: question.title,
                             user_display_name: question.owner[:display_name],
                             body_html: question.body,
-                            source_url: question.link)
+                            source_url: question.link,
+                            external_id: question.question_id)
 		  p.save
 	    end
 	end
