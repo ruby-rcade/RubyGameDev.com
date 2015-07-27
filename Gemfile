@@ -22,7 +22,7 @@ gem 'coffee-rails', '~> 4.0.0'
 gem 'jquery-rails'
 gem 'turbolinks'
 # TODO: upgrade to latest bootstrap
-gem 'bootstrap-sass'#, github: 'thomas-mcdonald/bootstrap-sass'
+gem 'bootstrap-sass'
 gem 'quiet_assets', group: :development
 
 # authentication
@@ -55,7 +55,6 @@ gem 'redcarpet'
 gem 'ruby-stackoverflow', git: 'https://github.com/PowerCodeGirls/ruby-stackoverflow.git' 
 
 gem 'sidekiq'
-gem 'pry-nav'
 
 group :test do
   gem 'rspec-rails'
@@ -70,10 +69,10 @@ end
 gem 'jbuilder', '~> 1.2'
 
 group :development, :test do
-  gem 'pry-remote'
   gem 'guard'
   gem 'guard-rspec'
+  gem 'pry-nav'
+  gem 'pry-remote'
   gem 'terminal-notifier-guard'
-  
   gem 'vcr','~> 2.7'
 end

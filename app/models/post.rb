@@ -13,8 +13,8 @@ class Post < ActiveRecord::Base
     end
   end
 
-  #after_create :notify_twitter
-  # TODO: move this to background job
+  after_create :notify_twitter
+  TODO: move this to background job
   def notify_twitter
     $twitter_client.update(tweet_content)
   end
