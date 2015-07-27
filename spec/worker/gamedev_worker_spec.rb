@@ -1,24 +1,23 @@
 require 'rails_helper'
 
-describe '#perform' do  
+describe GamedevWorker do  
 
-  it 'should get external questions' do
-    VCR.use_cassette('questions') do
+  it 'enqueues a Gamedev job' do
+    Sidekiq::Testing.fake! # fake is the default mode
+    expect {
+      GamedevWorker.perform_async
+    }.to change(GamedevWorker.jobs, :size).by(1)
+  end
 
-    	#assert_equal 0,GamedevWorker.jobs.size
-
-        response = GamedevWorker.perform_async
-  
-	    #it { is_expected.to validate_uniqueness_of(:external_id) }	
-		#expect {
-        #GamedevWorker.perform_async(1, 2)
-        #}.to change(GamedevWorker.jobs, :size).by(1)		
-		#response = GamedevWorker.perform_async
-		#expect(response.data).to eq(ExternalPost.count)
-        #assert_equal 0, HardWorker.jobs.size
-        #assert_equal ExternalPost.count,response.count        
-        #expect(response.data.last.respond_to?(:answer_count)).to be_truthy
-    end
+  context 'with succesful response' do
+    it 'creates external posts' do
+        VCR.use_cassette('questions') do
+            Sidekiq::Testing.inline!
+            expect {
+              GamedevWorker.perform_async
+            }.to change(ExternalPost, :count).by(100)
+        end
+      end
   end
 
 end

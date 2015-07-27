@@ -63,6 +63,7 @@ group :test do
   gem 'factory_girl_rails', '~> 4.4.0'
   # gem 'webmock'
   gem 'codeclimate-test-reporter', require: false
+  gem 'webmock', '~> 1.14'
 end
 
 # api
@@ -75,5 +76,4 @@ group :development, :test do
   gem 'terminal-notifier-guard'
   
   gem 'vcr','~> 2.7'
-  gem 'webmock', '~> 1.14'
 end
