@@ -12,4 +12,7 @@ class GamedevWorker
 		  p.save
 	    end
 	end
+  
+  Sidekiq::Cron::Job.create( name: 'RubyStackoverflow fetch questions every one minute', cron: '* * * * 5', klass: 'GamedevWorker')
+  
 end

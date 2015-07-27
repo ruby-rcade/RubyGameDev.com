@@ -55,6 +55,9 @@ gem 'redcarpet'
 gem 'ruby-stackoverflow', git: 'https://github.com/PowerCodeGirls/ruby-stackoverflow.git' 
 
 gem 'sidekiq'
+gem "sidekiq-cron", "~> 0.3.0"
+
+gem 'rubocop'
 
 group :test do
   gem 'rspec-rails'
