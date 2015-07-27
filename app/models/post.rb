@@ -32,7 +32,7 @@ class Post < ActiveRecord::Base
   def tags_description=(value)
     @tags_list = []
     value.downcase.split(",").each do |tag|
-      @tags_list.push(tag.strip)
+      @tags_list.unshift(tag.strip)
     end
     @tags_list = @tags_list.uniq
   end
@@ -40,7 +40,11 @@ class Post < ActiveRecord::Base
   def create_tags_from_description
     tags.clear
     @tags_list.each do |tag_title|
-      if not tags.exists?({title: tag_title})
+      existing_tag = Tag.find_by(title: tag_title)
+
+      if existing_tag
+        tags << existing_tag
+      else
         tags.create!({title: tag_title, user_id: self.user_id})
       end
     end
