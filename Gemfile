@@ -73,4 +73,7 @@ group :development, :test do
   gem 'guard'
   gem 'guard-rspec'
   gem 'terminal-notifier-guard'
+  
+  gem 'vcr','~> 2.7'
+  gem 'webmock', '~> 1.14'
 end
