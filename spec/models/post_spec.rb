@@ -91,7 +91,7 @@ describe Post do
       expect(post_tag_titles).to match_array ["rails", "css"]
     end
 
-    it "checks if a tag title already exest in other posts" do
+    it "checks if a tag title already exists in other posts" do
       @post2 = FactoryGirl.create :post
 
       @post.tags_description = "ruby, great"
@@ -100,7 +100,8 @@ describe Post do
       @post2.tags_description = "rails, great"
       @post2.create_tags_from_description  
       
-      expect(Tag.all.map{|t| t.title}).to match_array ["ruby", "rails", "great"]     
+      all_tag_titles = Tag.all.map { |t| t.title }
+      expect(all_tag_titles).to match_array ["ruby", "rails", "great"]
     end
   end
 end
