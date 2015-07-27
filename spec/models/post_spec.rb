@@ -54,7 +54,7 @@ describe Post do
     end
 
     def post_tag_titles
-      @post.tags.map { |tag| tag.title }
+      @post.tags.map(&:title)
     end
 
     it "can create all of the tags given from the tags_description accessor" do
@@ -98,9 +98,9 @@ describe Post do
       @post.create_tags_from_description
 
       @post2.tags_description = "rails, great"
-      @post2.create_tags_from_description  
-      
-      all_tag_titles = Tag.all.map { |t| t.title }
+      @post2.create_tags_from_description
+
+      all_tag_titles = Tag.all.map(&:title)
       expect(all_tag_titles).to match_array ["ruby", "rails", "great"]
     end
   end

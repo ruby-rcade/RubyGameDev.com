@@ -26,7 +26,7 @@ class Post < ActiveRecord::Base
   end
 
   def tags_description
-    tags.map{ |tag| tag.title }.join(", ")
+    tags.map(&:title).join(", ")
   end
 
   def tags_description=(value)
@@ -45,7 +45,7 @@ class Post < ActiveRecord::Base
       if existing_tag
         tags << existing_tag
       else
-        tags.create!({title: tag_title, user_id: self.user_id})
+        tags.create!({ title: tag_title, user_id: user_id })
       end
     end
   end

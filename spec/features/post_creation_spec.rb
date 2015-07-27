@@ -3,10 +3,10 @@ require 'rails_helper'
 describe "Post creation" do
   before do
     # Create a user
-    @user = User.create!(username: 'Larry', email: 'user@example.com', password: 'password', digest_subscriber: 'true')
+    @user = FactoryGirl.create(:user)
     visit '/sign_in'
-    fill_in 'Email', with: 'user@example.com'
-    fill_in 'Password', with: 'password'
+    fill_in 'Email', with: @user.email
+    fill_in 'Password', with: @user.password
     click_button 'Sign in'
 
     # Go to posts page
@@ -22,14 +22,14 @@ describe "Post creation" do
   it "shows a success message" do
     expect(page).to have_content "Post was successfully created."
   end
-  
+
   it "creates a new post" do
     expect(Post.exists?(title: 'Some title')).to be_truthy
   end
 
   it "creates tags for the post" do
     post = Post.last
-    tag_titles = post.tags.map { |t| t.title }
+    tag_titles = post.tags.map(&:title)
     expect(tag_titles).to match_array ["ruby", "rails"]
   end
 
