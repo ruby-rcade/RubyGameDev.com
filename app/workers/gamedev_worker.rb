@@ -12,4 +12,8 @@ class GamedevWorker
 		  p.save
 	    end
 	end
+
+  Sidekiq::Cron::Job.create(name: "RubyStackoverflow fetch questions every friday",
+                            cron: "* * * * 5", klass: "GamedevWorker")
+
 end

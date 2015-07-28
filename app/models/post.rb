@@ -2,7 +2,7 @@ class Post < ActiveRecord::Base
   belongs_to :user
   has_and_belongs_to_many :tags
   has_many :comments, as: :parent
-  
+
   validates_presence_of :title
   validates_presence_of :user, :unless => :child?
 
@@ -13,8 +13,8 @@ class Post < ActiveRecord::Base
     end
   end
 
-  after_create :notify_twitter
-  TODO: move this to background job
+  # after_create :notify_twitter
+  # TODO: move this to background job
   def notify_twitter
     $twitter_client.update(tweet_content)
   end
