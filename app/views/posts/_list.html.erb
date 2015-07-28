@@ -10,7 +10,7 @@
 
           <div class="tags">
             <% post.tags.each do |tag| %>
-              <span><%= tag.title %></span>
+              <span><%= link_to tag.title, tag %></span>
             <% end %>
           </div>
         </td>

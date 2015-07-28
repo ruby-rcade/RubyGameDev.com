@@ -36,8 +36,15 @@
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
             <li><%= render 'layouts/language_dropdown' %></li>
-          </ul>
-          <ul class="nav navbar-nav navbar-right">
+            <li><%= form_tag(posts_path, :method => "get", class: "navbar-form", id: "search-form") do %>
+          <%= text_field_tag :search, params[:search], class: "span2", placeholder: "Search Posts" %>
+      <!-- In order to have the "search" icon int the button, we need to use plain HTML instead 
+           of using a Rails form helper -->
+      <button class="btn" type="submit"><i class="icon-search"><span class="glyphicon glyphicon-search"></span></i></button>
+      <% end %></li>
+         </ul>
+
+        <ul class="nav navbar-nav navbar-right">
             <% if signed_in? %>
               <li></li>
               <li class="dropdown">
