@@ -1,22 +1,21 @@
-require 'rails_helper'
+require "rails_helper"
 
-describe GamedevWorker do  
-  it 'enqueues a Gamedev job' do
+describe GamedevWorker do
+  it "enqueues a Gamedev job" do
     Sidekiq::Testing.fake!
     expect {
       GamedevWorker.perform_async
     }.to change(GamedevWorker.jobs, :size).by(1)
   end
 
-  context 'with succesful response' do
+  context "with succesful response" do
     it 'creates external posts' do
-      VCR.use_cassette('questions') do
+      VCR.use_cassette("questions") do
         Sidekiq::Testing.inline!
           expect {
             GamedevWorker.perform_async
           }.to change(ExternalPost, :count).by(100)
-        end
       end
+    end
   end
-
 end

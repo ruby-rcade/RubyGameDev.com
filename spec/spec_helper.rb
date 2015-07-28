@@ -1,7 +1,7 @@
 require "codeclimate-test-reporter"
-require 'vcr'
-require 'webmock/rspec'
-require 'sidekiq/testing'
+require "vcr"
+require "webmock/rspec"
+require "sidekiq/testing"
 
 CodeClimate::TestReporter.start
 
@@ -19,7 +19,7 @@ RSpec.configure do |config|
 end
 
 VCR.configure do |c|
-  c.cassette_library_dir = 'spec/fixtures/vcr_cassettes'
+  c.cassette_library_dir = "spec/fixtures/vcr_cassettes"
   c.allow_http_connections_when_no_cassette = true
-  c.hook_into :webmock 
+  c.hook_into :webmock
 end
