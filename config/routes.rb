@@ -6,6 +6,8 @@ Rubygamedev::Application.routes.draw do
   get '/account' => 'users#edit_current_user', as: :account
 
   resources :posts
+  resources :internal_posts, controller: 'posts', type: 'InternalPost'
+  resources :external_posts, controller: 'posts', type: 'ExternalPost'
   resources :comments
 
   resources :libraries

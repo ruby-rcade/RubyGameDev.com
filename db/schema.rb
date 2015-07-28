@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150724173856) do
+ActiveRecord::Schema.define(version: 20150728183329) do
 
   create_table "authentications", force: true do |t|
     t.integer  "user_id"
@@ -102,6 +102,10 @@ ActiveRecord::Schema.define(version: 20150724173856) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "user_display_name"
+    t.string   "source_url"
+    t.integer  "external_id"
+    t.string   "type"
   end
 
   add_index "posts", ["user_id"], name: "index_posts_on_user_id"
