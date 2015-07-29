@@ -10,7 +10,6 @@ Rubygamedev::Application.routes.draw do
   resources :comments
   resources :tag
 
-
   resources :libraries
   resources :library_categories
 
