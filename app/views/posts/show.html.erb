@@ -24,7 +24,7 @@
 
   <div class="tags">
     <% @post.tags.each do |tag| %>
-      <span><%= link_to tag.title, tag %></span>
+      <span><%= tag.title %></span>
     <% end %>
   </div>
 
