@@ -26,11 +26,11 @@ class Post < ActiveRecord::Base
     title[0...max_title_length] + url
   end
 
-  def tags_description
+  def tags_string
     tags.map(&:title).join(", ")
   end
 
-  def tags_description=(value)
+  def tags_string=(value)
     @tags_list = []
     value.strip.downcase.split(/, *| +/).each do |tag|
       @tags_list.push(tag.strip)
@@ -38,7 +38,7 @@ class Post < ActiveRecord::Base
     @tags_list = @tags_list.uniq
   end
 
-  def create_tags_from_description
+  def create_tags_from_string
     tags.clear
     @tags_list.each do |tag_title|
       existing_tag = Tag.find_by(title: tag_title)
