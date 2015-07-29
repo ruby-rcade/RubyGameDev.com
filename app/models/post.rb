@@ -1,5 +1,4 @@
 class Post < ActiveRecord::Base
-  #attr_accessible :title, :body_markdown
 
   belongs_to :user
   has_and_belongs_to_many :tags
@@ -33,7 +32,7 @@ class Post < ActiveRecord::Base
 
   def tags_description=(value)
     @tags_list = []
-    value.downcase.split(",").each do |tag|
+    value.strip.downcase.split(/, *| +/).each do |tag|
       @tags_list.push(tag.strip)
     end
     @tags_list = @tags_list.uniq

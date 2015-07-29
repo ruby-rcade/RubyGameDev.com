@@ -12,7 +12,6 @@ class PostsController < ApplicationController
     end
   end
 
-  
   # GET /posts/1
   # GET /posts/1.json
   def show

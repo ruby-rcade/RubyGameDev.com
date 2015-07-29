@@ -1,7 +1,5 @@
 <h1>Post List</h1>
-<h4><%= @tag = Tag.find(params[:id]) %></h4>
-<div class="post_list">
-  <% @tag.posts.each do |post| %>
-    <span><%= link_to post.title, post %></span>
-  <% end %>
+<h4><></h4>
+<div class="row">
+  <%= render 'posts/list' %>
 </div>

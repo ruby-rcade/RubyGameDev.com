@@ -70,6 +70,13 @@ describe Post do
 
       expect(post_tag_titles).to match_array ["ruby", "rails", "css"]
     end
+    
+    it "splits the tags by spaces as well as commas" do
+      @post.tags_description = "ruby rails css"
+      @post.create_tags_from_description
+
+      expect(post_tag_titles).to match_array ["ruby", "rails", "css"]
+    end
 
     it "generates a unique list of tags" do
       @post.tags_description = "ruby, rails, ruby"
