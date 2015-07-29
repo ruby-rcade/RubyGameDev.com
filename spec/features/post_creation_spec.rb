@@ -15,7 +15,7 @@ describe "Post creation" do
     # Fill in form and submit
     fill_in("Title", with: 'Some title')
     fill_in("Body markdown", with: 'Example body')
-    fill_in("Tags string", with: "ruby, rails")
+    fill_in("Tags", with: "ruby, rails")
     click_button 'Create Post'
   end
 
