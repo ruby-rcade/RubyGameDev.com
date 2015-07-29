@@ -6,7 +6,7 @@ class PostsController < ApplicationController
   # GET /posts.json
   def index
     if params[:search]
-      @posts = Post.search(params[:search]).order("created_at DESC")
+      @posts = Post.search(params[:search]).order("created_at desc")
     else
       @posts = Post.order('created_at desc')
     end
