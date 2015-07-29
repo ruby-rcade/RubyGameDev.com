@@ -1,6 +1,5 @@
 Rubygamedev::Application.routes.draw do
 
-  get "tag/index"
   get '/auth/:provider/callback', to: 'sessions#create_from_omniauth'
 
   resources :users, only: [:create, :edit, :update]
@@ -8,8 +7,6 @@ Rubygamedev::Application.routes.draw do
 
   resources :posts
   resources :comments
-  resources :tag
-
 
   resources :libraries
   resources :library_categories
