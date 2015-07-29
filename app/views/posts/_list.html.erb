@@ -4,7 +4,7 @@
       <tr>
         <td>
           <span class="badge pull-right" title="<%= pluralize(post.comments.count, 'comment') %>"><%= post.comments.count %></span>
-          <%= link_to post.title, post %>
+          <%= link_to_post(post) %>
           <br><span class="text-muted">Submitted by <%= post.username %> on <%= post.created_at.strftime("%m/%d/%Y") %></span>
         </td>
       </tr>

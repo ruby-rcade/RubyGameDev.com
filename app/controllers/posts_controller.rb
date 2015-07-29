@@ -1,7 +1,8 @@
 class PostsController < ApplicationController
+  before_action :set_type
   before_action :set_post, only: [:show, :edit, :update, :destroy]
   before_action :require_authentication, except: [:index, :show]
-
+ 
   # GET /posts
   # GET /posts.json
   def index
@@ -12,6 +13,7 @@ class PostsController < ApplicationController
   # GET /posts/1.json
   def show
     # @comment = @post.comments.build
+    # binding.pry
     @comment = Comment.new
     @comment.parent = @post
   end
@@ -23,12 +25,14 @@ class PostsController < ApplicationController
 
   # GET /posts/1/edit
   def edit
+    
   end
 
   # POST /posts
   # POST /posts.json
   def create
-    @post = Post.new(post_params)
+    @post = InternalPost.new(post_params)
+    #binding.pry
     @post.user = current_user
 
     respond_to do |format|
@@ -75,8 +79,14 @@ class PostsController < ApplicationController
       @post = Post.find(params[:id])
     end
 
+    def set_type
+      @type = "InternalPost" 
+    end
+
     # Never trust parameters from the scary internet, only allow the white list through.
+
     def post_params
-      params.require(:post).permit(:title, :body_markdown, :user_id)
+      params.require(@type.underscore.to_sym).permit(:title, :body_markdown, :user_id)
     end
 end
+

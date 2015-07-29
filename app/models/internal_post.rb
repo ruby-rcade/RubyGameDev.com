@@ -22,6 +22,6 @@ class InternalPost < Post
   end
 
   def username
-    self.user.name
+    self.user.username
   end
 end
