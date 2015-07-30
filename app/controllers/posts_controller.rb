@@ -6,7 +6,6 @@ class PostsController < ApplicationController
   # GET /posts.json
   def index
       @posts = Post.order('created_at desc')
-    end
   end
 
   # GET /posts/1

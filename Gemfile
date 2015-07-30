@@ -24,6 +24,7 @@ gem 'turbolinks'
 # TODO: upgrade to latest bootstrap
 gem 'bootstrap-sass', github: 'thomas-mcdonald/bootstrap-sass'
 gem 'quiet_assets', group: :development
+gem 'jquery-ui-rails'
 
 # authentication
 gem 'omniauth'

@@ -15,6 +15,7 @@
 //= require turbolinks
 //= require bootstrap
 //= require_tree .
+//= require jquery-ui
 
 $(function(){
   $('#welcome_message').bind('closed.bs.alert', function() {
