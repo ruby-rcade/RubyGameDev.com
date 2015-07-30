@@ -1,9 +1,6 @@
 class InternalPost < Post
-	belongs_to :user
-	validates_presence_of :user
-  validates_presence_of :title
-  
-  has_and_belongs_to_many :tags
+  belongs_to :user
+  validates :user, presence: true
   has_many :comments, as: :parent
 
 	before_save do
@@ -26,6 +23,6 @@ class InternalPost < Post
   end
 
   def username
-    self.user.username
+    user.username
   end
 end
