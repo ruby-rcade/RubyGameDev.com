@@ -7,7 +7,7 @@ class InternalPost < Post
       self.body_html = parser.render(body_markdown)
   end
 
-  # after_create :notify_twitter
+  after_create :notify_twitter
   # TODO: move this to background job
   
   def notify_twitter
@@ -20,7 +20,7 @@ class InternalPost < Post
     max_title_length = 140 - url.length
     title[0...max_title_length] + url
   end
-
+  
   def username
     self.user.username
   end
