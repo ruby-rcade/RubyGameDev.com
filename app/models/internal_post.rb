@@ -3,7 +3,7 @@ class InternalPost < Post
   validates :user, presence: true
   has_many :comments, as: :parent
 
-	before_save do
+  before_save do
     parser = Redcarpet::Markdown.new(Redcarpet::Render::HTML, autolink: true)
     self.body_html = parser.render(body_markdown)
   end
@@ -26,4 +26,5 @@ class InternalPost < Post
   def username
     user.username
   end
+
 end
