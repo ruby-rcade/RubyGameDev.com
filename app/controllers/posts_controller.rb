@@ -11,8 +11,6 @@ class PostsController < ApplicationController
   # GET /posts/1
   # GET /posts/1.json
   def show
-    # @comment = @post.comments.build
-    # binding.pry
     @comment = Comment.new
     @comment.parent = @post
   end
@@ -30,7 +28,6 @@ class PostsController < ApplicationController
   # POST /posts.json
   def create
     @post = InternalPost.new(post_params)
-    #binding.pry
     @post.user = current_user
 
     respond_to do |format|
@@ -81,9 +78,11 @@ class PostsController < ApplicationController
     @type = "InternalPost"
   end
 
-  # Never trust parameters from the scary internet, only allow the white list through.
+  # Never trust parameters from the scary internet,
+  # only allow the white list through.
 
   def post_params
-    params.require(@type.underscore.to_sym).permit(:title, :body_markdown, :user_id)
+    params.require(@type.underscore.to_sym).
+      permit(:title, :body_markdown, :user_id)
   end
 end

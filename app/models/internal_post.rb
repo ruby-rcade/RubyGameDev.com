@@ -26,5 +26,4 @@ class InternalPost < Post
   def username
     user.username
   end
-
 end

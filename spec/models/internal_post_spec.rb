@@ -47,13 +47,15 @@ describe InternalPost do
       subject.id = "123"
       subject.title = "a" * 140
       expect(subject.tweet_content.length).to eq 140
-      expect(subject.tweet_content).to eq
-      "#{'a' * 121} http://rbga.me/123"
+      expect(
+        subject.tweet_content
+      ).to eq "#{'a' * 121} http://rbga.me/123"
 
       subject.id = "1234567890"
       expect(subject.tweet_content.length).to eq 140
-      expect(subject.tweet_content).to eq
-      "#{'a' * 114} http://rbga.me/1234567890"
+      expect(
+        subject.tweet_content
+      ).to eq "#{'a' * 114} http://rbga.me/1234567890"
     end
   end
 end
