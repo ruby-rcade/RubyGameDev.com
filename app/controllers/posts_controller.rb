@@ -72,18 +72,18 @@ class PostsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_post
-      @post = Post.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_post
+    @post = Post.find(params[:id])
+  end
 
-    def set_type
-      @type = "InternalPost"
-    end
+  def set_type
+    @type = "InternalPost"
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
+  # Never trust parameters from the scary internet, only allow the white list through.
 
-    def post_params
-      params.require(@type.underscore.to_sym).permit(:title, :body_markdown, :user_id)
-    end
+  def post_params
+    params.require(@type.underscore.to_sym).permit(:title, :body_markdown, :user_id)
+  end
 end
