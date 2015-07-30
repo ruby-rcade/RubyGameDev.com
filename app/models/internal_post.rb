@@ -3,8 +3,8 @@ class InternalPost < Post
 	validates_presence_of :user
 
 	before_save do
-      parser = Redcarpet::Markdown.new(Redcarpet::Render::HTML, autolink: true)
-      self.body_html = parser.render(body_markdown)
+    parser = Redcarpet::Markdown.new(Redcarpet::Render::HTML, autolink: true)
+    self.body_html = parser.render(body_markdown)
   end
 
   after_create :notify_twitter

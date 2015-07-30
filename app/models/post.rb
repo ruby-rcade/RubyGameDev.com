@@ -4,11 +4,11 @@ class Post < ActiveRecord::Base
 
   validates_presence_of :title
 
-  scope :internalpost, -> { where(type: 'InternalPost') }
-  scope :externalpost, -> { where(type: 'ExternalPost') }
+  scope :internalpost, -> { where(type: "InternalPost") }
+  scope :externalpost, -> { where(type: "ExternalPost") }
 
   def self.types
-      %w(ExternalPost InternalPost)
+  	%w(ExternalPost InternalPost)
   end
 
 end
