@@ -26,7 +26,7 @@ describe InternalPost do
     subject { FactoryGirl.build(:internal_post) }
 
     it 'return username of user table' do
-      #subject.self.user.username = 'Mister Example'
+      # subject.self.user.username = 'Mister Example'
       expect(subject.username).to eq subject.user.username
     end
   end

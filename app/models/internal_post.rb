@@ -9,7 +9,7 @@ class InternalPost < Post
 
   after_create :notify_twitter
   # TODO: move this to background job
-  
+
   def notify_twitter
     $twitter_client.update(tweet_content)
   end
@@ -20,7 +20,7 @@ class InternalPost < Post
     max_title_length = 140 - url.length
     title[0...max_title_length] + url
   end
-  
+
   def username
     self.user.username
   end
