@@ -2,7 +2,6 @@ class PostsController < ApplicationController
   before_action :set_type
   before_action :set_post, only: [:show, :edit, :update, :destroy]
   before_action :require_authentication, except: [:index, :show]
- 
   # GET /posts
   # GET /posts.json
   def index
@@ -25,7 +24,6 @@ class PostsController < ApplicationController
 
   # GET /posts/1/edit
   def edit
-    
   end
 
   # POST /posts
@@ -80,7 +78,7 @@ class PostsController < ApplicationController
     end
 
     def set_type
-      @type = "InternalPost" 
+      @type = "InternalPost"
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
@@ -89,4 +87,3 @@ class PostsController < ApplicationController
       params.require(@type.underscore.to_sym).permit(:title, :body_markdown, :user_id)
     end
 end
-
