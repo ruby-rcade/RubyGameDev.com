@@ -38,12 +38,12 @@ describe InternalPost do
       expect(subject.tweet_content).to match /^This is a test discussion/
     end
 
-    it 'uses the short domain for links' do
+    it "uses the short domain for links" do
       subject.id = "123"
       expect(subject.tweet_content).to match %r{http://rbga.me/123$}
     end
 
-    it 'keeps the character limit to 140' do
+    it "keeps the character limit to 140" do
       subject.id = "123"
       subject.title = "a" * 140
       expect(subject.tweet_content.length).to eq 140
