@@ -2,7 +2,7 @@ PostPolicy = Struct.new(:user, :post) do
 
   def update?
     return false unless user
-    user.admin? or post.user == user
+    user.admin? || post.user == user
   end
 
   def destroy?
