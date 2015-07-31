@@ -24,6 +24,10 @@ class InternalPost < Post
   end
 
   def username
-    user.username
+    self.user.username
+  end
+
+  def number_of_comments
+    comments.count
   end
 end

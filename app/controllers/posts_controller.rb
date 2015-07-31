@@ -75,7 +75,7 @@ class PostsController < ApplicationController
   end
 
   def set_type
-    @type = "InternalPost"
+    @type = params[:type] || "Post"
   end
 
   # Never trust parameters from the scary internet,
