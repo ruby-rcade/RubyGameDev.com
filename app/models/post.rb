@@ -9,4 +9,5 @@ class Post < ActiveRecord::Base
   def types
     %w(ExternalPost InternalPost)
   end
+
 end
