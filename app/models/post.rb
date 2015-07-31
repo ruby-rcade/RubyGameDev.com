@@ -52,6 +52,10 @@ class Post < ActiveRecord::Base
 
   def self.search(query)
     # where(:title, query) -> This would return an exact match of the query
+    puts '--------------------------'
+    puts where("title like ?", "%#{query}%").to_sql
+    puts '--------------------------'
+
     where("title like ?", "%#{query}%")
   end
 end

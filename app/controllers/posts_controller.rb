@@ -7,8 +7,12 @@ class PostsController < ApplicationController
   def index
     if params[:search]
       @posts = Post.search(params[:search]).order("created_at desc")
+      if @posts.size.zero?
+        flash[:notice] = "No result found"
+        @posts = Post.find(:all) 
+      end 
     else
-      @posts = Post.order('created_at desc')
+      @posts = Post.find(:all) 
     end
   end
 
