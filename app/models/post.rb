@@ -6,4 +6,7 @@ class Post < ActiveRecord::Base
   scope :internal_post, -> { where(type: "InternalPost") }
   scope :external_post, -> { where(type: "ExternalPost") }
 
+  def types
+    %w(ExternalPost InternalPost)
+  end
 end
