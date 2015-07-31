@@ -28,7 +28,6 @@ class InternalPost < Post
   end
 
   def number_of_comments
-    comments.count 
+    comments.count
   end
-
 end
