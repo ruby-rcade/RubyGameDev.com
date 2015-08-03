@@ -13,5 +13,5 @@ class DigestMailer < ActionMailer::Base
     @new_users_count = User.count - history.users_count
     @user = user
     mail to: user.email, subject: 'RubyGameDev.com Daily Digest'
-  end
+  end         
 end

@@ -8,5 +8,4 @@ class DigestBuilder
     end
     DigestHistory.create_new!('daily')
   end
-
 end
