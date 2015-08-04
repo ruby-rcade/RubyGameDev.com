@@ -15,7 +15,7 @@ class Post < ActiveRecord::Base
   after_create :notify_twitter
   # TODO: move this to background job
   def notify_twitter
-    if not Rails.env.development? and not Rails.env.test?
+    if Rails.env.production?
       $twitter_client.update(tweet_content)
     end
   end
@@ -52,5 +52,9 @@ class Post < ActiveRecord::Base
         tags.create!(title: tag_title, user_id: user_id)
       end
     end
+  end
+
+  def vote
+    votes.count(conditions: "value = 1")
   end
 end

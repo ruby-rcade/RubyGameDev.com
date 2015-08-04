@@ -16,6 +16,9 @@
     <% if policy(@post).destroy? %>
       | <%= link_to 'Destroy', @post, method: :delete, data: { confirm: 'Are you sure?' } %>
     <% end %>
+    <button type="submit" >
+      <span class="glyphicon glyphicon-thumbs-up pull-rigth"></span>
+    </button>
   </p>
 
   <div class="body">
