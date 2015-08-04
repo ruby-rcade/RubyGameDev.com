@@ -15,7 +15,9 @@ class Post < ActiveRecord::Base
   after_create :notify_twitter
   # TODO: move this to background job
   def notify_twitter
-    $twitter_client.update(tweet_content)
+    if Rails.env.production?
+      $twitter_client.update(tweet_content)
+    end
   end
 
   def tweet_content
@@ -23,5 +25,9 @@ class Post < ActiveRecord::Base
     url = " #{url}"
     max_title_length = 140 - url.length
     title[0...max_title_length] + url
+  end
+
+  def vote
+    votes.count(conditions: "value = 1")
   end
 end

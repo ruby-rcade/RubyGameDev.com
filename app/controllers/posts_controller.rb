@@ -14,6 +14,7 @@ class PostsController < ApplicationController
     # @comment = @post.comments.build
     @comment = Comment.new
     @comment.parent = @post
+    @vote = Vote.new
   end
 
   # GET /posts/new
