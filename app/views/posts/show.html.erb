@@ -22,6 +22,12 @@
     <%= raw @post.body_html %>
   </div>
 
+  <div class="tags">
+    <% @post.tags.each do |tag| %>
+      <span><%= tag.title %></span>
+    <% end %>
+  </div>
+
   <h2>Comments</h2>
   <%= render 'comments/form' %>
 
