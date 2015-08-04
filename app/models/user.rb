@@ -1,6 +1,8 @@
 class User < ActiveRecord::Base
   include Clearance::User
   has_many :authentications, dependent: :destroy
+  has_many :votes
+  has_many :posts, through: :votes
 
   validates_presence_of :username # for display name
   validates_uniqueness_of :email
