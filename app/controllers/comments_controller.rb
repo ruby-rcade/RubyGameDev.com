@@ -1,7 +1,7 @@
 class CommentsController < ApplicationController
   before_action :set_comment, only: [:show, :edit, :update, :destroy]
   before_action :require_authentication, except: [:index, :show]
-  
+
   # GET /comments
   # GET /comments.json
   def index

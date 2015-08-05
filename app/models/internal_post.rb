@@ -8,7 +8,7 @@ class InternalPost < Post
     self.body_html = parser.render(body_markdown)
   end
 
-  #after_create :notify_twitter
+  after_create :notify_twitter
   # TODO: move this to background job
 
   def notify_twitter
