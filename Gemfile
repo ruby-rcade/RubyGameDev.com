@@ -57,8 +57,6 @@ gem 'ruby-stackoverflow', git: 'https://github.com/PowerCodeGirls/ruby-stackover
 gem 'sidekiq'
 gem "sidekiq-cron", "~> 0.3.0"
 
-gem 'rubocop'
-
 group :test do
   gem 'rspec-rails'
   gem 'shoulda-matchers'
