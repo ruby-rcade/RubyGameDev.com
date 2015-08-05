@@ -23,7 +23,6 @@ describe CommentMailer do
     end
  
     it "assigns @confirmation_url" do
-      binding.pry
       expect(mail.body.encoded).to match("https://www.rubygamedev.com/internal_posts")
     end
   end
