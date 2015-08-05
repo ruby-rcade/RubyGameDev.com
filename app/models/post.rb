@@ -2,8 +2,9 @@ class Post < ActiveRecord::Base
   belongs_to :user
   has_and_belongs_to_many :tags
   has_many :comments, as: :parent
+
   has_many :votes
-  has_many :users, through: :votes
+  has_many :voted_users, through: :votes, source: :user, class_name: 'User'
 
   validates_presence_of :user, :title, :body_markdown
 
