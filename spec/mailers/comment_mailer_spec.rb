@@ -26,5 +26,4 @@ describe CommentMailer do
       expect(mail.body.encoded).to match("https://www.rubygamedev.com/internal_posts")
     end
   end
-
 end
