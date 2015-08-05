@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :comment do
-  	user
+    user
     association :parent, factory: :internal_post
   end
 end

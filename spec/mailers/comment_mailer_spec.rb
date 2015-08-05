@@ -4,8 +4,8 @@ describe CommentMailer do
   describe "#notification_new_comment" do
     let!(:comment) { FactoryGirl.build(:comment) }
     let(:mail) { CommentMailer.notification_new_comment
-      (comment.parent.user.id, nil)}
-    #binding.pry
+      (comment.parent.user.id, nil) }
+
     it "renders the subject" do
       expect(mail.subject).to eql('New comment from your post')
     end
@@ -28,4 +28,5 @@ describe CommentMailer do
         match("https://www.rubygamedev.com/internal_posts")
     end
   end
+
 end

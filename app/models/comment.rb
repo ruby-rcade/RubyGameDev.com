@@ -7,7 +7,6 @@ class Comment < ActiveRecord::Base
 
   after_create :notification_mailer
   def notification_mailer
-    CommentMailer.notification_new_comment
-      (self.parent.user_id, self.parent_id).deliver!
+    CommentMailer.notification_new_comment(self.parent.user_id, self.parent_id).deliver!
   end
 end
