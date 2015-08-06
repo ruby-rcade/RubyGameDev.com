@@ -14,7 +14,6 @@ class PostsController < ApplicationController
     # @comment = @post.comments.build
     @comment = Comment.new
     @comment.parent = @post
-    @vote = Vote.new
   end
 
   # GET /posts/new
@@ -68,6 +67,13 @@ class PostsController < ApplicationController
       format.html { redirect_to posts_url }
       format.json { head :no_content }
     end
+  end
+
+  def vote
+    @post = Post.find(params[:id])
+    @post.add_vote(current_user)
+    flash[:notice] = "You have successfully voted"
+    redirect_to(:back)
   end
 
   private

@@ -55,7 +55,11 @@ class Post < ActiveRecord::Base
     end
   end
 
-  def vote
-    votes.count(conditions: "value = 1")
+  def add_vote(user)
+    Vote.find_or_create_by!(post_id: id, user_id: user.id)
+  end
+
+  def has_voted?(user)
+    Vote.exists?(post_id: id, user_id: user.id)
   end
 end

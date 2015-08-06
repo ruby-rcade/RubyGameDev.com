@@ -6,7 +6,12 @@ Rubygamedev::Application.routes.draw do
   resources :users, only: [:create, :edit, :update]
   get '/account' => 'users#edit_current_user', as: :account
 
-  resources :posts
+  resources :posts do
+    member do
+      put :vote
+    end
+  end
+
   resources :comments
   resources :tags
 
