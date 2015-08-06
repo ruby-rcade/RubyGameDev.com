@@ -7,5 +7,6 @@ class DigestBuilder
       DigestMailer.daily_digest(history, user).deliver
     end
     DigestHistory.create_new!('daily')
-  end
+  end  
+
 end
