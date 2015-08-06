@@ -3,9 +3,20 @@
     <% @posts.each do |post| %>
       <tr>
         <td>
-          <span class="badge pull-right" title="<%= pluralize(post.comments.count, 'comment') %>"><%= post.comments.count %></span>
-          <%= link_to post.title, post %>
-          <br><span class="text-muted">Submitted by <%= post.user.username %> on <%= post.created_at.strftime("%m/%d/%Y") %></span>
+          <td>
+            <%= link_to post.title, post %>
+            <br><span class="text-muted">Submitted by <%= post.user.username %> on <%= post.created_at.strftime("%m/%d/%Y") %></span>
+          </td>
+          <td>
+            <div class="vote-count row-centered ">
+              <%= link_to vote_post_path(post), method: :put do %>
+                <span class="glyphicon glyphicon-chevron-up"></span><br/>
+                <span><%= post.votes.count %></span><br>
+                <span class="small">votes</span>
+              <% end %>
+            </div>
+            <span class="badge pull-right" title="<%= pluralize(post.comments.count, 'comment') %>"><%= post.comments.count %></span>
+          </td>
         </td>
       </tr>
     <% end %>

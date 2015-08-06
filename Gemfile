@@ -64,6 +64,7 @@ end
 gem 'jbuilder', '~> 1.2'
 
 group :development, :test do
+  gem 'launchy'
   gem 'pry-remote'
   gem 'guard'
   gem 'guard-rspec'
