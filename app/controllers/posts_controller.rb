@@ -85,6 +85,6 @@ class PostsController < ApplicationController
 
   def post_params
     params.require(@type.underscore.to_sym).
-      permit(:title, :body_markdown, :user_id)
+      permit(:title, :body_markdown, :user_id, :tags_string)
   end
 end

@@ -5,6 +5,7 @@ class GamedevWorker
     response = RubyStackoverflow.questions({
       order: "asc",
       filter: "withbody",
+      tagged: "ruby",
       pagesize: 100 })
     response.data.each do |question|
       p = ExternalPost.new(
