@@ -8,11 +8,17 @@
           <br><%= render 'posts/tags', post: post %>
         </td>
         <td>
-          <div class="vote-count row-centered ">
-            <%= link_to vote_post_path(post), method: :put do %>
+          <div class="vote-count row-centered warning">
+            <% if post.has_voted?(current_user) %>
               <span class="glyphicon glyphicon-chevron-up"></span><br/>
               <span><%= post.votes.count %></span><br>
               <span class="small">votes</span>
+            <% else %>
+              <%= link_to vote_post_path(post), method: :put do %>
+                <span class="glyphicon glyphicon-chevron-up"></span><br/>
+                <span><%= post.votes.count %></span><br>
+                <span class="small">votes</span>
+              <% end %>
             <% end %>
           </div>
           <span class="badge pull-right" title="<%= pluralize(post.comments.count, 'comment') %>"><%= post.comments.count %></span>
