@@ -2,6 +2,7 @@ class UsersController < Clearance::UsersController
 
   # all actions in this controller are scoped to the current_user
   before_action :validate_editor, only: [:edit, :update]
+  before_action :require_authentication, only: [:edit_current_user]
 
   def create
     @user = User.new(user_params)

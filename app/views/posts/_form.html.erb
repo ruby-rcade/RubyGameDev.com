@@ -21,5 +21,10 @@
     <%= f.text_area :body_markdown, class: 'form-control', rows: 5 %>
   </div>
 
-  <%= f.submit nil, class: 'btn btn-default' %>
+  <div class="form-group">
+    <%= f.label :tags_string, "Tags" %>
+    <%= f.text_field :tags_string, class: 'form-control' %>
+  </div>
+
+    <%= f.submit nil, class: 'btn btn-default' %>
 <% end %>

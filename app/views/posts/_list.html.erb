@@ -6,6 +6,16 @@
           <span class="badge pull-right" title="<%= pluralize(post.number_of_comments, 'comment') %>"><%= post.number_of_comments %></span>
           <%= link_to_post(post) %>
           <br><span class="text-muted">Submitted by <%= post.username %> on <%= post.created_at.strftime("%m/%d/%Y") %></span>
+          <span class="badge pull-right" title="<%= pluralize(post.comments.count, 'comment') %>"><%= post.comments.count %></span>
+          <%= link_to post.title, post %>
+          <br><span class="text-muted">Submitted by <%= post.user.username %> on <%= post.created_at.strftime("%m/%d/%Y") %></span>
+          <br>
+
+          <div class="tags">
+            <% post.tags.each do |tag| %>
+              <span><%= tag.title %></span>
+            <% end %>
+          </div>
         </td>
       </tr>
     <% end %>
