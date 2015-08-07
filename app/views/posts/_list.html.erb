@@ -7,12 +7,7 @@
           <%= link_to post.title, post %>
           <br><span class="text-muted">Submitted by <%= post.user.username %> on <%= post.created_at.strftime("%m/%d/%Y") %></span>
           <br>
-
-          <div class="tags">
-            <% post.tags.each do |tag| %>
-              <span><%= link_to tag.title, tag %></span>
-            <% end %>
-          </div>
+          <%= render 'posts/tags', post: post %>
         </td>
       </tr>
     <% end %>

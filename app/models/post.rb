@@ -13,10 +13,12 @@ class Post < ActiveRecord::Base
   after_create :notify_twitter
   # TODO: move this to background job
   def notify_twitter
-    if not Rails.env.development? and not Rails.env.test?
+    if Rails.env.production?
       $twitter_client.update(tweet_content)
     end
   end
+
+  after_save :create_tags_from_string
 
   def tweet_content
     url = Rails.application.routes.url_helpers.post_short_link_url(self, host: 'rbga.me')
@@ -32,12 +34,16 @@ class Post < ActiveRecord::Base
   def tags_string=(value)
     @tags_list = []
     value.strip.downcase.split(/, *| +/).each do |tag|
-      @tags_list.push(tag.strip)
+      @tags_list << tag.strip
     end
     @tags_list = @tags_list.uniq
   end
 
   def create_tags_from_string
+    if not @tags_list
+      return
+    end
+
     tags.clear
     @tags_list.each do |tag_title|
       existing_tag = Tag.find_by(title: tag_title)
