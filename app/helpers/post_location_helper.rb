@@ -11,7 +11,7 @@ module PostLocationHelper
     if post.type == "ExternalPost"
       "<span>question</span>".html_safe
     else
-      post.tags.map {|tag| "<span> #{tag.title} </span>"}.join.html_safe
+      post.tags.map { |tag| "<span> #{tag.title} </span>" }.join.html_safe
     end
   end
 end
