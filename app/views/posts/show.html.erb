@@ -9,19 +9,7 @@
 
   <h1>
     <%= @post.title %>
-    <div class="vote-count row-centered pull-right warning">
-      <% if @post.has_voted?(current_user) %>
-          <span class="glyphicon glyphicon-chevron-up"></span><br/>
-          <span><%= @post.votes.count %></span><br>
-          <span class="small">votes</span>
-      <% else %>
-        <%= link_to vote_post_path(@post), method: :put do %>
-          <span class="glyphicon glyphicon-chevron-up"></span><br/>
-          <span><%= @post.votes.count %></span><br>
-          <span class="small">votes</span>
-        <% end %>
-      <% end %>
-    </div>
+    <%= render 'votes/vote', post: @post %>
   </h1>
 
   <p>
