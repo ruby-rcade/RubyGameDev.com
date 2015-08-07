@@ -15,9 +15,9 @@
               <span class="small">votes</span>
             <% else %>
               <%= link_to vote_post_path(post), method: :put do %>
-                <span class="glyphicon glyphicon-chevron-up"></span><br/>
-                <span><%= post.votes.count %></span><br>
-                <span class="small">votes</span>
+              <span class="glyphicon glyphicon-chevron-up"></span><br/>
+              <span><%= post.votes.count %></span><br>
+              <span class="small">votes</span>
               <% end %>
             <% end %>
           </div>
