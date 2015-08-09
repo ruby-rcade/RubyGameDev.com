@@ -1,6 +1,7 @@
 Rubygamedev::Application.routes.draw do
 
   get '/auth/:provider/callback', to: 'sessions#create_from_omniauth'
+  get '/auth/failure', to: 'sessions#auth_failure'
 
   resources :users, only: [:create, :edit, :update]
   get '/account' => 'users#edit_current_user', as: :account

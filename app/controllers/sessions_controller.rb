@@ -17,4 +17,8 @@ class SessionsController < Clearance::SessionsController
     redirect_to @next, notice: @notice
   end
 
+  def auth_failure
+    redirect_to root_path, alert: params[:message]
+  end
+
 end

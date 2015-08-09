@@ -9,7 +9,7 @@
 
   <h1><%= @post.title %></h1>
   <p>
-    Posted by: <%= @post.user.username %>
+    Posted by: <%= @post.user.username %> on <%= @post.created_at.strftime("%m/%d/%Y") %>
     <% if policy(@post).update? %>
       | <%= link_to 'Edit', edit_post_path(@post) %>
     <% end %>
@@ -20,6 +20,12 @@
 
   <div class="body">
     <%= raw @post.body_html %>
+  </div>
+
+  <div class="tags">
+    <% @post.tags.each do |tag| %>
+      <span><%= tag.title %></span>
+    <% end %>
   </div>
 
   <h2>Comments</h2>

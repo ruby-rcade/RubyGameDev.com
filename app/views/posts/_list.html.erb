@@ -6,6 +6,9 @@
           <span class="badge pull-right" title="<%= pluralize(post.number_of_comments, 'comment') %>"><%= post.number_of_comments %></span>
           <%= link_to_post(post) %>
           <br><span class="text-muted">Submitted by <%= post.username %> on <%= post.created_at.strftime("%m/%d/%Y") %></span>
+          <div class="tags">
+            <%= show_tags(post) %>
+          </div>         
         </td>
       </tr>
     <% end %>

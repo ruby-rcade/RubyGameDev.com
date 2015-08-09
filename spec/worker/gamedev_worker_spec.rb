@@ -14,7 +14,7 @@ describe GamedevWorker do
         Sidekiq::Testing.inline!
           expect {
             GamedevWorker.perform_async
-          }.to change(ExternalPost, :count).by(100)
+          }.to change(ExternalPost, :count).by(25)
       end
     end
   end
