@@ -42,7 +42,6 @@ describe InternalPost do
       expect(
         subject.tweet_content
       ).to eq "#{'a' * 121} http://rbga.me/123"
-
       subject.id = "1234567890"
       expect(subject.tweet_content.length).to eq 140
       expect(
@@ -110,7 +109,7 @@ describe InternalPost do
     end
 
     it "checks if a tag title already exists in other posts" do
-      tag = FactoryGirl.create :tag, title: 'otro_title'
+      tag = FactoryGirl.create :tag, title: 'another_tag'
       @post2 = FactoryGirl.create :internal_post, tags: [tag]
 
       @post.tags_string = "ruby, great"
@@ -120,7 +119,7 @@ describe InternalPost do
       @post2.create_tags_from_tag_string
 
       all_tag_titles = Tag.all.map(&:title)
-      expect(all_tag_titles).to match_array ["example", "ruby", "rails", "great", "otro_title"]
+      expect(all_tag_titles).to match_array ["example", "ruby", "rails", "great", "another_tag"]
     end
   end
 end
