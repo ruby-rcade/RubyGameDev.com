@@ -15,8 +15,6 @@
 //= require turbolinks
 //= require bootstrap
 //= require_tree .
-//= require jquery-ui
-//= require jquery-ui/autocomplete
 
 $(function(){
   $('#welcome_message').bind('closed.bs.alert', function() {
@@ -32,9 +30,3 @@ $(function(){
         alert('Failed.');
     });
 })
-
-$(function() {
-  $( "#post_tags_string" ).autocomplete({
-    source: "/tags.json"
-  });
-});

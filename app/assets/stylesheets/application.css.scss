@@ -1,6 +1,5 @@
 //= require_self
 //= require_tree .
-//= require jquery-ui
 
 //
 // Variables
@@ -269,8 +268,6 @@ $navbar-default-brand-hover-bg:            transparent !default;
 $navbar-default-toggle-hover-bg:           #ddd !default;
 $navbar-default-toggle-icon-bar-bg:        #ccc !default;
 $navbar-default-toggle-border-color:       #ddd !default;
-
-           
 
 // Inverted navbar
 //
@@ -628,6 +625,3 @@ $container-desktop:           ((940px + $grid-gutter-width)) !default;
 $container-lg-desktop:        ((1140px + $grid-gutter-width)) !default;
 
 @import "bootstrap";
-
-
-
