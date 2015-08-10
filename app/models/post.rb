@@ -37,7 +37,7 @@ class Post < ActiveRecord::Base
     @tags_list = @tags_list.uniq
   end
 
-  def create_tags_from_string
+  def create_tags_from_tag_string
     tags.clear
     @tags_list.each do |tag_title|
       existing_tag = Tag.find_by(title: tag_title)
@@ -51,11 +51,6 @@ class Post < ActiveRecord::Base
   end
 
   def self.search(query)
-    # where(:title, query) -> This would return an exact match of the query
-    puts '--------------------------'
-    puts where("title like ?", "%#{query}%").to_sql
-    puts '--------------------------'
-
     where("title like ?", "%#{query}%")
   end
 end
