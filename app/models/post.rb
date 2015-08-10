@@ -28,21 +28,10 @@ class Post < ActiveRecord::Base
     title[0...max_title_length] + url
   end
 
-  # 1. Подготовка
-  # 2. Изпълнение
-  # 3. Проверка
-
-  # it "creates a vote by the given user"
-  # it "doesn't create a second vote for a given user"
   def add_vote(user)
     Vote.find_or_create_by!(post_id: id, user_id: user.id)
-
-    # if not Vote.exists?(post_id: id, user_id: user.id)
-    #   Vote.create!(post_id: id, user_id: user.id)
-    # end
   end
 
-  # it "returns true if the given user has voted on the post, false if they haven't"
   def has_voted?(user)
     Vote.exists?(post_id: id, user_id: user.id)
   end
