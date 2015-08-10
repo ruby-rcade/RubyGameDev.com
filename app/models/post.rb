@@ -6,7 +6,7 @@ class Post < ActiveRecord::Base
   has_many :votes
   has_many :voted_users, through: :votes, source: :user, class_name: 'User'
 
-  validates_presence_of :user, :title
+  validates_presence_of :user, :title, :body_markdown
 
   before_save do
     parser = Redcarpet::Markdown.new(Redcarpet::Render::HTML, autolink: true)
@@ -45,5 +45,30 @@ class Post < ActiveRecord::Base
   # it "returns true if the given user has voted on the post, false if they haven't"
   def has_voted?(user)
     Vote.exists?(post_id: id, user_id: user.id)
+  end
+
+  def tags_string
+    tags.map(&:title).join(", ")
+  end
+
+  def tags_string=(value)
+    @tags_list = []
+    value.strip.downcase.split(/, *| +/).each do |tag|
+      @tags_list.push(tag.strip)
+    end
+    @tags_list = @tags_list.uniq
+  end
+
+  def create_tags_from_tag_string
+    tags.clear
+    @tags_list.each do |tag_title|
+      existing_tag = Tag.find_by(title: tag_title)
+
+      if existing_tag
+        tags << existing_tag
+      else
+        tags.create!(title: tag_title, user_id: user_id)
+      end
+    end
   end
 end

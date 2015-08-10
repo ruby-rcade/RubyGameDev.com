@@ -79,4 +79,68 @@ describe Post do
       expect(@post.has_voted?(@user)).to be_truthy
     end
   end
+
+  describe "creating tags" do
+    before do
+      @post = FactoryGirl.create :post
+    end
+
+    def post_tag_titles
+      @post.tags.map(&:title)
+    end
+
+    it "can create all of the tags given from the tags_string accessor" do
+      @post.tags_string = "ruby, rails, css"
+      @post.create_tags_from_tag_string
+
+      expect(post_tag_titles).to match_array ["css", "rails", "ruby"]
+    end
+
+    it "normalizes the tags' names" do
+      @post.tags_string = " Ruby,  rails,CSS  "
+      @post.create_tags_from_tag_string
+
+      expect(post_tag_titles).to match_array ["ruby", "rails", "css"]
+    end
+
+    it "splits the tags by spaces as well as commas" do
+      @post.tags_string = "ruby rails css"
+      @post.create_tags_from_tag_string
+
+      expect(post_tag_titles).to match_array ["ruby", "rails", "css"]
+    end
+
+    it "generates a unique list of tags" do
+      @post.tags_string = "ruby, rails, ruby"
+      @post.create_tags_from_tag_string
+
+      expect(post_tag_titles).to match_array ["ruby", "rails"]
+    end
+
+    it "completely replaces the list of tags upon update" do
+      @post.tags = [FactoryGirl.create(:tag, title: 'ruby')]
+      @post.save!
+      @post.reload
+
+      expect(post_tag_titles).to match_array ["ruby"]
+
+      @post.tags_string = "rails, css"
+      @post.create_tags_from_tag_string
+
+      expect(post_tag_titles).to match_array ["rails", "css"]
+    end
+
+    it "checks if a tag title already exists in other posts" do
+      @post2 = FactoryGirl.create :post
+
+      @post.tags_string = "ruby, great"
+      @post.create_tags_from_tag_string
+
+      @post2.tags_string = "rails, great"
+      @post2.create_tags_from_tag_string
+
+      all_tag_titles = Tag.all.map(&:title)
+      expect(all_tag_titles).to match_array ["ruby", "rails", "great"]
+    end
+  end
 end
