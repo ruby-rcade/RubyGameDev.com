@@ -1,5 +1,5 @@
 require "rails_helper"
-describe PostLocationHelper, { type: 'helper' } do
+describe PostLocationHelper, type: 'helper' do
   describe "#link_to_post" do
     let(:external_post) { FactoryGirl.create(:external_post) }
     let(:internal_post) { FactoryGirl.create(:internal_post) }
