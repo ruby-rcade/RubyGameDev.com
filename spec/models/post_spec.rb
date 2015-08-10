@@ -111,4 +111,15 @@ describe Post do
       expect(all_tag_titles).to match_array ["ruby", "rails", "great"]
     end
   end
+
+  describe ".search" do
+    it "finds posts by their titles" do
+      post1 = FactoryGirl.create(:post, title: "Rails is good")
+      post2 = FactoryGirl.create(:post, title: "Ruby is good")
+
+      results = Post.search("Rails")
+
+      expect(results).to eq [post1]
+    end
+  end
 end

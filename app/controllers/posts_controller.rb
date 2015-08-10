@@ -5,14 +5,10 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
-    if params[:search]
+    if params[:search].present?
       @posts = Post.search(params[:search]).order("created_at desc")
-      if @posts.size.zero?
-        flash[:notice] = "No result found"
-        @posts = Post.find(:all) 
-      end 
     else
-      @posts = Post.find(:all) 
+      @posts = Post.all
     end
   end
 
@@ -41,7 +37,7 @@ class PostsController < ApplicationController
 
     respond_to do |format|
       if @post.save
-        @post.create_tags_from_string
+        @post.create_tags_from_tag_string
         format.html { redirect_to @post, notice: 'Post was successfully created.' }
         format.json { render action: 'show', status: :created, location: @post }
       else
@@ -57,7 +53,7 @@ class PostsController < ApplicationController
     authorize @post
     respond_to do |format|
       if @post.update(post_params)
-        @post.create_tags_from_string
+        @post.create_tags_from_tag_string
         format.html { redirect_to @post, notice: 'Post was successfully updated.' }
         format.json { head :no_content }
       else

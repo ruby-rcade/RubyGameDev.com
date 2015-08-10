@@ -17,6 +17,6 @@ describe "Home page" do
 
   it "has a link to create a new post which redirects to the sign in page" do
     click_link 'New'
-    expect(current_path).to eq '/sign_in'  
+    expect(current_path).to eq '/sign_in'
   end
 end

@@ -45,3 +45,19 @@ describe "Post creation" do
     end
   end
 end
+
+describe "Search form" do
+  before do
+    visit '/'
+  end
+
+  it "checks if a specific word could be find in the post title" do
+    @post = FactoryGirl.create(:post, title: 'something about rails')
+
+    fill_in 'Search', with: 'rails'
+    
+    find('.submit-search').click
+    expect(page).to have_content 'something about rails'
+  end  
+
+end

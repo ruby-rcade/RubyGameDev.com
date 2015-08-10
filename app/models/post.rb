@@ -32,7 +32,7 @@ class Post < ActiveRecord::Base
   def tags_string=(value)
     @tags_list = []
     value.strip.downcase.split(/, *| +/).each do |tag|
-      @tags_list.push(tag.strip)
+      @tags_list << tag.strip
     end
     @tags_list = @tags_list.uniq
   end
