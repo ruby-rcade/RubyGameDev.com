@@ -18,7 +18,7 @@ class Post < ActiveRecord::Base
     end
   end
 
-  after_save :create_tags_from_string
+  after_save :create_tags_from_tag_string
 
   def tweet_content
     url = Rails.application.routes.url_helpers.post_short_link_url(self, host: 'rbga.me')
@@ -39,7 +39,7 @@ class Post < ActiveRecord::Base
     @tags_list = @tags_list.uniq
   end
 
-  def create_tags_from_string
+  def create_tags_from_tag_string
     if not @tags_list
       return
     end
