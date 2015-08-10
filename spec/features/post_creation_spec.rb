@@ -59,5 +59,4 @@ describe "Search form" do
     find('.submit-search').click
     expect(page).to have_content 'something about rails'
   end  
-
 end
