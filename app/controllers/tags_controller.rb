@@ -1,7 +1,7 @@
 class TagsController < ApplicationController
   def index
     respond_to do |format|
-      format.html do 
+      format.html do
         @tags = Tag.order('created_at DESC')
       end
 
