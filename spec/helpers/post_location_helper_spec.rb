@@ -1,26 +1,29 @@
 require "rails_helper"
-describe PostLocationHelper, :type => :helper do
+describe PostLocationHelper, { type: 'helper' } do
   describe "#link_to_post" do
+    let(:external_post) { FactoryGirl.create(:external_post) }
+    let(:internal_post) { FactoryGirl.create(:internal_post) }
+
     it "returns gamedev url" do
-      post = FactoryGirl.create(:external_post)
-      expect(helper.link_to_post(post)).to match("http://gamedev.stackexchange.com/")
+      expect(helper.link_to_post(external_post)
+      ).to match("http://gamedev.stackexchange.com/")
     end
 
     it "returns posts url" do
-      post = FactoryGirl.create(:internal_post)
-      expect(helper.link_to_post(post)).to match("/posts/")
+      expect(helper.link_to_post(internal_post)).to match("/posts/")
     end
   end
 
   describe "#show_tags" do
-    it "return questions tags" do
-      post = FactoryGirl.create(:external_post)
-      expect(helper.show_tags(post)).to match("question")
+    let(:external_post) { FactoryGirl.create(:external_post) }
+    let(:internal_post) { FactoryGirl.create(:internal_post) }
+
+    it "returns questions tags" do
+      expect(helper.show_tags(external_post)).to match("question")
     end
 
-    it "return ruby tag" do
-      post = FactoryGirl.create(:internal_post)
-      expect(helper.show_tags(post)).to match("example")
+    it "returns ruby tag" do
+      expect(helper.show_tags(internal_post)).to match("example")
     end
   end
 end

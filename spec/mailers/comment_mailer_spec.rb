@@ -6,7 +6,7 @@ describe CommentMailer do
     let(:mail) { CommentMailer.notification_new_comment(comment.id) }
     
     it "renders the subject" do
-      expect(mail.subject).to eql('New comment from your post')
+      expect(mail.subject).to eql('Notification comment')
     end
  
     it "renders the receiver email" do
@@ -14,7 +14,7 @@ describe CommentMailer do
     end
 
     it "renders the sender email" do
-      expect(mail.from).to eql(["powercodegirls@gmail.com"])
+      expect(mail.from).to eql(["no-reply@rubygamedev.com"])
     end
  
     it "assigns @name" do

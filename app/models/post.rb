@@ -20,5 +20,4 @@ class Post < ActiveRecord::Base
     end
     @tags_list = @tags_list.uniq
   end
-
 end
