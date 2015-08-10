@@ -29,6 +29,14 @@ class Post < ActiveRecord::Base
     title[0...max_title_length] + url
   end
 
+  def add_vote(user)
+    Vote.find_or_create_by!(post_id: id, user_id: user.id)
+  end
+
+  def has_voted?(user)
+    Vote.exists?(post_id: id, user_id: user.id)
+  end
+
   def tags_string
     tags.map(&:title).join(", ")
   end
@@ -53,13 +61,5 @@ class Post < ActiveRecord::Base
         tags.create!(title: tag_title, user_id: user_id)
       end
     end
-  end
-
-  def add_vote(user)
-    Vote.find_or_create_by!(post_id: id, user_id: user.id)
-  end
-
-  def has_voted?(user)
-    Vote.exists?(post_id: id, user_id: user.id)
   end
 end
