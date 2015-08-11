@@ -1,5 +1,4 @@
 class CommentMailer < ApplicationMailer
-
   def send_notification_email(comment_id)
     @comment = Comment.find comment_id
     @user = User.find @comment.parent.user_id
