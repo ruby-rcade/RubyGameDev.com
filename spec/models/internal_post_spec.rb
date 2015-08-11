@@ -21,14 +21,6 @@ describe InternalPost do
     end
   end
 
-  describe "#username" do
-    subject { FactoryGirl.build(:internal_post) }
-
-    it "returns username of user table" do
-      expect(subject.username).to eq subject.user.username
-    end
-  end
-
   describe "#tweet_content" do
     subject { FactoryGirl.build(:internal_post) }
 
@@ -50,12 +42,19 @@ describe InternalPost do
       expect(
         subject.tweet_content
       ).to eq "#{'a' * 121} http://rbga.me/123"
-
       subject.id = "1234567890"
       expect(subject.tweet_content.length).to eq 140
       expect(
         subject.tweet_content
       ).to eq "#{'a' * 114} http://rbga.me/1234567890"
+    end
+  end
+
+  describe "#username" do
+    let(:internal_post) { FactoryGirl.create(:internal_post) }
+
+    it "returns username of user table" do
+      expect(internal_post.username).to eq internal_post.user.username
     end
   end
 
@@ -110,7 +109,8 @@ describe InternalPost do
     end
 
     it "checks if a tag title already exists in other posts" do
-      @post2 = FactoryGirl.create :internal_post
+      tag = FactoryGirl.create :tag, title: 'another_tag'
+      @post2 = FactoryGirl.create :internal_post, tags: [tag]
 
       @post.tags_string = "ruby, great"
       @post.create_tags_from_tag_string
@@ -119,7 +119,12 @@ describe InternalPost do
       @post2.create_tags_from_tag_string
 
       all_tag_titles = Tag.all.map(&:title)
-      expect(all_tag_titles).to match_array ["ruby", "rails", "great"]
+      expect(all_tag_titles).to match_array [
+        "example",
+        "ruby",
+        "rails",
+        "great",
+        "another_tag"]
     end
   end
 end
