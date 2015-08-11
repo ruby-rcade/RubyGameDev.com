@@ -1,9 +1,9 @@
 require "rails_helper"
 
 describe CommentMailer do
-  describe "#notification_new_comment" do
+  describe "#send_new_comment_notification" do
     let!(:comment) { FactoryGirl.create(:comment) }
-    let(:mail) { CommentMailer.notification_new_comment(comment.id) }
+    let(:mail) { CommentMailer.send_notification_email(comment.id) }
 
     it "renders the subject" do
       expect(mail.subject).to eql('Notification comment')

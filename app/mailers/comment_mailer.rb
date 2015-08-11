@@ -1,5 +1,4 @@
 class CommentMailer < ApplicationMailer
-  default from: ENV["MAIL_NOTIFICATION"]
 
   def send_notification_email(comment_id)
     @comment = Comment.find comment_id
