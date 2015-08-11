@@ -22,11 +22,13 @@ describe CommentMailer do
     end
 
     it "assigns @confirmation_url" do
-      expect(mail.body.encoded).to match("https://www.rubygamedev.com/internal_posts/#{comment.parent_id}")
+      expect(mail.body.encoded).to match(
+        "https://www.rubygamedev.com/internal_posts/#{comment.parent_id}")
     end
 
     it "render the body email" do
-      expect(comment.body).to match("hello this is the body of comment")
+      expect(comment.body).to match(
+        "hello this is the body of comment")
     end
   end
 end
