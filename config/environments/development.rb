@@ -22,7 +22,6 @@ Rubygamedev::Application.configure do
     port: 25,
     domain: "gmail.com",
     authentication: "plain",
-    enable_starttls_auto: true
   }
 
   # Print deprecation notices to the Rails logger.

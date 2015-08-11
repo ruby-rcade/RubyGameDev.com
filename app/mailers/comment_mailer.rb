@@ -1,7 +1,7 @@
 class CommentMailer < ApplicationMailer
-  default from: "no-reply@rubygamedev.com"
-  # ENV["MAIL_NO_REPLY"]
-  def notification_new_comment(comment_id)
+  default from: ENV["MAIL_NOTIFICATION"]
+
+  def send_notification_email(comment_id)
     @comment = Comment.find comment_id
     @user = User.find @comment.parent.user_id
     @parent_id = @comment.parent_id
