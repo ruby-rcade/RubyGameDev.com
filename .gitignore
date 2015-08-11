@@ -24,6 +24,7 @@
 
 # Ignore production environment variables file
 .env.production
+.env
 
 # Ignore private provisioning recipes (for now)
 /config/sunzi
