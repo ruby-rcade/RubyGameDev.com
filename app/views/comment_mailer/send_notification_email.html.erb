@@ -2,17 +2,19 @@
 <html>
   <head>
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+    <%= image_tag attachments['banner-header.png'].url %>
+    <p style="font-family: .HelveticaNeueDeskInterface-Regular;
+    font-size: 9px; color: #9C9997; line-height: 11px; margin-left: 300px">You're signed up for instant activity notifications. Change your settings.</p>
   </head>
   <body>
-    <h1>Welcome to RubyGamedev, <%= @user.username %></h1>
-    <p>
-      You have a new comment notification.<br>
-      Someone commented your post: <br/><br/>
-      <%= @comment.body %>
-    </p>
-    <p>
-      Just follow this link: <%= @url %>.
-    </p>
-    <p>Thanks for joining and have a great day!</p>
+    <h1>Someone has replied to your post!</h1>
+    <h3><%= @user.username %> has replied to your post, <%= @post_name.title %></h3>
+    <p>Hey there! I have some spare time over the next few weekends.<br/>
+    You can see more of my work at <a href="https://www.rubygamedev.com/"> www.rubygamedev.com</a>.<br/> I'm also connected to a really rad character designer if you're in need of one of those too.</p><br/><br/>
+<a href=<% @url %><%= image_tag attachments['reply-button.png'].url %>>
+
+    <!--<img src="app/assets/images/reply-button.png"></a>-->
   </body>
+  <footer><%= image_tag attachments['footer.png'].url %>
+  </footer>
 </html>
