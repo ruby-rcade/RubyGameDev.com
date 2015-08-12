@@ -2,11 +2,11 @@ class GamedevWorker
   include Sidekiq::Worker
 
   def perform
-    response = RubyStackoverflow.questions({
+    response = RubyStackoverflow.questions(
       order: "asc",
       filter: "withbody",
       tagged: "ruby",
-      pagesize: 100 })
+      pagesize: 100)
     response.data.each do |question|
       p = ExternalPost.new(
         title: question.title,
