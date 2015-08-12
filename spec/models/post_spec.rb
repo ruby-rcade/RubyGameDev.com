@@ -116,7 +116,7 @@ describe Post do
     it "finds posts by their titles" do
       post = FactoryGirl.create(:post, title: "Rails is good")
       FactoryGirl.create(:post, title: "Ruby is good")
-      
+
       results = Post.search("rails")
 
       expect(results).to eq [post]
@@ -135,12 +135,14 @@ describe Post do
     it "finds posts by their comments content" do
       post = FactoryGirl.create(:post, title: "Rails is good")
       FactoryGirl.create(:post, title: "CSS is good")
-      comment = FactoryGirl.create(:comment, body: "ruby on rails", parent: post)
- 
+      comment = FactoryGirl.create(
+        :comment,
+        body: "ruby on rails",
+        parent: post)
+
       results = Post.search("ruby")
 
       expect(results).to eq [post]
     end
-
   end
 end
