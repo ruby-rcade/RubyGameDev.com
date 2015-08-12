@@ -1,4 +1,5 @@
 class Post < ActiveRecord::Base
+
   belongs_to :user
   has_and_belongs_to_many :tags
   has_many :comments, as: :parent
@@ -51,6 +52,7 @@ class Post < ActiveRecord::Base
   end
 
   def self.search(query)
-    where("title like ?", "%#{query}%")
+  	sql_query = File.read(Rails.root.join('post_search.sql'))
+  	find_by_sql([sql_query, {query: "%#{query}%"}])
   end
 end

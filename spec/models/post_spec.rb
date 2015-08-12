@@ -114,12 +114,33 @@ describe Post do
 
   describe ".search" do
     it "finds posts by their titles" do
-      post1 = FactoryGirl.create(:post, title: "Rails is good")
-      post2 = FactoryGirl.create(:post, title: "Ruby is good")
+      post = FactoryGirl.create(:post, title: "Rails is good")
+      FactoryGirl.create(:post, title: "Ruby is good")
+      
+      results = Post.search("rails")
 
-      results = Post.search("Rails")
-
-      expect(results).to eq [post1]
+      expect(results).to eq [post]
     end
+
+    it "finds posts by their tag titles" do
+      post = FactoryGirl.create(:post, title: "Rails is good")
+      FactoryGirl.create(:post, title: "Ruby is good")
+      post.tags = [FactoryGirl.create(:tag, title: "css")]
+
+      results = Post.search("css")
+
+      expect(results).to eq [post]
+    end
+
+    it "finds posts by their comments content" do
+      post = FactoryGirl.create(:post, title: "Rails is good")
+      FactoryGirl.create(:post, title: "CSS is good")
+      comment = FactoryGirl.create(:comment, body: "ruby on rails", parent: post)
+ 
+      results = Post.search("ruby")
+
+      expect(results).to eq [post]
+    end
+
   end
 end

@@ -1,4 +1,5 @@
 class PostsController < ApplicationController
+
   before_action :set_post, only: [:show, :edit, :update, :destroy]
   before_action :require_authentication, except: [:index, :show]
 
@@ -6,7 +7,7 @@ class PostsController < ApplicationController
   # GET /posts.json
   def index
     if params[:search].present?
-      @posts = Post.search(params[:search]).order("created_at desc")
+      @posts = Post.search(params[:search])
     else
       @posts = Post.all
     end

@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe "Post creation" do
   before do
-    
+
     @user = FactoryGirl.create(:user)
     visit '/sign_in'
     fill_in 'Email', with: @user.email
