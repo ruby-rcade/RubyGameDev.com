@@ -38,7 +38,7 @@
           <ul class="nav navbar-nav navbar-right pull-right">
 
              <li class="search"><%= form_tag(posts_path, :method => "get", id: "search-form") do %>
-              <%= text_field_tag :search, params[:search], placeholder: "Search" %>
+              <%= text_field_tag :search, params[:search], {placeholder: "Search", class: 'glowing-border'} %>
               <!-- In order to have the "search" icon in the button, we need to use plain HTML instead of using a Rails form helper -->
                 <button type="submit" class="close submit-search" >
                   <span class="glyphicon glyphicon-search"></span>
