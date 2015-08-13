@@ -3,6 +3,9 @@ class Post < ActiveRecord::Base
   has_and_belongs_to_many :tags
   has_many :comments, as: :parent
 
+  has_many :votes
+  has_many :voted_users, through: :votes, source: :user, class_name: 'User'
+
   validates_presence_of :user, :title, :body_markdown
 
   before_save do
@@ -13,7 +16,7 @@ class Post < ActiveRecord::Base
   after_create :notify_twitter
   # TODO: move this to background job
   def notify_twitter
-    if not Rails.env.development? and not Rails.env.test?
+    if Rails.env.production?
       $twitter_client.update(tweet_content)
     end
   end
@@ -23,6 +26,14 @@ class Post < ActiveRecord::Base
     url = " #{url}"
     max_title_length = 140 - url.length
     title[0...max_title_length] + url
+  end
+
+  def add_vote(user)
+    Vote.find_or_create_by!(post_id: id, user_id: user.id)
+  end
+
+  def has_voted?(user)
+    Vote.exists?(post_id: id, user_id: user.id)
   end
 
   def tags_string
