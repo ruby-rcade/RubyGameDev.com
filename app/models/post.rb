@@ -51,7 +51,25 @@ class Post < ActiveRecord::Base
   end
 
   def self.search(query)
-    sql_query = File.read(Rails.root.join('post_search.sql'))
+    sql_query = <<-SQL
+      SELECT posts.*
+      FROM 
+        posts 
+        LEFT JOIN comments ON 
+          posts.id = comments.parent_id AND
+          comments.parent_type = 'Post'
+        LEFT JOIN posts_tags ON
+          posts.id = posts_tags.post_id
+        LEFT JOIN tags ON
+          posts_tags.tag_id = tags.id
+      WHERE
+      (
+        posts.title LIKE :query OR
+        comments.body LIKE :query OR
+        tags.title LIKE :query
+      );
+    SQL
+
     find_by_sql([sql_query, { query: "%#{query}%" }])
   end
 end
