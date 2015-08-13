@@ -2,19 +2,28 @@
 <html>
   <head>
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
-    <%= image_tag attachments['banner-header.png'].url %>
-    <p style="font-family: .HelveticaNeueDeskInterface-Regular;
-    font-size: 9px; color: #9C9997; line-height: 11px; margin-left: 300px">You're signed up for instant activity notifications. Change your settings.</p>
-  </head>
-  <body>
-    <h1>Someone has replied to your post!</h1>
-    <h3><%= @user.username %> has replied to your post, <%= @post_name.title %></h3>
-    <p>Hey there! I have some spare time over the next few weekends.<br/>
-    You can see more of my work at <a href="https://www.rubygamedev.com/"> www.rubygamedev.com</a>.<br/> I'm also connected to a really rad character designer if you're in need of one of those too.</p><br/><br/>
-<a href=<% @url %><%= image_tag attachments['reply-button.png'].url %>>
+    </head>
+    <body>
+    <div style="width: 600px; height: 800px; margin: 0 auto;">
+      <div>
+        <table style="padding-bottom: 20px; width: 100%; ">
+        <tr>
+          <td>
+          <%= image_tag attachments['banner-header.png'].url, style: "width: 72px; height: 92px" %>
+          </td>
+          <td style="font-family: '.HelveticaNeueDeskInterface-Regular'; font-size: 12px; color: #9C9997; line-height: 10px; text-align: right; vertical-align: top; padding-top: 20px">You're signed up for instant activity notifications. Change your settings.
+          </td>
+        </tr>
+        </table>
+        <h1 style="font-family: HelveticaNeue-Bold; font-size: 30px; color: #331A48; line-height: 26px; margin-bottom: 0">Someone has replied to your post!</h1>
+        <p style="font-family: HelveticaNeue; font-size: 18px; color: #565656; line-height: 15px; margin-top: 5px;"><a href=<%= @url %> style="font-family: HelveticaNeue-Bold; font-size: 19px; color: #F72C54; line-height: 26px"><%= @user.username %></a> has replied to your post <a href=<%= @url %> style="font-family: HelveticaNeue-Bold; font-size: 18px; color: #F72C54; line-height: 15px;" ><%= @post.title %></a></p>
+        <p style="font-family: HelveticaNeue; font-size: 14px; color: rgba(87,83,80,0.60); line-height: 21px;">Hey there! I have some spare time over the next few weekends. You can see some of my <br/> work at <a href="https://www.rubygamedev.com/" style="color: black;"> www.rubygamedev.com</a>. I'm also connected to a really rad character designer if you're<br/> in need of one of those too.</p><br/><br/>
+        <%= image_tag attachments['reply-button.png'].url, style: "width:300px; height: 30px; margin-left: 135px; padding-top: 10px; padding-bottom: 160px" %>
 
-    <!--<img src="app/assets/images/reply-button.png"></a>-->
-  </body>
-  <footer><%= image_tag attachments['footer.png'].url %>
-  </footer>
+      </body>
+      <footer>
+      <%= image_tag attachments['footer.png'].url, style: "width: 609px; height: 229px"%>
+      </footer>
+    </div>
+  </div>
 </html>

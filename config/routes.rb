@@ -1,5 +1,4 @@
 Rubygamedev::Application.routes.draw do
-
   get '/auth/:provider/callback', to: 'sessions#create_from_omniauth'
   get '/auth/failure', to: 'sessions#auth_failure'
 

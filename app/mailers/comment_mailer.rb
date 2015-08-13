@@ -3,7 +3,7 @@ class CommentMailer < ApplicationMailer
     @comment = Comment.find comment_id
     @user = User.find @comment.parent.user_id
     @parent_id = @comment.parent_id
-    @post_name = InternalPost.find @parent_id
+    @post = InternalPost.find @parent_id
     @url = "https://www.rubygamedev.com/internal_posts/#{@parent_id}"
 
     attachments.inline['reply-button.png'] = File.read("#{Rails.root}/app/assets/images/reply-button.png")
