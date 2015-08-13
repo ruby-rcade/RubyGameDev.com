@@ -2,6 +2,8 @@ language: ruby
 rvm:
   - 2.2.2
 sudo: false
+services:
+  - redis-server
 addons:
   code_climate:
     repo_token: 48aeb1397404fe6079c14bbca8911959d29b44065e305a70b1bc6604d3effe46
