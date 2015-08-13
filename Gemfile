@@ -71,6 +71,7 @@ end
 gem 'jbuilder', '~> 1.2'
 
 group :development, :test do
+  gem 'launchy'
   gem 'guard'
   gem 'guard-rspec'
   gem 'pry-nav'

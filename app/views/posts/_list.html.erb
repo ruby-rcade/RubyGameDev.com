@@ -10,6 +10,12 @@
             <%= show_tags(post) %>
           </div>         
         </td>
+
+        <td>
+          <%= render 'votes/vote', post: post %>
+
+          <span class="badge pull-right" title="<%= pluralize(post.comments.count, 'comment') %>"><%= post.comments.count %></span>
+        </td>
       </tr>
     <% end %>
   </tbody>

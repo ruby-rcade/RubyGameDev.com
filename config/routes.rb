@@ -8,6 +8,12 @@ Rubygamedev::Application.routes.draw do
   resources :posts
   resources :internal_posts, controller: "posts", type: "InternalPost"
   resources :external_posts, controller: "posts", type: "ExternalPost"
+  resources :posts do
+    member do
+      put :vote
+    end
+  end
+
   resources :comments
 
   resources :libraries

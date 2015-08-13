@@ -6,8 +6,11 @@
 <% end %>
 
 <div class="post">
+  <h1>
+    <%= @post.title %>
+    <%= render 'votes/vote', post: @post %>
+  </h1>
 
-  <h1><%= @post.title %></h1>
   <p>
     Posted by: <%= @post.user.username %> on <%= @post.created_at.strftime("%m/%d/%Y") %>
     <% if policy(@post).update? %>
@@ -34,5 +37,4 @@
   <% @post.comments.each do |comment| %>
     <%= render comment %>
   <% end %>
-
 </div>
