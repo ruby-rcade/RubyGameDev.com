@@ -53,9 +53,9 @@ class Post < ActiveRecord::Base
   def self.search(query)
     sql_query = <<-SQL
       SELECT posts.*
-      FROM 
+      FROM
         posts 
-        LEFT JOIN comments ON 
+        LEFT JOIN comments ON
           posts.id = comments.parent_id AND
           comments.parent_type = 'Post'
         LEFT JOIN posts_tags ON
