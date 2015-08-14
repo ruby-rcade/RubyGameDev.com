@@ -121,4 +121,37 @@ describe InternalPost do
         "another_tag"]
     end
   end
+
+  describe "#add_vote" do
+    before do
+      @user = FactoryGirl.create(:user)
+      @post = FactoryGirl.create(:internal_post)
+    end
+
+    it "creates a vote by the given user" do
+      @post.add_vote(@user)
+      expect(@post.votes.count).to eq 1
+    end
+
+    it "doesn't create a second vote for a given user" do
+      @post.add_vote(@user)
+      @post.add_vote(@user)
+
+      expect(@post.votes.count).to eq 1
+    end
+  end
+
+  describe "#has_voted?" do
+    before do
+      @user = FactoryGirl.create(:user)
+      @post = FactoryGirl.create(:internal_post)
+    end
+
+    it "returns true if the given user has already voted on the post" do
+      expect(@post.has_voted?(@user)).to be_falsey
+      @post.add_vote(@user)
+      expect(@post.has_voted?(@user)).to be_truthy
+    end
+  end
+
 end

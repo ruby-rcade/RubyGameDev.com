@@ -3,6 +3,8 @@ class InternalPost < Post
   validates :user, presence: true
   has_many :comments, as: :parent
 
+  validates_presence_of :user, :title, :body_markdown
+
   before_save do
     parser = Redcarpet::Markdown.new(Redcarpet::Render::HTML, autolink: true)
     self.body_html = parser.render(body_markdown)
@@ -12,7 +14,9 @@ class InternalPost < Post
   # TODO: move this to background job
 
   def notify_twitter
-    $twitter_client.update(tweet_content)
+    if Rails.env.production?
+      $twitter_client.update(tweet_content)
+    end
   end
 
   def tweet_content
@@ -42,5 +46,13 @@ class InternalPost < Post
         tags.create!(title: tag_title, user_id: user_id)
       end
     end
+  end
+
+  def add_vote(user)
+    Vote.find_or_create_by!(post_id: id, user_id: user.id)
+  end
+
+  def has_voted?(user)
+    Vote.exists?(post_id: id, user_id: user.id)
   end
 end
