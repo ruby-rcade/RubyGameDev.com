@@ -1,6 +1,6 @@
 class ExternalPost < Post
   validates :external_id, uniqueness: true
-  after_create :question_tag
+  # after_create :question_tag
 
   def username
     self.user_display_name
@@ -10,7 +10,7 @@ class ExternalPost < Post
     0
   end
 
-  def question_tag
-    tags.create(title: "question")
-  end
+  # def question_tag
+  #   tags.create(title: "question")
+  # end
 end

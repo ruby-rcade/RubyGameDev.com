@@ -1,6 +1,7 @@
 class Post < ActiveRecord::Base
   has_and_belongs_to_many :tags
   validates :title, presence: true
+  after_create :question_tag
 
   has_many :votes
   has_many :voted_users, through: :votes, source: :user, class_name: 'User'
@@ -23,4 +24,20 @@ class Post < ActiveRecord::Base
     end
     @tags_list = @tags_list.uniq
   end
+
+  def external_post?
+    self.type = "ExternalPost"
+  end
+
+  def internal_post?
+    self.type = "InternalPost"
+  end
+
+  def question_tag
+    if external_post?
+      related_tag = Tag.find_or_create_by(title: "question")
+      self.tags << related_tag
+    end
+  end
+
 end

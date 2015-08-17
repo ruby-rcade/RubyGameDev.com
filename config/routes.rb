@@ -18,6 +18,7 @@ Rubygamedev::Application.routes.draw do
 
   resources :libraries
   resources :library_categories
+  resources :tags
 
   get 'about' => 'pages#about', as: :about_page
   root 'pages#home'
