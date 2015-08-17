@@ -136,9 +136,10 @@ describe Post do
       post = FactoryGirl.create(:post, title: "Rails is good")
       FactoryGirl.create(:post, title: "CSS is good")
       comment = FactoryGirl.create(
-        :comment,
-        body: "ruby on rails",
-        parent: post)
+                  :comment,
+                  body: "ruby on rails",
+                  parent: post
+                )
 
       results = Post.search("ruby")
 
@@ -146,15 +147,18 @@ describe Post do
     end
 
     it "finds posts by their content" do
-      post = FactoryGirl.create(:post, title: "Rails is good",
-        body_markdown: "Rails is framework for web apps")
-      FactoryGirl.create(:post, title: "CSS is good",
-        body_markdown: "CSS is for UX")
+      post = FactoryGirl.create(
+              :post, title: "Rails is good",
+              body_markdown: "Rails is framework for web apps"
+            )
+      FactoryGirl.create(
+        :post, title: "CSS is good",
+        body_markdown: "CSS is for UX"
+      )
 
       results = Post.search("apps")
 
       expect(results).to eq [post]
     end
-
   end
 end
