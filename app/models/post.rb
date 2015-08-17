@@ -13,12 +13,10 @@ class Post < ActiveRecord::Base
   after_create :notify_twitter
   # TODO: move this to background job
   def notify_twitter
-    if Rails.env.production?
+    if not Rails.env.development? and not Rails.env.test?
       $twitter_client.update(tweet_content)
     end
   end
-
-  after_save :create_tags_from_tag_string
 
   def tweet_content
     url = Rails.application.routes.url_helpers.post_short_link_url(self, host: 'rbga.me')
@@ -40,10 +38,7 @@ class Post < ActiveRecord::Base
   end
 
   def create_tags_from_tag_string
-    if not @tags_list
-      return
-    end
-
+    return unless @tags_list.present?
     tags.clear
     @tags_list.each do |tag_title|
       existing_tag = Tag.find_by(title: tag_title)
