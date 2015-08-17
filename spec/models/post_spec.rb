@@ -144,5 +144,17 @@ describe Post do
 
       expect(results).to eq [post]
     end
+
+    it "finds posts by their content" do
+      post = FactoryGirl.create(:post, title: "Rails is good",
+        body_markdown: "Rails is framework for web apps")
+      FactoryGirl.create(:post, title: "CSS is good",
+        body_markdown: "CSS is for UX")
+
+      results = Post.search("apps")
+
+      expect(results).to eq [post]
+    end
+
   end
 end

@@ -52,22 +52,18 @@ class Post < ActiveRecord::Base
 
   def self.search(query)
     sql_query = <<-SQL
-      SELECT posts.*
-      FROM
-        posts 
-        LEFT JOIN comments ON
-          posts.id = comments.parent_id AND
-          comments.parent_type = 'Post'
-        LEFT JOIN posts_tags ON
-          posts.id = posts_tags.post_id
-        LEFT JOIN tags ON
-          posts_tags.tag_id = tags.id
-      WHERE
-      (
-        posts.title LIKE :query OR
-        comments.body LIKE :query OR
-        tags.title LIKE :query
-      );
+      select * from posts
+      where posts.id in (
+        select distinct p.id
+        from posts p
+        left join comments c on c.parent_id = p.id
+        left join posts_tags pt on pt.post_id = p.id
+        inner join tags t on t.id = pt.tag_id
+        where (
+              p.title LIKE :query
+           or p.body_markdown like :query
+           or c.body like :query
+           or t.title like :query));
     SQL
 
     find_by_sql([sql_query, { query: "%#{query}%" }])
