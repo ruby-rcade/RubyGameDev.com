@@ -9,7 +9,7 @@ describe InternalPost do
 
   describe "#notify_twitter" do
     subject { FactoryGirl.build(:internal_post) }
-    
+
     it "posts to Twitter after create" do
       expect(subject).to receive(:notify_twitter)
       subject.save!
@@ -155,5 +155,4 @@ describe InternalPost do
       expect(@post.has_voted?(@user)).to be_truthy
     end
   end
-
 end

@@ -8,5 +8,4 @@ class ExternalPost < Post
   def number_of_comments
     0
   end
-
 end

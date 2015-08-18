@@ -11,5 +11,4 @@ class CommentMailer < ApplicationMailer
     attachments.inline['footer.png'] = File.read("#{Rails.root}/app/assets/images/footer.png")
     mail(to: @user.email, subject: "Notification comment")
   end
-
 end

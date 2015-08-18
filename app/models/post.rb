@@ -39,5 +39,4 @@ class Post < ActiveRecord::Base
       self.tags << related_tag
     end
   end
-
 end

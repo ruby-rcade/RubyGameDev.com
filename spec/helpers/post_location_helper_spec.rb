@@ -10,21 +10,8 @@ describe PostLocationHelper, type: 'helper' do
     end
 
     it "returns posts url" do
-      expect(helper.link_to_post(internal_post)).to match(post_path(internal_post))
+      expect(
+        helper.link_to_post(internal_post)).to match(post_path(internal_post))
     end
-  end
-
-  describe "#show_votes" do
-    let(:internal_post) { FactoryGirl.create(:internal_post) }
-
-    # it "returns 1 if current user has voted" do
-    #   expect(helper.show_votes(internal_post)
-    #   ).to match();
-    # end
-
-    # it "returns 1 if current user has voted" do
-    #   expect(helper.show_votes(internal_post)
-    #   ).to match();
-    # end
   end
 end
