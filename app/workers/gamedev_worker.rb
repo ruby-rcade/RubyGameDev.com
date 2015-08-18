@@ -1,4 +1,3 @@
-require 'pry'
 class GamedevWorker
   include Sidekiq::Worker
   def perform
