@@ -33,9 +33,7 @@ class PostsController < ApplicationController
     respond_to do |format|
       if @post.save
         @post.create_tags_from_tag_string
-        format.html {
-          redirect_to post_path(@post),
-          notice: 'Post was successfully created.' }
+        format.html { redirect_to post_path(@post), notice: 'Post was successfully created.' }
         format.json { render action: 'show', status: :created, location: @post }
       else
         format.html { render action: 'new' }
