@@ -26,17 +26,17 @@ class Post < ActiveRecord::Base
   end
 
   def external_post?
-    self.type == "ExternalPost"
+    type == "ExternalPost"
   end
 
   def internal_post?
-    self.type == "InternalPost"
+    type == "InternalPost"
   end
 
   def question_tag
     if external_post?
       related_tag = Tag.find_or_create_by(title: "question")
-      self.tags << related_tag
+      tags << related_tag
     end
   end
 end
