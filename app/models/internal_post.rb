@@ -1,9 +1,7 @@
 class InternalPost < Post
   belongs_to :user
-  validates :user, presence: true
+  validates :user, :title, :body_markdown, presence: true
   has_many :comments, as: :parent
-
-  validates_presence_of :user, :title, :body_markdown
 
   before_save do
     parser = Redcarpet::Markdown.new(Redcarpet::Render::HTML, autolink: true)

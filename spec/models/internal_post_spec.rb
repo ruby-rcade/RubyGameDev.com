@@ -5,10 +5,11 @@ describe InternalPost do
   it { should have_many :comments }
   it { should validate_presence_of :user }
   it { should validate_presence_of :title }
+  it { should validate_presence_of :body_markdown }
 
   describe "#notify_twitter" do
     subject { FactoryGirl.build(:internal_post) }
-
+    
     it "posts to Twitter after create" do
       expect(subject).to receive(:notify_twitter)
       subject.save!
@@ -114,7 +115,7 @@ describe InternalPost do
 
       all_tag_titles = Tag.all.map(&:title)
       expect(all_tag_titles).to match_array [
-        "example",
+        "question",
         "ruby",
         "rails",
         "great",

@@ -65,6 +65,7 @@ group :test do
   # gem 'webmock'
   gem 'codeclimate-test-reporter', require: false
   gem 'webmock', '~> 1.14'
+  gem 'database_cleaner'
 end
 
 # api

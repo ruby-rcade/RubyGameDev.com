@@ -14,16 +14,17 @@ describe PostLocationHelper, type: 'helper' do
     end
   end
 
-  describe "#show_tags" do
-    let(:external_post) { FactoryGirl.create(:external_post) }
+  describe "#show_votes" do
     let(:internal_post) { FactoryGirl.create(:internal_post) }
 
-    it "returns questions tags" do
-      expect(helper.show_tags(external_post)).to match("question")
-    end
+    # it "returns 1 if current user has voted" do
+    #   expect(helper.show_votes(internal_post)
+    #   ).to match();
+    # end
 
-    it "returns ruby tag" do
-      expect(helper.show_tags(internal_post)).to match("example")
-    end
+    # it "returns 1 if current user has voted" do
+    #   expect(helper.show_votes(internal_post)
+    #   ).to match();
+    # end
   end
 end
