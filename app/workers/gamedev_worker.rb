@@ -1,6 +1,5 @@
 class GamedevWorker
   include Sidekiq::Worker
-
   def perform
     response = RubyStackoverflow.questions(
       order: "asc",
@@ -8,13 +7,12 @@ class GamedevWorker
       tagged: "ruby",
       pagesize: 100)
     response.data.each do |question|
-      p = ExternalPost.new(
+      ExternalPost.create(
         title: question.title,
         user_display_name: question.owner[:display_name],
         body_html: question.body,
         source_url: question.link,
         external_id: question.question_id)
-      p.save
     end
   end
 

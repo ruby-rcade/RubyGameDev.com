@@ -10,20 +10,8 @@ describe PostLocationHelper, type: 'helper' do
     end
 
     it "returns posts url" do
-      expect(helper.link_to_post(internal_post)).to match("/posts/")
-    end
-  end
-
-  describe "#show_tags" do
-    let(:external_post) { FactoryGirl.create(:external_post) }
-    let(:internal_post) { FactoryGirl.create(:internal_post) }
-
-    it "returns questions tags" do
-      expect(helper.show_tags(external_post)).to match("question")
-    end
-
-    it "returns ruby tag" do
-      expect(helper.show_tags(internal_post)).to match("example")
+      expect(
+        helper.link_to_post(internal_post)).to match(post_path(internal_post))
     end
   end
 end

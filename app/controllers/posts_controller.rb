@@ -33,7 +33,10 @@ class PostsController < ApplicationController
     respond_to do |format|
       if @post.save
         @post.create_tags_from_tag_string
-        format.html { redirect_to @post, notice: 'Post was successfully created.' }
+        format.html do
+          redirect_to post_path(@post),
+          notice: 'Post was successfully created.'
+        end
         format.json { render action: 'show', status: :created, location: @post }
       else
         format.html { render action: 'new' }
@@ -68,6 +71,13 @@ class PostsController < ApplicationController
       format.html { redirect_to posts_url }
       format.json { head :no_content }
     end
+  end
+
+  def vote
+    @post = InternalPost.find(params[:id])
+    @post.add_vote(current_user)
+    flash[:notice] = "You have successfully voted"
+    redirect_to(:back)
   end
 
   private

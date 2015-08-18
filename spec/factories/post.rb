@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :post do
-    user
+    tags { [FactoryGirl.create(:tag)] }
     title 'Example Discussion'
     body_markdown 'Example body. So **strong**.'
   end

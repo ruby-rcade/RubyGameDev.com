@@ -1,5 +1,4 @@
 Rubygamedev::Application.routes.draw do
-
   get '/auth/:provider/callback', to: 'sessions#create_from_omniauth'
   get '/auth/failure', to: 'sessions#auth_failure'
 
@@ -9,10 +8,17 @@ Rubygamedev::Application.routes.draw do
   resources :posts
   resources :internal_posts, controller: "posts", type: "InternalPost"
   resources :external_posts, controller: "posts", type: "ExternalPost"
+  resources :posts do
+    member do
+      put :vote
+    end
+  end
+
   resources :comments
 
   resources :libraries
   resources :library_categories
+  resources :tags
 
   get 'about' => 'pages#about', as: :about_page
   root 'pages#home'

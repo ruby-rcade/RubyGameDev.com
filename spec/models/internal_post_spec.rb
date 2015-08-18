@@ -5,6 +5,7 @@ describe InternalPost do
   it { should have_many :comments }
   it { should validate_presence_of :user }
   it { should validate_presence_of :title }
+  it { should validate_presence_of :body_markdown }
 
   describe "#notify_twitter" do
     subject { FactoryGirl.build(:internal_post) }
@@ -105,6 +106,7 @@ describe InternalPost do
     it "checks if a tag title already exists in other posts" do
       tag = FactoryGirl.create :tag, title: 'another_tag'
       @post2 = FactoryGirl.create :internal_post, tags: [tag]
+      @post3 = FactoryGirl.create :external_post, tags: [tag]
 
       @post.tags_string = "ruby, great"
       @post.create_tags_from_tag_string
@@ -114,11 +116,43 @@ describe InternalPost do
 
       all_tag_titles = Tag.all.map(&:title)
       expect(all_tag_titles).to match_array [
-        "example",
+        "question",
         "ruby",
         "rails",
         "great",
         "another_tag"]
+    end
+  end
+
+  describe "#add_vote" do
+    before do
+      @user = FactoryGirl.create(:user)
+      @post = FactoryGirl.create(:internal_post)
+    end
+
+    it "creates a vote by the given user" do
+      @post.add_vote(@user)
+      expect(@post.votes.count).to eq 1
+    end
+
+    it "doesn't create a second vote for a given user" do
+      @post.add_vote(@user)
+      @post.add_vote(@user)
+
+      expect(@post.votes.count).to eq 1
+    end
+  end
+
+  describe "#has_voted?" do
+    before do
+      @user = FactoryGirl.create(:user)
+      @post = FactoryGirl.create(:internal_post)
+    end
+
+    it "returns true if the given user has already voted on the post" do
+      expect(@post.has_voted?(@user)).to be_falsey
+      @post.add_vote(@user)
+      expect(@post.has_voted?(@user)).to be_truthy
     end
   end
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150728183329) do
+ActiveRecord::Schema.define(version: 20150804093147) do
 
   create_table "authentications", force: true do |t|
     t.integer  "user_id"
@@ -156,5 +156,13 @@ ActiveRecord::Schema.define(version: 20150728183329) do
 
   add_index "users", ["email"], name: "index_users_on_email"
   add_index "users", ["remember_token"], name: "index_users_on_remember_token"
+
+  create_table "votes", id: false, force: true do |t|
+    t.integer "post_id"
+    t.integer "user_id"
+  end
+
+  add_index "votes", ["post_id"], name: "index_votes_on_post_id"
+  add_index "votes", ["user_id"], name: "index_votes_on_user_id"
 
 end

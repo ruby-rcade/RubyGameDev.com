@@ -1,6 +1,10 @@
 class Post < ActiveRecord::Base
   has_and_belongs_to_many :tags
   validates :title, presence: true
+  after_create :question_tag
+
+  has_many :votes
+  has_many :voted_users, through: :votes, source: :user, class_name: 'User'
 
   scope :internal_post, -> { where(type: "InternalPost") }
   scope :external_post, -> { where(type: "ExternalPost") }
@@ -19,5 +23,20 @@ class Post < ActiveRecord::Base
       @tags_list.push(tag.strip)
     end
     @tags_list = @tags_list.uniq
+  end
+
+  def external_post?
+    type == "ExternalPost"
+  end
+
+  def internal_post?
+    type == "InternalPost"
+  end
+
+  def question_tag
+    if external_post?
+      related_tag = Tag.find_or_create_by(title: "question")
+      tags << related_tag
+    end
   end
 end

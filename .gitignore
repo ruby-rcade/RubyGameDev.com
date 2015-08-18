@@ -17,14 +17,13 @@
 # Ignore database backups
 *.dump
 *.sql
-
+*.rdb
 # Ignore all logfiles and tempfiles.
 /log/*.log
 /tmp
 
 # Ignore production environment variables file
 .env.production
-.env
 
 # Ignore private provisioning recipes (for now)
 /config/sunzi

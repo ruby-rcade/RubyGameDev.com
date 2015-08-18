@@ -1,6 +1,6 @@
 class InternalPost < Post
   belongs_to :user
-  validates :user, presence: true
+  validates :user, :title, :body_markdown, presence: true
   has_many :comments, as: :parent
 
   before_save do
@@ -12,7 +12,9 @@ class InternalPost < Post
   # TODO: move this to background job
 
   def notify_twitter
-    $twitter_client.update(tweet_content)
+    if Rails.env.production?
+      $twitter_client.update(tweet_content)
+    end
   end
 
   def tweet_content
@@ -42,5 +44,13 @@ class InternalPost < Post
         tags.create!(title: tag_title, user_id: user_id)
       end
     end
+  end
+
+  def add_vote(user)
+    Vote.find_or_create_by!(post_id: id, user_id: user.id)
+  end
+
+  def has_voted?(user)
+    Vote.exists?(post_id: id, user_id: user.id)
   end
 end
