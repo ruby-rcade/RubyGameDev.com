@@ -1,24 +1,33 @@
 <h1>Tags List</h1>
-<table class="tags table">
-  <tbody>
+
+<!-- <div class="tags-container container-fluid">
+ <div class="row">
     <% @tags.each do |tag| %>
-      <tr>
-        <td>
-          <span><%= link_to tag.title, tag %></span>
-        </td>
-        <td>
-          <span><%= link_to tag.title, tag %></span>
-        </td>
-        <td>
-          <span><%= link_to tag.title, tag %></span>
-        </td>
-        <td>
-          <span><%= link_to tag.title, tag %></span>
-        </td>
-        <td>
-          <span><%= link_to tag.title, tag %></span>
-        </td>
-      </tr>
+      <div class="tags-list col-xs-2 col-md-4"><%= link_to tag.title, tag %></div>
     <% end %>
+  </div>
+</div> -->
+ 
+<!-- <div class="tags-container container-fluid">
+ <ul class="row">
+    <% @tags.each do |tag| %>
+      <li class="tags-list col-xs-2 col-md-4"><%= link_to tag.title, tag %></li>
+    <% end %>
+  </ul>
+</div> -->
+
+<table class="table-container container-fluid">
+  <tbody class="row">
+    <tr>
+      <td>
+        <% @tags.each do |tag| %>
+          <div class="tags-list col-xs-2 col-md-4"><%= link_to tag.title, tag %></div>
+        <% end %>
+      </td>
+    </tr>
+<!--     <tr><td></td></tr>
+    <tr><td></td></tr>
+    <tr><td></td></tr>
+    <tr><td></td></tr> -->
   </tbody>
 </table>
