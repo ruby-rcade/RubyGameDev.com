@@ -106,6 +106,7 @@ describe InternalPost do
     it "checks if a tag title already exists in other posts" do
       tag = FactoryGirl.create :tag, title: 'another_tag'
       @post2 = FactoryGirl.create :internal_post, tags: [tag]
+      @post3 = FactoryGirl.create :external_post, tags: [tag]
 
       @post.tags_string = "ruby, great"
       @post.create_tags_from_tag_string

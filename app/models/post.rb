@@ -26,11 +26,11 @@ class Post < ActiveRecord::Base
   end
 
   def external_post?
-    self.type = "ExternalPost"
+    self.type == "ExternalPost"
   end
 
   def internal_post?
-    self.type = "InternalPost"
+    self.type == "InternalPost"
   end
 
   def question_tag

@@ -1,6 +1,6 @@
 module PostLocationHelper
   def link_to_post(post)
-    if post.type == "ExternalPost"
+    if post.external_post?
       link_to(post.title, post.source_url, target: '_blank')
     else
       link_to(post.title, post_path(post))
@@ -8,7 +8,7 @@ module PostLocationHelper
   end
 
   def show_votes(post)
-    if post.type == "InternalPost"
+    if post.internal_post?
       if post.has_voted?(current_user)
         ("<span class='fa fa-chevron-up'></span><br/>" +
         "<span> #{post.votes.count} </span><br/>" +

@@ -10,7 +10,7 @@ describe PostLocationHelper, type: 'helper' do
     end
 
     it "returns posts url" do
-      expect(helper.link_to_post(internal_post)).to match("/posts/")
+      expect(helper.link_to_post(internal_post)).to match(post_path(internal_post))
     end
   end
 
