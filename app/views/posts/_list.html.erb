@@ -7,7 +7,7 @@
           <br><span class="text-muted">Submitted by <%= post.username %> on <%= post.created_at.strftime("%m/%d/%Y") %></span>
           <div class="tags">
             <% post.tags.each do |tag| %>
-              <span><%= link_to(tag.title, tags_path) %></span>
+              <span><%= link_to(tag.title, "#") %></span>
             <% end %>
           </div>
         </td>
