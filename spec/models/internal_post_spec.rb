@@ -76,6 +76,8 @@ describe InternalPost do
       @post2.tags_string = "rails, great"
       @post2.create_tags_from_tag_string
 
+      @post3.create_question_tag
+
       all_tag_titles = Tag.all.map(&:title)
       expect(all_tag_titles).to match_array [
         "question",
