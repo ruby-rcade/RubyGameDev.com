@@ -1,6 +1,5 @@
 class ExternalPost < Post
   validates :external_id, uniqueness: true
-  after_create :create_question_tag
 
   def username
     self.user_display_name

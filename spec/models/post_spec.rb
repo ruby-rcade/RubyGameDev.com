@@ -50,5 +50,4 @@ describe Post do
       ).to eq "#{'a' * 114} http://rbga.me/1234567890"
     end
   end
-
 end
