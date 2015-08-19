@@ -3,16 +3,20 @@
     <% @posts.each do |post| %>
       <tr>
         <td>
-          <span class="badge pull-right" title="<%= pluralize(post.comments.count, 'comment') %>"><%= post.comments.count %></span>
           <%= link_to post.title, post %>
           <br><span class="text-muted">Submitted by <%= post.user.username %> on <%= post.created_at.strftime("%m/%d/%Y") %></span>
-          <br>
 
           <div class="tags">
             <% post.tags.each do |tag| %>
               <span><%= tag.title %></span>
             <% end %>
           </div>
+        </td>
+
+        <td>
+          <%= render 'votes/vote', post: post %>
+
+          <span class="badge pull-right" title="<%= pluralize(post.comments.count, 'comment') %>"><%= post.comments.count %></span>
         </td>
       </tr>
     <% end %>
