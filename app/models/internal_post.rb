@@ -8,23 +8,6 @@ class InternalPost < Post
     self.body_html = parser.render(body_markdown)
   end
 
-  after_create :notify_twitter
-  # TODO: move this to background job
-
-  def notify_twitter
-    if Rails.env.production?
-      $twitter_client.update(tweet_content)
-    end
-  end
-
-  def tweet_content
-    url = Rails.application.routes.url_helpers.
-      post_short_link_url(self, host: "rbga.me")
-    url = " #{url}"
-    max_title_length = 140 - url.length
-    title[0...max_title_length] + url
-  end
-
   def username
     self.user.username
   end
@@ -44,13 +27,5 @@ class InternalPost < Post
         tags.create!(title: tag_title, user_id: user_id)
       end
     end
-  end
-
-  def add_vote(user)
-    Vote.find_or_create_by!(post_id: id, user_id: user.id)
-  end
-
-  def has_voted?(user)
-    Vote.exists?(post_id: id, user_id: user.id)
   end
 end

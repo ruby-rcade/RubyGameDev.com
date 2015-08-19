@@ -74,7 +74,7 @@ class PostsController < ApplicationController
   end
 
   def vote
-    @post = InternalPost.find(params[:id])
+    @post = Post.find(params[:id])
     @post.add_vote(current_user)
     flash[:notice] = "You have successfully voted"
     redirect_to(:back)
