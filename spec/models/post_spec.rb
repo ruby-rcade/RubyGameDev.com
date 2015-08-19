@@ -167,8 +167,7 @@ describe Post do
     it "finds posts by their comments content" do
       post = FactoryGirl.create(:post, title: "Rails is good")
       FactoryGirl.create(:post, title: "CSS is good")
-      comment = FactoryGirl.create(
-        :comment,
+      FactoryGirl.create(:comment,
         body: "ruby on rails",
         parent: post
       )
@@ -179,13 +178,11 @@ describe Post do
     end
 
     it "finds posts by their content" do
-      post = FactoryGirl.create(
-        :post,
+      post = FactoryGirl.create(:post,
         title: "Rails is good",
         body_markdown: "Rails is framework for web apps"
       )
-      FactoryGirl.create(
-        :post,
+      FactoryGirl.create(:post,
         title: "CSS is good",
         body_markdown: "CSS is for UX"
       )
