@@ -4,7 +4,7 @@ class TagsController < ApplicationController
   def index
     respond_to do |format|
       format.html do
-        @tags = Tag.order('created_at DESC')
+        @tags = Tag.order('title')
       end
 
       format.json do
@@ -14,7 +14,6 @@ class TagsController < ApplicationController
   end
 
   def show
-    @tag = Tag.find(params[:id])
     @posts = @tag.posts
   end
 
