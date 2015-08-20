@@ -23,11 +23,13 @@ class Post < ActiveRecord::Base
   end
 
   def username
-    raise 'Must be implemented by subclass'
+    logger.error 'Must be implemented by subclass'
+    ''
   end
 
   def number_of_comments
-    raise 'Must be implemented by subclass'
+    logger.error 'Must be implemented by subclass'
+    0
   end
 
   def tags_string
