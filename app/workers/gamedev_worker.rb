@@ -21,7 +21,8 @@ class GamedevWorker
       user_display_name: question.owner[:display_name],
       body_html: question.body,
       source_url: question.link,
-      external_id: question.question_id)
+      external_id: question.question_id,
+      tags_string: 'question')
   end
 
   Sidekiq::Cron::Job.create(
