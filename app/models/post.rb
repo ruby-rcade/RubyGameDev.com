@@ -22,6 +22,14 @@ class Post < ActiveRecord::Base
     type == "InternalPost"
   end
 
+  def username
+    raise 'Must be implemented by subclass'
+  end
+
+  def number_of_comments
+    raise 'Must be implemented by subclass'
+  end
+
   def tags_string
     tags.map(&:title).join(", ")
   end

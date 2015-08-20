@@ -14,7 +14,7 @@ describe Post do
   end
 
   describe "#notify_twitter" do
-    subject { FactoryGirl.build(:post) }
+    subject { FactoryGirl.build(:internal_post) }
 
     it "posts to Twitter after create" do
       expect(subject).to receive(:notify_twitter)
@@ -23,7 +23,7 @@ describe Post do
   end
 
   describe "#tweet_content" do
-    subject { FactoryGirl.build(:post) }
+    subject { FactoryGirl.build(:internal_post) }
 
     it "includes the title in the tweet" do
       subject.id = "123"
@@ -52,7 +52,7 @@ describe Post do
   describe "#add_vote" do
     before do
       @user = FactoryGirl.create(:user)
-      @post = FactoryGirl.create(:post)
+      @post = FactoryGirl.create(:internal_post)
     end
 
     it "creates a vote by the given user" do
@@ -71,7 +71,7 @@ describe Post do
   describe "#has_voted?" do
     before do
       @user = FactoryGirl.create(:user)
-      @post = FactoryGirl.create(:post)
+      @post = FactoryGirl.create(:internal_post)
     end
 
     it "returns true if the given user has already voted on the post" do
@@ -83,7 +83,7 @@ describe Post do
 
   describe "creating tags" do
     before do
-      @post = FactoryGirl.create :post
+      @post = FactoryGirl.create :internal_post
     end
 
     def post_tag_titles
@@ -132,7 +132,7 @@ describe Post do
     end
 
     it "checks if a tag title already exists in other posts" do
-      @post2 = FactoryGirl.create :post
+      @post2 = FactoryGirl.create :internal_post
 
       @post.tags_string = "ruby, great"
       @post.save
@@ -147,8 +147,8 @@ describe Post do
 
   describe ".search" do
     it "finds posts by their titles" do
-      post = FactoryGirl.create(:post, title: "Rails is good")
-      FactoryGirl.create(:post, title: "Ruby is good")
+      post = FactoryGirl.create(:internal_post, title: "Rails is good")
+      FactoryGirl.create(:internal_post, title: "Ruby is good")
 
       results = Post.search("rails")
 
@@ -156,8 +156,8 @@ describe Post do
     end
 
     it "finds posts by their tag titles" do
-      post = FactoryGirl.create(:post, title: "Rails is good")
-      FactoryGirl.create(:post, title: "Ruby is good")
+      post = FactoryGirl.create(:internal_post, title: "Rails is good")
+      FactoryGirl.create(:internal_post, title: "Ruby is good")
       post.tags = [FactoryGirl.create(:tag, title: "css")]
 
       results = Post.search("css")
@@ -166,8 +166,8 @@ describe Post do
     end
 
     it "finds posts by their comments content" do
-      post = FactoryGirl.create(:post, title: "Rails is good")
-      FactoryGirl.create(:post, title: "CSS is good")
+      post = FactoryGirl.create(:internal_post, title: "Rails is good")
+      FactoryGirl.create(:internal_post, title: "CSS is good")
       FactoryGirl.create(:comment,
         body: "ruby on rails",
         parent: post
@@ -179,11 +179,11 @@ describe Post do
     end
 
     it "finds posts by their content" do
-      post = FactoryGirl.create(:post,
+      post = FactoryGirl.create(:internal_post,
         title: "Rails is good",
         body_markdown: "Rails is framework for web apps"
       )
-      FactoryGirl.create(:post,
+      FactoryGirl.create(:internal_post,
         title: "CSS is good",
         body_markdown: "CSS is for UX"
       )

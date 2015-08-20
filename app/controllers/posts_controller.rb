@@ -8,7 +8,7 @@ class PostsController < ApplicationController
     if params[:search].present?
       @posts = Post.search(params[:search])
     else
-      @posts = Post.all
+      @posts = Post.all.order('created_at DESC')
     end
   end
 
@@ -83,6 +83,8 @@ class PostsController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_post
     @post = Post.find(params[:id])
+    puts "#{@post.class} #{@post.type}"
+    @post
   end
 
   def set_type
