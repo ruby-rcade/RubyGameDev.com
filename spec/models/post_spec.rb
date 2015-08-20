@@ -144,35 +144,52 @@ describe Post do
     end
   end
 
-  describe "#add_vote" do
-    before do
-      @user = FactoryGirl.create(:user)
-      @post = FactoryGirl.create(:post)
+  describe ".search" do
+    it "finds posts by their titles" do
+      post = FactoryGirl.create(:post, title: "Rails is good")
+      FactoryGirl.create(:post, title: "Ruby is good")
+
+      results = Post.search("rails")
+
+      expect(results).to eq [post]
     end
 
-    it "creates a vote by the given user" do
-      @post.add_vote(@user)
-      expect(@post.votes.count).to eq 1
+    it "finds posts by their tag titles" do
+      post = FactoryGirl.create(:post, title: "Rails is good")
+      FactoryGirl.create(:post, title: "Ruby is good")
+      post.tags = [FactoryGirl.create(:tag, title: "css")]
+
+      results = Post.search("css")
+
+      expect(results).to eq [post]
     end
 
-    it "doesn't create a second vote for a given user" do
-      @post.add_vote(@user)
-      @post.add_vote(@user)
+    it "finds posts by their comments content" do
+      post = FactoryGirl.create(:post, title: "Rails is good")
+      FactoryGirl.create(:post, title: "CSS is good")
+      FactoryGirl.create(:comment,
+        body: "ruby on rails",
+        parent: post
+      )
 
-      expect(@post.votes.count).to eq 1
+      results = Post.search("ruby")
+
+      expect(results).to eq [post]
     end
-  end
 
-  describe "#has_voted?" do
-    before do
-      @user = FactoryGirl.create(:user)
-      @post = FactoryGirl.create(:post)
-    end
+    it "finds posts by their content" do
+      post = FactoryGirl.create(:post,
+        title: "Rails is good",
+        body_markdown: "Rails is framework for web apps"
+      )
+      FactoryGirl.create(:post,
+        title: "CSS is good",
+        body_markdown: "CSS is for UX"
+      )
 
-    it "returns true if the given user has already voted on the post" do
-      expect(@post.has_voted?(@user)).to be_falsey
-      @post.add_vote(@user)
-      expect(@post.has_voted?(@user)).to be_truthy
+      results = Post.search("apps")
+
+      expect(results).to eq [post]
     end
   end
 end
