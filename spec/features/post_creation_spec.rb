@@ -2,17 +2,14 @@ require 'rails_helper'
 
 describe "Post creation" do
   before do
-    # Create a user
     @user = FactoryGirl.create(:user)
     visit '/sign_in'
     fill_in 'Email', with: @user.email
     fill_in 'Password', with: @user.password
     click_button 'Sign in'
 
-    # Go to posts page
     visit '/posts/new'
 
-    # Fill in form and submit
     fill_in("Title", with: 'Some title')
     fill_in("Body markdown", with: 'Example body')
     fill_in("Tags", with: "ruby, rails")
