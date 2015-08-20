@@ -83,8 +83,6 @@ class PostsController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_post
     @post = Post.find(params[:id])
-    puts "#{@post.class} #{@post.type}"
-    @post
   end
 
   def set_type
