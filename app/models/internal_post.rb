@@ -1,6 +1,6 @@
 class InternalPost < Post
   belongs_to :user
-  validates :user, :title, :body_markdown, presence: true
+  validates :user, :body_markdown, presence: true
   has_many :comments, as: :parent
 
   before_save do
