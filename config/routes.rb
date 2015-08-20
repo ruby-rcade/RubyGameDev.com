@@ -13,6 +13,7 @@ Rubygamedev::Application.routes.draw do
   end
 
   resources :comments
+  resources :tags
 
   resources :libraries
   resources :library_categories

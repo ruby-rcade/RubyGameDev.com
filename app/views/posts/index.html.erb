@@ -1,16 +1,16 @@
-<% if params[:search].present? %>
-  <h1>Post Search: "<%= params[:search] %>"</h1>
-  <% if @posts.size == 0 %>
-    <div class="alert alert-info">
-      <button type="button" class="close" data-dismiss="alert">&times;</button>
-      <span>No result found</span>
-    </div>
-
+<h1>
+  <% if params[:search].present? %>
+    Post Search: "<%= params[:search] %>"
   <% else %>
-    <h1>Post Search: "<%= params[:search] %>"</h1>
+    Latest Posts
   <% end %>
-<% else %>
-  <h1>Latest Posts</h1>
-  <% end %>
+</h1>
+
+<% if @posts.size == 0 %>
+  <div class="alert alert-info">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    <span>No result found</span>
+  </div>
+<% end %>
 
 <%= render 'list' %>

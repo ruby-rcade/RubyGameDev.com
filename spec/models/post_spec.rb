@@ -91,28 +91,28 @@ describe Post do
 
     it "can create all of the tags given from the tags_string accessor" do
       @post.tags_string = "ruby, rails, css"
-      @post.create_tags_from_tag_string
+      @post.save
 
       expect(post_tag_titles).to match_array ["css", "rails", "ruby"]
     end
 
     it "normalizes the tags' names" do
       @post.tags_string = " Ruby,  rails,CSS  "
-      @post.create_tags_from_tag_string
+      @post.save
 
       expect(post_tag_titles).to match_array ["ruby", "rails", "css"]
     end
 
     it "splits the tags by spaces as well as commas" do
       @post.tags_string = "ruby rails css"
-      @post.create_tags_from_tag_string
+      @post.save
 
       expect(post_tag_titles).to match_array ["ruby", "rails", "css"]
     end
 
     it "generates a unique list of tags" do
       @post.tags_string = "ruby, rails, ruby"
-      @post.create_tags_from_tag_string
+      @post.save
 
       expect(post_tag_titles).to match_array ["ruby", "rails"]
     end
@@ -125,7 +125,7 @@ describe Post do
       expect(post_tag_titles).to match_array ["ruby"]
 
       @post.tags_string = "rails, css"
-      @post.create_tags_from_tag_string
+      @post.save
 
       expect(post_tag_titles).to match_array ["rails", "css"]
     end
@@ -134,10 +134,10 @@ describe Post do
       @post2 = FactoryGirl.create :post
 
       @post.tags_string = "ruby, great"
-      @post.create_tags_from_tag_string
+      @post.save
 
       @post2.tags_string = "rails, great"
-      @post2.create_tags_from_tag_string
+      @post2.save
 
       all_tag_titles = Tag.all.map(&:title)
       expect(all_tag_titles).to match_array ["ruby", "rails", "great"]
