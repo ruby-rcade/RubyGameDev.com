@@ -1,0 +1,421 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.stackexchange.com/2.2/questions/?access_token=h5Q5iW2AAJSr0n4bB7(shA))&filter=withbody&key=ZEGYIdaRKJ4eFpqjOrX6dw((&order=asc&pagesize=100&site=gamedev&tagged=ruby
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Cache-Control:
+      - private
+      Content-Type:
+      - application/json; charset=utf-8
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Methods:
+      - GET, POST
+      Access-Control-Allow-Credentials:
+      - 'false'
+      X-Content-Type-Options:
+      - nosniff
+      Date:
+      - Mon, 17 Aug 2015 23:03:18 GMT
+      Content-Length:
+      - '15006'
+    body:
+      encoding: ASCII-8BIT
+      string: '{"items":[{"tags":["c++","algorithm","ai","ruby"],"owner":{"reputation":101,"user_id":5072,"user_type":"registered","profile_image":"https://www.gravatar.com/avatar/1f8df7b7bc3eeb38cf2835db82c2c1ff?s=128&d=identicon&r=PG","display_name":"NullVoxPopuli","link":"http://gamedev.stackexchange.com/users/5072/nullvoxpopuli"},"is_answered":true,"view_count":1420,"answer_count":1,"score":0,"last_activity_date":1296589445,"creation_date":1296543264,"last_edit_date":1296589445,"question_id":7948,"link":"http://gamedev.stackexchange.com/questions/7948/ruby-implementing-alpha-beta-pruning-for-tic-tac-toe","title":"Ruby:
+        implementing alpha-beta pruning for tic-tac-toe","body":"<p>So, alpha-beta
+        pruning seems to be the most efficient algorithm out there aside from hard
+        coding (for tic tac toe). However, I''m having problems converting the algorithm
+        from the C++ example given in the link: <a href=\"http://www.webkinesia.com/games/gametree.php\"
+        rel=\"nofollow\">http://www.webkinesia.com/games/gametree.php</a></p>\n\n<p>Players
+        are either 1 or 0, so doing 1 - player will switch the player</p>\n\n<pre><code>  WIN
+        = 1\n    LOSS = -1\n    DRAW = 0\n    INFINITY = 100\n    def calculate_ai_next_move\n        best_move
+        = -1\n        best_score = -INFINITY\n\n        cur_player = COMPUTER\n        self.remaining_moves.each
+        do |move|\n          self.make_move_with_index(move, cur_player)\n          score
+        = -self.alphabeta(-INFINITY,INFINITY, 1 - cur_player)\n          self.undo_move(move)\n\n          if
+        score &gt; best_score\n            best_score = score\n            best_move
+        = move\n          end\n        end\n\n        return best_move\n    end\n\n    def
+        alphabeta(alpha, beta, player)\n      best_score = -INFINITY\n      if not
+        self.has_available_moves?\n        return WIN if self.has_this_player_won?(player)
+        == player\n        return LOSS if self.has_this_player_won?(1 - player) ==
+        1 - player\n      else\n        self.remaining_moves.each do |move|\n          break
+        if alpha &gt; beta\n\n          self.make_move_with_index(move, player)\n          move_score
+        = -alphabeta(-alpha, -beta, 1 - player)\n          self.undo_move(move)\n\n          if
+        move_score &gt; alpha\n            alpha = move_score\n            next_move
+        = move\n          end\n          best_score = alpha\n        end\n      end\n      return
+        best_score\n    end\n</code></pre>\n\n<p>currently, the algorithm is playing
+        terribly. It will initially pick the last space, and then choose the first
+        (from left to right) available space after that.  </p>\n\n<p>Any idea with
+        whats wrong with it?</p>\n\n<p>Also, I''ve been doing TDD, so I know that
+        self.has_this_player_won?, self.undo_move and self.remaining_moves is correct.</p>\n"},{"tags":["c#","roguelikes","ruby"],"owner":{"reputation":6852,"user_id":1929,"user_type":"registered","accept_rate":67,"profile_image":"https://www.gravatar.com/avatar/87f8ee1956942944fe845a25cb7b1678?s=128&d=identicon&r=PG","display_name":"ashes999","link":"http://gamedev.stackexchange.com/users/1929/ashes999"},"is_answered":true,"view_count":685,"accepted_answer_id":9811,"answer_count":5,"score":3,"last_activity_date":1300284014,"creation_date":1300200070,"last_edit_date":1300207291,"question_id":9798,"link":"http://gamedev.stackexchange.com/questions/9798/porting-ruby-ncruses-rogue-like-to-net-and-flatredball","title":"Porting
+        Ruby/NCruses Rogue-Like to .NET and FlatRedBall","body":"<p>I created an <a
+        href=\"http://www.railsrocket.com/plainrl-10-released\" rel=\"nofollow\">awesome
+        rogue-like game</a> in Ruby. For the GUI, I used NCurses. Since I''m using
+        FlatRedBall as my engine of choice for Silverlight game development, I want
+        to port this game over.</p>\n\n<p><strong>What is the best way to efficiently
+        doing this, and what are the pitfalls I should expect?</strong></p>\n\n<p>For
+        example, Ruby is object-oriented, like C#, and I should be able to just convert
+        (rewrite) classes one by one. However, I will run into issues like:</p>\n\n<ul>\n<li>NCurses
+        API. I need to possibly create my own notions of a \"Window\", or else rewrite
+        GUI code. It''s one class, but it''s BIG.</li>\n<li>Mix-Ins. These are essentially
+        aspect-oriented development. There are a couple of solutions in .NET, like
+        dynamic classes.</li>\n</ul>\n\n<p>What else? Also, I should mention that
+        I want to create a <strong>FlatSilverBall (C#) application</strong> out of
+        this. That is to say, I will be using the FlatRedBall 2D engine as my foundation.
+        I <em>am not interested in Curses,</em> or any other variation that will allow
+        me to make a console-type game.</p>\n\n<p>As much as possible, I''ll dump
+        reusable and helper code, algorithms, etc. into separate projects and generate
+        reusable DLLs.</p>\n"},{"migrated_from":{"other_site":{"styling":{"tag_background_color":"#FFF","tag_foreground_color":"#5D5D5D","link_color":"#0077CC"},"related_sites":[{"relation":"meta","api_site_parameter":"meta.programmers","site_url":"http://meta.programmers.stackexchange.com","name":"Programmers
+        Meta Stack Exchange"},{"relation":"chat","site_url":"http://chat.stackexchange.com?tab=site&host=programmers.stackexchange.com","name":"Chat
+        Stack Exchange"}],"aliases":["http://programmer.stackexchange.com"],"markdown_extensions":["Prettify"],"launch_date":1292457600,"open_beta_date":1283904000,"closed_beta_date":1283299200,"site_state":"normal","high_resolution_icon_url":"http://cdn.sstatic.net/programmers/img/apple-touch-icon@2.png","twitter_account":"StackProgrammer","favicon_url":"http://cdn.sstatic.net/programmers/img/favicon.ico","icon_url":"http://cdn.sstatic.net/programmers/img/apple-touch-icon.png","audience":"professional
+        programmers interested in conceptual questions about software development","site_url":"http://programmers.stackexchange.com","api_site_parameter":"programmers","logo_url":"http://cdn.sstatic.net/programmers/img/logo.png","name":"Programmers","site_type":"main_site"},"on_date":1318007694,"question_id":112973},"tags":["ruby"],"owner":{"reputation":121,"user_id":9863,"user_type":"registered","profile_image":"https://www.gravatar.com/avatar/47f613e23a3d891cf793f2496248a15a?s=128&d=identicon&r=PG","display_name":"Skydreamer","link":"http://gamedev.stackexchange.com/users/9863/skydreamer"},"is_answered":true,"view_count":213,"answer_count":1,"score":4,"last_activity_date":1318007694,"creation_date":1318000210,"question_id":18256,"link":"http://gamedev.stackexchange.com/questions/18256/whats-the-best-way-to-track-game-phases","title":"What&#39;s
+        the best way to track game phases?","body":"<p>I''m currently writing an IRC
+        bot in Ruby to play some kind of strategy game (it doesn''t matter which),
+        but I''m hesitating between several solutions to implement a phases system
+        the \"best\" way.</p>\n\n<p>The system: The game has several days; the first
+        day some phases occur to give the players their jobs and so on, but they never
+        occur again, so phases are sometimes conditional. </p>\n\n<p>What''s more,
+        when a certain condition is met, e.g. an important player dies, a phase may
+        be started before the next one. Phases may be added by the job system; jobs
+        are each defined in a single file and they can define their own phases and
+        logic.</p>\n\n<p>My ideas:</p>\n\n<ul>\n<li>The game is handled by a class
+        in which I can store an instance variable to remember the actual phase and
+        handle all of the logic in the code. I don''t think this is the best idea.</li>\n<li>Use
+        a phases hash to store the next phase and other parameters and methods to
+        handle each change.</li>\n</ul>\n\n<p>Is there a better way? I don''t think
+        those I came up with are very flexible.</p>\n"},{"tags":["architecture","design-patterns","ruby"],"owner":{"reputation":116,"user_id":3786,"user_type":"registered","profile_image":"https://www.gravatar.com/avatar/c1da0259268ca7e5f2c077fe6aae6ac9?s=128&d=identicon&r=PG","display_name":"Matheus
+        Moreira","link":"http://gamedev.stackexchange.com/users/3786/matheus-moreira"},"is_answered":true,"view_count":382,"closed_date":1423968850,"answer_count":2,"score":3,"last_activity_date":1322769188,"creation_date":1322749289,"question_id":20455,"link":"http://gamedev.stackexchange.com/questions/20455/how-can-i-improve-this-architecture","closed_reason":"primarily
+        opinion-based","title":"How can I improve this architecture?","body":"<p>In
+        <a href=\"https://github.com/matheusmoreira/survivor\" rel=\"nofollow\">a
+        roguelike I''m developing in Ruby</a>, I started with a traditional object
+        hierarchy where all game logic relevant to creatures were contained in the
+        <code>Creature</code> class. Movement logic, for example:</p>\n\n<pre><code>Creature.instance_methods(false)    #
+        =&gt; [ :move ]\n</code></pre>\n\n<p>In my design, the map and creatures are
+        decoupled: the map has no idea what''s on a tile and the creature has no idea
+        which kind of tile it is on. What brings them together are coordinates.</p>\n\n<p>Movement
+        logic requires information about where on the map the creature is, so the
+        creature would need access to the map. The map belonged to the game, so I
+        just added a game attribute to every creature as a quick solution. I didn''t
+        really want to pass a map instance every time the creature needed to move
+        around because the map the creature is on isn''t likely to change.</p>\n\n<p>In
+        the end, I removed the game logic from the <code>Creature</code> class, and
+        separated them into modules:</p>\n\n<pre><code>Game::Logic::Movement.singleton_methods(false)    #
+        =&gt; [ :move ]\n</code></pre>\n\n<p>The way I understand it, these logic
+        modules integrate multiple game parts which depend on each other in a way
+        not easily expressed hierarchically. The methods are just algorithms that
+        operate on the given information. For example, the implementation of the <code>move</code>
+        method:</p>\n\n<pre><code>def self.move(creature, map, dx, dy)\n  coordinates
+        = Map::Coordinates[dx + creature.x, dy + creature.y]\n  tile = map[coordinates]\n  creature.coordinates
+        = coordinates if tile and tile.passable? # Teleport!\nend\n</code></pre>\n\n<p>These
+        methods are called directly from the game loop:</p>\n\n<pre><code>def handle(input)\n  case
+        input\n    when :up then Logic::Movement.move character, map, 0, 1\n    #
+        ...\n  end\nend\n</code></pre>\n\n<p>This is how the game is currently organized.
+        Movement is the only game logic I''ve added as of now, so I think it would
+        be wise if I revised the architecture while it is still small. So, what do
+        you think of it? What are the problems, and what can I do to improve it?</p>\n\n<p>I''m
+        also interested in how it compares to component-based game architecture. I''ve
+        read a lot about it during my research, and it seems to be the most maintainable
+        and reusable way to write game code. I think it would fit naturally in the
+        Ruby world, due to its dynamic nature and message-based method invocation.
+        The thing is, I really never understood how different components interact
+        with each other, and I''m looking for something I can make sense of.</p>\n"},{"tags":["3d","engine","ruby","jmonkeyengine","teaching"],"owner":{"reputation":134,"user_id":12887,"user_type":"registered","profile_image":"https://www.gravatar.com/avatar/d2c037ce48d12bd88ec6529f9bb39f0a?s=128&d=identicon&r=PG","display_name":"at.","link":"http://gamedev.stackexchange.com/users/12887/at"},"is_answered":true,"view_count":925,"closed_date":1327562037,"answer_count":1,"score":2,"last_activity_date":1327547860,"creation_date":1327480953,"last_edit_date":1327547860,"question_id":22894,"link":"http://gamedev.stackexchange.com/questions/22894/teaching-game-development-with-ruby","closed_reason":"not
+        a real question","title":"Teaching game development with Ruby","body":"<p>I
+        want to teach game development to kids as part of a course (year-long) involving
+        Ruby.  Unfortunately it looks like the game development kits available in
+        Ruby (even in the form of bindings) are pretty limited.</p>\n\n<p>Is the best
+        solution to go with JRuby and use jMonkeyEngine through the JVM?  I''d love
+        to have the kids play with creating very basic 3d games.  Is there another
+        better solution for Ruby or on the JVM through JRuby?</p>\n\n<p>Average age
+        of kids is probably 9 to 12, with some as young as 5 and as old as 18.</p>\n"},{"tags":["sdl","ruby"],"owner":{"reputation":6852,"user_id":1929,"user_type":"registered","accept_rate":67,"profile_image":"https://www.gravatar.com/avatar/87f8ee1956942944fe845a25cb7b1678?s=128&d=identicon&r=PG","display_name":"ashes999","link":"http://gamedev.stackexchange.com/users/1929/ashes999"},"is_answered":false,"view_count":233,"closed_date":1353633195,"answer_count":0,"score":2,"last_activity_date":1338318492,"creation_date":1338317766,"last_edit_date":1338318492,"question_id":29813,"link":"http://gamedev.stackexchange.com/questions/29813/ruby-sdl-vs-rudl","closed_reason":"not
+        constructive","title":"Ruby/SDL vs. RUDL","body":"<p>I''m interested in using
+        Ruby for 2D games. I have to pick between Ruby/SDL and RUDL, both of which
+        are Ruby SDL wrappers.</p>\n\n<p>Which is better? Better means \"less bugs\"
+        and \"more usable,\" although the latter is a matter of taste.</p>\n\n<p>I
+        notice that Ruby/SDL was last updated in 2012 (according to SourceForge),
+        and RUDL in 2010; other than that, I don''t know much about either.</p>\n\n<p>Please
+        share your experiences, good and bad.</p>\n"},{"tags":["ruby","rpg-maker-xp"],"owner":{"reputation":126,"user_id":17163,"user_type":"registered","profile_image":"https://www.gravatar.com/avatar/381e061e59561528fd37abe1ef4caa04?s=128&d=identicon&r=PG","display_name":"AzDesign","link":"http://gamedev.stackexchange.com/users/17163/azdesign"},"is_answered":false,"view_count":234,"answer_count":0,"score":1,"last_activity_date":1340440279,"creation_date":1340438069,"last_edit_date":1340440279,"question_id":31032,"link":"http://gamedev.stackexchange.com/questions/31032/moving-while-doing-loop-animation-in-rpgmaker","title":"Moving
+        while doing loop animation in RPGMaker","body":"<p>I made a custom class to
+        display character portrait in RPGMaker XP\nHere is the class :</p>\n\n<pre><code>class
+        Poser\n  attr_accessor :images\n\n  def initialize \n    @images = Sprite.new\n    @images.bitmap
+        = RPG::Cache.picture(''Character.png'') #100x300\n    @images.x = 540 #place
+        it on the bottom right corner of the screen\n    @images.y = 180\n  end\nend\n</code></pre>\n\n<p>Create
+        an event on the map to create an instance as global variable, tada! image
+        popped out. Ok nice. But Im not satisfied, Now I want it to have bobbing-head
+        animation-like (just like when we breathe, sometimes bob our head up and down)
+        so I added another method :</p>\n\n<pre><code>  def move(x,y)\n    @images.x
+        += x\n    @images.y += y\n  end\n\n  def animate(x,y,step,delay)\n    forward
+        = true\n    2.times {\n      step.times {\n        wait(delay)\n        if
+        forward\n          move(x/step,y/step) \n        else\n          move(-x/step,-y/step)\n        end\n      }\n      wait(delay*3)\n      forward
+        = false\n    }\n  end\n\n  def wait(time)\n    while time &gt; 0\n      time
+        -= 1\n      Graphics.update\n    end\n  end\n</code></pre>\n\n<p>I called
+        the method to run the animation and it works, so far so good, but the problem
+        is, <strong>WHILE</strong> the portrait goes up and down, <strong>I cannot
+        move</strong> my character <strong>until the animation is finished</strong>.
+        </p>\n\n<p>So that''s it, I''m stuck in the loop block, what I want is to
+        watch the portrait moving up and down while I walk around village, talk to
+        npc, etc.</p>\n\n<p>Anyone can solve my problem ? Or better solution ? Thanks
+        in advance</p>\n"},{"tags":["ruby","rpg-maker-xp"],"owner":{"reputation":126,"user_id":17163,"user_type":"registered","profile_image":"https://www.gravatar.com/avatar/381e061e59561528fd37abe1ef4caa04?s=128&d=identicon&r=PG","display_name":"AzDesign","link":"http://gamedev.stackexchange.com/users/17163/azdesign"},"is_answered":true,"view_count":690,"answer_count":1,"score":2,"last_activity_date":1343033073,"creation_date":1339794385,"question_id":30680,"link":"http://gamedev.stackexchange.com/questions/30680/multi-dimension-array-problem-in-rgss-rpg-maker-xp","title":"multi-dimension
+        array problem in RGSS (RPG Maker XP)","body":"<p>This is my first day code
+        script in RMXP. I read tutorials, ruby references, etc and I found myself
+        stuck on a weird problem, here is the scenario:</p>\n\n<ol>\n<li>I made a
+        custom script to display layered images</li>\n<li>Create the class, create
+        an instance variable to hold the array, create a simple method to add an element
+        into it, done</li>\n<li>The draw method (skipped the rest of the code to this
+        part):</li>\n</ol>\n\n<blockquote>\n<pre><code>  def draw\n    image = []\n    index
+        = 0\n    for i in 0..@components.size\n      if image.size &gt; 0\n        index
+        = image.size\n      end\n      image[index] = Sprite.new\n      image[index].bitmap
+        = RPG::Cache.picture(@components[i][0] + ''.png'')\n      image[index].x =
+        @x + @components[i][1]\n      image[index].y = @y + @components[i][2]\n      image[index].z
+        = @z + @components[i][3]\n      @test =+ 1\n    end\n  end\n</code></pre>\n</blockquote>\n\n<ol>\n<li>Create
+        an event that does these script</li>\n</ol>\n\n<blockquote>\n<pre><code>&gt;
+        $layerz = Layerz.new $layerz.configuration[0] = [''root'',0,0,1]\n&gt; $layerz.configuration[1]
+        = [''bark'',0,10,2] \n&gt; $layerz.configuration[2] = [''branch'',0,30,3]\n&gt;
+        $layerz.configuration[3] = [''leaves'',0,60,4] $layerz.draw\n</code></pre>\n</blockquote>\n\n<ol>\n<li>Run,
+        trigger the event and the result :</li>\n</ol>\n\n<p>ERROR! <strong>Undefined
+        method`[]'' for nil:NilClass</strong> pointing at this line on draw method
+        :</p>\n\n<blockquote>\n  <p>image[index].bitmap = RPG::Cache.picture(@components[i][0]
+        + ''.png'')</p>\n</blockquote>\n\n<p>THEN, I changed the method like these
+        just for testing:</p>\n\n<pre><code>def draw\n    image = []\n    index =
+        0\n    for i in 0..@components.size\n      if image.size &gt; 0\n        index
+        = image.size\n      end\n      image[index] = Sprite.new\n      image[index].bitmap
+        = RPG::Cache.picture(@components[0][0] + ''.png'')\n      image[index].x =
+        @x + @components[0][1]\n      image[index].y = @y + @components[0][2]\n      image[index].z
+        = @z + @components[0][3]\n      @test =+ 1\n    end\n</code></pre>\n\n<p>I
+        changed the <strong>@components[i][0]</strong> to <strong>@components[0][0]</strong>
+        and <strong>IT WORKS</strong>, but only the root as it not iterates to the
+        next array index</p>\n\n<p>Im stuck here, see :</p>\n\n<pre><code>&gt; in
+        single level array, @components[0] and @components[i] has no problem\n&gt;
+        in multi-dimension array, @components[0][0] has no problem BUT\n&gt; in multi-dimension
+        array, @components[i][0] produce the error as above\n&gt; mentioned.\n</code></pre>\n\n<p>any
+        suggestion to fix the error ? Or did I wrote something wrong ?</p>\n"},{"tags":["web","first-person-shooter","ruby"],"owner":{"reputation":30,"user_id":20529,"user_type":"registered","profile_image":"https://www.gravatar.com/avatar/34eff5febee24d4c175be53778ac6400?s=128&d=identicon&r=PG","display_name":"user20529","link":"http://gamedev.stackexchange.com/users/20529/user20529"},"is_answered":true,"view_count":718,"answer_count":2,"score":2,"last_activity_date":1349472219,"creation_date":1349455994,"question_id":38338,"link":"http://gamedev.stackexchange.com/questions/38338/is-it-possible-to-make-translate-a-3d-engine-to-ruby-on-rails","title":"Is
+        it possible to make/translate a 3d engine to ruby on rails?","body":"<p>I
+        am looking to make a 3D FPS that runs inside web browsers. I looked into using
+        WebGL, but it didn''t seem far enough along into development. I decided on
+        using RoR because Ruby was a language I knew.</p>\n\n<p>I realize this may
+        seem like a ridiculous question, but is there any way I can port/rewrite/whatever
+        a game engine(Say for instance IrrLicht) to run inside Rails? Or for that
+        matter, any other language on the web.</p>\n"},{"tags":["c#","ruby"],"owner":{"reputation":17,"user_id":23209,"user_type":"unregistered","profile_image":"https://www.gravatar.com/avatar/57edda82e939d876a41c0eba19b920fb?s=128&d=identicon&r=PG","display_name":"Jenna","link":"http://gamedev.stackexchange.com/users/23209/jenna"},"is_answered":true,"view_count":497,"closed_date":1353595567,"answer_count":1,"score":2,"last_activity_date":1357319707,"creation_date":1353557472,"question_id":44188,"link":"http://gamedev.stackexchange.com/questions/44188/ruby-vs-c-better-for-game-programming","closed_reason":"not
+        constructive","title":"Ruby Vs. C# - Better for Game Programming","body":"<p>I
+        have seen some games made in C#, such as using the XNA. I saw some games made
+        in Ruby by using the RGSS1-3 API as well. I just can''t decide on my own which
+        would be easier to learn and apply for game programming. I want your opinion
+        on which is better to make games with, is it Ruby or C#? What are the advantages
+        and disadvantages of each?</p>\n"},{"tags":["3d","ruby"],"owner":{"reputation":493,"user_id":26450,"user_type":"registered","accept_rate":91,"profile_image":"http://i.stack.imgur.com/eKCZP.png?s=128&g=1","display_name":"Starkers","link":"http://gamedev.stackexchange.com/users/26450/starkers"},"is_answered":true,"view_count":2628,"closed_date":1390342899,"accepted_answer_id":54677,"answer_count":1,"score":0,"last_activity_date":1367218245,"creation_date":1367194240,"question_id":54663,"link":"http://gamedev.stackexchange.com/questions/54663/3d-graphics-engine-for-ruby-on-rails","closed_reason":"off-topic","title":"3D
+        Graphics Engine for Ruby on Rails","body":"<p>I''ve had a good few months
+        of experience with Ruby on Rails, creating my own CMS system, a social network
+        and even a VOIP enabled answering phone machine. I''m also an established
+        3D modeller, and what I really, really want to do is create a 3D game that''s
+        executed in the browser.</p>\n\n<p>I''m not talking Crysis: Online or CoD:
+        Online, or even Doom. Nothing too graphically/RAM intensive. Not a shooter.
+        I simply want to create a simple puzzle solving, hidden object game that can
+        be accessed in the browser.</p>\n\n<p>Maybe something along the lines of the
+        Myst  III+ games.</p>\n\n<p><a href=\"http://www.youtube.com/watch?v=turE_nFwXhM\"
+        rel=\"nofollow\">http://www.youtube.com/watch?v=turE_nFwXhM</a></p>\n\n<p>Technically,
+        they''re very simple games, but by placing the camera inside a 3D sphere with
+        its inner surface textured with an appropriately-distorted 2D rendering, they
+        pull the player into thinking they''re exploring a ''fully'' 3D world.</p>\n\n<p>They''re
+        not realtime, and I genuinely think this could be done online. Maybe some
+        bandwidth issues with these high-res images, but by hiding loading screens
+        behind doors that take a while to open, I think a seamless experience could
+        be achieved.</p>\n\n<p>So, is there a simple 3D engine for ruby? Open source,
+        with a great community?</p>\n\n<p>Apologies if you think I''m rambling, I''ve
+        rambled in the hope that it''ll give you a good feel for my technical requirements
+        :)</p>\n"},{"tags":["2d","engine","data-structure","ruby"],"owner":{"reputation":195,"user_id":4779,"user_type":"registered","accept_rate":50,"profile_image":"http://i.stack.imgur.com/zJG3x.jpg?s=128&g=1","display_name":"Oxide","link":"http://gamedev.stackexchange.com/users/4779/oxide"},"is_answered":true,"view_count":228,"accepted_answer_id":58799,"answer_count":2,"score":8,"last_activity_date":1373394463,"creation_date":1373349227,"question_id":58798,"link":"http://gamedev.stackexchange.com/questions/58798/when-should-i-represent-points-and-sizes-as-structures","title":"When
+        should I represent points and sizes as structures?","body":"<p>As part of
+        my simple Ruby 2D game development framework, my game objects have position
+        (x and y values) and size (width and height).</p>\n\n<pre><code>class MyGameObject\n  attr_accessor
+        :x\n  attr_accessor :y\n  attr_accessor :width\n  attr_accessor :height\n  ...\n</code></pre>\n\n<p>Another
+        approach I''ve seen was treating the position as a <code>Point</code> structure,
+        and the size as a <code>Size</code> structure:</p>\n\n<pre><code>Point = Struct.new(:x,
+        :y)\nSize = Struct.new(:width,:height)\n\nclass MyGameObject\n  attr_accessor
+        :position   # Point instance\n  attr_accessor :size       # Size instance\n  ...\n</code></pre>\n\n<p>Some
+        frameworks use the former (I think GDX, Gosu...). Others use the latter (cocos2d-iphone).
+        The problem is, it isn''t entirely clear to me the advantages and disadvantages
+        of both behaviors (in game development) - I don''t know why some frameworks
+        chose one and not the other.</p>\n\n<p>Are there significant differences I
+        should consider?</p>\n"},{"tags":["java","libgdx","ruby"],"owner":{"reputation":146,"user_id":29798,"user_type":"registered","profile_image":"https://www.gravatar.com/avatar/c2618b44331b3bc116feee5b0268736b?s=128&d=identicon&r=PG","display_name":"thecodethinker","link":"http://gamedev.stackexchange.com/users/29798/thecodethinker"},"is_answered":true,"view_count":132,"answer_count":1,"score":1,"last_activity_date":1376608401,"creation_date":1376401907,"last_edit_date":1376404426,"question_id":60710,"link":"http://gamedev.stackexchange.com/questions/60710/how-do-i-use-warble-to-package-libgdx-and-ruby","title":"How
+        do I use warble to package libgdx and ruby?","body":"<p>My ruby code is as
+        follows</p>\n\n<pre><code>include Java\n\n\nDir[File.expand_path \"#{File.dirname(__FILE__)}/../libs/\\*.jar\"].each
+        { |x| require x; puts \"go\"}\n\nmodule LibGDX\n        include_package \"com.badlogic.gdx\"\n        include_package
+        \"com.badlogic.gdx.backends.lwjgl\"\n        include_package \"com.badlogic.gdx.graphics\"\nend\n\nclass
+        Game\n        include LibGDX::ApplicationListener\n\n        @LOG = Game.java.simple_name\n\n        def
+        create\n                LibGDX::Gdx.app.log(@LOG, \"Is a thing\")\n        end\n\n        def
+        resize width, height\n                LibGDX::Gdx.app.log(@LOG, \"Resizing
+        game to #{width} by #{height}\")\n        end\n\n        def render\n                LibGDX::Gdx.gl.glClearColor(0,
+        0, 0, 0)\n                LibGDX::Gdx.gl.glClear(LibGDX::GL20.GL_COLOR_BUFFER_BIT)\n        end\n\n        def
+        pause\n                LibGDX::Gdx.app.log(@LOG, \"Pausing\")\n        end\n\n        def
+        resume\n                LibGDX::Gdx.app.log(@LOG, \"resuming\")\n        end\n\n    def
+        dispose\n            LibGDX::Gdx.app.log(@LOG, \"disposing\")\n    end\nend\n\nlistener
+        = Game.new\n\nwidth = 800\nheight = 600\n\nuseOpenglES2 = false;\n\ngame =
+        LibGDX::LwjglApplication.new(listener, \"Game\", width, height, useOpenglES2)\n</code></pre>\n\n<p>If
+        I run this through jruby it works just fine but if I package it up with warble
+        it skips all of the Game class''s initialization and tells \"AL lib: alc_cleanup:
+        1 device not closed\" and stops.</p>\n\n<p>Does anyone know the proper way
+        to build a libGDX project with jruby and warble?</p>\n\n<p>P.S. I know this
+        seems like a very localized problem but I''m asking how to use jruby and libgdx
+        with warble using my program as an example so... I think it''s more broad
+        then it seems... still getting used to stackexchange.</p>\n"},{"tags":["2d","ruby","libgosu","chingu"],"owner":{"reputation":28,"user_id":34765,"user_type":"registered","profile_image":"https://www.gravatar.com/avatar/cf9b08ae2f9918d11b1707eb1056cfc2?s=128&d=identicon&r=PG","display_name":"mpl","link":"http://gamedev.stackexchange.com/users/34765/mpl"},"is_answered":true,"view_count":375,"closed_date":1378314053,"accepted_answer_id":61683,"answer_count":1,"score":5,"last_activity_date":1378425584,"creation_date":1378088205,"last_edit_date":1378425584,"question_id":61613,"link":"http://gamedev.stackexchange.com/questions/61613/create-extra-bullets-offset-according-to-angle-of-spaceship","closed_reason":"duplicate","title":"Create
+        extra bullets, offset according to angle of spaceship?","body":"<p>I am trying
+        to create a weapons upgrade for my Spaceship, using libGosu and Chingu (in
+        Ruby). This question is about how to deal with this issue specifically in
+        Ruby, and more specifically in libGosu.</p>\n\n<p>In the player class I have
+        tried several variations of the following:</p>\n\n<pre><code>def fire\n  Bullet.create(:x
+        =&gt; @x, :y =&gt; @y, :angle =&gt; @angle)\n  Bullet.create(:x =&gt; @x +
+        Gosu::offset_x(90, 25), :y =&gt; @y + Gosu::offset_y(@angle, 0), :angle =&gt;
+        @angle)\nend\n</code></pre>\n\n<p>It sort of works, but not exactly how it
+        ideally should. For reference, this is what the Bullet class looks like:</p>\n\n<pre><code>class
+        Bullet &lt; Chingu::GameObject\n  def initialize(options)\n    super(options.merge(:image
+        =&gt; Gosu::Image[\"assets/laser.png\"]))\n    @speed = 7\n    self.velocity_x
+        = Gosu::offset_x(@angle, @speed)\n    self.velocity_y = Gosu::offset_y(@angle,
+        @speed)\n  end\n\n  def update\n    @y += self.velocity_y\n    @x += self.velocity_x\n  end\nend\n</code></pre>\n\n<p>How
+        should I construct \"def fire\" in order to get the extra bullets to align
+        properly when the spaceship rotates?</p>\n\n<p><img src=\"http://i44.tinypic.com/2rym68h.png\"
+        alt=\"good\"></p>\n\n<p>In the first image (above) the bullets are separated
+        as intended.</p>\n\n<p><img src=\"http://i40.tinypic.com/23hkbc1.png\" alt=\"bad\"></p>\n\n<p>In
+        the second image the bullets are clumping together when the spaceship is rotated.</p>\n"},{"tags":["2d","collision-detection","ruby","libgosu","chingu"],"owner":{"reputation":28,"user_id":34765,"user_type":"registered","profile_image":"https://www.gravatar.com/avatar/cf9b08ae2f9918d11b1707eb1056cfc2?s=128&d=identicon&r=PG","display_name":"mpl","link":"http://gamedev.stackexchange.com/users/34765/mpl"},"is_answered":true,"view_count":113,"answer_count":2,"score":0,"last_activity_date":1378462209,"creation_date":1378173900,"question_id":61657,"link":"http://gamedev.stackexchange.com/questions/61657/how-to-cancel-out-simultaneous-collisions-in-libgosu","title":"How
+        to cancel out simultaneous collisions in libGosu?","body":"<p>I am working
+        on an Asteroids remake. When the player''s bullets hit a large meteor, it
+        should break apart into 2 smaller meteors. This works when the player is only
+        firing one bullet, but when the player''s weapon is upgraded, shooting multiple
+        bullets, sometimes two bullets hit the same meteor at the same time, causing
+        it to break into 4 smaller meteors, not 2 as intended.</p>\n\n<p>Is there
+        a way to cancel out one of the collisions when there are two simultaneous
+        collisions - or a way to omit the creation of the unwanted extra meteors when
+        two bullets hit the same meteor at the same time?</p>\n\n<p>Here is how I
+        have the collision detection set up currently:</p>\n\n<pre><code>Bullet.each_collision(Meteor1)
+        do |bullet, meteor|\n  Explosion.create(:x =&gt; meteor.x, :y =&gt; meteor.y)\n  Meteor2.create(:x
+        =&gt; meteor.x, :y =&gt; meteor.y)\n  Meteor2.create(:x =&gt; meteor.x, :y
+        =&gt; meteor.y)\n  meteor.destroy\n  bullet.destroy\n  @score += 100\n  Sound[\"media/audio/explosion.ogg\"].play(0.2)\nend\n</code></pre>\n\n<p>Following
+        are screenshots demonstrating the situation:</p>\n\n<p><img src=\"http://i44.tinypic.com/2k4fbb.png\"
+        alt=\"pre-collision, 1 bullet\">\n<img src=\"http://i44.tinypic.com/288m4bl.png\"
+        alt=\"post-collision, 1 bullet\"></p>\n\n<p>In the first two images (above)
+        the player fires one bullet at a time, the large meteor breaks into two smaller
+        meteors, and the score increases by 100.</p>\n\n<p><img src=\"http://i40.tinypic.com/2vlrud2.png\"
+        alt=\"pre-collision, 3 bullets\">\n<img src=\"http://i39.tinypic.com/33mr53k.png\"
+        alt=\"post-collision, 3 bullets\"></p>\n\n<p>In the last two images, the player
+        fires three bullets at a time, the large meteor breaks apart into four smaller
+        meteors, and the score increases by 200, due to a simultaneous collision.</p>\n"},{"tags":["ruby"],"owner":{"reputation":103,"user_id":8327,"user_type":"registered","profile_image":"https://www.gravatar.com/avatar/07c6d80877048575e88e31e71111a64c?s=128&d=identicon&r=PG","display_name":"Joern
+        Akkermann","link":"http://gamedev.stackexchange.com/users/8327/joern-akkermann"},"is_answered":true,"view_count":354,"accepted_answer_id":14303,"answer_count":2,"score":0,"last_activity_date":1382945155,"creation_date":1309362573,"question_id":14302,"link":"http://gamedev.stackexchange.com/questions/14302/railgun-ruby-is-there-a-documentation","title":"Railgun
+        Ruby - is there a documentation?","body":"<p>I finally found Railgun Ruby
+        on the web and installed it.</p>\n\n<p>But I cannot find any documentations.</p>\n\n<p>Does
+        anyone have played around with it? Does anyone still have a good documentation
+        about it?</p>\n\n<p>I''d like to have a look at what it can do.</p>\n\n<p>Thanks.</p>\n\n<p>Yours,
+        Joern.</p>\n"},{"tags":["java","libgdx","controllers","ruby"],"owner":{"reputation":66,"user_id":29365,"user_type":"registered","profile_image":"https://www.gravatar.com/avatar/2f33ebfefa7ed2cc3838c1a548ed639f?s=128&d=identicon&r=PG","display_name":"Evan
+        Walsh","link":"http://gamedev.stackexchange.com/users/29365/evan-walsh"},"is_answered":false,"view_count":190,"closed_date":1429543664,"answer_count":0,"score":5,"last_activity_date":1388810721,"creation_date":1388810721,"question_id":68313,"link":"http://gamedev.stackexchange.com/questions/68313/libgdx-controllers-how-to-fix-crashes-in-jruby","closed_reason":"off-topic","title":"LibGDX
+        controllers: how to fix crashes in JRuby?","body":"<p>I''m using JRuby with
+        LibGDX and it''s been going quite swimmingly, save for a crash I experience
+        every time I try to use the controllers extension.</p>\n\n<p>Here''s a basic
+        rundown: </p>\n\n<ol>\n<li>I''ve required all the related jars (<code>gdx-controllers.jar</code>,
+        <code>gdx-controllers-desktop.jar</code>, and <code>gdx-controllers-desktop-natives.jar</code>).</li>\n<li>I''ve
+        imported the controllers package via <code>import \"com.badlogic.gdx.controllers\"</code>.</li>\n<li>I
+        call <code>Controllers.controllers</code>, which goes to the <a href=\"https://github.com/libgdx/libgdx/blob/master/extensions/gdx-controllers/gdx-controllers/src/com/badlogic/gdx/controllers/Controllers.java#L47\">getControllers</a>
+        method.</li>\n<li><p>My game crashes with this error:</p>\n\n<p><code>\nlibc++abi.dylib:
+        terminating with uncaught exception of type OIS::Exception: CocoaInputManager::_parseConfigSettings
+        &gt;&gt; Unable to find a window or event target\n</code></p></li>\n</ol>\n\n<p>I
+        think the error is due to a lack of a view being passed to OIS library (<a
+        href=\"http://hg.skewedaspect.com/ois-ogre/src/5ce7d2308b26b6e204b2ecf5b4fea5ae93e8010a/src/mac/CocoaInputManager.mm#cl-41\">here''s
+        an online view of a related source</a>).</p>\n\n<p>How do I prevent the controllers
+        extension from crashing my game? More importantly, how do I make it <em>work</em>?
+        :)</p>\n"},{"tags":["sprites","ruby","rpg-maker-xp"],"owner":{"reputation":26,"user_id":42845,"user_type":"registered","profile_image":"https://www.gravatar.com/avatar/2bc754fdad764a3d579513a16c68ce5f?s=128&d=identicon&r=PG","display_name":"Gus","link":"http://gamedev.stackexchange.com/users/42845/gus"},"is_answered":true,"view_count":47,"accepted_answer_id":71219,"answer_count":1,"score":0,"last_activity_date":1393705203,"creation_date":1393637927,"question_id":71175,"link":"http://gamedev.stackexchange.com/questions/71175/how-can-i-get-the-width-and-height-of-a-picture","title":"How
+        can I get the width and height of a picture?","body":"<p>I''m trying to make
+        a script on RPG Maker XP that needs the width and height of an image to do
+        some calculations. I tried <code>@picture.bitmap.width</code>and <code>@picture.bitmap.height</code>
+        but it returned the width and height of the image that is being shown in the
+        screen. </p>\n\n<p>For instance, if the image is 800 pixels height, and the
+        image takes 400 pixels in the screen, <code>@picture.bitmap.height</code>
+        will only return 400.\nThis is the code I''m using:</p>\n\n<pre><code>@picture
+        = Sprite.new\n@picture.bitmap = RPG::Cache.picture(\"picture\")\n@pictureWidth
+        = @picture.bitmap.width\n@pictureHeight = @picture.bitmap.height\n</code></pre>\n"},{"tags":["ruby","rpg-maker-xp"],"owner":{"reputation":26,"user_id":42845,"user_type":"registered","profile_image":"https://www.gravatar.com/avatar/2bc754fdad764a3d579513a16c68ce5f?s=128&d=identicon&r=PG","display_name":"Gus","link":"http://gamedev.stackexchange.com/users/42845/gus"},"is_answered":true,"view_count":1205,"accepted_answer_id":72131,"answer_count":1,"score":1,"last_activity_date":1395195906,"creation_date":1394944826,"question_id":71993,"link":"http://gamedev.stackexchange.com/questions/71993/how-can-i-copy-move-a-file-from-a-folder-to-another-with-rgss","title":"How
+        can I copy/move a file from a folder to another with RGSS?","body":"<p>I''ve
+        been trying to do this but I can only find Ruby answers. I''m trying to move
+        or copy a file from, say, <code>Game Directory/Graphics/Pictures/file.png</code>
+        to <code>Game Directory/file.png</code>. How can I do this in RGSS?</p>\n"},{"tags":["mathematics","libgdx","mouse","trigonometry","ruby"],"owner":{"reputation":66,"user_id":29365,"user_type":"registered","profile_image":"https://www.gravatar.com/avatar/2f33ebfefa7ed2cc3838c1a548ed639f?s=128&d=identicon&r=PG","display_name":"Evan
+        Walsh","link":"http://gamedev.stackexchange.com/users/29365/evan-walsh"},"is_answered":true,"view_count":181,"accepted_answer_id":72238,"answer_count":2,"score":1,"last_activity_date":1395367597,"creation_date":1393554522,"last_edit_date":1394199647,"question_id":71121,"link":"http://gamedev.stackexchange.com/questions/71121/how-can-i-fix-my-sprite-being-rotated-90-degrees-more-than-toward-the-mouse","title":"How
+        can I fix my sprite being rotated 90 degrees more than toward the mouse?","body":"<p>I
+        am trying to get a Sprite in LibGDX to look at the player''s mouse. Here''s
+        the code I have (mind you, I am using JRuby):</p>\n\n<pre><code>target = mouse_position.sub(spatial.position)\nrotation
+        = MathUtils.atan2(target.y, target.x)\nspatial.rotation = rotation * MathUtils.radiansToDegrees\n</code></pre>\n\n<p>This
+        is definitely doing <em>something</em>, but it''s not completely correct.
+        Here''s a GIF of what it looks like in action:</p>\n\n<p><img src=\"http://i.stack.imgur.com/0NGOw.gif\"
+        alt=\"Rotation gone wrong\"></p>\n\n<p>Where am I going wrong?</p>\n"},{"tags":["collision-detection","ruby"],"owner":{"reputation":3,"user_id":46739,"user_type":"unregistered","profile_image":"https://www.gravatar.com/avatar/c5be4747210bf91117d2a0c8331ef36a?s=128&d=identicon&r=PG","display_name":"Player","link":"http://gamedev.stackexchange.com/users/46739/player"},"is_answered":true,"view_count":63,"accepted_answer_id":76103,"answer_count":1,"score":0,"last_activity_date":1401886023,"creation_date":1401884655,"question_id":76101,"link":"http://gamedev.stackexchange.com/questions/76101/from-where-does-the-game-engines-add-location-of-an-object","title":"From
+        where does the game engines add location of an object?","body":"<p>I have
+        started making my first game( a pong game )with ruby (Gosu). I''m trying to
+        detect the collision of two images using their location by comparing the location
+        of the object (a ball) to another one(a player).</p>\n\n<p>For example:</p>\n\n<pre
+        class=\"lang-ruby prettyprint-override\"><code>if  (@player.x - @ball.x).abs
+        &lt;=184 &amp;&amp; (@player.y - @ball.y).abs &lt;= 40\n            @ball.vx
+        = -@ball.vx\n            @ball.vy = -@ball.vy\n</code></pre>\n\n<p>But my
+        problem is that with these numbers, the ball collides near the player sometimes,
+        even though the dimensions of the player are correct.</p>\n\n<p>So my question
+        is from where does the x values start to count? Is it from the center of gravity
+        of the image or from the beginning of the image? (i.e When you add the image
+        on a specific x,y,z what are these values compared to the image?</p>\n"},{"tags":["collision-detection","ruby","libgosu"],"owner":{"reputation":103,"user_id":48131,"user_type":"registered","profile_image":"http://i.stack.imgur.com/OFLQf.jpg?s=128&g=1","display_name":"Mhmd","link":"http://gamedev.stackexchange.com/users/48131/mhmd"},"is_answered":true,"view_count":112,"accepted_answer_id":77649,"answer_count":1,"score":0,"last_activity_date":1402762009,"creation_date":1402754870,"last_edit_date":1402761443,"question_id":77644,"link":"http://gamedev.stackexchange.com/questions/77644/collision-detection-in-ruby","title":"Collision
+        detection in ruby","body":"<p>I''m making a simple pong game in ruby.</p>\n\n<p>I
+        did the collision detection this way:</p>\n\n<pre><code>def collides_with(player)\n      ((@x
+        + @image.width &gt;= player.x) &amp;&amp; (@x &lt;= player.x + player.image.width))
+        &amp;&amp; ((@y + @image.height &gt;= player.y) &amp;&amp; (@y &lt;= player.y
+        + player.image.height))\nend\n</code></pre>\n\n<p>If this is true I multiply
+        the ball''s y coordinate by -1 (to change its direction):</p>\n\n<p><code>@ball.vy
+        *= -1</code></p>\n\n<p>This is working as expected, except in one case when
+        the ball reaches the left (or right) side of the paddle while it''s moving.
+        this will cause the ball to move into the inside of the paddle,which seems
+        strange.</p>\n\n<p>What should I do to fix this?</p>\n"},{"tags":["2d","ruby","libgosu"],"owner":{"reputation":13,"user_id":39097,"user_type":"registered","profile_image":"https://www.gravatar.com/avatar/22581b8ea7b10b7edb6b398cc1048d2c?s=128&d=identicon&r=PG","display_name":"ekharrtoll","link":"http://gamedev.stackexchange.com/users/39097/ekharrtoll"},"is_answered":true,"view_count":252,"accepted_answer_id":65981,"answer_count":2,"score":2,"last_activity_date":1409301146,"creation_date":1384700816,"question_id":65968,"link":"http://gamedev.stackexchange.com/questions/65968/finding-tilex-and-tiley-based-on-x-and-y-and-vice-versa-in-isometric-2d-view","title":"Finding
+        tileX and tileY based on x and y (and vice versa) in isometric 2D view","body":"<p>I''m
+        working on 2d Isometric game in ruby and gosu, although my problem is probably
+        universal. My map is saved in 2d array:</p>\n\n<pre><code>@map_tiles[layer][y][x]
+        = tile_id\n</code></pre>\n\n<p>Each tile is displayed on coordinates:</p>\n\n<pre><code>isoX
+        = (x * @tile_width/2) - (y * @tile_height)\nisoY = ((x * @tile_width/2) +
+        (y * @tile_height)) / 2\n</code></pre>\n\n<p>So it''s displayed in \"diamond\"
+        like way. But I''m having a problem with calculating two things. \n- Entity''s
+        tile_x and tile_y (on which tile is the entity positioned) when given x and
+        y, and;\n- Entity''s x and y when I''m sending it''s tile_x and tile_y.</p>\n\n<p>One
+        method is pretty much the other one reversed. I tried various methods I found
+        over internet, but either I''m doing something wrong, or I don''t understand
+        the instructions correctly. The closest I got is:</p>\n\n<pre><code>@x = (tile_x
+        * 32) - (tile_y*32)\n@y = ((tile_x * 32) + (tile_y * 32) / 2)\n</code></pre>\n\n<p>for
+        finding @x and @y based on tiles (player \"teleportation\" method), and </p>\n\n<pre><code>@tile_x
+        = ((@x / 32) + (@y / 32)) / 2\n@tile_y = ((@y / 16) - (@x / 32)) / 2\n</code></pre>\n\n<p>But
+        they kinda don''t work correctly.<br>\n- When I send player to tile position
+        (4, 3), he is displayed at (5, 4), and after recalculating it''s tile_x/y
+        position, printing says it is at tiles (3,5)<br>\n- When I send player to
+        tile position (3, 4), he is displayed at (4, 5), and after recalculating it''s
+        tile_x/y position, printing says it is at tiles (2,5)<br>\n- When I send player
+        to tile position (4, 2), he is displayed at (5, 3), and after recalculating
+        it''s tile_x/y position, printing says it is at tiles (2,5)    </p>\n\n<p>So
+        you can clearly see that something''s not right here.</p>\n\n<p>That''s pretty
+        much it, thanks in advance. I can post the code on github if it''s neccessary,
+        but I reckon the problem lies in what I posted.</p>\n"},{"tags":["ruby"],"owner":{"reputation":337,"user_id":2036,"user_type":"registered","profile_image":"https://www.gravatar.com/avatar/e0ecc3e9a89ca8ac6e9d19cf2d6e1122?s=128&d=identicon&r=PG","display_name":"bennybdbc","link":"http://gamedev.stackexchange.com/users/2036/bennybdbc"},"is_answered":true,"view_count":28882,"closed_date":1369406920,"accepted_answer_id":3586,"answer_count":9,"score":31,"last_activity_date":1414172438,"creation_date":1283683578,"last_edit_date":1414172438,"question_id":3574,"link":"http://gamedev.stackexchange.com/questions/3574/is-ruby-a-suitable-language-for-game-development","closed_reason":"not
+        constructive","title":"Is ruby a suitable language for game development?","body":"<p>I
+        want to move into some game development, but the only language I know really
+        well is Ruby. Most of what I have read seems to point towards lower level
+        languages like C++ for game development, or languages for specific frameworks
+        like C# for using XNA. Does anyone have any experience using a language like
+        ruby for game development? If so, would you advise for or against it?</p>\n"},{"tags":["movement","maps","grid","ruby"],"owner":{"reputation":1,"user_id":60579,"user_type":"registered","profile_image":"https://www.gravatar.com/avatar/6756324492ecdecf05f92fef069a8db3?s=128&d=identicon&r=PG&f=1","display_name":"user3213110","link":"http://gamedev.stackexchange.com/users/60579/user3213110"},"is_answered":false,"view_count":84,"answer_count":0,"score":0,"last_activity_date":1423766552,"creation_date":1423766552,"question_id":93961,"link":"http://gamedev.stackexchange.com/questions/93961/how-to-make-a-grid-layout-in-ruby-gosu","title":"How
+        to make a grid layout in Ruby (Gosu)?","body":"<p>So I''m attempting to make
+        a simple Snake game. However, there''s one major problem with that - I don''t
+        know how to make my playing field as a grid.</p>\n\n<p>So far I''ve split
+        my snake into segemnts, which are drawn every time it eats an apple. My turn
+        method looks like that (it''s analogical for every direction pretty much):</p>\n\n<pre><code>if
+        @direction == :right\n  x = @head.x + @speed\n  y = @head.y\n  new_segment
+        = Segment.new(@window, self, [x, y])\nend\n</code></pre>\n\n<p>with new_segment
+        being immediately pushed into the array <code>segments</code>.</p>\n\n<p>The
+        problem with that is that the snake is too independant. I''d like to make
+        it move in predetermined rows and columns a.k.a make myself a grid. Could
+        somoene help me with that? Thank you!</p>\n"}],"has_more":false,"quota_max":10000,"quota_remaining":9999}'
+    http_version: 
+  recorded_at: Mon, 17 Aug 2015 23:03:19 GMT
+recorded_with: VCR 2.9.3

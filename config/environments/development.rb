@@ -15,7 +15,7 @@ Rubygamedev::Application.configure do
 
   # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = false
-  config.action_mailer.default_url_options = { host: 'rubygamedev.dev' }
+  config.action_mailer.default_url_options = { host: "rubygamedev.dev" }
 
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
@@ -28,5 +28,5 @@ Rubygamedev::Application.configure do
   # number of complex assets.
   config.assets.debug = true
 
-  Rails.application.routes.default_url_options[:host] = 'rubygamedev.dev'
+  Rails.application.routes.default_url_options[:host] = "rubygamedev.dev"
 end

@@ -17,7 +17,7 @@
 # Ignore database backups
 *.dump
 *.sql
-
+*.rdb
 # Ignore all logfiles and tempfiles.
 /log/*.log
 /tmp

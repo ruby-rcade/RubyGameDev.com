@@ -1,8 +1,7 @@
-PostPolicy = Struct.new(:user, :post) do
-
+InternalPostPolicy = Struct.new(:user, :internal_post) do
   def update?
     return false unless user
-    user.admin? || post.user == user
+    user.admin? || internal_post.user == user
   end
 
   def destroy?

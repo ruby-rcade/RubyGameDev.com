@@ -92,6 +92,10 @@ ActiveRecord::Schema.define(version: 20150819100905) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "user_display_name"
+    t.string   "source_url"
+    t.integer  "external_id"
+    t.string   "type",              default: "InternalPost"
   end
 
   add_index "posts", ["user_id"], name: "index_posts_on_user_id"

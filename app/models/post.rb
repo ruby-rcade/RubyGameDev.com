@@ -1,40 +1,33 @@
 class Post < ActiveRecord::Base
-  belongs_to :user
   has_and_belongs_to_many :tags
-  has_many :comments, as: :parent
+  validates :title, presence: true
+  after_create :notify_twitter
+  after_save :create_tags_from_tag_string
 
   has_many :votes
   has_many :voted_users, through: :votes, source: :user, class_name: 'User'
 
-  validates_presence_of :user, :title, :body_markdown
+  scope :internal_post, -> { where(type: "InternalPost") }
+  scope :external_post, -> { where(type: "ExternalPost") }
 
-  before_save do
-    parser = Redcarpet::Markdown.new(Redcarpet::Render::HTML, autolink: true)
-    self.body_html = parser.render(body_markdown)
+  def types
+    %w(ExternalPost InternalPost)
   end
 
-  after_create :notify_twitter
-  # TODO: move this to background job
-  def notify_twitter
-    if Rails.env.production?
-      $twitter_client.update(tweet_content)
-    end
+  def external_post?
+    type == "ExternalPost"
   end
 
-  after_save :create_tags_from_tag_string
-  def tweet_content
-    url = Rails.application.routes.url_helpers.post_short_link_url(self, host: 'rbga.me')
-    url = " #{url}"
-    max_title_length = 140 - url.length
-    title[0...max_title_length] + url
+  def internal_post?
+    type == "InternalPost"
   end
 
-  def add_vote(user)
-    Vote.find_or_create_by!(post_id: id, user_id: user.id)
+  def username
+    raise 'Must be implemented by subclass'
   end
 
-  def has_voted?(user)
-    Vote.exists?(post_id: id, user_id: user.id)
+  def number_of_comments
+    raise 'Must be implemented by subclass'
   end
 
   def tags_string
@@ -44,11 +37,12 @@ class Post < ActiveRecord::Base
   def tags_string=(value)
     @tags_list = []
     value.strip.downcase.split(/, *| +/).each do |tag|
-      @tags_list << tag.strip
+      @tags_list.push(tag.strip)
     end
     @tags_list = @tags_list.uniq
   end
 
+  # Called after save
   def create_tags_from_tag_string
     return unless @tags_list.present?
     tags.clear
@@ -60,6 +54,27 @@ class Post < ActiveRecord::Base
       else
         tags.create!(title: tag_title, user_id: user_id)
       end
+    end
+  end
+
+  def add_vote(user)
+    Vote.find_or_create_by!(post_id: id, user_id: user.id)
+  end
+
+  def has_voted?(user)
+    Vote.exists?(post_id: id, user_id: user.id)
+  end
+
+  def tweet_content
+    url = Rails.application.routes.url_helpers.post_short_link_url(self, host: 'rbga.me')
+    url = " #{url}"
+    max_title_length = 140 - url.length
+    title[0...max_title_length] + url
+  end
+
+  def notify_twitter
+    if Rails.env.production?
+      $twitter_client.update(tweet_content)
     end
   end
 

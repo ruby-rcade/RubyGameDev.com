@@ -1,6 +1,7 @@
 FactoryGirl.define do
   factory :comment do
     user
-    parent { create :post }
+    body "hello this is the body of comment"
+    association :parent, factory: :internal_post
   end
 end

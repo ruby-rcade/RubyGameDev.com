@@ -8,14 +8,13 @@ class PostsController < ApplicationController
     if params[:search].present?
       @posts = Post.search(params[:search])
     else
-      @posts = Post.all
+      @posts = Post.all.order('created_at DESC')
     end
   end
 
   # GET /posts/1
   # GET /posts/1.json
   def show
-    # @comment = @post.comments.build
     @comment = Comment.new
     @comment.parent = @post
   end
@@ -32,13 +31,13 @@ class PostsController < ApplicationController
   # POST /posts
   # POST /posts.json
   def create
-    @post = Post.new(post_params)
+    @post = InternalPost.new(post_params)
     @post.user = current_user
 
     respond_to do |format|
       if @post.save
-        format.html { redirect_to @post, notice: 'Post was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @post }
+        format.html { redirect_to post_path(@post), notice: 'Post was successfully created.' }
+        format.json { render action: 'show', status: :created, location: post_path(@post) }
       else
         format.html { render action: 'new' }
         format.json { render json: @post.errors, status: :unprocessable_entity }
@@ -52,7 +51,7 @@ class PostsController < ApplicationController
     authorize @post
     respond_to do |format|
       if @post.update(post_params)
-        format.html { redirect_to @post, notice: 'Post was successfully updated.' }
+        format.html { redirect_to post_path(@post), notice: 'Post was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -81,17 +80,21 @@ class PostsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_post
-      @post = Post.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def post_params
-      params.require(:post).permit(
-        :title,
-        :body_markdown,
-        :user_id,
-        :tags_string)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_post
+    @post = Post.find(params[:id])
+  end
+
+  def post_type
+    @type = params[:type] || "InternalPost"
+  end
+
+  # Never trust parameters from the scary internet,
+  # only allow the white list through.
+
+  def post_params
+    params.require(post_type.underscore.to_sym).
+      permit(:title, :body_markdown, :user_id, :tags_string)
+  end
 end

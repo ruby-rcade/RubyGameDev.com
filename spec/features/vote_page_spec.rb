@@ -4,7 +4,7 @@ describe "Vote creating" do
   before do
     # Sign in
     @user = create_and_sign_in_user
-    @post = FactoryGirl.create(:post)
+    @post = FactoryGirl.create(:internal_post)
 
     # Go to account page
     visit '/'
