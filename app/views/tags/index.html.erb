@@ -1,0 +1,9 @@
+<h1>Tags List</h1>
+
+<div class="tags-container container-fluid">
+  <div class="row">
+    <% @tags.each do |tag| %>
+      <div class="tags-list"><%= link_to tag.title, tag %></div>
+    <% end %>
+  </div>
+</div>
