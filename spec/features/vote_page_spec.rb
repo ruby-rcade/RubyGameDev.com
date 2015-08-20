@@ -16,6 +16,7 @@ describe "Vote creating" do
   end
 
   it "doesn't allow user to vote again on the same post" do
-    expect(page).to have_css('.warning')
+    find('.vote-count a').click
+    expect(page).not_to have_css('.vote-count a')
   end
 end
