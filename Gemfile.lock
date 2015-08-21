@@ -52,7 +52,7 @@ GEM
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
-    celluloid (0.16.1)
+    celluloid (0.16.0)
       timers (~> 4.0.0)
     chronic (0.10.2)
     clearance (1.10.1)
@@ -357,4 +357,4 @@ DEPENDENCIES
   whenever
 
 BUNDLED WITH
-   1.10.5
+   1.10.6
