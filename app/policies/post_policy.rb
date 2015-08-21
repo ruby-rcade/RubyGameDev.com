@@ -1,5 +1,4 @@
 PostPolicy = Struct.new(:user, :post) do
-
   def update?
     return false unless user
     user.admin? || post.user == user
