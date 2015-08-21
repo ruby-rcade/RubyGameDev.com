@@ -24,7 +24,7 @@
   <div class="body">
     <%= raw @post.body_html %>
     <% if @post.external_post? %>
-      <p><%= link_to 'Visit Website', @post.external_url %></p>
+      <p><%= link_to 'Visit Website', @post.source_url %></p>
     <% end %>
   </div>
 
