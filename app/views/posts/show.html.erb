@@ -12,7 +12,7 @@
   </h1>
 
   <p>
-    Posted by: <%= @post.user.username %> on <%= @post.created_at.strftime("%m/%d/%Y") %>
+    Posted by: <%= @post.username %> on <%= @post.created_at.strftime("%m/%d/%Y") %>
     <% if policy(@post).update? %>
       | <%= link_to 'Edit', edit_post_path(@post) %>
     <% end %>
@@ -23,14 +23,19 @@
 
   <div class="body">
     <%= raw @post.body_html %>
+    <% if @post.external_post? %>
+      <p><%= link_to 'Visit Website', @post.external_url %></p>
+    <% end %>
   </div>
 
   <%= render 'tags', post: @post %>
 
-  <h2>Comments</h2>
-  <%= render 'comments/form' %>
+  <% unless @post.external_post? %>
+    <h2>Comments</h2>
+    <%= render 'comments/form' %>
 
-  <% @post.comments.each do |comment| %>
-    <%= render comment %>
+    <% @post.comments.each do |comment| %>
+      <%= render comment %>
+    <% end %>
   <% end %>
 </div>
