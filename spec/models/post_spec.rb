@@ -6,13 +6,6 @@ describe Post do
   let(:post) { FactoryGirl.create :external_post }
   let(:post2) { FactoryGirl.create :external_post }
 
-  it "checks if a tag title question already exists in other posts" do
-    post.create_question_tag
-    post2.create_question_tag
-    all_tag_titles = Tag.all.map(&:title)
-    expect(all_tag_titles).to match_array ["question"]
-  end
-
   describe "#notify_twitter" do
     subject { FactoryGirl.build(:internal_post) }
 
