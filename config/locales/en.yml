@@ -21,3 +21,5 @@
 
 en:
   hello: "Hello world"
+  post:
+    latest_post: "Latest Post"
