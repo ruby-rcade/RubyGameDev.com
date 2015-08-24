@@ -1,5 +1,23 @@
 <div class="vote-count row-centered">
-  <div class="warning">
-    <span><%= show_votes(post) %></span><br>
-  </div>
+  <% if current_user %>
+    <% if post.has_voted?(current_user) %>
+      <div class="warning">
+        <span class="glyphicon glyphicon-chevron-up"></span><br/>
+        <span><%= post.votes.count %></span><br>
+        <span class="small">votes</span>
+      </div>
+    <% else %>
+      <%= link_to vote_post_path(post), method: :put do %>
+        <span class="glyphicon glyphicon-chevron-up"></span><br/>
+        <span><%= post.votes.count %></span><br>
+        <span class="small">votes</span>
+      <% end %>
+    <% end %>
+  <% else %>
+    <div>
+      <span class="glyphicon glyphicon-chevron-up"></span><br/>
+      <span><%= post.votes.count %></span><br>
+      <span class="small">votes</span>
+    </div>
+  <% end %>
 </div>

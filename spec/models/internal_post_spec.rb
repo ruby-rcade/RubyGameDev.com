@@ -7,44 +7,6 @@ describe InternalPost do
   it { should validate_presence_of :title }
   it { should validate_presence_of :body_markdown }
 
-  describe "#notify_twitter" do
-    subject { FactoryGirl.build(:internal_post) }
-
-    it "posts to Twitter after create" do
-      expect(subject).to receive(:notify_twitter)
-      subject.save!
-    end
-  end
-
-  describe "#tweet_content" do
-    subject { FactoryGirl.build(:internal_post) }
-
-    it "includes the title in the tweet" do
-      subject.id = "123"
-      subject.title = "This is a test discussion"
-      expect(subject.tweet_content).to match /^This is a test discussion/
-    end
-
-    it "uses the short domain for links" do
-      subject.id = "123"
-      expect(subject.tweet_content).to match %r{http://rbga.me/123$}
-    end
-
-    it "keeps the character limit to 140" do
-      subject.id = "123"
-      subject.title = "a" * 140
-      expect(subject.tweet_content.length).to eq 140
-      expect(
-        subject.tweet_content
-      ).to eq "#{'a' * 121} http://rbga.me/123"
-      subject.id = "1234567890"
-      expect(subject.tweet_content.length).to eq 140
-      expect(
-        subject.tweet_content
-      ).to eq "#{'a' * 114} http://rbga.me/1234567890"
-    end
-  end
-
   describe "#username" do
     let(:internal_post) { FactoryGirl.create(:internal_post) }
 
@@ -113,6 +75,8 @@ describe InternalPost do
 
       @post2.tags_string = "rails, great"
       @post2.create_tags_from_tag_string
+
+      @post3.create_question_tag
 
       all_tag_titles = Tag.all.map(&:title)
       expect(all_tag_titles).to match_array [

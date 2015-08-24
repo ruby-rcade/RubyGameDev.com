@@ -2,16 +2,11 @@
   <tbody>
     <% @posts.each do |post| %>
       <tr>
-        <td> 
+        <td>
           <%= link_to_post(post) %>
           <br><span class="text-muted">Submitted by <%= post.username %> on <%= post.created_at.strftime("%m/%d/%Y") %></span>
-          <div class="tags">
-            <% post.tags.each do |tag| %>
-              <span><%= link_to(tag.title, tags_path) %></span>
-            <% end %>
-          </div>
+          <br><%= render 'posts/tags', post: post %>
         </td>
-
         <td>
           <%= render 'votes/vote', post: post %>
           <span class="badge pull-right" title="<%= pluralize(post.number_of_comments, 'comment') %>"><%= post.number_of_comments %></span>

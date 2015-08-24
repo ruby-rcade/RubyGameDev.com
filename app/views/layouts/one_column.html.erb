@@ -33,12 +33,21 @@
             <%= image_tag 'rubygamedev_logo.png', alt: 'RubyGameDev.com', width: 225, class: 'visible-xs', style: 'margin-top: 8px;' %>
           </a>
         </div>
-        <div class="navbar-collapse collapse">
-          <ul class="nav navbar-nav">
-            <li><%= render 'layouts/language_dropdown' %></li>
-          </ul>
 
-          <ul class="nav navbar-nav navbar-right">
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right pull-right">
+
+            <li class="search">
+              <%= form_tag(posts_path, :method => "get", id: "search-form") do %>
+              <%= text_field_tag :search, params[:search], {placeholder: "Search", class: 'glowing-border'} %>
+              <!-- In order to have the "search" icon in the button, we need to use plain HTML instead of using a Rails form helper -->
+                <button type="submit" class="close submit-search" >
+                  <span class="glyphicon glyphicon-search"></span>
+                </button>
+              <% end %>
+            </li>
+            <li class="lang"><%= render 'layouts/language_dropdown' %></li>
+
             <% if signed_in? %>
               <li></li>
               <li class="dropdown">
@@ -51,8 +60,10 @@
             <% else %>
               <li><%= link_to 'Create Account', sign_up_path %></li>
               <li><%= link_to 'Sign in', sign_in_path %></li>
-            <% end %>
+              <% end %>
+
           </ul>
+
         </div>
       </div>
     </div>
