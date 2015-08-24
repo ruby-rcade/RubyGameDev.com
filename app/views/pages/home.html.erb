@@ -1,3 +1,7 @@
+
+<h1><%=t :hello_world %></h1>
+<p><%= flash[:notice] %></p>
+
 <% if signed_in? and !current_user.dismissed_welcome_message %>
   <div id="welcome_message" class="alert alert-success alert-dismissable">
     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
