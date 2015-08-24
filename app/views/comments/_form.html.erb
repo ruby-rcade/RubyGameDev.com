@@ -19,13 +19,13 @@
       <%= f.text_area :body, class: 'form-control', rows: 5 %>
     </div>
 
-    <%= f.submit 'Add Comment', class: 'btn btn-default' %>
+    <%= f.submit t('comment.add_comment'), class: 'btn btn-default' %>
   <% end %>
 
 <% else %>
 
   <div class="alert alert-info" role="alert">
-    <%= link_to 'Create an Account', sign_up_path %> to participate in the discussion!
+    <%= link_to t('comment.create_account'), sign_up_path %> <%= t('comment.discussion')%>
   </div>
 
 <% end %>

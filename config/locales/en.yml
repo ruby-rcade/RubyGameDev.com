@@ -23,3 +23,7 @@ en:
   hello: "Hello world"
   post:
     latest_post: "Latest Post"
+  comment:
+    add_comment: "Add Comment"
+    discussion: "to participate in the discussion!"
+    create_account: "Create an Account"
