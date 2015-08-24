@@ -20,5 +20,6 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello_world: Hello world!
-  hello_flash: Hello flash!
+  hello: "Hello world"
+  post:
+    latest_post: "Latest Post"
