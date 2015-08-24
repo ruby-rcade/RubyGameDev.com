@@ -22,8 +22,26 @@
 en:
   hello: "Hello world"
   post:
-    latest_post: "Latest Post"
+    latest_post: "Latest Post"#pendiente de revisar
+    tag: "Tags"
+    title: "title"
+    body_markdown: "body_markdown"
+    edit_post: "Editing Post"
+    result: "No result found"
+    new_post: "New Post"
+    welcome: "Welcome to RubyGameDev.com, the community-driven, information hub which helps others to build games in Ruby! First time here? "
   comment:
     add_comment: "Add Comment"
     discussion: "to participate in the discussion!"
     create_account: "Create an Account"
+  digest_email:
+    digest: "Digest Email"
+    subscribe: "You are signed up to receive"
+    daily: " Daily"
+    weekly: " Weekly"
+    monthly: " Monthly"
+    email_example: "email@example.com"
+    subscribe_email: "Subscribe"
+  social_network:
+    github: "Help Out on GitHub"
+    twitter: "Follow %{count}"

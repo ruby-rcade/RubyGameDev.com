@@ -1,7 +1,7 @@
 <% if signed_in? and !current_user.dismissed_welcome_message %>
   <div id="welcome_message" class="alert alert-success alert-dismissable">
     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-    Welcome to RubyGameDev.com, the community-driven, information hub which helps others to build games in Ruby! First time here? <%= link_to 'Learn More', about_page_path, class: 'alert-link' %>.
+    <%= t('post.welcome') %><%= link_to 'Learn More', about_page_path, class: 'alert-link' %>.
   </div>
   <%= form_for current_user, remote: true do |f| %>
     <%= f.hidden_field :dismissed_welcome_message, value: 1 %>
@@ -13,8 +13,8 @@
 
     <div class="panel panel-default">
       <div class="panel-body">
-        <%= link_to 'New Post', new_post_path, class: 'btn btn-primary pull-right' %>
-        <%= link_to 'Tags', tags_path, class: 'btn btn-primary pull-right tag-btn' %>
+        <%= link_to t('post.new_post'), new_post_path, class: 'btn btn-primary pull-right' %>
+        <%= link_to t('post.tag'), tags_path, class: 'btn btn-primary pull-right tag-btn' %>
         <h2><%= t('post.latest_post') %></h2>
         <%= render 'posts/list' %>
       </div>
@@ -27,9 +27,9 @@
     <% if signed_in? %>
       <div class="panel panel-default">
         <div class="panel-body">
-          <h2>Digest Email</h2>
+          <h2><%= t('digest_email.digest') %></h2>
           <% if current_user.digest_subscriber %>
-            <p>You are signed up to receive <strong><%= current_user.digest_frequency %></strong> digest emails.</p>
+            <p><%= t('digest_email.subscribe') %><strong><%= t("digest_email.#{ current_user.digest_frequency }") %></strong> digest emails.</p>
           <% else %>
             <p>Sign up for an email digest so you never miss a thing!</p>
             <%= form_for current_user, html: {id:'digest_signup_form', class: 'form-inline'} do |f| %>
@@ -37,19 +37,19 @@
               <%= f.hidden_field :digest_subscriber, value: 1 %>
               <p>
                 <label class="radio-inline">
-                  <input type="radio" name="user[digest_frequency]" value="daily" checked> Daily
+                  <input type="radio" name="user[digest_frequency]" value="daily" checked><%= t('digest_email.daily') %>
                 </label>
                 <label class="radio-inline">
-                  <input type="radio" name="user[digest_frequency]" value="weekly"> Weekly
+                  <input type="radio" name="user[digest_frequency]" value="weekly"><%= t('digest_email.weekly') %>
                 </label>
                 <label class="radio-inline">
-                  <input type="radio" name="user[digest_frequency]" value="monthly"> Monthly
+                  <input type="radio" name="user[digest_frequency]" value="monthly"><%= t('digest_email.monthly') %>
                 </label>
               </p>
               <div class="form-group">
-                <input type="email" name="user[email]" class="form-control" placeholder="email@example.com">
+                <input type="email" name="user[email]" class="form-control" placeholder=<%= t('digest_email.email_example') %>
               </div>
-              <%= f.submit 'Subscribe', class: 'btn btn-primary' %>
+              <%= f.submit t('digest_email.subscribe_email'), class: 'btn btn-primary' %>
             <% end %>
           <% end %>
         </div>
@@ -58,8 +58,8 @@
 
     <div class="panel panel-default">
       <div class="panel-body text-center">
-        <%= link_to 'Help Out on GitHub', 'https://github.com/ruby-rcade/RubyGameDev.com', class: 'btn btn-sm btn-primary', style: 'vertical-align: top' %>
-        <a href="https://twitter.com/RubyGameDev" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @RubyGameDev</a>
+        <%= link_to t('social_network.github'), 'https://github.com/ruby-rcade/RubyGameDev.com', class: 'btn btn-sm btn-primary', style: 'vertical-align: top' %>
+        <a href="https://twitter.com/RubyGameDev" class="twitter-follow-button" data-show-count="false" data-size="large"><%= t("social_network.twitter", count: "@RubyGameDev") %></a>
         <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
       </div>
     </div>
