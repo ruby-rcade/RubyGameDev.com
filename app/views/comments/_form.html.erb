@@ -3,11 +3,14 @@
   <%= form_for(@comment) do |f| %>
     <% if @comment.errors.any? %>
       <div id="error_explanation">
-        <h2><%= pluralize(@comment.errors.count, "error") %> prohibited this comment from being saved:</h2>
+        <h2>
+          <%= pluralize(@comment.errors.count, "error") %>      
+          <%= t('post.error_explanation')%>
+        </h2>
         <ul>
-        <% @comment.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
+          <% @comment.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
         </ul>
       </div>
     <% end %>
@@ -19,13 +22,13 @@
       <%= f.text_area :body, class: 'form-control', rows: 5 %>
     </div>
 
-    <%= f.submit 'Add Comment', class: 'btn btn-default' %>
+    <%= f.submit t('comment.add_comment'), class: 'btn btn-default' %>
   <% end %>
 
 <% else %>
 
   <div class="alert alert-info" role="alert">
-    <%= link_to 'Create an Account', sign_up_path %> to participate in the discussion!
+    <%= link_to t('comment.create_account'), sign_up_path %> <%= t('comment.discussion')%>
   </div>
 
 <% end %>

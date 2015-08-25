@@ -1,7 +1,10 @@
 <%= form_for(@post, url: (@post.new_record? ? posts_path : post_path(@post)), as: :internal_post) do |f| %>
   <% if @post.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</h2>
+      <h2>
+        <%= pluralize(@post.errors.count, "error") %>
+        <%= t('post.error_explanation')%>
+      </h2>
 
       <ul>
       <% @post.errors.full_messages.each do |msg| %>
@@ -12,19 +15,19 @@
   <% end %>
 
   <div class="form-group">
-    <%= f.label :title %>
+    <%= f.label t('post.title')%>
     <%= f.text_field :title, class: 'form-control input-lg' %>
   </div>
 
   <div class="form-group">
-    <%= f.label :body_markdown %>
+    <%= f.label ('post.body_markdown') %>
     <%= f.text_area :body_markdown, class: 'form-control', rows: 5 %>
   </div>
 
   <div class="form-group">
-    <%= f.label :tags_string, "Tags" %>
+    <%= f.label :tags_string, t('post.tag') %>
     <%= f.text_field :tags_string, class: 'form-control' %>
   </div>
 
-    <%= f.submit nil, class: 'btn btn-default' %>
+    <%= f.submit t('post.submit_value'), class: 'btn btn-default' %>
 <% end %>
