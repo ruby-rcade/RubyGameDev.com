@@ -16,7 +16,7 @@ class User < ActiveRecord::Base
       u.authentications << authentication
     end
   end
-
+  
   def admin?
     id == 1 # Andrew Havens
   end

@@ -21,41 +21,6 @@
   </div>
 
   <div class="col-md-5">
-    <% if signed_in? %>
-      <div class="panel panel-default">
-        <div class="panel-body">
-          <h2><%= t('digest_email.digest') %></h2>
-          <% if current_user.digest_subscriber %>
-            <p><%= t('digest_email.subscribe') %>
-            <strong> <%= current_user.digest_frequency %>
-            </strong> <%= t('digest_email.end') %></p>
-          <% else %>
-            <p><%= t('digest_email.sign_') %></p>
-            <%= form_for current_user, html: {id:'digest_signup_form', class: 'form-inline'} do |f| %>
-              <%= hidden_field_tag :redirect_to, root_path %>
-              <%= f.hidden_field :digest_subscriber, value: 1 %>
-              <p>
-                <label class="radio-inline">
-                  <input type="radio" name="user[digest_frequency]" value="daily" checked><%= t('digest_email.daily') %>
-                </label>
-                <label class="radio-inline">
-                  <input type="radio" name="user[digest_frequency]" value="weekly"><%= t('digest_email.weekly') %>
-                </label>
-                <label class="radio-inline">
-                  <input type="radio" name="user[digest_frequency]" value="monthly"><%= t('digest_email.monthly') %>
-                </label>
-              </p>
-              <div class="form-group">
-                <input type="email" name="user[email]" class="form-control" placeholder=<%= t('digest_email.email_example') %>
-              </div>
-              <%= f.submit t('digest_email.subscribe_button'), 
-              class: 'btn btn-primary' %>
-            <% end %>
-          <% end %>
-        </div>
-      </div>
-    <% end %>
-
     <div class="panel panel-default">
       <div class="panel-body text-center">
         <%= link_to t('social_network.github'), 'https://github.com/ruby-rcade/RubyGameDev.com', class: 'btn btn-sm btn-primary', style: 'vertical-align: top' %>
@@ -63,6 +28,5 @@
         <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
       </div>
     </div>
-
   </div>
 </div>

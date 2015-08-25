@@ -19,7 +19,6 @@
         <p style="font-family: HelveticaNeue; font-size: 18px; color: #565656; line-height: 15px; margin-top: 5px;"><a href=<%= @url %> style="font-family: HelveticaNeue-Bold; font-size: 19px; color: #F72C54; line-height: 26px"><%= @user.username %></a> has replied to your post <a href=<%= @url %> style="font-family: HelveticaNeue-Bold; font-size: 18px; color: #F72C54; line-height: 15px;" ><%= @post.title %></a></p>
         <p style="font-family: HelveticaNeue; font-size: 14px; color: rgba(87,83,80,0.60); line-height: 21px;"><%= @comment.body %></p><br/><br/>
         <%= image_tag attachments['reply-button.png'].url, style: "width:300px; height: 30px; margin-left: 135px; padding-top: 10px; padding-bottom: 160px" %>
-
       </body>
       <footer>
       <%= image_tag attachments['footer.png'].url, style: "width: 609px; height: 229px"%>

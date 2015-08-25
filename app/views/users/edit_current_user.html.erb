@@ -14,11 +14,29 @@
         <%= f.text_field :email, class: 'form-control input-md' %>
       </div>
 
-   
+      <div class="form-group">
+        <%= f.label :digest_email, t('digest_email.digest') %>
+        <%= form_for current_user, html: {id:'digest_signup_form', class: 'form-inline'} do |f| %>
+          <%= hidden_field_tag :redirect_to, root_path %>
+          <%= f.hidden_field :digest_subscriber, value: 1 %>
+          <div class="form-group">
+
+            <label class="radio-inline">
+              <input type="radio" name="user[digest_frequency]" value="daily" checked><%= t('digest_email.daily') %>
+            </label>
+            <label class="radio-inline">
+              <input type="radio" name="user[digest_frequency]" value="weekly"><%= t('digest_email.weekly') %>
+            </label>
+            <label class="radio-inline">
+              <input type="radio" name="user[digest_frequency]" value="monthly"><%= t('digest_email.monthly') %>
+            </label>
+          </div>
+      </div>
+
       <div class="form-group">
         <%= f.submit t('user.submit_button_save'), class: 'btn btn-primary btn-md' %>
       </div>
-
+      <% end %>
     <% end %>
   </div>
 </div>
