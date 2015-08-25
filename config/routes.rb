@@ -3,9 +3,7 @@ Rubygamedev::Application.routes.draw do
   get '/auth/failure', to: 'sessions#auth_failure'
 
   root 'pages#home'
-
-  get '/locate' => 'pages#home'
-
+  
   resources :users, only: [:create, :edit, :update]
   get '/account' => 'users#edit_current_user', as: :account
 
