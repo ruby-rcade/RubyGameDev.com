@@ -5,11 +5,4 @@ namespace :digest_mailer do
     DailyDigestWorker.perform_async
   end
   
-  task weekly_digest: do
-    DailyDigestWorker.perform_async
-  end
-
-  task monthly_digest: do
-    DailyDigestWorker.perform_async
-  end
 end
