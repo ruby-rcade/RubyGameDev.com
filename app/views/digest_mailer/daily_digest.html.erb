@@ -1,3 +1,84 @@
-<p>Hi <%= @user.username %>,</p>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
 
-<p>Here's what you've missed on RubyGameDev.com:</p>
+  <body>
+    <div style="width: 600px; height: 800px; margin: 0 auto;">
+      <div>
+        <table style="padding-bottom: 20px; width: 100%; ">
+          <tr>
+            <th>
+              <%= image_tag attachments['header_digest_email.png'].url, style: "width: 600px; height: 324px" %>
+            </th>
+          </tr>
+          <tr>
+            <th>
+              <h1 style="font-family: HelveticaNeue-Bold; font-size: 21px; color: #331A48; line-height: 26px;">Name of Project</h1><br>
+              <p style="font-family: HelveticaNeue; font-size: 15px;color: #6E4995; line-height: 18px;">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+              tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+              quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+              consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+              cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+              proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            </th>
+          </tr>
+          <tr>
+            <th>
+              <h2 style="font-family: HelveticaNeue-Light; font-size: 18px; color: #F72D54; line-height: 24px;">News</h2><br>
+              <h2 style="font-family: HelveticaNeue-Bold;font-size: 15px;color: #6E4995;line-height: 18px;">RubyConf Game Dev Panels</h2><br>
+              <p style="font-family: HelveticaNeue;font-size: 12px;color: rgba(87,83,80,0.60);line-height: 15px;"> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+              tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+              quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+              consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+              cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+              proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            </th>
+          </tr>
+          <tr>
+            <th>
+              <h2 style="font-family: HelveticaNeue-Light; font-size: 18px; color: #F72D54; line-height: 24px;">Popular Discussions</h2><br>
+              <h2 style="font-family: HelveticaNeue-Bold;font-size: 15px;color: #6E4995;line-height: 18px;">New to Ruby game dev, what are your favoritetools</h2><br>
+              <p style="font-family: HelveticaNeue;font-size: 12px;color: rgba(87,83,80,0.60);line-height: 15px;"> Lorem ipsum dolor sit amconsecteturadipisicing elit, sed do eiusmod
+              tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+              quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+              consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+              cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+              proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            </th>
+          </tr>
+          <tr>
+            <th>
+              <h2 style="font-family: HelveticaNeue-Light; font-size: 18px; color: #F72D54; line-height: 24px;">Learning</h2><br>
+              <h2 style="font-family: HelveticaNeue-Bold;font-size: 15px;color: #6E4995;line-height: 18px;">Build a game in 20 minutes.</h2><br>
+              <p style="font-family: HelveticaNeue;font-size: 12px;color: rgba(87,83,80,0.60);line-height: 15px;"> Lorem ipsum dolor sit amconsecteturadipisicing elit, sed do eiusmod
+              tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+              quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+              consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+              cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+              proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            </th>
+          </tr>
+          <tr>
+            <th>
+              <h2 style="font-family: HelveticaNeue-Light; font-size: 18px; color: #F72D54; line-height: 24px;">Help Board</h2><br>
+              <h2 style="font-family: HelveticaNeue-Bold;font-size: 15px;color: #6E4995;line-height: 18px;">Seeking a UI Designer & Sound Engineer</h2><br>
+              <label style="font-family: HelveticaNeue;font-size: 11px;color: rgba(87,83,80,0.60);line-height: 15px;">submitted by Starving Artist</label>
+            </th>          
+          </tr>
+          <tr>
+            <th>
+              <h2 style="font-family: HelveticaNeue-Light; font-size: 18px; color: #F72D54; line-height: 24px;">New Users</h2><br>
+              <h2 style="font-family: HelveticaNeue-Bold;font-size: 15px;color: #6E4995;line-height: 18px;">Developers</h2><br>
+              <label style="font-family: HelveticaNeue-Bold;font-size: 11px;color: rgba(87,83,80,0.60);line-height: 15px;">John Doe, Andrew Havens,abcd123,</label>
+            </th>
+          </tr>
+        </table>
+    <footer>
+      <%#= image_tag attachments['footer.png'].url, style: "width: 609px; height: 229px" %>
+    </footer>
+      </div>
+    </div>
+  </body>
+</html>
