@@ -4,7 +4,8 @@ class DigestBuilder
     history = DigestHistory.where(frequency: 'daily').last || DigestHistory.create_new!('daily')
     User.where(id: 1).each do |user|
     # User.daily_digest_subscribers.each do |user|
-      DigestMailer.daily_digest(history, user).deliver
+      DigestMailer.daily_digest(history, user.id).deliver!
+      binding.pry
     end
     DigestHistory.create_new!('daily')
   end
