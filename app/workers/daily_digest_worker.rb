@@ -9,5 +9,4 @@ class DailyDigestWorker
   name: "Send daily digest email",
   cron: "*/6 * * * *",
   klass: "DailyDigestWorker")
-
 end
