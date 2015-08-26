@@ -7,6 +7,9 @@ class User < ActiveRecord::Base
 
   validates_presence_of :username # for display name
   validates_uniqueness_of :email
+  before_save :create_default_subscription
+
+  scope :subscriber_daily_digest, -> { where(digest_subscriber: true, digest_frequency: "daily")}
 
   def self.create_with_auth_and_hash(authentication, auth_hash)
     create! do |u|
@@ -19,6 +22,11 @@ class User < ActiveRecord::Base
   
   def admin?
     id == 1 # Andrew Havens
+  end
+
+  def create_default_subscription
+    self.digest_subscriber = true
+    self.digest_frequency = "daily"
   end
 
 end
