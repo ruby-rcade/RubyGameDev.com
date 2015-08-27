@@ -13,7 +13,7 @@ class DigestMailer < ActionMailer::Base
       File.read("#{Rails.root}/app/assets/images/header_digest_email.png")
     attachments.inline['footer.png'] =
       File.read("#{Rails.root}/app/assets/images/footer.png")
-    mail(to: @user.email, subject: 'RubyGameDev.com Daily Digest'
+    mail(to: @user.email, subject: 'RubyGameDev.com Daily Digest')
   end
 
   def weekly_digest(history, user_id)
