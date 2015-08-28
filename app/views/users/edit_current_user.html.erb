@@ -1,42 +1,55 @@
 <div class="row">
   <div class="col-lg-8">
-    <h1><%= t('user.my_account')%></h1>
+    <h1>
+      <%= t('user.my_account')%>
+    </h1>
 
     <%= form_for current_user do |f| %>
-
       <div class="form-group">
-        <%= f.label :username, t('user.display_name') %>
-        <%= f.text_field :username, class: 'form-control input-lg', style: 'max-width: 15em' %>
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <%= f.label :username, t('user.display_name') %>
+            <%= f.text_field :username, class: 'form-control input-lg', style: 'max-width: 15em' %>
+          </div>  
+        </div>
       </div>
 
       <div class="form-group">
-        <%= f.label :email, t('user.email') %>
-        <%= f.text_field :email, class: 'form-control input-md' %>
-      </div>
-
-      <div class="form-group">
-        <%= f.label :digest_email, t('digest_email.digest') %>
-        <%= form_for current_user, html: {id:'digest_signup_form', class: 'form-inline'} do |f| %>
-          <%= hidden_field_tag :redirect_to, root_path %>
-          <%= f.hidden_field :digest_subscriber, value: 1 %>
-          <div class="form-group">
-
-            <label class="radio-inline">
-              <input type="radio" name="user[digest_frequency]" value="daily" checked><%= t('digest_email.daily') %>
-            </label>
-            <label class="radio-inline">
-              <input type="radio" name="user[digest_frequency]" value="weekly"><%= t('digest_email.weekly') %>
-            </label>
-            <label class="radio-inline">
-              <input type="radio" name="user[digest_frequency]" value="monthly"><%= t('digest_email.monthly') %>
-            </label>
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <%= f.label :email, t('user.email') %>
+            <%= f.text_field :email, class: 'form-control input-md' %>
           </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <%= f.label :digest_email, t('digest_email.digest') %> <br/><br/>
+
+            <%= t('digest_email.updates_on') %> <br/>
+            <%= t('digest_email.when_certain') %> <br/>
+            <%= t('digest_email.email_update') %> <br/>
+
+            <%= f.label t('digest_email.digest') %> &nbsp;&nbsp;&nbsp;&nbsp;
+            <%= f.check_box(:digest_subscriber) %> <br/>
+
+            <%= f.radio_button(:digest_frequency, "daily", :class=> "radio-inline")%>
+            <%= f.label( t("digest_email.daily"), :class=> "radio-inline")%><br/>
+
+            <%= f.radio_button(:digest_frequency, "weekly", :class=> "radio-inline")%>
+            <%= f.label( t("digest_email.weekly"), :class=> "radio-inline")%><br/>
+
+            <%= f.radio_button(:digest_frequency, "monthly", :class=> "radio-inline")%>
+            <%= f.label( t("digest_email.monthly"), :class=> "radio-inline")%><br/>
+          </div>
+        </div>
       </div>
 
       <div class="form-group">
         <%= f.submit t('user.submit_button_save'), class: 'btn btn-primary btn-md' %>
       </div>
-      <% end %>
-    <% end %>
-  </div>
+    </div>
+  <% end %>
 </div>

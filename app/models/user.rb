@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
   validates_presence_of :username # for display name
   validates_uniqueness_of :email
   
-  before_save :create_default_subscription
+  before_create :create_default_subscription
 
   scope :subscriber_daily_digest, -> { where(digest_subscriber: true, digest_frequency: "daily")}
   scope :subscriber_weekly_digest, -> { where(digest_subscriber: true, digest_frequency: "weekly")}

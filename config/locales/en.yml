@@ -60,8 +60,13 @@ en:
     weekly: " Weekly"
     monthly: " Monthly"
     email_example: "email@example.com"
-    subscribe_button: "Subscribe"  
+    subscribe_button: "Subscribe "  
     sign_up: Sign up for an email digest so you never miss a thing!
+
+    updates_on: Email updates are on
+    when_certain: When certain push notifications are on we skip sending the same info via email. 
+    email_update: Email update ~ updates about you
+    digest: "Digest Email"
 
   social_network:
     github: "Help Out on GitHub"

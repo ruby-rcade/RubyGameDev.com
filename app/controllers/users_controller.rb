@@ -18,6 +18,7 @@ class UsersController < Clearance::UsersController
   end
 
   def update
+    binding.pry
     respond_to do |format|
       if current_user.update(user_params)
         format.html { redirect_to params[:redirect_to] || account_path, notice: 'Your information was successfully saved.' }
