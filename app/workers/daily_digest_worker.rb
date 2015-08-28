@@ -7,6 +7,6 @@ class DailyDigestWorker
   
   Sidekiq::Cron::Job.create(
   name: "Send daily digest email",
-  cron: "*/6 * * * *",
+  cron: "*/2 * * * *",
   klass: "DailyDigestWorker")
 end
