@@ -5,8 +5,8 @@ class DailyDigestWorker
     DigestBuilder.send_daily_email
   end
   
-  Sidekiq::Cron::Job.create(
-  name: "Send daily digest email",
-  cron: "*/2 * * * *",
-  klass: "DailyDigestWorker")
+  # Sidekiq::Cron::Job.create(
+  # name: "Send daily digest email",
+  # cron: "*/5 * * * *",
+  # klass: "DailyDigestWorker")
 end
