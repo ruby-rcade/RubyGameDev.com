@@ -183,6 +183,8 @@ GEM
     quiet_assets (1.1.0)
       railties (>= 3.1, < 5.0)
     rack (1.5.5)
+    rack-protection (1.5.3)
+      rack
     rack-test (0.6.3)
       rack (>= 1.0)
     rails (4.0.13)
@@ -263,6 +265,10 @@ GEM
       json (~> 1.8)
       simplecov-html (~> 0.10.0)
     simplecov-html (0.10.0)
+    sinatra (1.4.6)
+      rack (~> 1.4)
+      rack-protection (~> 1.4)
+      tilt (>= 1.3, < 3)
     slop (3.6.0)
     sprockets (2.12.4)
       hike (~> 1.2)
@@ -349,6 +355,7 @@ DEPENDENCIES
   shoulda-matchers
   sidekiq
   sidekiq-cron (~> 0.3.0)
+  sinatra
   sprockets-rails (>= 2.1.4)
   sqlite3
   terminal-notifier-guard

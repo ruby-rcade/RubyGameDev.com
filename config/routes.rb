@@ -2,6 +2,9 @@ Rubygamedev::Application.routes.draw do
   get '/auth/:provider/callback', to: 'sessions#create_from_omniauth'
   get '/auth/failure', to: 'sessions#auth_failure'
 
+  require 'sidekiq/web'
+  mount Sidekiq::Web => '/sidekiq'
+
   root 'pages#home'
   
   resources :users, only: [:create, :edit, :update]

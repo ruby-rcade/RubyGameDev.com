@@ -2,6 +2,7 @@ namespace :digest_email do
 
   desc "Send daily digest email"
   task daily_digest: :environment do
+    binding.pry
     DailyDigestWorker.perform_async
   end
 
