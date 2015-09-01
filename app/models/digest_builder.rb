@@ -20,7 +20,7 @@ class DigestBuilder
 
   def self.send_monthly_email
     history = DigestHistory.where(frequency: 'monthly').last || DigestHistory.create_new!('monthly')
-    User.subscriber_daily_digest.each do |user|
+    User.subscriber_monthly_digest.each do |user|
       DigestMailer.monthly_digest(history, user.id).deliver!
       # DigestMailer.delay_until(30.days.from_now).monthly_digest(history, user.id)
     end
