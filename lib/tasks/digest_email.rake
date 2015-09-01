@@ -2,17 +2,16 @@ namespace :digest_email do
 
   desc "Send daily digest email"
   task daily_digest: :environment do
-    binding.pry
-    DailyDigestWorker.perform_async
+    DailyDigestWorker.new.perform
   end
 
   desc "Send weekly digest email"
   task weekly_digest: :environment do
-    WeeklyDigestWorker.perform_async
+    WeeklyDigestWorker.new.perform
   end
 
   desc "Send monthly digest email"
   task monthly_digest: :environment do
-    MonthlyDigestWorker.perform_async
+    MonthlyDigestWorker.new.perform
   end
 end
