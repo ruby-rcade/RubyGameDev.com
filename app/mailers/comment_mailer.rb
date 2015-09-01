@@ -1,4 +1,4 @@
-class CommentMailer < ApplicationMailer
+class CommentMailer < ActionMailer::Base
 
   def send_notification_email(comment_id)
     @comment = Comment.find comment_id

@@ -68,6 +68,16 @@ ActiveRecord::Schema.define(version: 20150819100905) do
 
   add_index "discussions", ["user_id"], name: "index_discussions_on_user_id"
 
+  create_table "external_posts", force: true do |t|
+    t.string   "title"
+    t.string   "user_display_name"
+    t.text     "body_html"
+    t.string   "source_url"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "external_id"
+  end
+
   create_table "libraries", force: true do |t|
     t.string   "name"
     t.text     "description"

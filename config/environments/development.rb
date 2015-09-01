@@ -17,6 +17,10 @@ Rubygamedev::Application.configure do
   config.action_mailer.raise_delivery_errors = false
   config.action_mailer.default_url_options = { host: "rubygamedev.dev" }
 
+  ActionMailer::Base.delivery_method = :smtp
+  ActionMailer::Base.smtp_settings = { :openssl_verify_mode => "none" }
+
+
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
 
