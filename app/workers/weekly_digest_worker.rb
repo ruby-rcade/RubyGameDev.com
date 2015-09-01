@@ -5,9 +5,10 @@ class WeeklyDigestWorker
     DigestBuilder.send_weekly_email
   end
   
-  # Sidekiq::Cron::Job.create(
-  # name: "Send Weekly digest email",
-  # cron: "*/15 * * * *",
-  # klass: "WeeklyDigestWorker")
+  # send email every saturday at 5:00pm
+  Sidekiq::Cron::Job.create(
+  name: "Send Weekly digest email",
+  cron: "0 5 * * 6",
+  klass: "WeeklyDigestWorker")
 
 end
