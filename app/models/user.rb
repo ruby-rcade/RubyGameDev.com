@@ -14,7 +14,6 @@ class User < ActiveRecord::Base
   scope :subscriber_weekly_digest, -> { where(digest_subscriber: true, digest_frequency: "weekly")}
   scope :subscriber_monthly_digest, -> { where(digest_subscriber: true, digest_frequency: "monthly")}
   
-
   def self.create_with_auth_and_hash(authentication, auth_hash)
     create! do |u|
       u.username = auth_hash['info']['name']
