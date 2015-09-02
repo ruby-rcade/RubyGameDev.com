@@ -1,5 +1,5 @@
 FactoryGirl.define do
   factory :digest_history do
-  	frequency "daily"
+    frequency "daily"
   end
 end

@@ -5,7 +5,7 @@ describe DigestMailer do
   describe "#daily_digest" do
 
     let(:user) { FactoryGirl.create(:user) }
-    let(:history) { FactoryGirl.create(:digest_history, frequency: "daily")}
+    let(:history) { FactoryGirl.create(:digest_history, frequency: "daily") }
     let(:mail) { DigestMailer.daily_digest(history, user.id) }
 
     it "renders the subject" do
@@ -22,11 +22,11 @@ describe DigestMailer do
   end
 
   describe "#weekly_digest" do
-    
+
     let(:user) { FactoryGirl.create(:user) }
-    let(:history) { FactoryGirl.create(:digest_history, frequency: "weekly")}
+    let(:history) { FactoryGirl.create(:digest_history, frequency: "weekly") }
     let(:mail) { DigestMailer.weekly_digest(history, user.id) }
- 
+
     it "renders the subject" do
       expect(mail.subject).to eql('RubyGameDev.com Weekly Digest')
     end
@@ -43,7 +43,7 @@ describe DigestMailer do
   describe "#monthly_digest" do
 
     let(:user) { FactoryGirl.create(:user) }
-    let(:history) { FactoryGirl.create(:digest_history, frequency: "monthly")}
+    let(:history) { FactoryGirl.create(:digest_history, frequency: "monthly") }
     let(:mail) { DigestMailer.monthly_digest(history, user.id) }
 
     it "renders the subject" do
@@ -58,5 +58,4 @@ describe DigestMailer do
       expect(mail.from).to eql(["no-reply@rubygamedev.com"])
     end
   end
-
 end

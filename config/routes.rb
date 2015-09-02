@@ -9,7 +9,7 @@ Rubygamedev::Application.routes.draw do
   end
 
   root 'pages#home'
-  
+
   resources :users, only: [:create, :edit, :update]
   get '/account' => 'users#edit_current_user', as: :account
 
