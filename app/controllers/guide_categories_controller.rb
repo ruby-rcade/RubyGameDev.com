@@ -28,7 +28,7 @@ class GuideCategoriesController < ApplicationController
 
     respond_to do |format|
       if @guide_category.save
-        format.html { redirect_to @guide_category.current, notice: 'guide category was successfully created.' }
+        format.html { redirect_to @guide_category, notice: 'Guide Category was successfully created.' }
         format.json { render action: 'show', status: :created, location: @guide_category }
       else
         format.html { render action: 'new' }

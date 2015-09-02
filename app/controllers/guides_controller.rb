@@ -36,7 +36,7 @@ class GuidesController < ApplicationController
 
     respond_to do |format|
       if @guide.save
-        format.html { redirect_to post_path(@guide), notice: 'guide was successfully created.' }
+        format.html { redirect_to post_path(@guide), notice: 'Guide was successfully created.' }
         format.json { render action: 'show', status: :created, location: @guide }
       else
         format.html { render action: 'new' }
