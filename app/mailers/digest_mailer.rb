@@ -9,8 +9,8 @@ class DigestMailer < ActionMailer::Base
     # @comment = Comment.find comment_id
     @user = User.find user_id
 
-    attachments.inline['header_digest_email.png'] =
-      File.read("#{Rails.root}/app/assets/images/header_digest_email.png")
+    attachments.inline['header_daily.png'] =
+      File.read("#{Rails.root}/app/assets/images/header_daily.png")
     attachments.inline['footer.png'] =
       File.read("#{Rails.root}/app/assets/images/footer.png")
     mail(to: @user.email, subject: 'RubyGameDev.com Daily Digest')
@@ -27,7 +27,7 @@ class DigestMailer < ActionMailer::Base
     @user = User.find user_id
 
     attachments.inline['header_digest_email.png'] =
-      File.read("#{Rails.root}/app/assets/images/header_digest_email.png")
+      File.read("#{Rails.root}/app/assets/images/header_weekly.png")
     attachments.inline['footer.png'] =
       File.read("#{Rails.root}/app/assets/images/footer.png")
     mail(to: @user.email, subject: 'RubyGameDev.com Daily Digest')
@@ -45,7 +45,7 @@ class DigestMailer < ActionMailer::Base
     @user = User.find user_id
 
     attachments.inline['header_digest_email.png'] =
-      File.read("#{Rails.root}/app/assets/images/header_digest_email.png")
+      File.read("#{Rails.root}/app/assets/images/header_monthly.png")
     attachments.inline['footer.png'] =
       File.read("#{Rails.root}/app/assets/images/footer.png")
     mail(to: @user.email, subject: 'RubyGameDev.com Daily Digest')
