@@ -2,24 +2,20 @@ require "rails_helper"
 
 describe DigestBuilder do
   
-  describe "#daily_email" do
-  let(:history) { DigestHistory.create_new!("Daily") }
+  describe "#send_daily_email" do
+    let(:daily_digest_builder) { DigestBuilder.send_daily_email }
   
-  it "History has the last daily frequency " do  	 
-
-  end
-      let(:digest_history) { DigestBuilder.send_daily_digest }
-      
+    it "send an email" do
+      expect(daily_digest_builder).to change { ActionMailer::Base.deliveries.count }.by(1)
     end
+  end
+
+  describe "#send_weekly_email" do
+
 
   end
 
-  describe "#weekly_email" do
-
-
-  end
-
-  describe "#monthly_email" do
+  describe "#send_monthly_email" do
 
   end
 
