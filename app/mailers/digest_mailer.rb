@@ -25,7 +25,7 @@ class DigestMailer < ApplicationMailer
     # mail to: @user.email, subject: 'RubyGameDev.com Daily Digest'
     @user = User.find user_id
 
-    attachments.inline['header_digest_email.png'] =
+    attachments.inline['header_weekly.png'] =
       File.read("#{Rails.root}/app/assets/images/header_weekly.png")
     attachments.inline['footer.png'] =
       File.read("#{Rails.root}/app/assets/images/footer.png")
@@ -42,7 +42,7 @@ class DigestMailer < ApplicationMailer
     # mail to: @user.email, subject: 'RubyGameDev.com Daily Digest'
     @user = User.find user_id
 
-    attachments.inline['header_digest_email.png'] =
+    attachments.inline['header_monthly.png'] =
       File.read("#{Rails.root}/app/assets/images/header_monthly.png")
     attachments.inline['footer.png'] =
       File.read("#{Rails.root}/app/assets/images/footer.png")
