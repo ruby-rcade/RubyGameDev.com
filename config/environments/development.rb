@@ -20,7 +20,6 @@ Rubygamedev::Application.configure do
   ActionMailer::Base.delivery_method = :smtp
   ActionMailer::Base.smtp_settings = { :openssl_verify_mode => "none" }
 
-
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
 

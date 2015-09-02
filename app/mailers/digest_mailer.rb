@@ -1,5 +1,4 @@
-class DigestMailer < ActionMailer::Base
-  default from: ENV["MAIL_NOTIFICATION"]
+class DigestMailer < ApplicationMailer
 
   def daily_digest(history, user_id)
     # @discussions = history.discussions
@@ -30,8 +29,7 @@ class DigestMailer < ActionMailer::Base
       File.read("#{Rails.root}/app/assets/images/header_weekly.png")
     attachments.inline['footer.png'] =
       File.read("#{Rails.root}/app/assets/images/footer.png")
-    mail(to: @user.email, subject: 'RubyGameDev.com Daily Digest')
-
+    mail(to: @user.email, subject: 'RubyGameDev.com Weekly Digest')
   end
 
   def monthly_digest(history, user_id)
@@ -48,7 +46,7 @@ class DigestMailer < ActionMailer::Base
       File.read("#{Rails.root}/app/assets/images/header_monthly.png")
     attachments.inline['footer.png'] =
       File.read("#{Rails.root}/app/assets/images/footer.png")
-    mail(to: @user.email, subject: 'RubyGameDev.com Daily Digest')
+    mail(to: @user.email, subject: 'RubyGameDev.com Monthly Digest')
   end
 
 end
