@@ -11,12 +11,9 @@ describe DigestBuilder do
   end
 
   describe "#send_weekly_email" do
-
-
   end
 
   describe "#send_monthly_email" do
-
   end
 
 end

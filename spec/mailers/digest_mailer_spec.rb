@@ -18,7 +18,7 @@ describe DigestMailer do
 
     it "renders the sender email" do
       expect(mail.from).to eql(["no-reply@rubygamedev.com"])
-    end    
+    end
   end
 
   describe "#weekly_digest" do
