@@ -51,7 +51,7 @@ class GuidesController < ApplicationController
     authorize @guide
     respond_to do |format|
       if @guide.update(guide_params)
-        format.html { redirect_to post_path(@guide), notice: 'guide was successfully updated.' }
+        format.html { redirect_to post_path(@guide), notice: 'Guide was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
