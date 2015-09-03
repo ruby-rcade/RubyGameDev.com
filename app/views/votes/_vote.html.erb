@@ -4,20 +4,20 @@
       <div class="warning">
         <span class="glyphicon glyphicon-chevron-up"></span><br/>
         <span><%= post.votes.count %></span><br>
-        <span class="small"> <%= t('votes.votes')%> </span>
+        <span class="small">votes</span>
       </div>
     <% else %>
       <%= link_to vote_post_path(post), method: :put do %>
         <span class="glyphicon glyphicon-chevron-up"></span><br/>
         <span><%= post.votes.count %></span><br>
-        <span class="small"> <%= t('votes.votes')%></span>
+        <span class="small">votes</span>
       <% end %>
     <% end %>
   <% else %>
     <div>
       <span class="glyphicon glyphicon-chevron-up"></span><br/>
       <span><%= post.votes.count %></span><br>
-      <span class="small"> <%= t('votes.votes')%> </span>
+      <span class="small">votes</span>
     </div>
   <% end %>
 </div>

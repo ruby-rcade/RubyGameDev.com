@@ -3,7 +3,7 @@
     <div id="error_explanation">
       <h2>
         <%= pluralize(@post.errors.count, "error") %>
-        <%= t('post.error_explanation')%>
+        prohibited this post from being saved:
       </h2>
 
       <ul>
@@ -15,19 +15,19 @@
   <% end %>
 
   <div class="form-group">
-    <%= f.label t('post.title')%>
+    <%= f.label "Title" %>
     <%= f.text_field :title, class: 'form-control input-lg' %>
   </div>
 
   <div class="form-group">
-    <%= f.label ('post.body_markdown') %>
+    <%= f.label "Body markdown" %>
     <%= f.text_area :body_markdown, class: 'form-control', rows: 5 %>
   </div>
 
   <div class="form-group">
-    <%= f.label :tags_string, t('post.tag') %>
+    <%= f.label :tags_string, "Tags" %>
     <%= f.text_field :tags_string, class: 'form-control' %>
   </div>
 
-    <%= f.submit t('post.submit_value'), class: 'btn btn-default' %>
+    <%= f.submit nil, class: 'btn btn-default' %>
 <% end %>

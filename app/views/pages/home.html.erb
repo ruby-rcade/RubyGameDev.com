@@ -1,7 +1,8 @@
 <% if signed_in? and !current_user.dismissed_welcome_message %>
   <div id="welcome_message" class="alert alert-success alert-dismissable">
     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-    <%= t('post.welcome') %><%= link_to 'Learn More', about_page_path, class: 'alert-link' %>.
+    Welcome to RubyGameDev.com, the community-driven, information hub which helps others to build games in Ruby! First time here?
+    <%= link_to 'Learn More', about_page_path, class: 'alert-link' %>.
   </div>
   <%= form_for current_user, remote: true do |f| %>
     <%= f.hidden_field :dismissed_welcome_message, value: 1 %>
@@ -12,9 +13,9 @@
   <div class="col-md-7">
     <div class="panel panel-default">
       <div class="panel-body">
-        <%= link_to t('post.new_post'), new_post_path, class: 'btn btn-primary pull-right' %>
-        <%= link_to t('post.tag'), tags_path, class: 'btn btn-primary pull-right tag-btn' %>
-        <h2><%= t('post.latest_post') %></h2>
+        <%= link_to "New Post", new_post_path, class: 'btn btn-primary pull-right' %>
+        <%= link_to "Tags", tags_path, class: 'btn btn-primary pull-right tag-btn' %>
+        <h2><%= "Latest Post" %></h2>
         <%= render 'posts/list' %>
       </div>
     </div>
@@ -23,8 +24,8 @@
   <div class="col-md-5">
     <div class="panel panel-default">
       <div class="panel-body text-center">
-        <%= link_to t('social_network.github'), 'https://github.com/ruby-rcade/RubyGameDev.com', class: 'btn btn-sm btn-primary', style: 'vertical-align: top' %>
-        <a href="https://twitter.com/RubyGameDev" class="twitter-follow-button" data-show-count="false" data-size="large"><%= t("social_network.twitter", count: "@RubyGameDev") %></a>
+        <%= link_to "Help Out on GitHub", 'https://github.com/ruby-rcade/RubyGameDev.com', class: 'btn btn-sm btn-primary', style: 'vertical-align: top' %>
+        <a href="https://twitter.com/RubyGameDev" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @RubyGameDev</a>
         <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
       </div>
     </div>
