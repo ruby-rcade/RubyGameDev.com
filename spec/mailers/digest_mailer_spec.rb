@@ -1,7 +1,6 @@
 require "rails_helper"
 
 describe DigestMailer do
-
   describe "#daily_digest" do
     let(:user) { FactoryGirl.create(:user) }
     let(:history) { FactoryGirl.create(:digest_history, frequency: "daily") }
