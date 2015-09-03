@@ -10,14 +10,11 @@ class User < ActiveRecord::Base
 
   before_create :create_default_subscription
 
-  scope :subscriber_daily_digest, -> {
-    where(digest_subscriber: true, digest_frequency: "daily") }
+  scope :subscriber_daily_digest, -> { where(digest_subscriber: true, digest_frequency: "daily") }
 
-  scope :subscriber_weekly_digest, -> {
-    where( digest_subscriber: true, digest_frequency: "weekly") }
+  scope :subscriber_weekly_digest, -> { where(digest_subscriber: true, digest_frequency: "weekly") }
 
-  scope :subscriber_monthly_digest, -> {
-    where( digest_subscriber: true, digest_frequency: "monthly") }
+  scope :subscriber_monthly_digest, -> { where(digest_subscriber: true, digest_frequency: "monthly") }
 
   def self.create_with_auth_and_hash(authentication, auth_hash)
     create! do |u|

@@ -1,6 +1,6 @@
 class DigestMailer < ApplicationMailer
 
-  def daily_digest(history, user_id)
+  def daily_digest(_history, user_id)
     # @discussions = history.discussions
     # @tutorials = history.tutorials
     # @libraries = history.libraries
@@ -15,7 +15,7 @@ class DigestMailer < ApplicationMailer
     mail(to: @user.email, subject: 'RubyGameDev.com Daily Digest')
   end
 
-  def weekly_digest(history, user_id)
+  def weekly_digest(_history, user_id)
     # @discussions = history.discussions
     # @tutorials = history.tutorials
     # @libraries = history.libraries
@@ -31,7 +31,7 @@ class DigestMailer < ApplicationMailer
     mail(to: @user.email, subject: 'RubyGameDev.com Weekly Digest')
   end
 
-  def monthly_digest(history, user_id)
+  def monthly_digest(_history, user_id)
     # @discussions = history.discussions
     # @tutorials = history.tutorials
     # @libraries = history.libraries
