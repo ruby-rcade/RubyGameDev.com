@@ -29,5 +29,4 @@ class GamedevWorker
     name: "RubyStackoverflow fetch questions every friday",
     cron: "* * * * 5",
     klass: "GamedevWorker")
-
 end
