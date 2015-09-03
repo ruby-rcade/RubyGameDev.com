@@ -1,6 +1,6 @@
 class GuidesController < ApplicationController
   before_action :set_guide, only: [:show, :edit, :update, :destroy]
-  before_action :require_authentication, except: [:index, :show]
+  before_action :require_login, except: [:index, :show]
 
   # GET /guide
   # GET /guide.json
