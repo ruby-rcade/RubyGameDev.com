@@ -54,4 +54,12 @@ RSpec.configure do |config|
 
   config.include Capybara::DSL
   config.include Support::Features
+
+
+  Capybara.register_driver :webkit do |app|
+    Capybara::Selenium::Driver.new(app, :browser => :chrome)
+  end
+
+  Capybara.javascript_driver = :webkit
+
 end
