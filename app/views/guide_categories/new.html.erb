@@ -1,0 +1,20 @@
+<%= form_for(@guide_category) do |f| %>
+  <% if @guide_category.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@guide_category.errors.count, "error") %> prohibited this guide_category from being saved:</h2>
+
+      <ul>
+        <% @guide_category.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label :name, "Category Name" %>
+    <%= f.text_field :name, class: 'form-control input-lg' %>
+  </div>
+
+    <%= f.submit nil, class: 'btn btn-primary', value: 'Save Category' %>
+<% end %>

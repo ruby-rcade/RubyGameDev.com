@@ -3,6 +3,9 @@
     <% @posts.each do |post| %>
       <tr>
         <td>
+          <% if post.instance_of? Guide %>
+            <%= image_tag 'Guide.png', alt: 'Guides', class: 'guide-xs pull-left show', width: 25 %>
+          <% end %> 
           <%= link_to post.title, post_path(post) %>
           <br><span class="text-muted">Submitted by <%= post.username %> on <%= post.created_at.strftime("%m/%d/%Y") %></span>
           <br><%= render 'posts/tags', post: post %>

@@ -12,9 +12,9 @@ describe GamedevWorker do
     it 'creates external posts' do
       VCR.use_cassette("questions") do
         Sidekiq::Testing.inline!
-          expect {
-            GamedevWorker.perform_async
-          }.to change(ExternalPost, :count).by(25)
+        expect {
+          GamedevWorker.perform_async
+        }.to change(ExternalPost, :count).by(25)
       end
     end
   end
