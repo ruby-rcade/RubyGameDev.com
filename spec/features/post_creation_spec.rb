@@ -16,26 +16,26 @@ describe "Post creation" do
     click_button 'Create Post'
   end
 
-  xit "shows a success message" do
+  it "shows a success message" do
     expect(page).to have_content "Post was successfully created."
   end
 
-  xit "creates a new post" do
+  it "creates a new post" do
     expect(Post.exists?(title: 'Some title')).to be_truthy
   end
 
-  xit "creates tags for the post" do
+  it "creates tags for the post" do
     post = Post.last
     tag_titles = post.tags.map(&:title)
     expect(tag_titles).to match_array ["ruby", "rails"]
   end
 
-  xit "creates a new tag" do
+  it "creates a new tag" do
     expect(Tag.exists?(title: 'ruby')).to be_truthy
   end
 
   # expect tag to show on index page
-  xit "checks if tags titles show on index page" do
+  it "checks if tags titles show on index page" do
     visit '/'
     within('.posts') do
       expect(page).to have_content 'ruby'
