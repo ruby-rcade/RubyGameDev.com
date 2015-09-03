@@ -22,7 +22,6 @@ class DigestMailer < ApplicationMailer
     # @new_users_count = User.count - history.users_count
     # @comment = Comment.find comment_id
     # @user = User.find user_id
-    # mail to: @user.email, subject: 'RubyGameDev.com Daily Digest'
     @user = User.find user_id
 
     attachments.inline['header_weekly.png'] =
@@ -39,7 +38,6 @@ class DigestMailer < ApplicationMailer
     # @new_users_count = User.count - history.users_count
     # @comment = Comment.find comment_id
     # @user = User.find user_id
-    # mail to: @user.email, subject: 'RubyGameDev.com Daily Digest'
     @user = User.find user_id
 
     attachments.inline['header_monthly.png'] =
@@ -48,5 +46,4 @@ class DigestMailer < ApplicationMailer
       File.read("#{Rails.root}/app/assets/images/footer.png")
     mail(to: @user.email, subject: 'RubyGameDev.com Monthly Digest')
   end
-
 end

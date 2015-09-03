@@ -1,9 +1,7 @@
 require "rails_helper"
 
 describe DigestMailer do
-
   describe "#daily_digest" do
-
     let(:user) { FactoryGirl.create(:user) }
     let(:history) { FactoryGirl.create(:digest_history, frequency: "daily") }
     let(:mail) { DigestMailer.daily_digest(history, user.id) }
@@ -22,7 +20,6 @@ describe DigestMailer do
   end
 
   describe "#weekly_digest" do
-
     let(:user) { FactoryGirl.create(:user) }
     let(:history) { FactoryGirl.create(:digest_history, frequency: "weekly") }
     let(:mail) { DigestMailer.weekly_digest(history, user.id) }
@@ -41,7 +38,6 @@ describe DigestMailer do
   end
 
   describe "#monthly_digest" do
-
     let(:user) { FactoryGirl.create(:user) }
     let(:history) { FactoryGirl.create(:digest_history, frequency: "monthly") }
     let(:mail) { DigestMailer.monthly_digest(history, user.id) }

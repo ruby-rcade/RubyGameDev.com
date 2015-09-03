@@ -1,14 +1,12 @@
 <div class="row">
   <div class="col-lg-8">
-    <h1>
-      <%= t('user.my_account')%>
-    </h1>
+    <h1>My Account</h1>
 
     <%= form_for current_user do |f| %>
       <div class="form-group">
         <div class="panel panel-default">
           <div class="panel-body">
-            <%= f.label :username, t('user.display_name') %>
+            <%= f.label :username, "Display Name"%>
             <%= f.text_field :username, class: 'form-control input-lg', style: 'max-width: 15em' %>
           </div>  
         </div>
@@ -17,7 +15,7 @@
       <div class="form-group">
         <div class="panel panel-default">
           <div class="panel-body">
-            <%= f.label :email, t('user.email') %>
+            <%= f.label :email, "Email"%>
             <%= f.text_field :email, class: 'form-control input-md' %>
           </div>
         </div>
@@ -26,29 +24,29 @@
       <div class="form-group">
         <div class="panel panel-default">
           <div class="panel-body">
-            <%= f.label :digest_email, t('digest_email.digest') %> <br/><br/>
+            <%= f.label :digest_email, 'Save' %> <br/><br/>
 
-            <%= t('digest_email.updates_on') %> <br/>
-            <%= t('digest_email.when_certain') %> <br/>
-            <%= t('digest_email.email_update') %> <br/>
+            Email updates are on <br/>
+            When certain push notifications are on we skip sending the same info via email. <br/>
+            Email update ~ updates about you <br/>
 
-            <%= f.label t('digest_email.digest') %> &nbsp;&nbsp;&nbsp;&nbsp;
+            <%= f.label "Digest Email" %> &nbsp;&nbsp;&nbsp;&nbsp;
             <%= f.check_box(:digest_subscriber) %> <br/>
 
             <%= f.radio_button(:digest_frequency, "daily", :class=> "radio-inline")%>
-            <%= f.label( t("digest_email.daily"), :class=> "radio-inline")%><br/>
+            <%= f.label( "Daily", :class=> "radio-inline") %><br/>
 
             <%= f.radio_button(:digest_frequency, "weekly", :class=> "radio-inline")%>
-            <%= f.label( t("digest_email.weekly"), :class=> "radio-inline")%><br/>
+            <%= f.label( "weekly", :class=> "radio-inline") %><br/>
 
             <%= f.radio_button(:digest_frequency, "monthly", :class=> "radio-inline")%>
-            <%= f.label( t("digest_email.monthly"), :class=> "radio-inline")%><br/>
+            <%= f.label( "Monthly", :class=> "radio-inline" ) %><br/>
           </div>
         </div>
       </div>
 
       <div class="form-group">
-        <%= f.submit t('user.submit_button_save'), class: 'btn btn-primary btn-md' %>
+        <%= f.submit "Save", class: 'btn btn-primary btn-md' %>
       </div>
     </div>
   <% end %>
