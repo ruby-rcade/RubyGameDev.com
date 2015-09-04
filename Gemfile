@@ -16,14 +16,14 @@ group :production do
 end
 
 # assets
+gem 'sprockets-rails', '>= 2.1.4'
+gem 'quiet_assets', group: :development
 gem 'sass-rails', '~> 4.0.2'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
 gem 'jquery-rails'
 gem 'turbolinks'
-# TODO: upgrade to latest bootstrap
-gem 'bootstrap-sass'
-gem 'quiet_assets', group: :development
+gem 'bootstrap-sass', '~> 3.3'
 
 # authentication
 gem 'omniauth'
@@ -56,6 +56,8 @@ gem 'ruby-stackoverflow', git: 'https://github.com/PowerCodeGirls/ruby-stackover
 
 gem 'sidekiq'
 gem "sidekiq-cron", "~> 0.3.0"
+gem 'rails-i18n', '~> 4.0.0'
+gem 'sinatra', :require => nil
 
 group :test do
   gem 'rspec-rails'

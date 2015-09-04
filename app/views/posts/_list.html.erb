@@ -4,8 +4,15 @@
       <tr>
         <td>
           <%= link_to_post(post) %>
-          <br><span class="text-muted">Submitted by <%= post.username %> on <%= post.created_at.strftime("%m/%d/%Y") %></span>
-          <br><%= render 'posts/tags', post: post %>
+          <br>
+          <span class="text-muted">
+            Submitted by 
+            <%= post.username %> 
+            on 
+            <%= post.created_at.strftime("%m/%d/%Y") %></span>
+            </span>
+          <br>
+          <%= render 'posts/tags', post: post %>
         </td>
         <td>
           <%= render 'votes/vote', post: post %>

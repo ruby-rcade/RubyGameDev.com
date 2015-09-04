@@ -1,0 +1,14 @@
+// Custom Bootstrap Overrides
+// Note: Only override variables as needed. Don't include variables if the value is the bootstrap default.
+// https://github.com/twbs/bootstrap-sass/blob/master/assets/stylesheets/bootstrap/_variables.scss
+
+$bright-red: #e62911;
+$dark-red: darken($bright-red, 5%);
+
+$navbar-height:                    58px !default;
+$navbar-inverse-link-color:        #fff !default;
+
+$navbar-inverse-bg:                         $bright-red !default;
+$navbar-inverse-link-hover-bg:              $dark-red !default;
+$navbar-inverse-toggle-hover-bg:            $dark-red !default;
+$navbar-inverse-toggle-border-color:        $dark-red !default;

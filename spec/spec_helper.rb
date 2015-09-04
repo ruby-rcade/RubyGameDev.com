@@ -2,7 +2,6 @@ require "codeclimate-test-reporter"
 require "vcr"
 require "webmock/rspec"
 require "sidekiq/testing"
-
 require "capybara/rspec"
 CodeClimate::TestReporter.start
 

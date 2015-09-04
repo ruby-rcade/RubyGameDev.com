@@ -3,22 +3,51 @@
     <h1>My Account</h1>
 
     <%= form_for current_user do |f| %>
-
       <div class="form-group">
-        <%= f.label :username, 'Display Name' %>
-        <%= f.text_field :username, class: 'form-control input-lg', style: 'max-width: 15em' %>
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <%= f.label :username, "Display Name"%>
+            <%= f.text_field :username, class: 'form-control input-lg', style: 'max-width: 15em' %>
+          </div>  
+        </div>
       </div>
 
       <div class="form-group">
-        <%= f.label :email %>
-        <%= f.text_field :email, class: 'form-control input-md' %>
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <%= f.label :email, "Email"%>
+            <%= f.text_field :email, class: 'form-control input-md' %>
+          </div>
+        </div>
       </div>
 
-   
       <div class="form-group">
-        <%= f.submit 'Save', class: 'btn btn-primary btn-md' %>
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <%= f.label :digest_email, 'Save' %> <br/><br/>
+
+            Email updates are on <br/>
+            When certain push notifications are on we skip sending the same info via email. <br/>
+            Email update ~ updates about you <br/>
+
+            <%= f.label "Digest Email" %> &nbsp;&nbsp;&nbsp;&nbsp;
+            <%= f.check_box(:digest_subscriber) %> <br/>
+
+            <%= f.radio_button(:digest_frequency, "daily", :class=> "radio-inline")%>
+            <%= f.label( "Daily", :class=> "radio-inline") %><br/>
+
+            <%= f.radio_button(:digest_frequency, "weekly", :class=> "radio-inline")%>
+            <%= f.label( "weekly", :class=> "radio-inline") %><br/>
+
+            <%= f.radio_button(:digest_frequency, "monthly", :class=> "radio-inline")%>
+            <%= f.label( "Monthly", :class=> "radio-inline" ) %><br/>
+          </div>
+        </div>
       </div>
 
-    <% end %>
-  </div>
+      <div class="form-group">
+        <%= f.submit "Save", class: 'btn btn-primary btn-md' %>
+      </div>
+    </div>
+  <% end %>
 </div>

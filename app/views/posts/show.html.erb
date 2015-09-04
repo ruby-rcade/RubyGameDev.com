@@ -12,12 +12,15 @@
   </h1>
 
   <p>
-    Posted by: <%= @post.user.username %> on <%= @post.created_at.strftime("%m/%d/%Y") %>
+    Posted by: 
+    <%= @post.user.username %>
+    on
+    <%= @post.created_at.strftime("%m/%d/%Y") %>
     <% if policy(@post).update? %>
-      | <%= link_to 'Edit', edit_post_path(@post) %>
+      | <%= link_to "Edit", edit_post_path(@post) %>
     <% end %>
     <% if policy(@post).destroy? %>
-      | <%= link_to 'Destroy', post_path(@post), method: :delete, data: { confirm: 'Are you sure?' } %>
+      | <%= link_to "Destroy", post_path(@post), method: :delete, data: { confirm: "Are you sure?" } %>
     <% end %>
   </p>
 
