@@ -6,11 +6,13 @@
   <div class="col-md-6 col-sm-8 col-xs-8">
     <% if @user.errors.any? %>
       <div id="error_explanation">
-        <h2><%= pluralize(@user.errors.count, "error") %> prohibited this account from being created:</h2>
+        <h2>
+          <%= pluralize(@user.errors.count, "error") %>prohibited this account from being created:
+        </h2>
         <ul>
-        <% @user.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
+          <% @user.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
         </ul>
       </div>
     <% end %>

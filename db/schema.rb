@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150901091817) do
+ActiveRecord::Schema.define(version: 20150901091523) do
 
   create_table "authentications", force: true do |t|
     t.integer  "user_id"
@@ -101,7 +101,7 @@ ActiveRecord::Schema.define(version: 20150901091817) do
     t.string   "user_display_name"
     t.string   "source_url"
     t.integer  "external_id"
-    t.string   "type",              default: "InternalPost"
+    t.string   "type"
     t.integer  "guide_category_id"
   end
 
