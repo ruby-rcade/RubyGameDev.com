@@ -1,4 +1,6 @@
 class DigestMailer < ApplicationMailer
+  default template_path: 'digest_mailer'
+  default template_name: 'digest_mailer'
 
   def daily_digest(history, user_id)
     # @discussions = history.discussions

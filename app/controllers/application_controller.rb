@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
   force_ssl if: :full_production_host?
 
   def full_production_host?
-    request.host == 'www.rubygamedev.com' # don't require ssl for short-link host
+    request.host == 'www.rubygamedev.com'
+    # don't require ssl for short-link host
   end
-
 end
