@@ -7,7 +7,7 @@ class DigestMailer < ApplicationMailer
     # @new_users_count = User.count - history.users_count
     # @comment = Comment.find comment_id
     @user = User.find user_id
-
+    @history = history
     attachments.inline['header_daily.png'] =
       File.read("#{Rails.root}/app/assets/images/header_daily.png")
     attachments.inline['footer.png'] =
@@ -23,7 +23,7 @@ class DigestMailer < ApplicationMailer
     # @comment = Comment.find comment_id
     # @user = User.find user_id
     @user = User.find user_id
-
+    @history = history
     attachments.inline['header_weekly.png'] =
       File.read("#{Rails.root}/app/assets/images/header_weekly.png")
     attachments.inline['footer.png'] =
@@ -39,7 +39,7 @@ class DigestMailer < ApplicationMailer
     # @comment = Comment.find comment_id
     # @user = User.find user_id
     @user = User.find user_id
-
+    @history = history
     attachments.inline['header_monthly.png'] =
       File.read("#{Rails.root}/app/assets/images/header_monthly.png")
     attachments.inline['footer.png'] =
