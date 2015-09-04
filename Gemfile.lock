@@ -314,7 +314,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  bootstrap-sass
+  bootstrap-sass (~> 3.3)
   bugsnag
   capybara
   clearance
@@ -345,6 +345,7 @@ DEPENDENCIES
   shoulda-matchers
   sidekiq
   sidekiq-cron (~> 0.3.0)
+  sprockets-rails (>= 2.1.4)
   sqlite3
   terminal-notifier-guard
   therubyracer

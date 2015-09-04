@@ -12,7 +12,7 @@
 
   	<title><%= content_for?(:title) ? yield(:title) : "RubyGameDev.com - A hub for discussion around Ruby game development" %></title>
 
-    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.1/css/font-awesome.css" rel="stylesheet">
+    <!-- <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.1/css/font-awesome.css" rel="stylesheet"> -->
     <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
     <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
     <%= csrf_meta_tags %>
@@ -32,6 +32,13 @@
             <%= image_tag 'rubygamedev_logo.png', alt: 'RubyGameDev.com', width: 300, class: 'hidden-xs' %>
             <%= image_tag 'rubygamedev_logo.png', alt: 'RubyGameDev.com', width: 225, class: 'visible-xs', style: 'margin-top: 8px;' %>
           </a>
+        </div>
+        
+        <div class="nav navbar-nav">
+          <div class="guide-nav">
+            <%= image_tag 'Guide.png', alt: 'Guides', class: 'guide-xs' %>
+            <%= link_to 'Guides', guides_path, class: 'text' %>
+          </div>
         </div>
 
         <div class="navbar-collapse collapse">
