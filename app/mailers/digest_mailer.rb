@@ -8,6 +8,7 @@ class DigestMailer < ApplicationMailer
     # @libraries = history.libraries
     # @new_users_count = User.count - history.users_count
     # @comment = Comment.find comment_id
+    @post = InternalPost.all
     @user = User.find user_id
     @history = history
     attachments.inline['header_daily.png'] =
@@ -24,6 +25,7 @@ class DigestMailer < ApplicationMailer
     # @new_users_count = User.count - history.users_count
     # @comment = Comment.find comment_id
     # @user = User.find user_id
+    @post = InternalPost.all
     @user = User.find user_id
     @history = history
     attachments.inline['header_weekly.png'] =
@@ -40,6 +42,7 @@ class DigestMailer < ApplicationMailer
     # @new_users_count = User.count - history.users_count
     # @comment = Comment.find comment_id
     # @user = User.find user_id
+    @post = InternalPost.all
     @user = User.find user_id
     @history = history
     attachments.inline['header_monthly.png'] =
