@@ -1,0 +1,39 @@
+<h1>Editing Guide</h1>
+
+<%= form_for(@guide, url: (@guide.new_record? ? guides_path : guide_path(@guide))) do |f| %>
+  <% if @guide.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@guide.errors.count, "error") %> prohibited this guide from being saved:</h2>
+
+      <ul>
+      <% @guide.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label :guide_category_id, 'Choose Category' %>
+    <%= f.select :guide_category_id, @guide_categories.map { |gc| [gc.name, gc.id] }, {}, {class: 'form-control'} %>
+
+    <%= link_to 'New Category', new_guide_category_path, class: 'btn btn-primary btn-xs btn-new-category' %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :title %>
+    <%= f.text_field :title, class: 'form-control input-lg' %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :body_markdown %>
+    <%= f.text_area :body_markdown, class: 'form-control', rows: 5 %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :tags_string, "Tags" %>
+    <%= f.text_field :tags_string, class: 'form-control' %>
+  </div>
+
+    <%= f.submit nil, class: 'btn btn-default' %>
+<% end %>

@@ -22,6 +22,9 @@ Rubygamedev::Application.routes.draw do
   resources :comments
   resources :tags
 
+  resources :guides
+  resources :guide_categories
+
   resources :libraries
   resources :library_categories
 

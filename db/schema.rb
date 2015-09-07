@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150819100905) do
+ActiveRecord::Schema.define(version: 20150901091523) do
 
   create_table "authentications", force: true do |t|
     t.integer  "user_id"
@@ -68,6 +68,12 @@ ActiveRecord::Schema.define(version: 20150819100905) do
 
   add_index "discussions", ["user_id"], name: "index_discussions_on_user_id"
 
+  create_table "guide_categories", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "libraries", force: true do |t|
     t.string   "name"
     t.text     "description"
@@ -96,6 +102,7 @@ ActiveRecord::Schema.define(version: 20150819100905) do
     t.string   "source_url"
     t.integer  "external_id"
     t.string   "type"
+    t.integer  "guide_category_id"
   end
 
   add_index "posts", ["user_id"], name: "index_posts_on_user_id"
