@@ -21,10 +21,35 @@
     <%= f.text_area :body_markdown, class: 'form-control', rows: 5 %>
   </div>
 
-  <div class="form-group">
+  <div class="form-group tags-form">
     <%= f.label :tags_string, "Tags" %>
-    <%= f.text_field :tags_string, class: 'form-control' %>
+    <%= f.text_field :tags_string, class: 'form-control tags-input', autocomplete: 'off' %>
   </div>
 
-    <%= f.submit nil, class: 'btn btn-default' %>
+  <div class="tags-box tags-autocomplete">
+    <ul class="list-autocomplete">
+      <li>Ruby</li>
+      <li>Rails</li>
+      <li>Java</li>
+      <li>JavaScript</li>
+      <li>php</li>
+      <li>Ruby</li>
+      <li>Rails</li>
+      <li>Java</li>
+      <li>JavaScript</li>
+      <li>php</li>
+      <li>Ruby</li>
+      <li>Rails</li>
+      <li>Java</li>
+      <li>JavaScript</li>
+      <li>php</li>
+      <li>Ruby</li>
+      <li>Rails</li>
+      <li>Java</li>
+      <li>JavaScript</li>
+      <li>php</li>
+    </ul>
+  </div>
+
+  <%= f.submit nil, class: 'btn btn-default' %>
 <% end %>

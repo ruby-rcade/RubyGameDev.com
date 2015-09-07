@@ -8,7 +8,14 @@
   border-radius: 3px
   padding: 2px
   margin-right: 5px
+  margin-bottom: none
   background-color: #DFE7EE
+
+.tags-container
+  margin: 25px 25px
+
+.tags-form
+  margin: 0px
 
 .tags-list
   font-size: 15px
@@ -20,5 +27,34 @@
   display: inline-block
   background-color: #DFE7EE
 
-.tags-container
-  margin: 25px 25px
+.tags-box
+  display: none
+  background-color: #F6F7F4
+  border: 1px solid #D6D3D3
+  border-radius: 3px
+  box-sizing: border-box
+  width: 175px
+  max-height: 50%
+  vertical-align: middle
+  position: absolute
+  overflow: auto
+  li:hover
+    background-color: #D6D3D3
+    border-top: 1px solid #C8BFBF
+    border-bottom: 1px solid #C8BFBF
+
+.tags-box.active
+  display: block
+
+.tags-autocomplete
+  li
+    cursor: pointer
+    display: list-item
+    padding-left: 10px
+    padding-bottom: 5px
+
+.list-autocomplete
+  list-style: none
+  padding: 0px
+  margin: 0px
+  

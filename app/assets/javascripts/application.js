@@ -20,7 +20,7 @@ $(function(){
   $('#welcome_message').bind('closed.bs.alert', function() {
     var form = $('#welcome_message').next('form');
     $.post(form.attr('action'), form.serialize());
-  })
+  });
 
   $('#digest_signup_form')
     .bind("ajax:success", function(data, status, xhr) {
@@ -29,4 +29,44 @@ $(function(){
     .bind("ajax:error", function(xhr, status, error) {
         alert('Failed.');
     });
-})
+});
+
+$(function(){
+  $('.tags-input').on('keypress', function() {
+    $('.tags-box').addClass('active');
+  });
+
+  $('.tags-box').on('click', 'li', function() {
+    var newTag = $(this).text();
+
+    var tags = $('.tags-input').val().split(/,\s*/);
+    if (tags[0] == "") {
+      // remove first empty string
+      tags.splice(0, 1);
+    }
+    tags.push(newTag);
+
+    $('.tags-input').val(tags.join(', '));
+    $('.tags-box').removeClass('active');
+  });
+});
+    // for each li
+    // if li.text() ~~ currently written word
+    // li.show()
+    // else
+    // li.hide()
+    //
+
+$(function() {
+  $('.tags-autocomplete .list-autocomplete').each(function(items_list){
+    $(items_list).find('li').each(function(li){
+      if(li.text()){
+        li.show();
+      }
+      else{
+
+      }
+    });
+      alert(myText);
+    });
+};
