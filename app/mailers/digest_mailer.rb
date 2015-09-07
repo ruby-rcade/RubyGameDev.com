@@ -2,53 +2,19 @@ class DigestMailer < ApplicationMailer
   default template_path: 'digest_mailer'
   default template_name: 'digest_mailer'
 
-  def daily_digest(history, user_id)
+  def digest_mailer(history, user_id)
     # @discussions = history.discussions
     # @tutorials = history.tutorials
     # @libraries = history.libraries
     # @new_users_count = User.count - history.users_count
     # @comment = Comment.find comment_id
-    @post = InternalPost.all
+    @internal_post = InternalPost.all
     @user = User.find user_id
     @history = history
-    attachments.inline['header_daily.png'] =
-      File.read("#{Rails.root}/app/assets/images/header_daily.png")
+    attachments.inline["header_#{history.frequency}.png"] =
+      File.read("#{Rails.root}/app/assets/images/header_#{history.frequency}.png")
     attachments.inline['footer.png'] =
       File.read("#{Rails.root}/app/assets/images/footer.png")
-    mail(to: @user.email, subject: 'RubyGameDev.com Daily Digest')
-  end
-
-  def weekly_digest(history, user_id)
-    # @discussions = history.discussions
-    # @tutorials = history.tutorials
-    # @libraries = history.libraries
-    # @new_users_count = User.count - history.users_count
-    # @comment = Comment.find comment_id
-    # @user = User.find user_id
-    @post = InternalPost.all
-    @user = User.find user_id
-    @history = history
-    attachments.inline['header_weekly.png'] =
-      File.read("#{Rails.root}/app/assets/images/header_weekly.png")
-    attachments.inline['footer.png'] =
-      File.read("#{Rails.root}/app/assets/images/footer.png")
-    mail(to: @user.email, subject: 'RubyGameDev.com Weekly Digest')
-  end
-
-  def monthly_digest(history, user_id)
-    # @discussions = history.discussions
-    # @tutorials = history.tutorials
-    # @libraries = history.libraries
-    # @new_users_count = User.count - history.users_count
-    # @comment = Comment.find comment_id
-    # @user = User.find user_id
-    @post = InternalPost.all
-    @user = User.find user_id
-    @history = history
-    attachments.inline['header_monthly.png'] =
-      File.read("#{Rails.root}/app/assets/images/header_monthly.png")
-    attachments.inline['footer.png'] =
-      File.read("#{Rails.root}/app/assets/images/footer.png")
-    mail(to: @user.email, subject: 'RubyGameDev.com Monthly Digest')
+    mail(to: @user.email, subject: "RubyGameDev.com #{history.frequency} digest")
   end
 end
