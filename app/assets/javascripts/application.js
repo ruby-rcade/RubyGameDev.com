@@ -40,7 +40,7 @@ $(function(){
     var newTag = $(this).text();
 
     var tags = $('.tags-input').val().split(/,\s*/);
-    if (tags[0] == "") {
+    if (tags[0] === "") {
       // remove first empty string
       tags.splice(0, 1);
     }
@@ -57,16 +57,12 @@ $(function(){
     // li.hide()
     //
 
-$(function() {
-  $('.tags-autocomplete .list-autocomplete').each(function(items_list){
-    $(items_list).find('li').each(function(li){
-      if(li.text()){
-        li.show();
-      }
-      else{
-
-      }
-    });
-      alert(myText);
-    });
-};
+$('.list-autocomplete').find('<li>')
+  ('<li>').each(function(li){
+    if((li).val() === 'rails'){
+      $(li).show();
+    }
+    else{
+      $('.tags-box').removeClass('active');
+    }
+});
