@@ -32,37 +32,63 @@ $(function(){
 });
 
 $(function(){
-  $('.tags-input').on('keypress', function() {
+  $('.tags-input').on('keyup', function() {
+    var word = $(this).val();
+      // if(word === ""){
+      //   return; 
+      // }
+    var exp = new RegExp('^' + word, 'i');
+
+    console.log(word);
+
+    $('.tags-box .list-autocomplete li' ).each(function(){
+      console.log($(this).text() + word + input);
+      var isMatch = exp.test($(this).text());
+
+      console.log(isMatch);
+
+      if(isMatch){
+        $(this).show();
+      }
+      else{
+        $(this).hide();
+      }
+    });
+
     $('.tags-box').addClass('active');
-  });
 
-  $('.tags-box').on('click', 'li', function() {
-    var newTag = $(this).text();
+    $('.tags-box').on('click', 'li', function() {
+      var newTag = $(this).text();
 
-    var tags = $('.tags-input').val().split(/,\s*/);
-    if (tags[0] === "") {
-      // remove first empty string
-      tags.splice(0, 1);
-    }
-    tags.push(newTag);
 
-    $('.tags-input').val(tags.join(', '));
-    $('.tags-box').removeClass('active');
-  });
-});
-    // for each li
-    // if li.text() ~~ currently written word
-    // li.show()
-    // else
-    // li.hide()
-    //
+      var tags = $('.tags-input').val().split(/,\s*/);
+      if (tags[0] === "") {
+        // remove first empty string
+        tags.splice(0, 1);
+      }
+      tags.push(newTag);
 
-$('.list-autocomplete').find('<li>')
-  ('<li>').each(function(li){
-    if((li).val() === 'rails'){
-      $(li).show();
-    }
-    else{
+      $('.tags-input').val(tags.join(', '));
       $('.tags-box').removeClass('active');
-    }
+    });
+  });
 });
+
+// for each li
+// if li.text() ~~ currently written word
+// li.show()
+// else
+// li.hide()
+//
+
+    // $('.list-autocomplete').find('<li>');
+    //   $('<li>').each(function(li){
+    //     if(li.text() === 'rails'){
+    //       li.show();
+
+    //       console.log(li);
+    //     }
+    //     else{
+    //       $('.tags-box').removeClass('active');
+    //     } 
+    //   });
