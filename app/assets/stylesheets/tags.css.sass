@@ -17,44 +17,37 @@
 .tags-form
   margin: 0px
 
-.tags-list
-  font-size: 15px
-  color: #3D6C8C
-  border: 1px solid #C8D8E5
-  border-radius: 3px
-  padding: 5px 20px
-  margin: 15px
-  display: inline-block
-  background-color: #DFE7EE
-
 .tags-box
   display: none
-  background-color: #F6F7F4
-  border: 1px solid #D6D3D3
-  border-radius: 3px
-  box-sizing: border-box
-  width: 175px
-  max-height: 50%
-  vertical-align: middle
-  position: absolute
   overflow: auto
-  li:hover
-    background-color: #D6D3D3
-    border-top: 1px solid #C8BFBF
-    border-bottom: 1px solid #C8BFBF
 
 .tags-box.active
   display: block
 
-.tags-autocomplete
-  li
-    cursor: pointer
-    display: list-item
-    padding-left: 10px
-    padding-bottom: 5px
-
-.list-autocomplete
+.ui-menu
+  background-color: #F6F7F4
+  border: 1px solid #D6D3D3
+  border-radius: 3px
+  box-sizing: border-box
+  max-width: 175px
+  max-height: 50%
   list-style: none
   padding: 0px
   margin: 0px
-  
+  li.ui-state-focus
+    background-color: #D6D3D3
+    border-top: 1px solid #C8BFBF
+    border-bottom: 1px solid #C8BFBF
+    cursor: pointer
+
+.ui-menu-item
+  font-size: 15px
+  color: #3D6C8C
+  display: block
+  padding-left: 15px
+  padding-top: 5px
+  padding-bottom: 5px
+  display: list-item
+
+.ui-helper-hidden-accessible
+  display: none

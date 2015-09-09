@@ -8,7 +8,8 @@ class TagsController < ApplicationController
       end
 
       format.json do
-        render json: Tag.where('title LIKE ?', params[:term] + "%").map(&:title)
+        word = params[:term].split(/,\s*/).last
+        render json: Tag.where('title LIKE ?', word + "%").map(&:title)
       end
     end
   end

@@ -12,6 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery-ui
 //= require turbolinks
 //= require bootstrap-sprockets
 //= require_tree .
@@ -29,66 +30,37 @@ $(function(){
     .bind("ajax:error", function(xhr, status, error) {
         alert('Failed.');
     });
+
 });
 
-$(function(){
-  $('.tags-input').on('keyup', function() {
-    var word = $(this).val();
-      // if(word === ""){
-      //   return; 
-      // }
-    var exp = new RegExp('^' + word, 'i');
+$(function() {
+  $('.tags-input').autocomplete({
+    minLength: 1,
+    source: "/tags.json",
+    autoFocus: true,
 
-    console.log(word);
+    focus: function() {
+      // prevent value inserted on focus
+      return false;
+    },
 
-    $('.tags-box .list-autocomplete li' ).each(function(){
-      console.log($(this).text() + word + input);
-      var isMatch = exp.test($(this).text());
+    select: function(event, ui) {
+      var terms = this.value.split(/,\s*/);
+      // remove the current input
+      terms.pop();
+      // add the selected item
+      terms.push(ui.item.value);
+      // add an empty item for a trailing comma
+      terms.push("");
 
-      console.log(isMatch);
+      this.value = terms.join(", ");
+      $(this).autocomplete('close');
+      return false;
+    }
+  });
 
-      if(isMatch){
-        $(this).show();
-      }
-      else{
-        $(this).hide();
-      }
-    });
-
-    $('.tags-box').addClass('active');
-
-    $('.tags-box').on('click', 'li', function() {
-      var newTag = $(this).text();
-
-
-      var tags = $('.tags-input').val().split(/,\s*/);
-      if (tags[0] === "") {
-        // remove first empty string
-        tags.splice(0, 1);
-      }
-      tags.push(newTag);
-
-      $('.tags-input').val(tags.join(', '));
-      $('.tags-box').removeClass('active');
-    });
+  $('.tags-input').on('blur', function() {
+    // remove any trailing commas
+    this.value = this.value.replace(/,\s*$/, '');
   });
 });
-
-// for each li
-// if li.text() ~~ currently written word
-// li.show()
-// else
-// li.hide()
-//
-
-    // $('.list-autocomplete').find('<li>');
-    //   $('<li>').each(function(li){
-    //     if(li.text() === 'rails'){
-    //       li.show();
-
-    //       console.log(li);
-    //     }
-    //     else{
-    //       $('.tags-box').removeClass('active');
-    //     } 
-    //   });
