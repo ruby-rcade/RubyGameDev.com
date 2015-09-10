@@ -22,6 +22,7 @@ gem 'sass-rails', '~> 4.0.2'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
 gem 'jquery-rails'
+gem 'jquery-ui-rails'
 gem 'turbolinks'
 gem 'bootstrap-sass', '~> 3.3'
 
@@ -52,7 +53,7 @@ gem 'bugsnag'
 gem 'redcarpet'
 
 # API stackoverflow
-gem 'ruby-stackoverflow', git: 'https://github.com/PowerCodeGirls/ruby-stackoverflow.git' 
+gem 'ruby-stackoverflow', git: 'https://github.com/PowerCodeGirls/ruby-stackoverflow.git'
 
 gem 'sidekiq'
 gem "sidekiq-cron", "~> 0.3.0"
