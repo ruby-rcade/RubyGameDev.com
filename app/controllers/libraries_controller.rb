@@ -16,17 +16,23 @@ class LibrariesController < ApplicationController
   # GET /libraries/new
   def new
     @library = Library.new
+    @library_categories = LibraryCategory.all
+
   end
 
   # GET /libraries/1/edit
   def edit
+    @library_categories = LibraryCategory.all
+    @library = Library.new
+
   end
 
   # POST /libraries
   # POST /libraries.json
   def create
+    @library_categories = LibraryCategory.all
     @library = Library.new(library_params)
-
+    @library.user = current_user
     respond_to do |format|
       if @library.save
         format.html { redirect_to @library, notice: 'Library was successfully created.' }
