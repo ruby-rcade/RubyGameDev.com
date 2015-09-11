@@ -1,7 +1,8 @@
 class User < ActiveRecord::Base
   include Clearance::User
   has_many :authentications, dependent: :destroy
-
+  has_many :internal_posts
+  has_many :libraries
   has_many :votes
   has_many :voted_posts, through: :votes, source: :user, class_name: 'User'
 
