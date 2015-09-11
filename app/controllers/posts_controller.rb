@@ -17,6 +17,10 @@ class PostsController < ApplicationController
   def show
     @comment = Comment.new
     @comment.parent = @post
+
+    if request.xhr?
+      render partial: 'posts/post_summary'
+    end
   end
 
   # GET /posts/new
@@ -72,11 +76,16 @@ class PostsController < ApplicationController
     end
   end
 
-  def vote
+   def vote
     @post = Post.find(params[:id])
     @post.add_vote(current_user)
-    flash[:notice] = "You have successfully voted"
-    redirect_to(:back)
+
+    if request.xhr?
+      render partial: 'votes/vote', locals: {post: @post}
+    else
+      flash[:notice] = "You have successfully voted"
+      redirect_to(:back)
+    end
   end
 
   private
