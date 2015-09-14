@@ -102,7 +102,7 @@ ActiveRecord::Schema.define(version: 20150911212726) do
     t.string   "user_display_name"
     t.string   "source_url"
     t.integer  "external_id"
-    t.string   "type"
+    t.string   "type",              default: "InternalPost"
     t.integer  "guide_category_id"
   end
 
