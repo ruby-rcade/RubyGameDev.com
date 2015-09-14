@@ -25,5 +25,5 @@ class User < ActiveRecord::Base
 
   def author?
     id == @guide.user.id
-  end 
+  end
 end
