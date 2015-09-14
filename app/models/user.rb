@@ -1,6 +1,8 @@
 class User < ActiveRecord::Base
   include Clearance::User
   has_many :authentications, dependent: :destroy
+  has_many :guide_revisions
+
 
   has_many :votes
   has_many :voted_posts, through: :votes, source: :user, class_name: 'User'
@@ -21,4 +23,7 @@ class User < ActiveRecord::Base
     id == 1 # Andrew Havens
   end
 
+  def author?
+    id == @guide.user.id
+  end 
 end

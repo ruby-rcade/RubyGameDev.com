@@ -16,6 +16,7 @@ Rubygamedev::Application.routes.draw do
 
   resources :guides
   resources :guide_categories
+  resources :guide_revisions
 
   resources :libraries
   resources :library_categories

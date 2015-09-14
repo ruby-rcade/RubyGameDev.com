@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150901091817) do
+ActiveRecord::Schema.define(version: 20150914120357) do
 
   create_table "authentications", force: true do |t|
     t.integer  "user_id"
@@ -70,6 +70,18 @@ ActiveRecord::Schema.define(version: 20150901091817) do
 
   create_table "guide_categories", force: true do |t|
     t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "guide_revisions", force: true do |t|
+    t.integer  "original_guide_id"
+    t.string   "status"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "guides", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
   end
