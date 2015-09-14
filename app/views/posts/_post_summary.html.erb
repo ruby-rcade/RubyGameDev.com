@@ -1,0 +1,15 @@
+<div class="post-summary">
+  <% if @post.type == "Guide" %>
+    <p>
+      <h4>Category: <%= @post.category.name %></h4>
+    </p>
+  <% end %>
+
+  <div class="body">
+    <%= raw @post.body_html %>
+    <% if @post.external_post? %>
+      <p><%= link_to 'Visit Website', @post.source_url %></p>
+    <% end %>
+    <%= link_to "View post details", post_path(@post) %>
+  </div>
+</div>
