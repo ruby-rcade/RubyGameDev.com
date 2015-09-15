@@ -22,8 +22,4 @@ class User < ActiveRecord::Base
   def admin?
     id == 1 # Andrew Havens
   end
-
-  def author?
-    id == @guide.user.id
-  end
 end

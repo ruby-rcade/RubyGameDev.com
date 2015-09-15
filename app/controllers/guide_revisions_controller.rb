@@ -1,13 +1,30 @@
-class GuidesRevisionsController < ApplicationController
-  before_action :set_guide_params, only: [:show, :edit]
+class GuideRevisionsController < ApplicationController
+  before_action :set_guide_revision, only: [:show, :edit]
   before_action :require_login, except: [:index, :show]
 
-
   def index
-    if user.admin?
-      @guide_revisions = GuideRevisions.all
-    else
-      @guide_revisions.user = current_user
+    @guide_revisions = GuideRevision.all
+  end
+
+  def new
+    @guide_categories = GuideCategory.all
+    @guide = Guide.find(params[:guide_id])
+  end
+
+  def create
+    @guide = Guide.find(params[:guide_id])
+
+    @guide_revision = GuideRevision.new(guide_params)
+    @guide_revision.user = current_user
+    @guide_revision.original_guide_id = @guide.id
+    @guide_revision.save!
+
+    respond_to do |format|
+      if @guide_revision.save
+        format.html { redirect_to guide_revisions_path(guide_id: @guide.id), notice: 'Your revision was successfully sent for review.' }
+      else
+        format.html { render action: 'new' }
+      end
     end
   end
 
@@ -22,11 +39,10 @@ class GuidesRevisionsController < ApplicationController
   end
 
   def guide_params
-    params.require(:guide_revision).permit(
-      :original_guide_id,
-      :status,
-      :body_markdown,
+    params.require(:guide).permit(
       :user_id,
-      :title)
+      :body_markdown,
+      :title,
+      :guide_category_id)
   end
 end
