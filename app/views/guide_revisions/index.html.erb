@@ -1,0 +1,13 @@
+<h1>My Guide Revisions</h1>
+
+<table class="guide-revisions table">
+  <tbody>
+    <% @guide_revisions.each do |revision| %>
+      <tr>
+        <td>
+          <%= link_to revision.title, revision %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
