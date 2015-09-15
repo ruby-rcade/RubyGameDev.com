@@ -1,5 +1,5 @@
 class GuideRevisionsController < ApplicationController
-  before_action :set_guide_revision, only: [:show, :edit]
+  before_action :set_guide_revision, only: [:show, :edit, :approve, :reject]
   before_action :require_login, except: [:index, :show]
 
   def index
@@ -9,6 +9,9 @@ class GuideRevisionsController < ApplicationController
   def new
     @guide_categories = GuideCategory.all
     @guide = Guide.find(params[:guide_id])
+  end
+
+  def show
   end
 
   def create
@@ -28,10 +31,28 @@ class GuideRevisionsController < ApplicationController
     end
   end
 
-  def edit
+  #Колона с default value (status -- "pending")
+
+
+ # alter table schema.guide_revisions alter status set default 'pending'::status_options
+
+  # 1) admin?
+  # 2) change guide
+  def approve
+    @guide_revision.status = 'approved'
+    @guide_revision.save!
+
+    redirect_to :back
   end
 
-  def show
+  def reject
+    @guide_revision.status = 'rejected'
+    @guide_revision.save!
+
+    redirect_to :back
+  end
+
+  def edit
   end
 
   def set_guide_revision
