@@ -5,6 +5,7 @@ describe "Guide pages" do
     @user = create_and_sign_in_user
     FactoryGirl.create(:guide_category)
     @category_game = FactoryGirl.create(:guide_category, name: "3D Games")
+    @post = FactoryGirl.create(:internal_post, title: "Post Title")
   end
 
   describe "creation" do
@@ -33,7 +34,7 @@ describe "Guide pages" do
 
   describe "updating" do
     before do
-      @guide = FactoryGirl.create :guide
+      @guide = FactoryGirl.create :guide, user: @user
 
       visit "/guides/#{@guide.id}/edit"
       select "3D Games" , from: "guide[guide_category_id]"
@@ -47,6 +48,31 @@ describe "Guide pages" do
       expect(@guide.title).to eq "Some Changed title"
       expect(@guide.body_markdown).to eq "Example for changed body"
       expect(@guide.category).to eq @category_game
+    end
+  end
+
+  describe "'links '|Edit|Destroy|Add Revision' view option" do
+    before do
+      sign_out
+      @user = create_and_sign_in_user
+    end
+
+    it "shows 'Add Revision' link to user who hasn't create the specific guide" do
+      @guide = FactoryGirl.create(:guide, title: "Some Guide title")
+      visit "/posts/#{@guide.id}"
+
+      within(".post") do
+        expect(find_link('Add Revision').visible?).to be_truthy
+        expect(find_link('Edit').visible?).to be_falsey    
+      end
+    end
+
+    it "doesn't show 'Add Revision' link " do
+      @guide = FactoryGirl.create(:guide, user: @user, title: "Some Guide title")
+      visit "/posts/#{@guide.id}"
+
+      expect(find_link('Add Revision').visible?).to be_falsey
+      expect(find_link('Destroy').visible?).to be_truthy    
     end
   end
 end

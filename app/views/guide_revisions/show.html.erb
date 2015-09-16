@@ -1,22 +1,28 @@
 <h1>
   <%= @guide_revision.title %>
 </h1>
-<h2><%= @guide_revision.body_markdown %></h2>
+
+<p>
+  <%= @guide_revision.body_markdown %>
+</p>
+
+<% if current_user && (current_user.admin? || current_user.id == @guide_revision.user.id) %>
+  Status:
 
   <% if @guide_revision.status == 'approved' %>
     <h2 class="status-a">Approved</h2>
   <% elsif @guide_revision.status == 'rejected' %>
     Rejected
   <% else %>
-    Unknown
+    Pending
   <% end %>
+<% end %>
 
+<% if current_user.id == @guide_revision.user.id && @guide_revision.status == "Pending" %>
+  <%= link_to 'Edit revision', edit_guide_revision_path(@guide_revision) %>
+<% end %>
 
 <% if current_user.admin? %>
   <%= link_to "Approve", approve_guide_revision_path(@guide_revision), method: 'PATCH', class: "btn btn-primary pull-right guide-rev-button" %>
   <%= link_to "Reject", reject_guide_revision_path(@guide_revision), method: 'PATCH', class: "btn btn-primary pull-right guide-rev-button" %>
-<% else current_user %>
-  <%= link_to @guide_revision.title %>
-  <%= link_to @guide_revision.body_markdown %>
-  <%= @guide_revision.status %>
 <% end %>

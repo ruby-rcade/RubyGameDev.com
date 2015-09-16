@@ -29,6 +29,10 @@ require 'support/features'
 ActiveRecord::Migration.check_pending!
 
 RSpec.configure do |config|
+  config.before(:all) do
+    @admin = FactoryGirl.create(:user, id: 1)
+  end
+
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
 
