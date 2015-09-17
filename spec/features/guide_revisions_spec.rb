@@ -6,7 +6,7 @@ describe "Guide Revisons" do
     @guide = FactoryGirl.create(:guide, title: "Some Guide for Ruby", body_markdown: "RoR")
   end
 
-  it "creates a new revision" do
+  it "checks if 'Add Revision' link redirection is true" do
     visit "/posts/#{@guide.id}"
 
     click_link('Add Revision')
