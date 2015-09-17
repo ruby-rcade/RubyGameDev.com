@@ -51,7 +51,7 @@ describe "Guide pages" do
     end
   end
 
-  describe "'links '|Edit|Destroy|Add Revision' view option" do
+  describe "'links '|Edit and |Add Revision' view option" do
     before do
       sign_out
       @user = create_and_sign_in_user
@@ -63,16 +63,31 @@ describe "Guide pages" do
 
       within(".post") do
         expect(find_link('Add Revision').visible?).to be_truthy
-        expect(find_link('Edit').visible?).to be_falsey    
       end
     end
 
-    it "doesn't show 'Add Revision' link " do
+    it "shows 'Edit' link to the author of the guide" do
       @guide = FactoryGirl.create(:guide, user: @user, title: "Some Guide title")
       visit "/posts/#{@guide.id}"
 
-      expect(find_link('Add Revision').visible?).to be_falsey
-      expect(find_link('Destroy').visible?).to be_truthy    
+      within(".post") do
+        expect(find_link('Edit').visible?).to be_truthy
+      end
+    end
+  end
+
+  describe "admin's view option" do
+    it "shows 'Destroy' if user is admin" do
+      sign_out
+      sign_in($admin)
+
+      @guide = FactoryGirl.create(:guide, title: "Some Guide title")
+      visit "/posts/#{@guide.id}"
+
+      within(".post") do
+        expect(find_link('Destroy').visible?).to be_truthy
+        expect(find_link('Edit').visible?).to be_truthy
+      end
     end
   end
 end
