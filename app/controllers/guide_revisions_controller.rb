@@ -3,7 +3,7 @@ class GuideRevisionsController < ApplicationController
   before_action :require_login, except: [:index, :show]
 
   def index
-    @guide_revisions = GuideRevision.all
+    @guide_revisions = GuideRevision.where(user_id: current_user.id)
   end
 
   def new

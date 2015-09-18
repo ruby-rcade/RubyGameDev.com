@@ -3,8 +3,8 @@
   <%= link_to 'New Guide', new_guide_path, class: 'btn btn-primary pull-right' %>
   <%= link_to 'Show All Categories', guide_categories_path, class: 'btn btn-primary pull-right category-btn' %>
 
-  <%if @guide_revisions.exists? %>
-    <%= link_to 'My Revisions', guide_revisions_path, class: 'btn btn-primary pull-right' %>
+  <%if @guide_revisions.present? %>
+    <%= link_to 'My Revisions', guide_revisions_path, class: 'btn btn-primary pull-right guide-rev-btn' %>
   <% end %>
   
 </h1>

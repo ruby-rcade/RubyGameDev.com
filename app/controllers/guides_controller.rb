@@ -7,6 +7,7 @@ class GuidesController < ApplicationController
   def index
     @guide_categories = GuideCategory.all
     @guides = Guide.all
+    @guide_revisions = current_user.guide_revisions
   end
 
   # GET /guide/1
