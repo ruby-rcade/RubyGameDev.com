@@ -1,24 +1,28 @@
-<h1><%= @guide_revision.title %></h1>
-
-<p><%= @guide_revision.body_markdown %></p>
-
-<% if current_user && (current_user.admin? || current_user.id == @guide_revision.user.id) %>
-  Status:
-
-  <% if @guide_revision.status == 'approved' %>
-    <h2 class="status-a">Approved</h2>
-  <% elsif @guide_revision.status == 'rejected' %>
-    Rejected
-  <% else %>
-    Pending<br>
-    <% if current_user.id == @guide_revision.user.id %>
-      Option: <%= link_to 'Edit revision', edit_guide_revision_path(@guide_revision) %>
-    <% end %>
+<h1>
+  <%= @guide_revision.title %>
+  <% if current_user.admin? %>
+    <%= link_to 'All Revisions', guide_revisions_path, class: 'btn btn-primary pull-right guide-rev-btn' %>
+    <%= link_to "Reject", reject_guide_revision_path(@guide_revision), method: 'PATCH', class: "btn btn-primary pull-right guide-rev-btn" %>
+    <%= link_to "Approve", approve_guide_revision_path(@guide_revision), method: 'PATCH', class: "btn btn-primary pull-right guide-rev-btn" %>
   <% end %>
-<% end %>
+</h1>
 
+<div class="guide-rev">
+  <% if current_user && (current_user.id == @guide_revision.user.id) %>
+    <span class="revision-status">Status:
+      <% if @guide_revision.status == 'approved' %>
+        <span class="status-a">Approved</span>
+      <% elsif @guide_revision.status == 'rejected' %>
+        <span class="status-r">Rejected</span>
+      <% else %>
+        <span class="status-p">Pending</span>
+        <% if current_user.id == @guide_revision.user.id %>
+          <%= link_to 'Edit revision', edit_guide_revision_path(@guide_revision), class: "btn btn-primary pull-right" %>
+        <% end %>
+      <% end %>
+      <%= link_to 'My Revisions', guide_revisions_path, class: "btn btn-primary pull-right guide-rev-btn" %>
+    </span>  
+  <% end %>
+</div>
 
-<% if current_user.admin? %>
-  <%= link_to "Approve", approve_guide_revision_path(@guide_revision), method: 'PATCH', class: "btn btn-primary pull-right guide-rev-button" %>
-  <%= link_to "Reject", reject_guide_revision_path(@guide_revision), method: 'PATCH', class: "btn btn-primary pull-right guide-rev-button" %>
-<% end %>
+<div><%= @guide_revision.body_markdown %></div>

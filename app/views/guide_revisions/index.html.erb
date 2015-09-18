@@ -1,4 +1,9 @@
-<h1>My Guide Revisions</h1>
+<h1>
+  My Guide Revisions
+  <span class="revision-status-h1 pull-right">
+    Status:
+  </span>
+</h1>
 
 <table class="guide-revisions table">
   <tbody>
@@ -6,6 +11,18 @@
       <tr>
         <td>
           <%= link_to revision.title, revision %>
+
+          <% if current_user && (current_user.admin? || current_user.id == revision.user.id) %>
+            <span class="revision-status pull-right">
+              <% if revision.status == 'approved' %>
+                <span class="status-a">Approved</span>
+              <% elsif revision.status == 'rejected' %>
+                <span class="status-r">Rejected</span>
+              <% else %>
+                <span class="status-p">Pending</span>
+              <% end %>
+            </span>
+          <% end %>
         </td>
       </tr>
     <% end %>

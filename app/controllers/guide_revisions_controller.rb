@@ -1,9 +1,13 @@
 class GuideRevisionsController < ApplicationController
-  before_action :set_guide_revision, only: [:show, :edit, :approve, :reject]
+  before_action :set_guide_revision, only: [:show, :edit, :update, :approve, :reject]
   before_action :require_login, except: [:index, :show]
 
   def index
-    @guide_revisions = GuideRevision.where(user_id: current_user.id)
+    if  @guide_revisions = GuideRevision.where(user_id: current_user.admin?)
+      @guide_revisions = GuideRevision.all
+    else
+       @guide_revisions = GuideRevision.where(user_id: current_user.id)
+    end
   end
 
   def new
@@ -31,13 +35,18 @@ class GuideRevisionsController < ApplicationController
     end
   end
 
-  #Колона с default value (status -- "pending")
+  def update
+    authorize @guide_revision
+    respond_to do |format|
+      if @guide_revision.update(guide_revision_params)
+        format.html { redirect_to guide_revision_path(@guide_revision), notice: 'Your revision was successfully updated.' }
+      else
+        format.html { render action: 'edit' }
+        format.json { render json: @guide_revision.errors, status: :unprocessable_entity }
+      end
+    end
+  end
 
-
- # alter table schema.guide_revisions alter status set default 'pending'::status_options
-
-  # 1) admin?
-  # 2) change guide
   def approve
     @guide_revision.status = 'approved'
     @guide_revision.save!
@@ -57,6 +66,10 @@ class GuideRevisionsController < ApplicationController
 
   def set_guide_revision
     @guide_revision = GuideRevision.find(params[:id])
+  end
+
+  def guide_revision_params
+    params.require(:guide_revision).permit(:title, :body_markdown)
   end
 
   def guide_params

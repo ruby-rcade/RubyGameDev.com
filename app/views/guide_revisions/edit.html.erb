@@ -1,1 +1,27 @@
-<h1><%= @guide_revision.title %></h1>
+<h1>Edit Guide Revision</h1>
+
+<%= form_for(@guide_revision, url: (@guide_revision.new_record? ? guide_revison_path : guide_revision_path(@guide_revision))) do |f| %>
+  <% if @guide_revision.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@guide_revision.errors.count, "error") %> prohibited this guide_revision from being saved:</h2>
+
+      <ul>
+      <% @guide_revision.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label :title %>
+    <%= f.text_field :title, class: 'form-control input-lg' %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :body_markdown %>
+    <%= f.text_area :body_markdown, class: 'form-control', rows: 5 %>
+  </div>
+
+    <%= f.submit nil, class: 'btn btn-default' %>
+<% end %>
