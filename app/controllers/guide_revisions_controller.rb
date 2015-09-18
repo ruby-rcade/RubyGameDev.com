@@ -3,8 +3,9 @@ class GuideRevisionsController < ApplicationController
   before_action :require_login, except: [:index, :show]
 
   def index
-    if  @guide_revisions = GuideRevision.where(user_id: current_user.admin?)
-      @guide_revisions = GuideRevision.all
+    @guide_revisions = GuideRevision.all
+    if current_user.admin?
+      @guide_revisions
     else
        @guide_revisions = GuideRevision.where(user_id: current_user.id)
     end

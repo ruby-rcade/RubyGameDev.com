@@ -17,7 +17,7 @@
       <% else %>
         <span class="status-p">Pending</span>
         <% if current_user.id == @guide_revision.user.id %>
-          <%= link_to 'Edit revision', edit_guide_revision_path(@guide_revision), class: "btn btn-primary pull-right" %>
+          <%= link_to 'Edit revision', edit_guide_revision_path(@guide_revision), class: "btn btn-primary pull-right guide-rev-btn" %>
         <% end %>
       <% end %>
       <%= link_to 'My Revisions', guide_revisions_path, class: "btn btn-primary pull-right guide-rev-btn" %>
