@@ -1,10 +1,10 @@
 class LibrariesController < ApplicationController
   before_action :set_library, only: [:show, :edit, :update, :destroy]
+  before_action :set_library_category, except: [:show, :update, :destroy]
 
   # GET /libraries
   # GET /libraries.json
   def index
-    @library_categories = LibraryCategory.all
     @libraries = Library.all
   end
 
@@ -20,13 +20,14 @@ class LibrariesController < ApplicationController
 
   # GET /libraries/1/edit
   def edit
+    @library = Library.new
   end
 
   # POST /libraries
   # POST /libraries.json
   def create
     @library = Library.new(library_params)
-
+    @library.user = current_user
     respond_to do |format|
       if @library.save
         format.html { redirect_to @library, notice: 'Library was successfully created.' }
@@ -71,5 +72,9 @@ class LibrariesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def library_params
       params.require(:library).permit(:name, :description, :website_url, :category_id)
+    end
+
+    def set_library_category
+      @library_categories = LibraryCategory.all
     end
 end

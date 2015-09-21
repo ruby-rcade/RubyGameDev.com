@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+
+  <body>
+    <div style="width: 600px; margin: 0 auto;">
+        <table style="padding-bottom: 20px;">
+          <tr>
+            <td style="position: relative;">
+              <%= image_tag attachments["header_#{@history.frequency}.png"].url, style: "width: 646px; height: 324px;"%>
+            </td>
+          </tr>
+          <tr>
+            <% @internal_post.each do | post | %>
+            <h1 style="font-family: HelveticaNeue-Bold; font-size: 21px; color: #331A48; line-height: 26px; margin-left: 20px;">Internal Post</h1><br>
+            <p style="font-family: HelveticaNeue; font-size: 15px;color: #6E4995; line-height: 18px; padding: 20px;"><%= post.title %></p><br>
+            <p style="font-family: HelveticaNeue;font-size: 12px;color: rgba(87,83,80,0.60);line-height: 15px; padding: 20px;"><%= post.body_markdown %></p>
+            <% end %>
+          </tr>
+        </table>
+  <footer>
+    <%= image_tag attachments['footer.png'].url, style: "width: 646px; height: 229px" %>
+  </footer>
+    </div>
+  </body>
+</html>

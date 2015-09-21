@@ -1,11 +1,24 @@
-<% content_for :sidebar do %>
-  <div class="panel panel-default">
-    <div class="panel-body">
-      <%= link_to 'Suggest a New Category', new_library_category_path, class: 'btn btn-default btn-md' %>
-      <%= link_to 'New Library', new_library_path, class: 'btn btn-default btn-md' %>
-    </div>
-  </div>
-<% end %>
+<h1>
+  Latest Libraries
+  <%= link_to 'New Library', new_library_path, class: 'btn btn-primary pull-right' %>
+  <%= link_to 'Suggest a New Category', new_library_category_path, class: 'btn btn-primary pull-right category-btn' %>
+</h1>
 
-<h1>Libraries</h1>
-<%= render 'library_categories/table' %>
+<% @library_categories.each do |category| %>
+    <h4><%= category.title %></h4>
+  <table class="posts table">
+    <tbody>
+      <% category.libraries.each do |library| %>
+        <tr>
+          <td>
+            <% if library.instance_of? Library %>
+              <%= image_tag 'libraries.jpeg', alt: 'libraries', class: 'guide-xs pull-left show', width: 25 %>
+            <% end %>
+            <%= link_to library.name, library_path(library) %>
+            <br><span class="text-muted">Submitted by <%= library.user.username %> on <%= library.created_at.strftime("%m/%d/%Y") %></span>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>

@@ -25,7 +25,6 @@ class LibraryCategoriesController < ApplicationController
   # POST /library_categories.json
   def create
     @library_category = LibraryCategory.new(library_category_params)
-
     respond_to do |format|
       if @library_category.save
         format.html { redirect_to @library_category, notice: 'Library category was successfully created.' }

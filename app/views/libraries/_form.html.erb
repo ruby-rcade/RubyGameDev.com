@@ -24,8 +24,8 @@
     <%= f.text_field :website_url %>
   </div>
   <div class="field">
-    <%= f.label :category %><br>
-    <%= f.text_field :category %>
+    <%= f.label :category_id, 'Choose Category' %><br>
+    <%= f.select :category_id, @library_categories.map { |lc| [lc.title, lc.id] }, {}, {class: 'form-control'} %>
   </div>
   <div class="actions">
     <%= f.submit %>
