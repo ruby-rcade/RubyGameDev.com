@@ -3,11 +3,11 @@ class GuideRevisionsController < ApplicationController
   before_action :require_login, except: [:index, :show]
 
   def index
-    @guide_revisions = GuideRevision.all
     if current_user.admin?
-      @guide_revisions
+      @guide_revisions = GuideRevision.all.order("created_at desc")
     else
-       @guide_revisions = GuideRevision.where(user_id: current_user.id)
+       @guide_revisions = GuideRevision.where(user_id: current_user.id).
+       order("created_at desc")
     end
   end
 
@@ -49,6 +49,9 @@ class GuideRevisionsController < ApplicationController
   end
 
   def approve
+    @guide = Guide.find(@guide_revision.original_guide_id)
+    @guide.body_markdown = @guide_revision.body_markdown
+    @guide.save!
     @guide_revision.status = 'approved'
     @guide_revision.save!
 

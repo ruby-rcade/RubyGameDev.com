@@ -59,6 +59,7 @@ class GuidesController < ApplicationController
         format.json { render json: @guide.errors, status: :unprocessable_entity }
       end
     end
+
   end
 
   # DELETE /guide/1
