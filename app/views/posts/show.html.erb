@@ -8,10 +8,10 @@
 <div class="post">
   <h1>
     <%= @post.title %>
-    <%= render 'votes/vote', post: @post %>
+    <%= render 'posts/post_summary', post: @post %>
     <% if @post.instance_of? Guide %>
       <%= image_tag 'Guide.png', alt: 'Guides', class: 'guide-xs pull-left show', width: 25 %>
-    <% end %> 
+    <% end %>
   </h1>
 
   <% if @post.type == "Guide" %>
