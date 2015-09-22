@@ -3,13 +3,8 @@ class DigestMailer < ApplicationMailer
   default template_name: 'digest_mailer'
 
   def digest_mailer(history, user_id)
-    # @discussions = history.discussions
-    # @tutorials = history.tutorials
-    # @libraries = history.libraries
-    # @new_users_count = User.count - history.users_count
-    # @comment = Comment.find comment_id
-    @internal_post = InternalPost.all
     @user = User.find user_id
+    @posts = history.posts
     @history = history
     attachments.inline["header_#{history.frequency}.png"] =
       File.read("#{Rails.root}/app/assets/images/header_#{history.frequency}.png")
