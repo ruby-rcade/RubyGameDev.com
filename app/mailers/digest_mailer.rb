@@ -12,12 +12,4 @@ class DigestMailer < ApplicationMailer
       File.read("#{Rails.root}/app/assets/images/footer.png")
     mail(to: @user.email, subject: "RubyGameDev.com #{history.frequency} digest")
   end
-
-  def self.show_post(post)
-    if post.external_post?
-      post.body_html.html_safe
-    else
-      post.body_markdown
-    end
-  end
 end

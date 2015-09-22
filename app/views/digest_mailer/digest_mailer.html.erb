@@ -17,7 +17,7 @@
             <% @posts.each do | post | %>
               <h1 style="font-family: HelveticaNeue-Bold; font-size: 21px; color: #331A48; line-height: 26px; margin-left: 20px;"><%= post.title %></h1><br>
               <div style="font-family: HelveticaNeue; font-size: 20px;color: #6E4995; line-height: 18px; padding: 15px;">
-                <p><%= DigestMailer.show_post(post) %></p><br>
+                <p><%= post.body.html_safe %></p><br>
               </div>
             <% end %>
           </tr>
