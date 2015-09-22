@@ -12,6 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery-ui
 //= require turbolinks
 //= require bootstrap-sprockets
 //= require_tree .
@@ -20,7 +21,7 @@ $(function(){
   $('#welcome_message').bind('closed.bs.alert', function() {
     var form = $('#welcome_message').next('form');
     $.post(form.attr('action'), form.serialize());
-  })
+  });
 
   $('#digest_signup_form')
     .bind("ajax:success", function(data, status, xhr) {
@@ -29,4 +30,37 @@ $(function(){
     .bind("ajax:error", function(xhr, status, error) {
         alert('Failed.');
     });
-})
+
+});
+
+$(function() {
+  $('.tags-input').autocomplete({
+    minLength: 1,
+    source: "/tags.json",
+    autoFocus: true,
+
+    focus: function() {
+      // prevent value inserted on focus
+      return false;
+    },
+
+    select: function(event, ui) {
+      var terms = this.value.split(/,\s*/);
+      // remove the current input
+      terms.pop();
+      // add the selected item
+      terms.push(ui.item.value);
+      // add an empty item for a trailing comma
+      terms.push("");
+
+      this.value = terms.join(", ");
+      $(this).autocomplete('close');
+      return false;
+    }
+  });
+
+  $('.tags-input').on('blur', function() {
+    // remove any trailing commas
+    this.value = this.value.replace(/,\s*$/, '');
+  });
+});
