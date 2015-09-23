@@ -55,14 +55,14 @@ class GuideRevisionsController < ApplicationController
     @guide_revision.status = 'approved'
     @guide_revision.save!
 
-    redirect_to :back
+    redirect_to guide_revisions_path(guide_id: @guide.id)
   end
 
   def reject
     @guide_revision.status = 'rejected'
     @guide_revision.save!
 
-    redirect_to :back
+    redirect_to guide_revisions_path(guide_id: @guide.id)
   end
 
   def edit

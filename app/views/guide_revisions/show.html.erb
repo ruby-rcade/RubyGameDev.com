@@ -1,10 +1,12 @@
 <h1>
   <%= @guide_revision.title %>
-  <% if current_user.admin? %>
-    <%= link_to 'All Revisions', guide_revisions_path, class: 'btn btn-primary pull-right guide-rev-btn' %>
-    <%= link_to "Reject", reject_guide_revision_path(@guide_revision), method: 'PATCH', class: "btn btn-primary pull-right guide-rev-btn" %>
-    <%= link_to "Approve", approve_guide_revision_path(@guide_revision), method: 'PATCH', class: "btn btn-primary pull-right guide-rev-btn" %>
-  <% end %>
+  <div>
+    <% if current_user.admin? %>
+      <%= link_to 'All Revisions', guide_revisions_path, class: 'btn btn-primary pull-right guide-rev-btn' %>
+      <%= link_to "Reject", reject_guide_revision_path(@guide_revision), method: 'PATCH', class: "btn btn-primary pull-right guide-rev-btn" %>
+      <%= link_to "Approve", approve_guide_revision_path(@guide_revision), method: 'PATCH', class: "btn btn-primary pull-right guide-rev-btn" %>
+    <% end %>
+  </div>
 </h1>
 
 <div class="guide-rev">
