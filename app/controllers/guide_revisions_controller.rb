@@ -6,8 +6,7 @@ class GuideRevisionsController < ApplicationController
     if current_user.admin?
       @guide_revisions = GuideRevision.all.order("created_at desc")
     else
-      @guide_revisions = GuideRevision.where(user_id: current_user.id).order
-      ("created_at desc")
+      @guide_revisions = GuideRevision.where(user_id: current_user.id).order("created_at desc")
     end
  end
 
@@ -55,14 +54,14 @@ class GuideRevisionsController < ApplicationController
     @guide_revision.status = 'approved'
     @guide_revision.save!
 
-    redirect_to guide_revisions_path(guide_id: @guide.id)
+    redirect_to guide_revisions_path
   end
 
   def reject
     @guide_revision.status = 'rejected'
     @guide_revision.save!
 
-    redirect_to guide_revisions_path(guide_id: @guide.id)
+    redirect_to guide_revisions_path
   end
 
   def edit
