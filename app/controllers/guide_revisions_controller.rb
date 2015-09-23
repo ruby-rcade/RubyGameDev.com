@@ -48,7 +48,8 @@ class GuideRevisionsController < ApplicationController
   end
 
   def approve
-    @guide = Guide.find_by(@guide_revision.original_guide_id)
+    @guide = Guide.find_by(id: @guide_revision.original_guide_id)
+    @guide.user_id = @guide_revision.user_id
     @guide.body_markdown = @guide_revision.body_markdown
     @guide.save!
     @guide_revision.status = 'approved'

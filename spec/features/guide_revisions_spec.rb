@@ -28,5 +28,14 @@ describe "Guide Revisons" do
 
     expect(@guide.title).to eq "Some Guide for Ruby"
     expect(@guide_revision.title).to eq "Some Guide for Ruby and Rails"
+
+  end
+
+  it "edits created revision if its status is 'pending'" do
+    
+  end
+
+  it "allows the admin to approve and reject 'pending' revisions " do
+    
   end
 end
