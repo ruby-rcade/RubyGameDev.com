@@ -16,6 +16,7 @@ class GuideRevisionsController < ApplicationController
   end
 
   def show
+    @guide_revision = GuideRevision.find(params[:id])
   end
 
   def create

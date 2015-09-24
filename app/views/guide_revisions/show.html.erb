@@ -3,14 +3,14 @@
   <div class="admin-btn">
     <% if current_user.admin? %>
       <%= link_to 'All Revisions', guide_revisions_path, class: 'btn btn-primary guide-rev-btn' %>
-      <%= link_to "Reject", reject_guide_revision_path(@guide_revision), method: 'PATCH', class: "btn btn-primary guide-rev-btn" %>
-      <%= link_to "Approve", approve_guide_revision_path(@guide_revision), method: 'PATCH', class: "btn btn-primary guide-rev-btn" %>
+      <%= link_to "Reject", reject_guide_revision_path(@guide_revision), method: 'PATCH', class: "btn btn-warning guide-rev-btn" %>
+      <%= link_to "Approve", approve_guide_revision_path(@guide_revision), method: 'PATCH', class: "btn btn-success guide-rev-btn" %>
     <% end %>
   </div>
 </h1>
 
 <div class="guide-rev">
-  <% if current_user && (current_user.id == @guide_revision.user.id) %>
+  <% if current_user && (current_user.id == @guide_revision.user_id) %>
     <span class="revision-status">Status:
       <% if @guide_revision.status == 'approved' %>
         <span class="status-a">Approved</span>
