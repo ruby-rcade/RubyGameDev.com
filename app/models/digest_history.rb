@@ -7,7 +7,15 @@ class DigestHistory < ActiveRecord::Base
     history
   end
 
-  def posts
-    Post.all
+  def daily_posts
+    Post.where('created_at >= ?', 1.day.ago)
+  end
+
+  def weekly_posts
+    Post.where('created_at >= ?', 1.week.ago)
+  end
+
+  def monthly_posts
+    Post.where('created_at >= ?', 1.month.ago)
   end
 end
