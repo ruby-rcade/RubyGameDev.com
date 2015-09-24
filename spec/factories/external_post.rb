@@ -5,5 +5,6 @@ FactoryGirl.define do
     body_markdown "Example body. So **strong**."
     user_display_name "Mister Tes"
     source_url "http://gamedev.stackexchange.com/"
+    created_at "2015-09-07"
   end
 end

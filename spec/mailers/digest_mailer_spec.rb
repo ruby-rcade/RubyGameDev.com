@@ -3,6 +3,7 @@ require "rails_helper"
 describe DigestMailer do
   describe "#digest_mailer" do
     let(:user) { FactoryGirl.create(:user) }
+    let(:post) { FactoryGirl.create(:external_post, created_at: Date.today) }
     let(:history) { FactoryGirl.create(:digest_history, frequency: user.digest_frequency) }
     let(:mail) { DigestMailer.digest_mailer(history, user.id) }
 
