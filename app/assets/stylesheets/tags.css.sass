@@ -8,17 +8,46 @@
   border-radius: 3px
   padding: 2px
   margin-right: 5px
-  background-color: #DFE7EE
-
-.tags-list
-  font-size: 15px
-  color: #3D6C8C
-  border: 1px solid #C8D8E5
-  border-radius: 3px
-  padding: 5px 20px
-  margin: 15px
-  display: inline-block
+  margin-bottom: none
   background-color: #DFE7EE
 
 .tags-container
   margin: 25px 25px
+
+.tags-form
+  margin: 0px
+
+.tags-box
+  display: none
+  overflow: auto
+
+.tags-box.active
+  display: block
+
+.ui-menu
+  background-color: #F6F7F4
+  border: 1px solid #D6D3D3
+  border-radius: 3px
+  box-sizing: border-box
+  max-width: 175px
+  max-height: 50%
+  list-style: none
+  padding: 0px
+  margin: 0px
+  li.ui-state-focus
+    background-color: #D6D3D3
+    border-top: 1px solid #C8BFBF
+    border-bottom: 1px solid #C8BFBF
+    cursor: pointer
+
+.ui-menu-item
+  font-size: 15px
+  color: #3D6C8C
+  display: block
+  padding-left: 15px
+  padding-top: 5px
+  padding-bottom: 5px
+  display: list-item
+
+.ui-helper-hidden-accessible
+  display: none
