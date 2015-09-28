@@ -4,10 +4,12 @@ class GuideRevisionsController < ApplicationController
 
   def index
     if current_user.admin?
-      @guide_revisions = GuideRevision.all.order("created_at desc")
+      @guide_revisions = GuideRevision.where(status: nil)
     else
-      @guide_revisions = GuideRevision.where(user_id: current_user.id).order("created_at desc")
+      @guide_revisions = GuideRevision.where(user_id: current_user.id)
     end
+
+    @guide_revisions = @guide_revisions.order("created_at desc")
  end
 
   def new
@@ -49,10 +51,10 @@ class GuideRevisionsController < ApplicationController
   end
 
   def approve
-    @guide = Guide.find_by(id: @guide_revision.original_guide_id)
-    @guide.user_id = @guide_revision.user_id
+    @guide = Guide.find(@guide_revision.original_guide_id)
     @guide.body_markdown = @guide_revision.body_markdown
     @guide.save!
+
     @guide_revision.status = 'approved'
     @guide_revision.save!
 
@@ -78,10 +80,6 @@ class GuideRevisionsController < ApplicationController
   end
 
   def guide_params
-    params.require(:guide).permit(
-      :user_id,
-      :body_markdown,
-      :title,
-      :guide_category_id)
+    params.require(:guide).permit(:body_markdown)
   end
 end

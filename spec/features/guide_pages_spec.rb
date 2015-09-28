@@ -27,12 +27,12 @@ describe "Guide pages" do
         guide_category_id: category.id )).to be_truthy
     end
 
-    it "shows a success mesage" do
+    it "shows a success message" do
       expect(page).to have_content "Guide was successfully created."
     end
   end
 
-  describe "updating" do
+  describe "Update Guide" do
     before do
       @guide = FactoryGirl.create :guide, user: @user
 
@@ -43,7 +43,7 @@ describe "Guide pages" do
       click_button "Update Guide"
     end
 
-    it "updates guide" do
+    it "confirms that guide is updated" do
       @guide.reload
       expect(@guide.title).to eq "Some Changed title"
       expect(@guide.body_markdown).to eq "Example for changed body"
@@ -51,18 +51,20 @@ describe "Guide pages" do
     end
   end
 
-  describe "'links '|Edit and |Add Revision' view option" do
+  describe "'Edit' and 'Add Revision' links in view option" do
     before do
       sign_out
       @user = create_and_sign_in_user
     end
 
-    it "shows 'Add Revision' link to user who hasn't create the specific guide" do
+    it "shows 'Add Revision' link to the user, who is not the author of the guide" do
       @guide = FactoryGirl.create(:guide, title: "Some Guide title")
       visit "/posts/#{@guide.id}"
 
       within(".post") do
-        expect(find_link('Add Revision').visible?).to be_truthy
+        expect(page).to have_text('Add Revision')
+        expect(page).to_not have_text('Edit')
+        expect(page).to_not have_text('Destroy')
       end
     end
 
@@ -76,7 +78,7 @@ describe "Guide pages" do
     end
   end
 
-  describe "admin's view option" do
+  describe "admin's view page" do
     it "shows 'Destroy' if user is admin" do
       sign_out
       sign_in($admin)

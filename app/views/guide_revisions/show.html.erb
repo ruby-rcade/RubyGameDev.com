@@ -1,29 +1,29 @@
 <h1>
-  <%= @guide_revision.title %>
+  <%= @guide_revision.guide.title %>
   <div class="admin-btn">
     <% if current_user.admin? %>
       <%= link_to 'All Revisions', guide_revisions_path, class: 'btn btn-primary guide-rev-btn' %>
-      <%= link_to "Reject", reject_guide_revision_path(@guide_revision), method: 'PATCH', class: "btn btn-warning guide-rev-btn" %>
-      <%= link_to "Approve", approve_guide_revision_path(@guide_revision), method: 'PATCH', class: "btn btn-success guide-rev-btn" %>
+      <%= link_to "Reject", reject_guide_revision_path(@guide_revision), method: 'PATCH', class: "btn btn-warning guide-rev-btn pull-right" %>
+      <%= link_to "Approve", approve_guide_revision_path(@guide_revision), method: 'PATCH', class: "btn btn-success guide-rev-btn pull-right" %>
     <% end %>
   </div>
 </h1>
 
 <div class="guide-rev">
   <% if current_user && (current_user.id == @guide_revision.user_id) %>
-    <span class="revision-status">Status:
+    <span class="revision-status">
       <% if @guide_revision.status == 'approved' %>
-        <span class="status-a">Approved</span>
+        <span class="status-a pull-right">Status: Approved</span>
       <% elsif @guide_revision.status == 'rejected' %>
-        <span class="status-r">Rejected</span>
+        <span class="status-r pull-right">Status: Rejected</span>
       <% else %>
-        <span class="status-p">Pending</span>
+        <span class="status-p pull-right">Status: Pending</span>
         <% if current_user.id == @guide_revision.user.id %>
-          <%= link_to 'Edit revision', edit_guide_revision_path(@guide_revision), class: "btn btn-primary guide-rev-btn" %>
+          <%= link_to 'Edit revision', edit_guide_revision_path(@guide_revision), class: "btn btn-primary guide-rev-btn pull-left" %>
         <% end %>
       <% end %>
-      <%= link_to 'My Revisions', guide_revisions_path, class: "btn btn-primary guide-rev-btn" %>
-    </span>  
+      <%= link_to 'My Revisions', guide_revisions_path, class: "btn btn-primary guide-rev-btn pull-left" %>
+    </span>
   <% end %>
 </div>
 

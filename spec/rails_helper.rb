@@ -30,6 +30,7 @@ ActiveRecord::Migration.check_pending!
 
 RSpec.configure do |config|
   config.before(:suite) do
+    # The admin is the first-created user, the one with id 1.
     $admin = FactoryGirl.create(:user, email: 'admin@example.com')
   end
 

@@ -6,7 +6,7 @@ describe "Creating Guide Revisons" do
     @guide = FactoryGirl.create(:guide, title: "Some Guide for Ruby", body_markdown: "RoR")
   end
 
-  it "checks if 'Add Revision' link redirection is true" do
+  it "checks if 'Add Revision' link redirects to 'New Guide Revision' form" do
     visit "/posts/#{@guide.id}"
 
     click_link('Add Revision')
@@ -42,13 +42,13 @@ describe "Editing Guide Revision" do
     visit "/guide_revisions"
   end
 
-  it "allows user to edits created revision if its status is 'pending'" do
+  it "allows user to edit his revision if current status is 'pending'" do
     visit guide_revision_path(@guide_revision.id)
     expect(page).to have_css ".status-p"
 
     click_link "Edit revision"
     expect(page.current_path).to eq edit_guide_revision_path(@guide_revision.id)
-    
+
     fill_in("Title", with: "Some Revision Guide for Ruby and Rails")
     fill_in("Body markdown", with: "Revision RoR and Java")
 
@@ -68,7 +68,7 @@ describe "Editing Guide Revision" do
     visit guide_revision_path(@guide_revision.id)
 
     expect(page).to have_link "Reject"
-    
+
 
     click_link "Reject"
     @guide_revision.reload
