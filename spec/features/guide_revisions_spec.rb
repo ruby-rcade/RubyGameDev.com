@@ -16,7 +16,6 @@ describe "Creating Guide Revisons" do
   it "creates a new revision and checks if its status is 'pending'" do
     visit new_guide_revision_path(guide_id: @guide.id)
 
-    fill_in("Title", with: "Some Guide for Ruby and Rails")
     fill_in("Body markdown", with: "RoR and Java")
 
     click_button "Send for Review"
@@ -27,9 +26,6 @@ describe "Creating Guide Revisons" do
 
     @guide_revision = GuideRevision.find_by!(original_guide_id: @guide.id)
     @guide.reload
-
-    expect(@guide.title).to eq "Some Guide for Ruby"
-    expect(@guide_revision.title).to eq "Some Guide for Ruby and Rails"
   end
 end
 
@@ -49,7 +45,6 @@ describe "Editing Guide Revision" do
     click_link "Edit revision"
     expect(page.current_path).to eq edit_guide_revision_path(@guide_revision.id)
 
-    fill_in("Title", with: "Some Revision Guide for Ruby and Rails")
     fill_in("Body markdown", with: "Revision RoR and Java")
 
     click_button "Update Revision"
@@ -57,7 +52,6 @@ describe "Editing Guide Revision" do
 
     @guide_revision.reload
     expect(page).to have_content "Your revision was successfully updated."
-    expect(@guide_revision.title).to eq "Some Revision Guide for Ruby and Rails"
     expect(@guide_revision.body_markdown).to eq "Revision RoR and Java"
   end
 
