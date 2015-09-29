@@ -17,7 +17,9 @@
             <% @posts.each do | post | %>
               <h1 style="font-family: HelveticaNeue-Bold; font-size: 21px; color: #331A48; line-height: 26px; margin-left: 20px;"><%= post.title %></h1><br>
               <div style="font-family: HelveticaNeue; font-size: 20px;color: #6E4995; line-height: 18px; padding: 15px;">
-                <p><%= post.number_of_comments %> comments, <%= post.votes.count %> votes, created at <%= post.created_at.strftime('%Y-%m-%d') %></p><br>
+                <p>
+                   <%= pluralize(post.number_of_comments, "comment") %>,
+                   <%= pluralize(post.votes.count,"vote") %> , created at <%= post.created_at.strftime('%Y-%m-%d') %></p><br>
               </div>
             <% end %>
           </tr>
