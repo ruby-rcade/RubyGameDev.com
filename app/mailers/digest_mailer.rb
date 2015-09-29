@@ -14,6 +14,7 @@ class DigestMailer < ApplicationMailer
   end
 
   private
+
   def posts_to_email(history)
     return history.daily_posts if history.frequency == 'daily'
     return history.weekly_posts if history.frequency == 'weekly'
