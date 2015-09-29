@@ -5,12 +5,14 @@ class GuideRevisionsController < ApplicationController
   def index
     if current_user.admin?
       @guide_revisions = GuideRevision.where(status: nil)
+      @approved_rejected_revisions = GuideRevision.where.not(status: nil)
+      @approved_rejected_revisions = @approved_rejected_revisions.order("created_at desc")
     else
       @guide_revisions = GuideRevision.where(user_id: current_user.id)
     end
 
-    @guide_revisions = @guide_revisions.order("created_at desc")
- end
+      @guide_revisions = @guide_revisions.order("created_at desc")
+  end
 
   def new
     @guide_categories = GuideCategory.all
