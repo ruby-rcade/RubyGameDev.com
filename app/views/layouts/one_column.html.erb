@@ -61,7 +61,7 @@
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= current_user.email %> <b class="caret"></b></a>
                 <ul class="dropdown-menu">
                   <li><%= link_to "Edit Profile", account_path %></li>
-                  <li><%= link_to 'Sign Out', sign_out_path, method: :delete %></li>
+                  <li><%= link_to 'Sign Out', sign_out_path, method: :delete, class: 'sign-out' %></li>
                 </ul>
               </li>
             <% else %>
