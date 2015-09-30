@@ -72,11 +72,16 @@ class PostsController < ApplicationController
     end
   end
 
-  def vote
+   def vote
     @post = Post.find(params[:id])
     @post.add_vote(current_user)
-    flash[:notice] = "You have successfully voted"
-    redirect_to(:back)
+
+    if request.xhr?
+      render partial: 'votes/vote', locals: {post: @post}
+    else
+      flash[:notice] = "You have successfully voted"
+      redirect_to(:back)
+    end
   end
 
   private
