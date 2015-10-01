@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150901091523) do
+ActiveRecord::Schema.define(version: 20150915104923) do
 
   create_table "authentications", force: true do |t|
     t.integer  "user_id"
@@ -74,6 +74,17 @@ ActiveRecord::Schema.define(version: 20150901091523) do
     t.datetime "updated_at"
   end
 
+  create_table "guide_revisions", force: true do |t|
+    t.integer  "original_guide_id"
+    t.string   "status"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "title"
+    t.text     "body_markdown"
+    t.integer  "guide_category_id"
+    t.integer  "user_id"
+  end
+
   create_table "libraries", force: true do |t|
     t.string   "name"
     t.text     "description"
@@ -81,6 +92,7 @@ ActiveRecord::Schema.define(version: 20150901091523) do
     t.integer  "category_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id"
   end
 
   add_index "libraries", ["category_id"], name: "index_libraries_on_category_id"
@@ -101,7 +113,7 @@ ActiveRecord::Schema.define(version: 20150901091523) do
     t.string   "user_display_name"
     t.string   "source_url"
     t.integer  "external_id"
-    t.string   "type"
+    t.string   "type",              default: "InternalPost"
     t.integer  "guide_category_id"
   end
 

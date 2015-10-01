@@ -1,7 +1,13 @@
 <h1>
   Latest Guides
-  <%= link_to 'New Guide', new_guide_path, class: 'btn btn-primary pull-right' %>
+  <%= link_to 'New Guide', new_guide_path, class: 'btn btn-primary pull-right category-btn' %>
   <%= link_to 'Show All Categories', guide_categories_path, class: 'btn btn-primary pull-right category-btn' %>
+
+  <% if current_user.admin? %>
+    <%= link_to 'All Revisions', guide_revisions_path, class: 'btn btn-primary pull-right guide-rev-btn' %>
+  <% else %>
+    <%= link_to 'My Revisions', guide_revisions_path, class: 'btn btn-primary pull-right guide-rev-btn' %>
+  <% end %>
 </h1>
 
 <% @guide_categories.select do |category| %>
@@ -21,7 +27,7 @@
             <br><span class="text-muted">Submitted by <%= post.username %> on <%= post.created_at.strftime("%m/%d/%Y") %></span>
             <br><%= render 'posts/tags', post: post %>
           </td>
-          <td>
+          <td class="col-xs-1">
             <%= render 'votes/vote', post: post %>
             <span class="badge pull-right" title="<%= pluralize(post.number_of_comments, 'comment') %>"><%= post.number_of_comments %></span>
           </td>

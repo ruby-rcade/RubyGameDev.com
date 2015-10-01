@@ -29,6 +29,8 @@
       <% else %>
         | <%= link_to 'Edit', edit_post_path(@post) %>
       <% end %>
+    <% else %>
+        | <%= link_to 'Add Revision', new_guide_revision_path(guide_id: @post.id) %>
     <% end %>
 
     <% if policy(@post).destroy? %>
