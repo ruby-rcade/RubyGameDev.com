@@ -35,4 +35,4 @@ class User < ActiveRecord::Base
     self.digest_subscriber = true
     self.digest_frequency = "daily"
   end
-endend
+end
