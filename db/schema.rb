@@ -11,7 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20150901091523) do
+=======
+ActiveRecord::Schema.define(version: 20150915104923) do
+>>>>>>> 6b9a197c6fc34474411c93ff0b324d90f78ac2af
 
   create_table "authentications", force: true do |t|
     t.integer  "user_id"
@@ -72,6 +76,17 @@ ActiveRecord::Schema.define(version: 20150901091523) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "guide_revisions", force: true do |t|
+    t.integer  "original_guide_id"
+    t.string   "status"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "title"
+    t.text     "body_markdown"
+    t.integer  "guide_category_id"
+    t.integer  "user_id"
   end
 
   create_table "libraries", force: true do |t|

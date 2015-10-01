@@ -7,6 +7,7 @@ class GuidesController < ApplicationController
   def index
     @guide_categories = GuideCategory.all
     @guides = Guide.all
+    @guide_revisions = current_user.guide_revisions
   end
 
   # GET /guide/1
@@ -58,6 +59,7 @@ class GuidesController < ApplicationController
         format.json { render json: @guide.errors, status: :unprocessable_entity }
       end
     end
+
   end
 
   # DELETE /guide/1

@@ -29,6 +29,11 @@ require 'support/features'
 ActiveRecord::Migration.check_pending!
 
 RSpec.configure do |config|
+  config.before(:suite) do
+    # The admin is the first-created user, the one with id 1.
+    $admin = FactoryGirl.create(:user, email: 'admin@example.com')
+  end
+
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
 

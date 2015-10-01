@@ -1,0 +1,82 @@
+<h1>
+  <% if current_user.admin? %>
+    Pending Guide Revisions
+  <% else %>
+    My Guide Revisions
+  <% end %>
+</h1>
+
+<table class="guide-revisions table">
+  <thead>
+    <tr>
+      <th class="guide-h-t">Title</th>
+      <th class="guide-t">Status</th>
+      <th class="guide-t">Created</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @guide_revisions.each do |revision| %>
+      <tr>
+        <td class="col-md-6">
+          <%= link_to revision.guide.title, revision, class: "guide-title-t" %>
+        </td>
+        <td>
+          <% if policy(revision).view_status? %>
+            <span class="revision-status pull-right">
+              <% if revision.status == 'approved' %>
+                <span class="status-a">Approved</span>
+              <% elsif revision.status == 'rejected' %>
+                <span class="status-r">Rejected</span>
+              <% else %>
+                <span class="status-p">Pending</span>
+              <% end %>
+            </span>
+          <% end %>
+        </td>
+        <td class="date-n-time">
+          <%= revision.created_at.strftime("%d %b %Y, %H:%M") %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table><br/>
+
+<% if current_user.admin? %>
+  <h1>Approved/Rejected Revisions</h1>
+  <table class="guide-revisions table">
+    <thead>
+      <tr>
+        <th class="guide-h-t">Title</th>
+        <th class="guide-t">Status</th>
+        <th class="guide-t">Created</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @approved_rejected_revisions.each do |revision| %>
+        <tr>
+          <td class="col-md-6">
+            <%= link_to revision.guide.title, revision, class: "guide-title-t" %>
+          </td>
+
+          <td>
+            <% if policy(revision).view_status? %>
+              <span class="revision-status pull-right">
+                <% if revision.status == 'approved' %>
+                  <span class="status-a">Approved</span>
+                <% elsif revision.status == 'rejected' %>
+                  <span class="status-r">Rejected</span>
+                <% end %>
+              </span>
+            <% end %>
+          </td>
+
+         <td class="date-n-time">
+            <%= revision.created_at.strftime("%d %b %Y, %H:%M") %>
+         </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>
