@@ -18,4 +18,10 @@ class DigestHistory < ActiveRecord::Base
   def monthly_posts
     Post.where('created_at >= ?', 1.month.ago)
   end
+
+  def posts_to_email
+    return daily_posts if frequency == 'daily'
+    return weekly_posts if frequency == 'weekly'
+    monthly_posts
+  end
 end
