@@ -92,6 +92,7 @@ ActiveRecord::Schema.define(version: 20150915104923) do
     t.integer  "category_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id"
   end
 
   add_index "libraries", ["category_id"], name: "index_libraries_on_category_id"

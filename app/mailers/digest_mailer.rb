@@ -1,17 +1,15 @@
-class DigestMailer < ActionMailer::Base
-  default from: ENV["MAIL_NOTIFICATION"]
+class DigestMailer < ApplicationMailer
+  default template_path: 'digest_mailer'
+  default template_name: 'digest_mailer'
 
-  # Subject can be set in your I18n file at config/locales/en.yml
-  # with the following lookup:
-  #
-  # en.digest_mailer.daily_digest.subject
-
-  def daily_digest(history, user)
-    @discussions = history.discussions
-    @tutorials = history.tutorials
-    @libraries = history.libraries
-    @new_users_count = User.count - history.users_count
-    @user = user
-    mail to: user.email, subject: 'RubyGameDev.com Daily Digest'
+  def digest_mailer(history, user_id)
+    @user = User.find user_id
+    @posts = history.posts_to_email
+    @history = history
+    attachments.inline["header_#{history.frequency}.png"] =
+      File.read("#{Rails.root}/app/assets/images/header_#{history.frequency}.png")
+    attachments.inline['footer.png'] =
+      File.read("#{Rails.root}/app/assets/images/footer.png")
+    mail(to: @user.email, subject: "RubyGameDev.com #{history.frequency} digest")
   end
 end

@@ -7,7 +7,7 @@ end
 describe "#username" do
   subject { FactoryGirl.build(:external_post) }
 
-  it "it returns username of user_display_name" do
+  it "returns username of user_display_name" do
     expect(subject.username).to eq subject.user_display_name
   end
 end
