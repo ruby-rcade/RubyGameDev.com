@@ -14,6 +14,7 @@
           </tr>
           <tr>
           <h1 style="font-family: HelveticaNeue-Bold; font-size: 21px; color: red; line-height: 26px; margin-left: 20px;"> Recent Posts </h1><br>
+          <% unless @posts.empty? %>
             <% @posts.each do | post | %>
               <h1 style="font-family: HelveticaNeue-Bold; font-size: 21px; color: #331A48; line-height: 26px; margin-left: 20px;"><%= post.title %></h1><br>
               <div style="font-family: HelveticaNeue; font-size: 20px;color: #6E4995; line-height: 18px; padding: 15px;">
@@ -22,6 +23,9 @@
                    <%= pluralize(post.votes.count,"vote") %> , created at <%= post.created_at.strftime('%Y-%m-%d') %></p><br>
               </div>
             <% end %>
+          <% else %>
+            <h1 style="font-family: HelveticaNeue-Bold; font-size: 21px; color:#331A48; line-height: 26px; margin-left: 20px;"> No new posts have been added since the last email. Click here to add a post to RubyGameDev.com </h1><br>
+          <% end %>
           </tr>
         </table>
   <footer>
