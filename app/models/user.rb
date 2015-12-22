@@ -28,7 +28,7 @@ class User < ActiveRecord::Base
   end
 
   def admin?
-    id == 1 # Andrew Havens
+    id == 1 || email == 'email@andrewhavens.com' # Andrew Havens
   end
 
   def create_default_subscription
