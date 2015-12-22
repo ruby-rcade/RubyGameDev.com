@@ -14,7 +14,7 @@
     <div class="panel panel-default">
       <div class="panel-body">
         <%= link_to "New Post", new_post_path, class: 'btn btn-primary pull-right' %>
-        <%= link_to "Tags", tags_path, class: 'btn btn-primary pull-right tag-btn' %>
+        <%= link_to "Filter by Tag", tags_path, class: 'btn pull-right' %>
         <h2>Latest Posts</h2>
         <%= render 'posts/list' %>
       </div>
