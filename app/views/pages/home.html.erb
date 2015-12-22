@@ -24,8 +24,25 @@
   <div class="col-md-5">
     <div class="panel panel-default">
       <div class="panel-body text-center">
-        <%= link_to "Help Out on GitHub", 'https://github.com/ruby-rcade/RubyGameDev.com', class: 'btn btn-sm btn-primary', style: 'vertical-align: top' %>
+        <%= form_tag(posts_path, method: :get, class: "form-inline") do %>
+          <div class="form-group">
+            <%= search_field_tag :search, params[:search], placeholder: "Search", class: "form-control" %>
+          </div>
+          <%= submit_tag "Search", class: "btn btn-default" %>
+        <% end %>
+      </div>
+    </div>
+    <div class="panel panel-default">
+      <div class="panel-body text-center">
+        <h4>Looking for a way to contribute?</h4>
+        <%= link_to "Help us on GitHub", 'https://github.com/ruby-rcade/RubyGameDev.com', class: 'btn btn-sm btn-primary', style: 'vertical-align: top' %>
+      </div>
+    </div>
+    <div class="panel panel-default">
+      <div class="panel-body text-center">
+        <h4>Stay up to date!</h4>
         <a href="https://twitter.com/RubyGameDev" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @RubyGameDev</a>
+        <br>or <%= link_to "Create an Account", sign_up_path %> to receive a digest email!
         <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
       </div>
     </div>

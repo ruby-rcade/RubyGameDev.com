@@ -24,6 +24,7 @@
       <div class="container">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
@@ -33,30 +34,15 @@
             <%= image_tag 'rubygamedev_logo.png', alt: 'RubyGameDev.com', width: 225, class: 'visible-xs', style: 'margin-top: 8px;' %>
           </a>
         </div>
-        
-        <div class="nav navbar-nav">
-          <div class="guide-nav">
-            <%= image_tag 'Guide.png', alt: 'Guides', class: 'guide-xs' %>
-            <%= link_to 'Guides', guides_path, class: 'text' %>
-          </div>
-        </div>
 
         <div class="navbar-collapse collapse">
-          <ul class="nav navbar-nav navbar-right pull-right">
-
-            <li class="search">
-              <%= form_tag(posts_path, :method => "get", id: "search-form") do %>
-              <%= text_field_tag :search, params[:search], {placeholder: "Search", class: 'glowing-border'} %>
-              <!-- In order to have the "search" icon in the button, we need to use plain HTML instead of using a Rails form helper -->
-                <button type="submit" class="close submit-search" >
-                  <span class="glyphicon glyphicon-search"></span>
-                </button>
-              <% end %>
-            </li>
+          <ul class="nav navbar-nav">
+            <li><%= link_to 'Guides', guides_path, class: 'text' %></li>
             <li class="lang"><%= render 'layouts/language_dropdown' %></li>
+          </ul>
 
+          <ul class="nav navbar-nav navbar-right">
             <% if signed_in? %>
-              <li></li>
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= current_user.email %> <b class="caret"></b></a>
                 <ul class="dropdown-menu">
@@ -67,10 +53,8 @@
             <% else %>
               <li><%= link_to 'Create Account', sign_up_path %></li>
               <li><%= link_to 'Sign in', sign_in_path %></li>
-              <% end %>
-
+            <% end %>
           </ul>
-
         </div>
       </div>
     </div>
@@ -88,6 +72,7 @@
       </div>
 
       <div class="row footer text-center">
+        <%= link_to (image_tag 'powered_by_rackspace.png'), 'http://www.rackspace.com/cloud', target: '_blank', class: 'rackspace-logo' %>
         <%= link_to 'About RubyGameDev.com', about_page_path %>
         <!-- <div class="col-md-2">
         </div>
