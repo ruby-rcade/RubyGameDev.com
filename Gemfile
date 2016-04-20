@@ -13,6 +13,7 @@ group :production do
   gem 'pg'
   gem 'rails_12factor'
   gem 'therubyracer' # for asset compilation
+  gem 'postmark-rails' # sending email
 end
 
 # assets
