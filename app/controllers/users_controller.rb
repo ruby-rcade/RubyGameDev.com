@@ -1,6 +1,5 @@
 class UsersController < Clearance::UsersController
-
-  # all actions in this controller are scoped to the current_user
+  # NOTE: all actions in this controller are scoped to the current_user
   before_action :validate_editor, only: [:edit, :update]
   before_action :require_login, only: [:edit_current_user]
 
