@@ -4,7 +4,7 @@ ruby '2.2.3'
 gem 'rails', '~> 4.0.0'
 
 # application server
-gem 'thin'
+gem 'puma'
 
 # databases
 gem 'sqlite3', groups: [:development, :test]
