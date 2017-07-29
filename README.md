@@ -42,10 +42,10 @@ $ bundle exec rake db:migrate
 Then you can start the Rails server and see it running in your browser:
 
 ```bash
-$ bundle exec rails server -p 7777
+$ bundle exec rails server
 ```
 
-Then open your browser to http://localhost:7777. Why port 7777? The GitHub OAuth callback is configured to be running on this port.
+If you would like to test GitHub authentication, you will need to install [Pow](http://pow.cx/) or [puma-dev](https://github.com/puma/puma-dev) to be able to run the app locally using a `.dev` domain. The GitHub OAuth callback is configured to accept requests from rubygamedev.dev.
 
 ## Writing Tests
 

@@ -1,10 +1,10 @@
 source 'https://rubygems.org'
 ruby '2.2.3'
 
-gem 'rails', '~> 4.0.0'
+gem 'rails', '~> 4.2.0'
 
 # application server
-gem 'thin'
+gem 'puma'
 
 # databases
 gem 'sqlite3', groups: [:development, :test]
@@ -48,10 +48,6 @@ gem 'pundit'
 gem 'dotenv-rails' # for managing environment variables
 gem 'whenever', :require => false # for managing crontab
 
-# deployment and provisioning
-# gem 'sunzi'
-# gem 'capistrano', '~> 2.15'
-
 # monitoring/reporting
 gem 'newrelic_rpm'
 gem 'bugsnag'
@@ -68,7 +64,7 @@ gem 'rails-i18n', '~> 4.0.0'
 gem 'sinatra', :require => nil
 
 group :test do
-  gem 'rspec-rails'
+  gem 'rspec-rails', '~> 3.5', '>= 3.5.2'
   gem 'shoulda-matchers'
   gem 'factory_girl_rails', '~> 4.4.0'
   gem 'capybara'

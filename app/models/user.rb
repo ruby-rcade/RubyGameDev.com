@@ -2,8 +2,6 @@ class User < ActiveRecord::Base
   include Clearance::User
   has_many :authentications, dependent: :destroy
   has_many :guide_revisions
-
-
   has_many :votes
   has_many :voted_posts, through: :votes, source: :user, class_name: 'User'
 
@@ -13,18 +11,16 @@ class User < ActiveRecord::Base
   before_create :create_default_subscription
 
   scope :subscriber_daily_digest, -> { where(digest_subscriber: true, digest_frequency: "daily") }
-
   scope :subscriber_weekly_digest, -> { where(digest_subscriber: true, digest_frequency: "weekly") }
-
   scope :subscriber_monthly_digest, -> { where(digest_subscriber: true, digest_frequency: "monthly") }
 
   def self.create_with_auth_and_hash(authentication, auth_hash)
-    create! do |u|
+    user = find_or_create_by(email: auth_hash['info']['email']) do |u|
       u.username = auth_hash['info']['name']
-      u.email = auth_hash['info']['email']
       u.password = SecureRandom.hex(24) # generate a 24 character random password
-      u.authentications << authentication
     end
+    authentication.update_attributes(user: user)
+    user
   end
 
   def admin?
