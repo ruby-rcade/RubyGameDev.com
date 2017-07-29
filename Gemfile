@@ -48,10 +48,6 @@ gem 'pundit'
 gem 'dotenv-rails' # for managing environment variables
 gem 'whenever', :require => false # for managing crontab
 
-# deployment and provisioning
-# gem 'sunzi'
-# gem 'capistrano', '~> 2.15'
-
 # monitoring/reporting
 gem 'newrelic_rpm'
 gem 'bugsnag'
