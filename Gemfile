@@ -64,7 +64,7 @@ gem 'rails-i18n', '~> 4.0.0'
 gem 'sinatra', :require => nil
 
 group :test do
-  gem 'rspec-rails'
+  gem 'rspec-rails', '~> 3.5', '>= 3.5.2'
   gem 'shoulda-matchers'
   gem 'factory_girl_rails', '~> 4.4.0'
   gem 'capybara'
