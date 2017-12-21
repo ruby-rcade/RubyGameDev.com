@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby '2.2.3'
+ruby File.read('.ruby-version').chomp
 
 gem 'rails', '~> 4.2.0'
 
@@ -9,16 +9,11 @@ gem 'puma'
 # databases
 gem 'sqlite3', groups: [:development, :test]
 
-# For use with letsencrypt-rails-heroku gem.
-# Until the new API calls are generally available, you must manually specify this fork of the Heroku API gem:
-gem 'platform-api', git: 'https://github.com/jalada/platform-api', branch: 'master'
-
 group :production do
   gem 'pg'
   gem 'rails_12factor'
   gem 'therubyracer' # for asset compilation
   gem 'postmark-rails' # sending email
-  gem 'letsencrypt-rails-heroku'
 end
 
 # assets
