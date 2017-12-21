@@ -41,7 +41,6 @@ gem 'pundit'
 
 # configuration
 gem 'dotenv-rails' # for managing environment variables
-gem 'whenever', :require => false # for managing crontab
 
 # monitoring/reporting
 gem 'newrelic_rpm'
