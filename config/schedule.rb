@@ -22,5 +22,6 @@
 set :output, File.expand_path('../log/cron.log', __FILE__)
 
 every :day, at: '4am' do
-  runner 'DigestBuilder.send_daily_email'
+  # FIXME: disable digest emails until the email becomes more useful and doesn't send when there are no updates.
+  # runner 'DigestBuilder.send_daily_email'
 end
