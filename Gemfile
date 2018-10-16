@@ -80,3 +80,6 @@ group :development, :test do
   gem 'terminal-notifier-guard'
   gem 'vcr','~> 2.7'
 end
+
+# Pagination
+gem 'kaminari'
