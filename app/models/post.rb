@@ -3,6 +3,7 @@ class Post < ActiveRecord::Base
   validates :title, presence: true
   after_create :notify_twitter
   after_save :create_tags_from_tag_string
+  paginates_per 15
 
   has_many :votes
   has_many :voted_users, through: :votes, source: :user, class_name: 'User'

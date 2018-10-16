@@ -17,6 +17,7 @@
         <%= link_to "Filter by Tag", tags_path, class: 'btn pull-right' %>
         <h2>Latest Posts</h2>
         <%= render 'posts/list' %>
+        <%= paginate @posts %>
       </div>
     </div>
   </div>
