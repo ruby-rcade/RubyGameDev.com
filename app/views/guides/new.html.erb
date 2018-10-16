@@ -16,8 +16,6 @@
   <div class="form-group">
     <%= f.label :guide_category_id, 'Choose Category' %>
     <%= f.select :guide_category_id, @guide_categories.map { |gc| [gc.name, gc.id] }, {}, {class: 'form-control'} %>
-
-    <%= link_to 'New Category', new_guide_category_path, class: 'btn btn-primary btn-xs btn-new-category' %>
   </div>
 
   <div class="form-group">
