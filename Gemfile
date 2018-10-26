@@ -32,6 +32,7 @@ gem 'bootstrap-sass', '= 3.3.4.1'
 gem 'omniauth'
 gem 'omniauth-github'
 gem 'clearance'
+gem 'recaptcha'
 
 # social
 gem 'twitter' # used for posting updates

@@ -5,7 +5,7 @@ class UsersController < Clearance::UsersController
 
   def create
     @user = User.new(user_params)
-    if @user.save
+    if verify_recaptcha(model: @user) && @user.save
       sign_in @user
       redirect_back_or url_after_create
     else
