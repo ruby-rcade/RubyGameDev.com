@@ -24,19 +24,48 @@
       <div class="form-group">
         <div class="panel panel-default">
           <div class="panel-body">
-            Would you like to receive a digest email when new posts are added to the website? <br/>
+            <p>Would you like to receive a digest email when new posts are added to the website?</p>
 
-            <%= f.label "Digest Email" %> &nbsp;&nbsp;&nbsp;&nbsp;
-            <%= f.check_box(:digest_subscriber) %> <br/>
+            <p>
+              <label class="radio-inline">
+                <%= f.radio_button :digest_subscriber, true %> Yes
+              </label>
+              <label class="radio-inline">
+                <%= f.radio_button :digest_subscriber, false %> No
+              </label>
+            </p>
 
-            <%= f.radio_button(:digest_frequency, "daily", :class=> "radio-inline")%>
-            <%= f.label( "Daily", :class=> "radio-inline") %><br/>
+            <div id="digest_frequency_options" style="<%= 'display:none' unless current_user.digest_subscriber? %>">
+              <p>How often would you like to receive the digest email?</p>
 
-            <%= f.radio_button(:digest_frequency, "weekly", :class=> "radio-inline")%>
-            <%= f.label( "weekly", :class=> "radio-inline") %><br/>
+              <div class="radio">
+                <label>
+                  <%= f.radio_button :digest_frequency, 'daily' %> Daily
+                </label>
+              </div>
+              <div class="radio">
+                <label>
+                  <%= f.radio_button :digest_frequency, 'weekly' %> Weekly
+                </label>
+              </div>
+              <div class="radio">
+                <label>
+                  <%= f.radio_button :digest_frequency, 'monthly' %> Monthly
+                </label>
+              </div>
+            </div>
 
-            <%= f.radio_button(:digest_frequency, "monthly", :class=> "radio-inline")%>
-            <%= f.label( "Monthly", :class=> "radio-inline" ) %><br/>
+            <script>
+              $(function() {
+                $('[name="user[digest_subscriber]"]').click(function() {
+                  if ($(this).val() == 'true') {
+                    $('#digest_frequency_options').show()
+                  } else {
+                    $('#digest_frequency_options').hide()
+                  }
+                })
+              })
+            </script>
           </div>
         </div>
       </div>
